@@ -18,7 +18,7 @@ import { postMessage } from '../src/api.auth.statuses.js';
   const lo = await login();
 
   // post a message
-  const result = await postMessage(lo, '### This message was posted with gablib\n', {
+  const result = await postMessage(lo, '### This message was posted with gablib\n\n#gablib **rocks!**', {
     visibility: enumVisibility.private
   });
 
