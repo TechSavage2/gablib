@@ -1,7 +1,7 @@
 gablib
 ======
 
-APi package for scripting/programming Mastodon nodes where OAuth has been disabled on the server.
+API package for scripting/programming Mastodon nodes where OAuth has been disabled on the server.
 This package will programmatically login via the regular "human" auth/sign_in page, extract tokens
 to allow for operations that requires authentication.
 
@@ -88,19 +88,19 @@ import { Poll } from './src/obj/Poll.js';
 const loginObject = await login();
 
 // post a message to your own timeline (text can be markdown)
-const result = await postMessage(loginObject, 'some text');
+const result1 = await postMessage(loginObject, 'some text');
 
 // post a message to a group
 const result2 = await postMessage(loginObject, 'some text', { groupId: '1501' });
 
 // post a message to a group with a poll attached
-const result2 = await postMessage(loginObject, 'some text', {
+const result3 = await postMessage(loginObject, 'some text', {
   groupId: '1501',
   poll   : new Poll([ 'option 1', 'option 2', 'options 3' ])
 });
 
 // post a message to your own timeline only your followers can see
-const result = await postMessage(loginObject, 'some text', {
+const result4 = await postMessage(loginObject, 'some text', {
   visibility: 'private' // or use enumVisibility.private
 });
 ```
@@ -109,7 +109,7 @@ Additional modules
 ------------------
 
 - `src/login.js` : main module to perform automated login
-- `src/obj/Poll` : Poll helper object to make polls for new statuses
+- `src/obj/Poll.js` : Poll helper object to make polls for new statuses
 - `src/api.auth.statuses.js` : API calls related to statuses
 - `src/api.auth.groups.js` : API calls related to groups
 - `src/api.auth.js` : API calls for generic/misc calls
@@ -141,8 +141,8 @@ The package has only been tested with Linux, but there is nothing preventing it 
 Windows, macOS and other platforms as well.
 
 _Although it should be possible to use this with any Mastodon it has not be tested with any other
-than Gab, and since they have changed, added and removed many of the API calls it may not work
-fully. You can still use the private
+than Gab, and since they have changed, added and removed many of the API calls it may not work fully
+as expected as with a 'normal' node. You can still use the private
 `_fetch()` call to mitigate some potential issues._
 
 License
