@@ -21,3 +21,9 @@ export async function getAccountFromUsername(baseUrl, username) {
   const result = await _fetch(null, url, 'GET', 'json', null, false);
   return { content: result.content, ok: result.status === 200 };
 }
+
+export async function getTrendsFeed(baseUrl) {
+  const url = baseUrl + '/api/v3/trends_feed';
+  const result = await _fetch(null, url, 'GET', 'json', null, false);
+  return { content: result.content, ok: result.status === 200 };
+}
