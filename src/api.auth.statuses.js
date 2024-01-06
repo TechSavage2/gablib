@@ -56,7 +56,7 @@ export async function uploadMedia(lo, pathOrBuffer, filename = null) {
   try {
     const url = lo.baseUrl + '/api/v1/media';
     const result = await _fetch(lo, url, 'POST', 'binary', form);
-    return { content: result.content, ok: result.status === 200 };
+    return { content: result.content, ok: result.status === 200 || result.status === 202 };
   }
   catch {
     return { content: null, ok: false };
