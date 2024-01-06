@@ -105,6 +105,22 @@ const result4 = await postMessage(loginObject, 'some text', {
 });
 ```
 
+To get a list of groups you're member of:
+
+```JavaScript
+import { login } from '../src/login.js';
+import { getMyGroups } from '../src/api.auth.groups.js';
+
+const loginObject = await login();
+
+// list groups
+const result = await getMyGroups(loginObject);
+console.log(result);
+
+// You can also set 'minimal' list to true for only id and group title:
+//const result = await getMyGroups(loginObject, true);
+```
+
 Additional modules
 ------------------
 
