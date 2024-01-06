@@ -182,7 +182,7 @@ with Windows, macOS and other platforms as well.
 
 _Although it should be possible to use this with any Mastodon it has not been tested with any
 Mastodon instances other than Gab, and since they have changed, added and removed many of the API
-calls it may not work fully as expected as with a 'normal' node.
+calls it may not work fully as expected as with a 'normal' node._
 
 License
 -------
