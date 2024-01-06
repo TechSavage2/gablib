@@ -8,6 +8,8 @@
 
 'use strict';
 
+import { login } from './login.js';
+
 /**
  Private function that handles all our scenarios. This function is not intended
  to be called directly, but through wrappers that will provide the correct
@@ -20,6 +22,8 @@ export async function _fetch(
   resultType = 'json',
   body = null,
   auth = true) {
+
+  const ua = loginObject ? loginObject.userAgent : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/120.0';
 
   const options = {
     headers    : {
@@ -35,7 +39,7 @@ export async function _fetch(
       'Sec-Gpc'                  : '1',
       'Sec-Fetch-User'           : '?1',
       'Upgrade-Insecure-Requests': '1',
-      'User-Agent'               : loginObject.userAgent
+      'User-Agent'               : ua
     },
     method     : method,
     mode       : 'cors',
@@ -43,21 +47,23 @@ export async function _fetch(
     redirect   : 'manual'   // we need to handle redirects manually to transfer auth/cookies to redirected page
   };
 
-  if ( loginObject.cookies.has() ) {
-    options.headers[ 'Cookie' ] = loginObject.cookies.toString();
-  }
+  if ( loginObject ) {
+    if ( loginObject.cookies.has() ) {
+      options.headers[ 'Cookie' ] = loginObject.cookies.toString();
+    }
 
-  if ( loginObject.lastUrl ) {
-    options[ 'Referer' ] = loginObject.lastUrl;
-  }
+    if ( loginObject.lastUrl ) {
+      options[ 'Referer' ] = loginObject.lastUrl;
+    }
 
-  if ( auth && loginObject.accessToken ) {
-    options.headers[ 'Authorization' ] = `Bearer ${ loginObject.accessToken }`;
-  }
+    if ( auth && loginObject.accessToken ) {
+      options.headers[ 'Authorization' ] = `Bearer ${ loginObject.accessToken }`;
+    }
 
-  if ( loginObject.csrfToken ) {
-    // does not seem to be required
-    options.headers[ 'X-Csrf-Token' ] = loginObject.csrfToken;
+    if ( loginObject.csrfToken ) {
+      // does not seem to be required
+      options.headers[ 'X-Csrf-Token' ] = loginObject.csrfToken;
+    }
   }
 
   if ( resultType === 'json' ) {
@@ -93,8 +99,10 @@ export async function _fetch(
   const content = resultType === 'json' || resultType === 'binary' ? await response.json() : await response.text();
 
   // update login object
-  loginObject.cookies.set(headers.getSetCookie());
-  loginObject.lastUrl = response.url;
+  if ( loginObject ) {
+    loginObject.cookies.set(headers.getSetCookie());
+    loginObject.lastUrl = response.url;
+  }
 
   return { content, headers, status, url: response.url };
 }
