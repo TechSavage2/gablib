@@ -105,7 +105,7 @@ const result4 = await postMessage(loginObject, 'some text', {
 });
 ```
 
-To get a list of groups you're member of:
+To get a list of groups you are member of:
 
 ```JavaScript
 import { login } from '../src/login.js';
@@ -119,6 +119,30 @@ console.log(result);
 
 // You can also set 'minimal' list to true for only id and group title:
 //const result = await getMyGroups(loginObject, true);
+```
+
+Upload media as attachments (this method will likely change in the future!):
+
+```JavaScript
+// after login, first upload media files in parallel
+const mediaResult = await Promise.all([
+  uploadMedia(lo, '/path/to/file1.jpg'),
+  uploadMedia(lo, '/path/to/file2.png'),
+  uploadMedia(lo, '/path/to/file3.mp4')
+]);
+
+// extract media Ids
+const attachmentIds = mediaResult.map(e => e.content.id);
+
+// post message with attachment ids as an array 
+const result = await postMessage(
+  loginObject,
+  'Take a look at these files:',
+  {},
+  attachmentIds
+);
+
+console.log(result);
 ```
 
 Additional modules
