@@ -112,7 +112,7 @@ Additional modules
 - `src/obj/Poll` : Poll helper object to make polls for new statuses
 - `src/api.auth.statuses.js` : API calls related to statuses
 - `src/api.auth.groups.js` : API calls related to groups
-- `src/api.auth.timelines.js` : API calls related to timelines
+- `src/api.auth.js` : API calls for generic/misc calls
 - `src/api.public.js` : API calls that don't require authentication
 - `src/enums.js` : enum helpers to set proper values for some calls
 
