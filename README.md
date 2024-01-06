@@ -2,10 +2,16 @@ gablib
 ======
 
 API package for scripting/programming Mastodon nodes where OAuth has been disabled on the server.
-This package will programmatically login via the regular "human" auth/sign_in page, extract tokens
-to allow for operations that requires authentication.
+This package will allow you to log in programmatically via the regular "human" auth/sign_in page and
+extract tokens for operations that requires authentication.
 
 NOTE: Alpha version. WIP. Use at own risk!
+
+Requirements
+------------
+
+- NodeJS version 18 or newer (for running async/await in global scope).
+- Bun version 1.0.21 or newer.
 
 Install
 -------
