@@ -177,8 +177,8 @@ Features
 
 You can use both _nodejs_ and _bun_ executables for the package.
 
-The package has only been tested with Linux, but shouldn't be anything preventing it from working
-with Windows, macOS and other platforms as well.
+The package has only been tested with Linux, but there shouldn't be anything preventing it from
+working with Windows, macOS and other platforms as well.
 
 _Although it should be possible to use this with any Mastodon it has not been tested with any
 Mastodon instances other than Gab, and since they have changed, added and removed many of the API
