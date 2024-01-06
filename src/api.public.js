@@ -27,3 +27,9 @@ export async function getTrendsFeed(baseUrl) {
   const result = await _fetch(null, url, 'GET', 'json', null, false);
   return { content: result.content, ok: result.status === 200 };
 }
+
+export async function getNewsFeed() {
+  const url = 'https://news.gab.com/feed/?feed=json';
+  const result = await _fetch(null, url, 'GET', 'json', null, false);
+  return { content: result.content, ok: result.status === 200 };
+}
