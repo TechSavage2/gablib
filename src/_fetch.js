@@ -53,7 +53,7 @@ export async function _fetch(
     }
 
     if ( loginObject.lastUrl ) {
-      options[ 'Referer' ] = loginObject.lastUrl;
+      options.headers[ 'Referer' ] = loginObject.lastUrl;
     }
 
     if ( auth && loginObject.accessToken ) {
