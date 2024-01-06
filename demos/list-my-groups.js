@@ -10,13 +10,9 @@
 import { login } from '../src/login.js';
 import { getMyGroups } from '../src/api.auth.groups.js';
 
-(async () => {
+// login to your account
+const lo = await login();
 
-  // login to your account
-  const lo = await login();
-
-  // list groups
-  const result = await getMyGroups(lo, true);
-  console.log(result);
-
-})();
+// list groups
+const result = await getMyGroups(lo, true);
+console.log(result);
