@@ -126,9 +126,9 @@ Upload media as attachments (this method will likely change in the future!):
 ```JavaScript
 // after login, first upload media files in parallel
 const mediaResult = await Promise.all([
-  uploadMedia(lo, '/path/to/file1.jpg'),
-  uploadMedia(lo, '/path/to/file2.png'),
-  uploadMedia(lo, '/path/to/file3.mp4')
+  uploadMedia(loginObject, '/path/to/file1.jpg'),
+  uploadMedia(loginObject, '/path/to/file2.png'),
+  uploadMedia(loginObject, '/path/to/file3.mp4')
 ]);
 
 // extract media Ids
