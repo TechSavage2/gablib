@@ -11,6 +11,10 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { CookieJar } from './CookieJar.js';
 
+const defEmailEnv = 'MASTODON_USEREMAIL';
+const defaultPasswordEnv = 'MASTODON_PASSWORD';
+const defaultBaseUrlEnv = 'MASTODON_BASEURL';
+
 const commonUserAgents = [
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/121.0',
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 14.1; rv:109.0) Gecko/20100101 Firefox/121.0',
@@ -56,9 +60,9 @@ const commonUserAgents = [
 ];
 
 export function LoginObject(credentials, altPassword = null, altBaseUrl = null) {
-  let userEmail = 'MASTODON_USEREMAIL';
-  let password = 'MASTODON_PASSWORD';
-  let baseUrl = 'MASTODON_BASEURL';
+  let userEmail = defEmailEnv;
+  let password = defaultPasswordEnv;
+  let baseUrl = defaultBaseUrlEnv;
 
   // Use alternative env variables
   if ( typeof credentials === 'string' && typeof altPassword === 'string' && typeof altBaseUrl === 'string' ) {
@@ -89,7 +93,7 @@ You can also provide alternative names for env values as login('myemailenv', 'my
 
   this.authToken = null;      // for login
   this.accessToken = null;    // for bearer authorization
-  this.csrfToken = null;
+  this.csrfToken = null;      // improved xss protection (not too useful here, but we'll include it)
   this.initJSON = {};         // meta, settings, your userid, name etc.
 
   this.userAgent = commonUserAgents[ (commonUserAgents.length * Math.random()) | 0 ];
@@ -99,7 +103,7 @@ You can also provide alternative names for env values as login('myemailenv', 'my
     return this.initJSON.accounts[ id ];
   };
 
-  this.getGabVersion = function() {
+  this.getVersion = function() {
     return this.initJSON.meta.version;
   };
 
