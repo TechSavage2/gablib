@@ -15,6 +15,8 @@ _NOTE: Alpha version. WIP. Use at own risk!_
 Requirements
 ------------
 
+One of:
+
 - NodeJS version 18 or newer (for the fetch api).
 - Bun version 1.0.21 or newer.
 
