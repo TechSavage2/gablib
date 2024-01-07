@@ -148,6 +148,24 @@ export async function unfavoritePost(lo, statusId, reactId = '1') {
   return { content: result.content, ok: result.status === 200 };
 }
 
+export async function pinPostStatus(lo, statusId) {
+  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/pin`;
+  const result = await _fetch(lo, url);
+  return { content: result.content, ok: result.status === 200 };
+}
+
+export async function pinPost(lo, statusId) {
+  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/pin`;
+  const result = await _fetch(lo, url, 'POST', 'json', {});
+  return { content: result.content, ok: result.status === 200 };
+}
+
+export async function unpinPost(lo, statusId) {
+  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/unpin`;
+  const result = await _fetch(lo, url, 'POST', 'json', {});
+  return { content: result.content, ok: result.status === 200 };
+}
+
 /*******************************************************************************
 
  HELPER FUNCTIONS
