@@ -96,7 +96,7 @@ export async function _fetch(
   const response = await fetch(url, options);
   const headers = response.headers;
   const status = response.status;
-  const content = resultType === 'json' || resultType === 'binary' ? await response.json() : await response.text();
+  const content = status !== 204 ? resultType === 'json' || resultType === 'binary' ? await response.json() : await response.text() : null;
 
   // update login object
   if ( loginObject ) {
@@ -106,5 +106,5 @@ export async function _fetch(
 
   return { content, headers, status, url: response.url };
   //todo consolidate return as in almost all cases we only need content and status:
-  //{ content: result.content, ok: result.status === 200 }
+  //{ content: result.content, ok: result.status === 200 } // 202, 204 are possible too..hm
 }
