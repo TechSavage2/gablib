@@ -11,14 +11,34 @@ import { readFileSync } from 'node:fs';
 import { extname } from 'node:path';
 import { findObjectId, mapObject, stripMD } from './utils.js';
 import { mapAccount, mapAttachmentMeta, mapAttachmentRoot, mapStatus } from './maps.js';
+import { Poll } from './obj/Poll.js';
 
 export async function postMessage(lo, markdown, options = {}, attachments = [], editId = null) {
   const status = stripMD(markdown);
+
+  if ( !attachments.length && !status.length ) {
+    throw new Error('Status text is empty and no attachments. At least one must be present.');
+  }
+
+  if ( markdown === status ) {
+    markdown = null;
+  }
+
   const sensitive = typeof options.sensitive === 'boolean' ? options.sensitive : lo.initJSON.compose.default_sensitive;
   const visibility = options.visibility ? options.visibility : lo.initJSON.compose.default_privacy;
   const expires = options.expires ? options.expires : lo.initJSON.compose.default_status_expiration;
 
-  if ( markdown === status ) markdown = null;
+  let poll = null;
+  if ( options.poll instanceof Poll ) {
+    poll = options.poll.toJSON();
+  }
+  else if ( typeof options.poll === 'object' ) {
+    poll = options.poll;
+  }
+
+  //  if (attachments.length && poll) { // Gab seem to allow this combo
+  //    throw new Error('Cannot attach poll if there are media attachments.')
+  //  }
 
   const body = {
     markdown, status, sensitive, visibility,
@@ -28,9 +48,10 @@ export async function postMessage(lo, markdown, options = {}, attachments = [], 
     'in_reply_to_id': options.replyId ? options.replyId : null,
     'quote_of_id'   : options.quoteId ? options.quoteId : null,
     'spoiler_text'  : options.spoiler ? options.spoiler : '',
-    'poll'          : options.poll ? options.poll.toJSON() : null, // use Poll object
+    'poll'          : poll,
     'group_id'      : options.groupId ? options.groupId : null,
-    'language'      : options.language ? options.language : 'en'
+    'language'      : options.language ? options.language : 'en',         // ISO 639
+    'scheduled_at'  : options.scheduledAt ? options.scheduledAt : null    // ISO 8601
   };
 
   const url = lo.baseUrl + '/api/v1/statuses' + (editId ? `/${ editId }` : '');
@@ -112,6 +133,19 @@ export async function getTimelineStatuses(lo, timeline = 'home', pageOrMaxId = 0
   return await _getStatuses(lo, url);
 }
 
+/*******************************************************************************
+
+ HELPER FUNCTIONS
+
+ *******************************************************************************/
+
+/**
+ *
+ * @param lo
+ * @param url
+ * @returns {Promise<{ok: boolean, content: *[]}>}
+ * @private
+ */
 export async function _getStatuses(lo, url) {
   const result = await _fetch(lo, url, 'GET', 'json');
   const statuses = [];
