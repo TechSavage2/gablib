@@ -22,7 +22,8 @@ export async function getBookmarkCollection(lo) {
   return { content: result.content, ok: result.status === 200 };
 }
 
-// bookmarks
-// shortcuts (get, post, delete)
-// notifications
-// popular_links
+export async function getConversationOwner(lo, convId) {
+  const url = lo.baseUrl + `/api/v1/conversation_owner/${ convId }`;
+  const result = await _fetch(lo, url);
+  return { content: result.content, ok: result.status === 200 };
+}
