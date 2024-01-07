@@ -148,6 +148,12 @@ export async function getTimelineStatuses(lo, timeline = 'home', pageOrMaxId = 0
   return await _getStatuses(lo, url);
 }
 
+export async function getStatusRevisions(lo, statusId) {
+  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/revisions`;
+  const result = await _fetch(lo, url);
+  return { content: result.content, ok: result.status === 200 };
+}
+
 export async function favoritePost(lo, statusId, reactId = '1') {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/favourite`;
   const body = {};
