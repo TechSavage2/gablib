@@ -28,7 +28,7 @@ export function setMarkdownFunction(fn, isAsync = false) {
   }
 }
 
-export async function postMessage(lo, markdown, options = {}, attachments = [], editId = null) {
+export async function postStatus(lo, markdown, options = {}, attachments = [], editId = null) {
   const status = markdownStripperIsAsync ? await markdownStripper(markdown) : markdownStripper(markdown);
 
   if ( !attachments.length && !status.length ) {
@@ -75,7 +75,7 @@ export async function postMessage(lo, markdown, options = {}, attachments = [], 
 }
 
 // filename is required if pathOrBuffer is buffer
-// Record media ID - they need to be added to the postMessage media ids
+// Record media ID - they need to be added to the postStatus media ids
 export async function uploadMedia(lo, pathOrBuffer, filename = null) {
   const form = new FormData();
 

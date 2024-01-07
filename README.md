@@ -99,25 +99,25 @@ To call API functions then is simply a matter of logging in and use the resultin
 
 ```JavaScript
 import { login } from './src/login.js';
-import { postMessage } from './api.auth.timelines.js';
+import { postStatus } from './api.auth.timelines.js';
 import { Poll } from './src/obj/Poll.js';
 
 const loginObject = await login();
 
 // post a message to your own timeline (text can be markdown)
-const result1 = await postMessage(loginObject, 'some text');
+const result1 = await postStatus(loginObject, 'some text');
 
 // post a message to a group
-const result2 = await postMessage(loginObject, 'some text', { groupId: '1501' });
+const result2 = await postStatus(loginObject, 'some text', { groupId: '1501' });
 
 // post a message to a group with a poll attached
-const result3 = await postMessage(loginObject, 'some text', {
+const result3 = await postStatus(loginObject, 'some text', {
   groupId: '1501',
   poll   : new Poll([ 'option 1', 'option 2', 'options 3' ])
 });
 
 // post a message to your own timeline only your followers can see
-const result4 = await postMessage(loginObject, 'some text', {
+const result4 = await postStatus(loginObject, 'some text', {
   visibility: 'private' // or use enumVisibility.private
 });
 ```
@@ -152,7 +152,7 @@ const mediaResult = await Promise.all([
 const attachmentIds = mediaResult.map(e => e.content.id);
 
 // post message with attachment ids as an array 
-const result = await postMessage(
+const result = await postStatus(
   loginObject,
   'Take a look at these files:',
   {},
