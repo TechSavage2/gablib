@@ -29,7 +29,8 @@ export async function postMessage(lo, markdown, options = {}, attachments = [], 
     'quote_of_id'   : options.quoteId ? options.quoteId : null,
     'spoiler_text'  : options.spoiler ? options.spoiler : '',
     'poll'          : options.poll ? options.poll.toJSON() : null, // use Poll object
-    'group_id'      : options.groupId ? options.groupId : null
+    'group_id'      : options.groupId ? options.groupId : null,
+    'language'      : options.language ? options.language : 'en'
   };
 
   const url = lo.baseUrl + '/api/v1/statuses' + (editId ? `/${ editId }` : '');
