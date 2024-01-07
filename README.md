@@ -17,8 +17,8 @@ Requirements
 
 One of:
 
-- NodeJS version 18 or newer (for the fetch api).
-- Bun version 1.0.21 or newer.
+- [NodeJS](https://nodejs.org/en/) version 18 or newer (for the fetch api).
+- [Bun](https://bun.sh/) version 1.0.21 or newer.
 
 Install
 -------
