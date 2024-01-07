@@ -198,6 +198,25 @@ export async function unpinStatus(lo, statusId) {
   return { content: result.content, ok: result.status === 200 };
 }
 
+export async function bookmarkStatusState(lo, statusId) {
+  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/bookmark`;
+  const result = await _fetch(lo, url);
+  return { content: result.content, ok: result.status === 200 };
+}
+
+export async function bookmarkStatus(lo, statusId, collectionId) {
+  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/bookmark`;
+  const body = { bookmarkCollectionId: collectionId };
+  const result = await _fetch(lo, url, 'POST', 'json', body);
+  return { content: result.content, ok: result.status === 200 };
+}
+
+export async function unbookmarkStatus(lo, statusId) {
+  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/unbookmark`;
+  const result = await _fetch(lo, url, 'POST', 'json', {});
+  return { content: result.content, ok: result.status === 200 };
+}
+
 export async function getStatusQuotes(lo, statusId) {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/quotes`;
   const result = await _fetch(lo, url);

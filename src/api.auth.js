@@ -15,3 +15,14 @@ export async function getMyShortcuts(lo) {
   const result = await _fetch(lo, url, 'GET', 'json');
   return { content: result.content, ok: result.status === 200 };
 }
+
+export async function getBookmarkCollection(lo) {
+  const url = lo.baseUrl + `/api/v1/bookmark_collections`;
+  const result = await _fetch(lo, url);
+  return { content: result.content, ok: result.status === 200 };
+}
+
+// bookmarks
+// shortcuts (get, post, delete)
+// notifications
+// popular_links
