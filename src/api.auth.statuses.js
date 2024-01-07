@@ -73,6 +73,18 @@ export async function getAccountStatuses(lo, account, page = 1, sort = 'newest')
   return await _getStatuses(lo, url);
 }
 
+/**
+ * Valid lists:
+ *
+ * home, explore, group_collection, group_pins, group/id (see groups), links,
+ * list/id, pro, related/statusId, video, "clips"
+ *
+ * @param lo
+ * @param timeline
+ * @param pageOrMaxId
+ * @param sort
+ * @returns {Promise<{ok: boolean, content: []}>}
+ */
 export async function getTimelineStatuses(lo, timeline = 'home', pageOrMaxId = 0, sort = 'no-reposts') {
   //todo validate sort arguments
   //todo video timeline additions args: only_following=1, media_type=clips|<none> (sort clips: newest,top_today, video: top* all)
@@ -113,7 +125,10 @@ function _formatStatus(result, statusId, doRecursive = true) {
 
   // pin account info
   let account = findObjectId(status.account_id, result.content.a, 'i');
-  if ( account ) status.account = mapObject(account, mapAccount);
+  if ( account ) {
+    delete status.account_id;
+    status.account = mapObject(account, mapAccount);
+  }
 
   // pin any quotes
   if ( doRecursive && status.has_quote ) {
@@ -123,14 +138,13 @@ function _formatStatus(result, statusId, doRecursive = true) {
     }
     else {
       status.quote = null;
-      status.quote_id = null;
     }
+    delete status.quote_id;
   }
 
   // status context?
-  if ( status.status_context_id ) {
-    status.status_context = findObjectId(status.status_context_id, result.content.s, 'i');
-  }
+  status.status_context = findObjectId(status.status_context_id, result.content.s, 'i');
+  delete status.status_context_id;
 
   // media attachments
   if ( status.media_attachment_ids.length ) {
