@@ -148,8 +148,9 @@ function _formatStatus(result, statusId, doRecursive = true) {
   }
 
   // status context?
-  status.status_context = findObjectId(status.status_context_id, result.content.s, 'i');
-  delete status.status_context_id;
+  if ( status.status_context_id ) {
+    status.status_context = findObjectId(status.status_context_id, result.content.s, 'i');
+  }
 
   // media attachments
   if ( status.media_attachment_ids.length ) {
