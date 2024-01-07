@@ -99,6 +99,12 @@ export async function uploadMedia(lo, pathOrBuffer, filename = null) {
   }
 }
 
+export async function deleteStatus(lo, statusId) {
+  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }`;
+  const result = await _fetch(lo, url, 'DELETE');
+  return { content: null, ok: result.status === 204 };
+}
+
 export async function getStatusesFromTag(lo, tagName) {
   const url = lo.baseUrl + `/api/v2/timelines/tag/${ tagName }`;
   return await _getStatuses(lo, url);
