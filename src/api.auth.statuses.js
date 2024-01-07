@@ -71,7 +71,6 @@ export async function postMessage(lo, markdown, options = {}, attachments = [], 
 
   const url = lo.baseUrl + '/api/v1/statuses' + (editId ? `/${ editId }` : '');
   const result = await _fetch(lo, url, editId ? 'PUT' : 'POST', 'json', body);
-
   return { content: result.content, ok: result.status === 200 };
 }
 
@@ -146,6 +145,12 @@ export async function getTimelineStatuses(lo, timeline = 'home', pageOrMaxId = 0
 
   const url = lo.baseUrl + `/api/v2/timelines/${ timeline }?${ maxIdFormatted }sort_by=${ sort }`;
   return await _getStatuses(lo, url);
+}
+
+export async function getStatusRepostedBy(lo, statusId, maxId = 0) {
+  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/reblogged_by${ maxId > 0 ? '&max_id=' + maxId : '' }`;
+  const result = await _fetch(lo, url);
+  return { content: result.content, ok: result.status === 200 };
 }
 
 export async function getStatusRevisions(lo, statusId) {
