@@ -21,8 +21,9 @@ Requirements
 Install
 -------
 
-Clone this repo using git, or download the zip file and unzip it to a directory. It's now ready for
-use. As of now there are no other dependencies to be installed.
+Clone this repo using git, or download the zip file and unzip it to a directory.
+
+It's now ready for use. As of now there are no other dependencies to be installed.
 
 **Note** that this package and modules uses ESM format (i.e. use `import` statements.)
 
@@ -31,7 +32,9 @@ Usage
 
 Make sure you have a registered and active account with the Mastodon site you want to log on to.
 
-Make sure to initialize environmental variables on your system. For Linux, you can use:
+Make sure to initialize environmental variables on your system.
+
+For Linux, you can use:
 
 ```bash
 export MASTODON_USEREMAIL='your@mastodon.email'
@@ -41,7 +44,8 @@ export MASTODON_BASEURL='https://somemastodon.site'
 
 Put this in your ~/.profile file.
 
-You can also use different environment names and simply supply them instead (see below.)
+You can also use different environment names and simply supply them instead
+(see below.)
 
 In your JavaScript you can now call as the first function:
 
@@ -184,18 +188,36 @@ Features
 - [x] API calls using authentications (WIP)
 - [x] public API calls (WIP)
 - [x] 'normalizes' Gab's remapped status lists format to that of normal Mastodon
+- [ ] plugins (markdown stripper for instance)
 - [ ] streams and sockets wrapper objects (for client use)
 - [ ] (de)serializing of session/auth data for reuse between executions (experimental)
 - [ ] events (responses, errors, upload/download progress, etc.)
 
 You can use both _nodejs_ and _bun_ executables for the package.
 
+Documentation
+-------------
+
+Check out the wiki page for this repo as it will be updated with examples as we go.
+
+https://github.com/TechSavage2/gablib/wiki
+
+To see specifics for each API call, JSON structures and so on, the official Mastodon can be useful.
+Note that some Mastodon sites (such as Gab) have modified some of these responses, JSONs and API
+calls, but to get the broader gist this is still helpful:
+
+https://docs.joinmastodon.org/methods/
+
+Issues
+------
+
+See https://github.com/TechSavage2/gablib/issues
+
+Notes
+-----
+
 The package has only been tested with Linux, but there shouldn't be anything preventing it from
 working with Windows, macOS and other platforms as well.
-
-_Although it should be possible to use this with any Mastodon it has not been tested with any
-Mastodon instances other than Gab, and since they have changed, added and removed many of the API
-calls it may not work fully as expected as with a 'normal' node._
 
 License
 -------
