@@ -13,8 +13,23 @@ import { findObjectId, mapObject, stripMD } from './utils.js';
 import { mapAccount, mapAttachmentMeta, mapAttachmentRoot, mapStatus } from './maps.js';
 import { Poll } from './obj/Poll.js';
 
+let markdownStripper = stripMD;
+let markdownStripperIsAsync = false;
+
+/**
+ * Set a custom Markdown function to strip markdown from Status texts.
+ * @param {Function} fn - function that takes Markdown as input and returns cleaned text.
+ * @param {Boolean} [isAsync=false] whether or not the call is asynchronous or not
+ */
+export function setMarkdownFunction(fn, isAsync = false) {
+  if ( fn ) {
+    markdownStripper = fn;
+    markdownStripperIsAsync = isAsync;
+  }
+}
+
 export async function postMessage(lo, markdown, options = {}, attachments = [], editId = null) {
-  const status = stripMD(markdown);
+  const status = markdownStripperIsAsync ? await markdownStripper(markdown) : markdownStripper(markdown);
 
   if ( !attachments.length && !status.length ) {
     throw new Error('Status text is empty and no attachments. At least one must be present.');
