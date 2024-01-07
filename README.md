@@ -190,7 +190,7 @@ Features
 - [x] API calls using authentications (WIP)
 - [x] public API calls (WIP)
 - [x] 'normalizes' Gab's remapped status lists format to that of normal Mastodon
-- [ ] plugins (markdown stripper for instance)
+- [x] can use a custom markdown stripper
 - [ ] streams and sockets wrapper objects (for client use)
 - [ ] (de)serializing of session/auth data for reuse between executions (experimental)
 - [ ] events (responses, errors, upload/download progress, etc.)
