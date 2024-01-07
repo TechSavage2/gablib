@@ -167,9 +167,10 @@ Additional modules
 
 - `src/login.js` : main module to perform automated login
 - `src/obj/Poll.js` : Poll helper object to make polls for new statuses
+- `src/api.auth.js` : API calls for misc calls
 - `src/api.auth.statuses.js` : API calls related to statuses
 - `src/api.auth.groups.js` : API calls related to groups
-- `src/api.auth.js` : API calls for generic/misc calls
+- `src/api.auth.bookmarks.js` : API calls related to bookmark management
 - `src/api.public.js` : API calls that don't require authentication
 - `src/enums.js` : enum helpers to set proper values for some calls
 
@@ -189,13 +190,12 @@ Features
 - [x] login using the _sign_in_ form instead of OAuth
 - [x] API calls using authentications (WIP)
 - [x] public API calls (WIP)
+- [x] full support for statuses and comments
 - [x] 'normalizes' Gab's remapped status lists format to that of normal Mastodon
 - [x] can use a custom markdown stripper
 - [ ] streams and sockets wrapper objects (for client use)
 - [ ] (de)serializing of session/auth data for reuse between executions (experimental)
 - [ ] events (responses, errors, upload/download progress, etc.)
-
-You can use both _nodejs_ and _bun_ executables for the package.
 
 Documentation
 -------------
