@@ -74,8 +74,9 @@ export async function getAccountStatuses(lo, account, page = 1, sort = 'newest')
   return await _getStatuses(lo, url);
 }
 
-export async function getComments(lo, statusId, sort = 'oldest') {
-  const url = lo.baseUrl + `/api/v1/status_comments/${ statusId }?&sort_by=${ sort }`;
+export async function getComments(lo, statusId, maxId = null, sort = 'oldest') {
+  const maxIdFormatted = maxId ? `&max_id=${ maxId }` : '';
+  const url = lo.baseUrl + `/api/v1/status_comments/${ statusId }?&sort_by=${ sort }${ maxIdFormatted }`;
   const result = await _fetch(lo, url);  // todo comments are not (yet?) modified by Gab
   return { content: result.content, ok: result.status === 200 };
 }
@@ -101,10 +102,10 @@ export async function getTimelineStatuses(lo, timeline = 'home', pageOrMaxId = 0
     sort += '&media_type=clips';
   }
 
-  let maxIdFormatted = '';  // assume maxId if > 100,000, otherwise page
+  let maxIdFormatted = '';  // assume maxId if > 500,000, otherwise page
   pageOrMaxId |= 0;
   if ( pageOrMaxId > 1 ) {
-    maxIdFormatted = (pageOrMaxId > 1000000) ? `max_id=${ pageOrMaxId }&` : `page=${ pageOrMaxId }?`;
+    maxIdFormatted = (pageOrMaxId > 5000000) ? `max_id=${ pageOrMaxId }&` : `page=${ pageOrMaxId }?`;
   }
 
   const url = lo.baseUrl + `/api/v2/timelines/${ timeline }?${ maxIdFormatted }sort_by=${ sort }`;
