@@ -16,12 +16,6 @@ export async function getMyShortcuts(lo) {
   return { content: result.content, ok: result.status === 200 };
 }
 
-export async function getBookmarkCollection(lo) {
-  const url = lo.baseUrl + `/api/v1/bookmark_collections`;
-  const result = await _fetch(lo, url);
-  return { content: result.content, ok: result.status === 200 };
-}
-
 export async function getConversationOwner(lo, convId) {
   const url = lo.baseUrl + `/api/v1/conversation_owner/${ convId }`;
   const result = await _fetch(lo, url);
