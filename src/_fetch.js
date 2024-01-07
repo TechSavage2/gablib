@@ -105,4 +105,6 @@ export async function _fetch(
   }
 
   return { content, headers, status, url: response.url };
+  //todo consolidate return as in almost all cases we only need content and status:
+  //{ content: result.content, ok: result.status === 200 }
 }
