@@ -54,7 +54,7 @@ export const mapStatus = {
   'g'        : 'group',
   'pi'       : 'poll_id',
   'hq'       : 'has_quote',
-  'qoi'      : 'quote_id',
+  'qoi'      : 'quote_of_id',
   'qc'       : 'quotes_count',
   'rcs'      : 'reaction_counts',
   'ir'       : 'is_reply',
