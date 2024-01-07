@@ -204,6 +204,12 @@ export async function getStatusQuotes(lo, statusId) {
   return { content: result.content, ok: result.status === 200 };
 }
 
+export async function getStatusContext(lo, statusId) {
+  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/context`;
+  const result = await _fetch(lo, url);
+  return { content: result.content, ok: result.status === 200 };
+}
+
 /*******************************************************************************
 
  HELPER FUNCTIONS
