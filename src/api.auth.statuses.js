@@ -74,16 +74,22 @@ export async function getAccountStatuses(lo, account, page = 1, sort = 'newest')
   return await _getStatuses(lo, url);
 }
 
+export async function getComments(lo, statusId, sort = 'oldest') {
+  const url = lo.baseUrl + `/api/v1/status_comments/${ statusId }?&sort_by=${ sort }`;
+  const result = await _fetch(lo, url);  // todo comments are not (yet?) modified by Gab
+  return { content: result.content, ok: result.status === 200 };
+}
+
 /**
  * Valid lists:
  *
  * home, explore, group_collection, group_pins, group/id (see groups), links,
  * list/id, pro, related/statusId, video, "clips"
  *
- * @param lo
- * @param timeline
- * @param pageOrMaxId
- * @param sort
+ * @param {LoginObject} lo
+ * @param {string} timeline
+ * @param {number} [pageOrMaxId]
+ * @param {string} [sort="no-reposts"]
  * @returns {Promise<{ok: boolean, content: []}>}
  */
 export async function getTimelineStatuses(lo, timeline = 'home', pageOrMaxId = 0, sort = 'no-reposts') {
@@ -127,20 +133,18 @@ function _formatStatus(result, statusId, doRecursive = true) {
   // pin account info
   let account = findObjectId(status.account_id, result.content.a, 'i');
   if ( account ) {
-    delete status.account_id;
     status.account = mapObject(account, mapAccount);
   }
 
   // pin any quotes
   if ( doRecursive && status.has_quote ) {
-    let quote = findObjectId(status.quote_id, result.content.s, 'i');
+    let quote = findObjectId(status.quote_of_id, result.content.s, 'i');
     if ( quote ) {
-      status.quote = _formatStatus(result, status.quote_id, false);
+      status.quote = _formatStatus(result, status.quote_of_id, false);
     }
     else {
       status.quote = null;
     }
-    delete status.quote_id;
   }
 
   // status context?
