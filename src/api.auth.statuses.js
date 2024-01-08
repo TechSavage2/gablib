@@ -425,6 +425,45 @@ export async function getStatusesWithCard(lo, cardId) {
   const url = new URL(`/api/v1/links/${ cardId }`, lo.baseUrl);
   return _fetch(lo, url);
 }
+
+/**
+ * Convenience function to emulate status moving between home timeline and a
+ * group and vice verse, or from one group to another.
+ *
+ * NOTE: This does not perform a real move as mastodon doesn't support moving
+ * statuses other than admins 'removing' statuses from groups.
+ *
+ * This function will create a new status based on the original, but with target
+ * set to a group or null (if already in a group.)
+ *
+ * If that succeeds the original status is deleted and the new status is returned.
+ *
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {*} status - status to "move"
+ * @param {string|number|null} groupId - groupId to "move" to, or null if to home timeline.
+ * @returns {Promise<{ok: boolean, content: null}|{ok}|*>}
+ */
+export async function moveStatus(lo, status, groupId) {
+  // todo more to move...
+  const result = await createStatus(lo, status.markdown || status.text, {
+    visibility   : status.visibility,
+    sensitive    : status.sensitive,
+    language     : status.language,
+    spoiler      : status.spoiler_text,
+    attachmentIds: status.media_attachment_ids,
+    groupId      : groupId ? groupId : null
+  });
+
+  if ( result.ok ) {
+    const result2 = await deleteStatus(lo, status.id);
+    if ( result2.ok ) {
+      return result;
+    }
+  }
+
+  return { content: null, ok: false };
+}
+
 /*******************************************************************************
 
  HELPER FUNCTIONS
