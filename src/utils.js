@@ -132,3 +132,9 @@ export function stripMD(md, options) {
   }
   return output;
 }
+
+export async function sleep(ms) {
+  return new Promise(success => {
+    setTimeout(success, ms);
+  });
+}
