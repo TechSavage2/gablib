@@ -4,6 +4,9 @@ gablib
 API package for scripting/programming Mastodon nodes where OAuth for custom apps has been disabled
 on the server.
 
+**⚠️ NOTE: The API is currently _not stable_ and in ALPHA. Changes may and will happen. Use it as a
+tech preview. Avoid use for production as of now.**
+
 This package will allow you to build apps by logging in programmatically via the regular "human"
 auth/sign_in page and extract tokens for operations that requires authentication.
 
