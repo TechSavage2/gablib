@@ -20,14 +20,22 @@ One of:
 - [NodeJS](https://nodejs.org/en/) version 18 or newer (for the fetch api).
 - [Bun](https://bun.sh/) version 1.0.21 or newer.
 
+**Note** that this package and modules uses ES module format (i.e. use `import` statements.)
+
+To use ESM in your project, either update package.json with the following:
+
+```json
+"type": "module",
+```
+
+or use the `.mjs` extension for your JavaScript files.
+
 Install
 -------
 
 Clone this repo using git, or download the zip file and unzip it to a directory.
 
 It's now ready for use. As of now there are no other dependencies to be installed.
-
-**Note** that this package and modules uses ESM format (i.e. use `import` statements.)
 
 Getting Started
 ---------------
@@ -71,7 +79,7 @@ If everything is fine you will see "SUCCESS" printed to console together with so
 information for your account.
 
 To call API functions then is simply a matter of logging in and use the resulting
-`LoginObject` as argument for API calls that require authentication:
+`LoginObject` as argument for API calls that require authentication.
 
 See [wiki page](https://github.com/TechSavage2/gablib/wiki) for more examples on usage.
 
@@ -99,7 +107,7 @@ Features
 --------
 
 - [x] Easy to use
-- [x] ESM modules (import/export)
+- [x] ES modules (import/export)
 - [x] login using the _sign_in_ form instead of OAuth
 - [x] API calls using authentications (WIP)
 - [x] public API calls (WIP)
