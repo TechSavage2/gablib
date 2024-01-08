@@ -59,6 +59,14 @@ const commonUserAgents = [
   'Mozilla/5.0 (iPod touch; CPU iPhone 17_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Mobile/15E148 Safari/604.1'
 ];
 
+/**
+ * LoginObject is returned initialized by the login() function. See documentation
+ * for login().
+ * @param credentials
+ * @param altPassword
+ * @param altBaseUrl
+ * @constructor
+ */
 export function LoginObject(credentials, altPassword = null, altBaseUrl = null) {
   let userEmail = defEmailEnv;
   let password = defaultPasswordEnv;

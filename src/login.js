@@ -13,6 +13,10 @@ import { getTokens } from './getTokens.js';
 import { _fetch } from './_fetch.js';
 
 /**
+ * @module Login
+ */
+
+/**
  * Primary function to log onto into the mastodon site. The function can be
  * provided credentials in three ways:
  *

@@ -6,9 +6,19 @@
 
  *******************************************************************************/
 
+/**
+ * @module Bookmarks
+ */
+
 'use strict';
+
 import { _fetch } from './_fetch.js';
 
+/**
+ * Get your bookmark collections.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @returns {Promise<*>}
+ */
 export async function getBookmarkCollection(lo) {
   const url = lo.baseUrl + `/api/v1/bookmark_collections`;
   return await _fetch(lo, url);

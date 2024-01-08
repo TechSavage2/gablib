@@ -12,6 +12,11 @@ import { enumPollExpires } from '../enums.js';
 
 const MAX_OPTIONS = 8;
 
+/**
+ * Poll helper object to create polls for postMessage statuses.
+ * @param options
+ * @constructor
+ */
 export function Poll(options = []) {
   let expires = enumPollExpires.threeDays;
 

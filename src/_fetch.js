@@ -13,9 +13,18 @@ import { login } from './login.js';
 const debug = false;
 
 /**
- Private function that handles all our scenarios. This function is not intended
- to be called directly, but through wrappers that will provide the correct
- arguments.
+ * Private function that handles all our scenarios. This function is not intended
+ *  to be called directly, but through wrappers that will provide the correct
+ *  arguments.
+ *
+ * @param loginObject
+ * @param url
+ * @param method
+ * @param resultType
+ * @param body
+ * @param expectedReturnCode
+ * @returns {Promise}
+ * @private
  */
 export async function _fetch(
   loginObject,

@@ -6,6 +6,10 @@
 
  *******************************************************************************/
 
+/**
+ * @module Notifications
+ */
+
 'use strict';
 
 import { _fetch } from './_fetch.js';
@@ -16,7 +20,7 @@ import { _fetch } from './_fetch.js';
  * @param {number|string|null} [maxId] - for paginating
  * @param {number|string|null} [sinceId] - to get new notifications
  * @param {*|null} [filters] - filter options
- * @returns {Promise<{ok: boolean, content: any}>}
+ * @returns {Promise<*>}
  */
 export async function getNotifications(lo, maxId = null, sinceId = null, filters = {}) {
   const filterTypes = [ 'follow', 'reblog', 'favourite', 'poll', 'mention', 'group_moderation_event' ];
@@ -56,7 +60,7 @@ export async function getNotifications(lo, maxId = null, sinceId = null, filters
 /**
  * Mark all notifications read.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @returns {Promise<{ok: boolean, content: any}>}
+ * @returns {Promise<*>}
  */
 export async function markNotificationsRead(lo) {
   const url = new URL('/api/v1/notifications/mark_read', lo.baseUrl);

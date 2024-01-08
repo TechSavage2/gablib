@@ -6,17 +6,32 @@
 
  *******************************************************************************/
 
+/**
+ * @module Groups
+ */
+
 'use strict';
 
 import { _fetch } from './_fetch.js';
 import { extname } from 'node:path';
 import { readFileSync } from 'node:fs';
 
+/**
+ * Get global group categories and their ids.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @returns {Promise<*>}
+ */
 export async function getGroupCategories(lo) {
   const url = lo.baseUrl + '/api/v1/group_categories';
   return await _fetch(lo, url, 'GET', 'json');
 }
 
+/**
+ * List groups you are member of.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param minimalList
+ * @returns {Promise<*>}
+ */
 export async function getMyGroups(lo, minimalList = false) {
   const url = lo.baseUrl + '/api/v1/groups?tab=member';
   const result = await _fetch(lo, url, 'GET', 'json');
@@ -30,11 +45,23 @@ export async function getMyGroups(lo, minimalList = false) {
   else return result;
 }
 
+/**
+ * Get information about a specific group.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param groupId
+ * @returns {Promise<*>}
+ */
 export async function getGroup(lo, groupId) {
   const url = `${ lo.baseUrl }/api/v1/groups/${ groupId }`;
   return await _fetch(lo, url, 'GET', 'json');
 }
 
+/**
+ * Create a new group.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param config
+ * @returns {Promise<*>}
+ */
 export async function createGroup(lo, config) {
   const url = `${ lo.baseUrl }/api/v1/groups`;
   const result = _formatGroupConfig(config, {});
@@ -48,6 +75,13 @@ export async function createGroup(lo, config) {
   return await _fetch(lo, url, 'POST', 'binary', result.form);
 }
 
+/**
+ * Edit an existing group you are owner/admin of.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param group
+ * @param newConfig
+ * @returns {Promise<*>}
+ */
 export async function editGroup(lo, group, newConfig = {}) {
   const url = `${ lo.baseUrl }/api/v1/groups/${ group.id }`;
   const result = _formatGroupConfig({
@@ -74,6 +108,13 @@ export async function editGroup(lo, group, newConfig = {}) {
   return await _fetch(lo, url, 'PUT', 'binary', result.form);
 }
 
+/**
+ *
+ * @param config
+ * @param newConfig
+ * @returns {{form: *, config}}
+ * @private
+ */
 function _formatGroupConfig(config, newConfig) {
   config = Object.assign({}, {
     title           : null,

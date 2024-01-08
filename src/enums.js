@@ -8,6 +8,9 @@
 
 'use strict';
 
+/**
+ * @enum
+ */
 export const enumStatusSort = {
   'newest'            : 'newest',
   'newest-with-groups': 'with-groups',
@@ -23,6 +26,9 @@ export const enumStatusSort = {
   'top_all_time'      : 'top_all_time' // pro??
 };
 
+/**
+ * @enum
+ */
 export const enumPostExpires = {
   never      : '',
   fiveMinutes: 'five_minutes',
@@ -33,6 +39,9 @@ export const enumPostExpires = {
   oneWeek    : 'one_week'
 };
 
+/**
+ * @enum
+ */
 export const enumPollExpires = {
   oneHour  : 3600,
   sixHours : 21600,
@@ -41,12 +50,18 @@ export const enumPollExpires = {
   oneWeek  : 604800
 };
 
+/**
+ * @enum
+ */
 export const enumVisibility = {
   public  : 'public',
   private : 'private',
   unlisted: 'unlisted'
 };
 
+/**
+ * @enum
+ */
 export const enumReactions = {
   thumbsUp  : '1',
   thumbsDown: '2',
@@ -57,6 +72,9 @@ export const enumReactions = {
   salute    : '11'
 };
 
+/**
+ * @enum
+ */
 export const enumKnownTimelines = {
   'home'   : 'home',
   'group'  : 'group',
