@@ -10,6 +10,8 @@
 
 import { login } from './login.js';
 
+const debug = false;
+
 /**
  Private function that handles all our scenarios. This function is not intended
  to be called directly, but through wrappers that will provide the correct
@@ -21,8 +23,7 @@ export async function _fetch(
   method = 'GET',
   resultType = 'json',
   body = null,
-  expectedReturnCode = [ 200 ],
-  raw = false) {
+  expectedReturnCode = [ 200 ]) {
 
   const ua = loginObject ? loginObject.userAgent : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/120.0';
 
@@ -105,13 +106,11 @@ export async function _fetch(
     loginObject.lastUrl = response.url;
   }
 
-  if ( raw ) {
-    return { content, headers, status, url: response.url };
+  if ( debug ) {
+    return { content, ok: expectedReturnCode.includes(status | 0), headers, status, url: response.url };
   }
   else {
-    return {
-      content, ok: expectedReturnCode.includes(status)
-    };
+    return { content, ok: expectedReturnCode.includes(status | 0) };
   }
 
   //return { content, headers, status, url: response.url };
