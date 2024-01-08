@@ -67,7 +67,7 @@ const loginObject = await login();  // note that the call is asynchronous
 
 If successful login the object is now initialized for use with API functions. If login failed it
 will throw an error. Check that your credentials are correct and if a complex password properly
-escaped.
+escaped (if using env.)
 
 To test if your env credentials are correct and login is working, you can run:
 
