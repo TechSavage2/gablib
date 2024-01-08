@@ -284,6 +284,11 @@ function _formatStatus(result, statusId, doRecursive = true) {
     status.status_context = findObjectId(status.status_context_id, result.content.s, 'i');
   }
 
+  // pin any card
+  if ( status.preview_card_id ) {
+    status.card = findObjectId(status.preview_card_id, result.content.pc);
+  }
+
   // media attachments
   if ( status.media_attachment_ids.length ) {
     const media = [];
