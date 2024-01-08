@@ -3,15 +3,12 @@
   "version": "0.4.0-alpha",
   "description": "API package to allow login and doing auth ops for Mastodon without using OAuth where this has been disabled.",
   "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "gablib.js",
   "keywords": [
     "mastodon",
     "api",
     "scripting"
   ],
   "author": "TechSavage",
-  "license": "AGPL",
-  "dependencies": {}
+  "license": "AGPL"
 }

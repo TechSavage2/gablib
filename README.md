@@ -25,7 +25,7 @@ One of:
 
 **Note** that this package and modules uses ES module format (i.e. use `import` statements.)
 
-To use ESM in your project, either update package.json with the following:
+To use ESM in your project, either update `package.json` with the following:
 
 ```json
 "type": "module",
@@ -36,9 +36,19 @@ or use the `.mjs` extension for your JavaScript files.
 Install
 -------
 
-Clone this repo using git, or download the zip file and unzip it to a directory.
+Use NPM to install the package into your nodejs project:
+
+```bash
+$ npm i https://github.com/TechSavage2/gablib
+```
 
 It's now ready for use. As of now there are no other dependencies to be installed.
+
+To import a function you can use:
+
+```JavaScript
+import { login } from 'gablib/gablib.js'
+```
 
 Getting Started
 ---------------
