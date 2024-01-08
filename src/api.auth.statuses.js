@@ -140,15 +140,20 @@ export async function getComments(lo, statusId, maxId = null, sort = 'oldest') {
  * @param {string} timeline
  * @param {number} [pageOrMaxId]
  * @param {string} [sort="no-reposts"]
+ * @param {boolean} [pinned=false] if true, request pinned posts
  * @returns {Promise<{ok: boolean, content: []}>}
  */
-export async function getTimelineStatuses(lo, timeline = 'home', pageOrMaxId = 0, sort = 'no-reposts') {
+export async function getTimelineStatuses(lo, timeline = 'home', pageOrMaxId = 0, sort = 'no-reposts', pinned = false) {
   //todo validate sort arguments
   //todo video timeline additions args: only_following=1, media_type=clips|<none> (sort clips: newest,top_today, video: top* all)
 
   if ( timeline === 'clips' ) {
     timeline = 'video';
     sort += '&media_type=clips';
+  }
+
+  if ( pinned ) {
+    sort += '&pinned=true';
   }
 
   let maxIdFormatted = '';  // assume maxId if > 500,000, otherwise page
