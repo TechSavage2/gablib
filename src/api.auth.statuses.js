@@ -28,8 +28,15 @@ export function setMarkdownFunction(fn, isAsync = false) {
   }
 }
 
-export async function postStatus(lo, markdown, options = {}, attachments = [], editId = null) {
+export async function postStatus(lo, markdown, options = {}) {
+  options = Object.assign({}, options);
+
+  if ( arguments.length > 3 ) {
+    throw new Error('attachments and editId are now moved into the options object.');
+  }
+
   const status = markdownStripperIsAsync ? await markdownStripper(markdown) : markdownStripper(markdown);
+  const attachments = Array.isArray(options.attachments) ? options.attachments : [];
 
   if ( !attachments.length && !status.length ) {
     throw new Error('Status text is empty and no attachments. At least one must be present.');
@@ -69,8 +76,8 @@ export async function postStatus(lo, markdown, options = {}, attachments = [], e
     'scheduled_at'  : options.scheduledAt ? options.scheduledAt : null    // ISO 8601
   };
 
-  const url = lo.baseUrl + '/api/v1/statuses' + (editId ? `/${ editId }` : '');
-  const result = await _fetch(lo, url, editId ? 'PUT' : 'POST', 'json', body);
+  const url = lo.baseUrl + '/api/v1/statuses' + (options.editId ? `/${ options.editId }` : '');
+  const result = await _fetch(lo, url, options.editId ? 'PUT' : 'POST', 'json', body);
   return { content: result.content, ok: result.status === 200 };
 }
 
