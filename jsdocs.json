@@ -1,0 +1,38 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "templates": {
+    "systemName": "gablib",
+    "title": "gablib",
+    "copyright": "Copyright &copy; 2024 TechSavage",
+    "footer": "<p><b><a href='https://github.com/TechSavage2/'>TechSavage at GitHub</a></b></p>",
+    "dateFormat": "ddd MMM Do YYYY",
+    "navType": "vertical",
+    "theme": "lumen",
+    "syntaxTheme": "default",
+    "highlightTutorialCode": true,
+    "cleverLinks": false,
+    "monospaceLinks": false,
+    "outputSourceFiles": false,
+    "outputSourcePath": false,
+    "linenums": false,
+    "collapseSymbols": false,
+    "inverseNav": false
+  },
+  "sourceType": "module",
+  "markdown": {
+    "parser": "gfm",
+    "hardwrap": false
+  },
+  "opts": {
+    "template": "./node_modules/ink-docstrap/template",
+    "destination": "docs",
+    "recurse": true,
+    "readme": "README.md",
+    "encoding": "utf8"
+  }
+}
