@@ -35,9 +35,24 @@ export function setMarkdownFunction(fn, isAsync = false) {
 /**
  * Post or edit a new status to home timeline or a group.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} markdown
- * @param {*} options
- * @returns {Promise}
+ * @param {string|null} markdown Text to post. Can be formatted as Markdown. May be omitted if there are attachments,
+ * otherwise it is required.
+ * @param {Object} [options]
+ * @param {string|number} [options.groupId] GroupID to post to. You must be a member of the group.
+ * @param {Array} [options.attachmentIds] Array of attachment IDs from previous [`uploadMedia()`]{@link Statuses:uploadMedia}.
+ * @param {Object|Poll} [options.poll] Poll object, JSON or a stringified JSON string representing the poll options and expiration.
+ * See {@link enumPollExpires} for options.
+ * @param {string} [options.visibility] Visibility of post see {@link enumVisibility}.
+ * @param {Boolean} [options.sensitive] if the content should be hidden by default
+ * @param {string} [options.expires] when the post should expire, see {@link enumPostExpires} for options.
+ * @param {} [options.privateGroup]
+ * @param {string|number} [options.replyId] Status or comment ID this is a reply to.
+ * @param {string|number} [options.quoteId] Status ID this is a quote for.
+ * @param {string} [options.spoiler] Spoiler text for sensitive statuses
+ * @param {string} [options.language='en] ISO 639 language code for the status
+ * @param {string} [options.scheduledAt] ISO 8601 formatted date when this status should become posted.
+ * @param {string|number} [options.editId] Can be set to edit a status, but you can instead use [`editStatus()`]{@link Statuses:editStatus}
+ * @returns {Promise<*>}
  */
 export async function createStatus(lo, markdown, options = {}) {
   options = Object.assign({}, options);
@@ -94,11 +109,11 @@ export async function createStatus(lo, markdown, options = {}) {
 
 /**
  * Edit an existing post you own.
- * @param {LoginObject} lo - Valid and active LoginObject * @param statusId
+ * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string|number} statusId - Status ID of the status you want to edit.
  * @param {string} newMarkdown - New text for the status
- * @param {*} options
- * @returns {Promise<unknown>}
+ * @param {Object} [options] options
+ * @returns {Promise<*>}
  */
 export async function editStatus(lo, statusId, newMarkdown, options) {
   options = Object.assign({}, options, { editId: statusId });
@@ -108,9 +123,10 @@ export async function editStatus(lo, statusId, newMarkdown, options) {
 /**
  * Upload media files for attachments.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param pathOrBuffer
- * @param filename - filename is required if pathOrBuffer is buffer
- * @returns {Promise<{ok: boolean, content: null}|*>}
+ * @param {string|Buffer|ArrayBuffer|TypedArray|Uint8Array|Blob|File} pathOrBuffer - path to a media file to upload or
+ * a pre-initialized Buffer object.
+ * @param {string} [filename] - filename is required if pathOrBuffer is buffer
+ * @returns {Promise<*>}
  */
 export async function uploadMedia(lo, pathOrBuffer, filename = null) {
   const form = new FormData();
@@ -137,7 +153,7 @@ export async function uploadMedia(lo, pathOrBuffer, filename = null) {
 /**
  * Get a single status post.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
+ * @param {string|number} statusId - ID of status to retrieve
  * @returns {Promise<*>}
  */
 export async function getStatus(lo, statusId) {
@@ -148,7 +164,7 @@ export async function getStatus(lo, statusId) {
 /**
  * Delete a single status post.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
+ * @param {string|number} statusId - ID of status to delete
  * @returns {Promise<*>}
  */
 export async function deleteStatus(lo, statusId) {
@@ -159,7 +175,7 @@ export async function deleteStatus(lo, statusId) {
 /**
  * Get a list of statuses based on a tag.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param tagName
+ * @param {string} tagName - tag name
  * @returns {Promise<*>}
  */
 export async function getStatusesFromTag(lo, tagName) {
@@ -170,9 +186,9 @@ export async function getStatusesFromTag(lo, tagName) {
 /**
  * Get a list of statuses based on an account.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param account
- * @param page
- * @param sort
+ * @param {string|number} account - ID of account
+ * @param {number} [page=1] - page number
+ * @param {string} [sort] - sort method. Valid options: see {@link enumStatusSort}.
  * @returns {Promise<*>}
  */
 export async function getAccountStatuses(lo, account, page = 1, sort = 'newest') {
