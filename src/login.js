@@ -48,14 +48,14 @@ export async function login(credentials, altPassword, altBaseUrl) {
       'authenticity_token': lo.authToken,
       'user[email]'       : lo.email(),
       'user[password]'    : lo.password()
-    });
+    }, [ 302 ]);
   }
   catch(err) {
     throw new Error(`Could not POST form data: ${ err.message }`);
   }
 
   // Step 3: Handle redirect manually to transfer auth/cookies to final page request
-  if ( loginResult.status !== 302 ) {
+  if ( !loginResult.ok ) {
     // fail if not logged in (user will anyway need to update env settings/credentials)
     throw new Error('Expected a redirect. Check if login credentials are set/correct.');
   }
@@ -73,10 +73,16 @@ export async function login(credentials, altPassword, altBaseUrl) {
 export async function refreshSession(lo) {
   try {
     const finalResult = await _fetch(lo, lo.baseUrl, 'GET', 'html');
-    Object.assign(lo, getTokens(finalResult.content));
+    if ( finalResult.ok ) {
+      Object.assign(lo, getTokens(finalResult.content));
+    }
+    else {
+      console.error(`Could not obtain initialized and authenticated page.`);
+      process.exit(1);
+    }
   }
   catch(err) {
-    throw new Error(`Could not obtain initialized and  authenticated page: ${ err.message }`);
+    throw new Error(`Could not obtain initialized and authenticated page: ${ err.message }`);
   }
 
   return lo;

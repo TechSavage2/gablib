@@ -21,7 +21,8 @@ export async function _fetch(
   method = 'GET',
   resultType = 'json',
   body = null,
-  auth = true) {
+  expectedReturnCode = [ 200 ],
+  raw = false) {
 
   const ua = loginObject ? loginObject.userAgent : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/120.0';
 
@@ -56,7 +57,7 @@ export async function _fetch(
       options.headers[ 'Referer' ] = loginObject.lastUrl;
     }
 
-    if ( auth && loginObject.accessToken ) {
+    if ( loginObject.accessToken ) {
       options.headers[ 'Authorization' ] = `Bearer ${ loginObject.accessToken }`;
     }
 
@@ -104,7 +105,16 @@ export async function _fetch(
     loginObject.lastUrl = response.url;
   }
 
-  return { content, headers, status, url: response.url };
+  if ( raw ) {
+    return { content, headers, status, url: response.url };
+  }
+  else {
+    return {
+      content, ok: expectedReturnCode.includes(status)
+    };
+  }
+
+  //return { content, headers, status, url: response.url };
   //todo consolidate return as in almost all cases we only need content and status:
   //{ content: result.content, ok: result.status === 200 } // 202, 204 are possible too..hm
 }
