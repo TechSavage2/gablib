@@ -9,7 +9,8 @@
 'use strict';
 
 /**
- * @enum
+ * @global
+ * @type {{rising: string, top: string, top_today: string, 'newest-with-groups': string, top_yearly: string, top_all_time: string, hot: string, newest: string, recent: string, top_weekly: string, top_monthly: string, 'newest-no-reposts': string}}
  */
 export const enumStatusSort = {
   'newest'            : 'newest',
@@ -27,7 +28,8 @@ export const enumStatusSort = {
 };
 
 /**
- * @enum
+ * @global
+ * @type {{oneHour: string, oneDay: string, never: string, sixHours: string, threeDays: string, oneWeek: string, fiveMinutes: string}}
  */
 export const enumPostExpires = {
   never      : '',
@@ -40,7 +42,8 @@ export const enumPostExpires = {
 };
 
 /**
- * @enum
+ * @global
+ * @type {{oneHour: number, oneDay: number, sixHours: number, threeDays: number, oneWeek: number}}
  */
 export const enumPollExpires = {
   oneHour  : 3600,
@@ -51,7 +54,8 @@ export const enumPollExpires = {
 };
 
 /**
- * @enum
+ * @global
+ * @type {{private: string, public: string, unlisted: string}}
  */
 export const enumVisibility = {
   public  : 'public',
@@ -60,7 +64,8 @@ export const enumVisibility = {
 };
 
 /**
- * @enum
+ * @global
+ * @type {{honked: string, laughedAt: string, thumbsDown: string, angry: string, thumbsUp: string, heart: string, salute: string}}
  */
 export const enumReactions = {
   thumbsUp  : '1',
@@ -73,7 +78,8 @@ export const enumReactions = {
 };
 
 /**
- * @enum
+ * @global
+ * @type {{explore: string, clips: string, links: string, video: string, list: string, home: string, group: string}}
  */
 export const enumKnownTimelines = {
   'home'   : 'home',
