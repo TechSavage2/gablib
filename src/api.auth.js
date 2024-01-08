@@ -12,12 +12,10 @@ import { _fetch } from './_fetch.js';
 
 export async function getMyShortcuts(lo) {
   const url = lo.baseUrl + '/api/v1/shortcuts';
-  const result = await _fetch(lo, url, 'GET', 'json');
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url, 'GET', 'json');
 }
 
 export async function getConversationOwner(lo, convId) {
   const url = lo.baseUrl + `/api/v1/conversation_owner/${ convId }`;
-  const result = await _fetch(lo, url);
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url);
 }

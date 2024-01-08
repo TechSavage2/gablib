@@ -77,8 +77,7 @@ export async function postStatus(lo, markdown, options = {}) {
   };
 
   const url = lo.baseUrl + '/api/v1/statuses' + (options.editId ? `/${ options.editId }` : '');
-  const result = await _fetch(lo, url, options.editId ? 'PUT' : 'POST', 'json', body);
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url, options.editId ? 'PUT' : 'POST', 'json', body);
 }
 
 // filename is required if pathOrBuffer is buffer
@@ -98,8 +97,7 @@ export async function uploadMedia(lo, pathOrBuffer, filename = null) {
 
   try {
     const url = lo.baseUrl + '/api/v1/media';
-    const result = await _fetch(lo, url, 'POST', 'binary', form);
-    return { content: result.content, ok: result.status === 200 || result.status === 202 };
+    return await _fetch(lo, url, 'POST', 'binary', form, [ 200, 202 ]);
   }
   catch {
     return { content: null, ok: false };
@@ -108,14 +106,12 @@ export async function uploadMedia(lo, pathOrBuffer, filename = null) {
 
 export async function getStatus(lo, statusId) {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }`;
-  const result = await _fetch(lo, url);
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url);
 }
 
 export async function deleteStatus(lo, statusId) {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }`;
-  const result = await _fetch(lo, url, 'DELETE');
-  return { content: null, ok: result.status === 204 };
+  return await _fetch(lo, url, 'DELETE', 'json', null, [ 204 ]);
 }
 
 export async function getStatusesFromTag(lo, tagName) {
@@ -131,8 +127,7 @@ export async function getAccountStatuses(lo, account, page = 1, sort = 'newest')
 export async function getComments(lo, statusId, maxId = null, sort = 'oldest') {
   const maxIdFormatted = maxId ? `&max_id=${ maxId }` : '';
   const url = lo.baseUrl + `/api/v1/status_comments/${ statusId }?&sort_by=${ sort }${ maxIdFormatted }`;
-  const result = await _fetch(lo, url);  // todo comments are not (yet?) modified by Gab
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url);  // todo comments are not (yet?) modified by Gab
 }
 
 /**
@@ -168,84 +163,71 @@ export async function getTimelineStatuses(lo, timeline = 'home', pageOrMaxId = 0
 
 export async function getStatusRepostedBy(lo, statusId, maxId = 0) {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/reblogged_by${ maxId > 0 ? '&max_id=' + maxId : '' }`;
-  const result = await _fetch(lo, url);
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url);
 }
 
 export async function getStatusRevisions(lo, statusId) {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/revisions`;
-  const result = await _fetch(lo, url);
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url);
 }
 
 export async function favoritePost(lo, statusId, reactId = '1') {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/favourite`;
   const body = {};
   if ( reactId !== '1' ) body.reaction_id = reactId;
-  const result = await _fetch(lo, url, 'POST', 'json', body);
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url, 'POST', 'json', body);
 }
 
 export async function unfavoritePost(lo, statusId, reactId = '1') {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/unfavourite`;
   const body = {};
-  const result = await _fetch(lo, url, 'POST', 'json', body);
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url, 'POST', 'json', body);
 }
 
 export async function pinStatusState(lo, statusId) {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/pin`;
-  const result = await _fetch(lo, url);
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url);
 }
 
 export async function pinStatus(lo, statusId) {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/pin`;
-  const result = await _fetch(lo, url, 'POST', 'json', {});
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url, 'POST', 'json', {});
 }
 
 export async function unpinStatus(lo, statusId) {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/unpin`;
-  const result = await _fetch(lo, url, 'POST', 'json', {});
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url, 'POST', 'json', {});
 }
 
 export async function bookmarkStatusState(lo, statusId) {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/bookmark`;
-  const result = await _fetch(lo, url);
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url);
 }
 
 export async function bookmarkStatus(lo, statusId, collectionId) {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/bookmark`;
   const body = { bookmarkCollectionId: collectionId };
-  const result = await _fetch(lo, url, 'POST', 'json', body);
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url, 'POST', 'json', body);
 }
 
 export async function unbookmarkStatus(lo, statusId) {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/unbookmark`;
-  const result = await _fetch(lo, url, 'POST', 'json', {});
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url, 'POST', 'json', {});
 }
 
 export async function getStatusQuotes(lo, statusId) {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/quotes`;
-  const result = await _fetch(lo, url);
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url);
 }
 
 export async function getStatusContext(lo, statusId) {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/context`;
-  const result = await _fetch(lo, url);
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url);
 }
 
 export async function getStatusStats(lo, statusId) {
   const url = lo.baseUrl + `/api/v1/status_stats/${ statusId }`;
-  const result = await _fetch(lo, url);
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url);
 }
 
 /*******************************************************************************

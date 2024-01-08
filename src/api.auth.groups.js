@@ -12,15 +12,18 @@ import { _fetch } from './_fetch.js';
 
 export async function getGroupCategories(lo) {
   const url = lo.baseUrl + '/api/v1/group_categories';
-  const result = await _fetch(lo, url, 'GET', 'json', null, false);
-  return { content: result.content, ok: result.status === 200 };
+  return await _fetch(lo, url, 'GET', 'json', null, false);
 }
 
 export async function getMyGroups(lo, minimalList = false) {
   const url = lo.baseUrl + '/api/v1/groups?tab=member';
   const result = await _fetch(lo, url, 'GET', 'json');
 
-  const ok = result.status === 200;
-  const content = minimalList && ok ? result.content.map(e => {return { id: e.id, title: e.title };}) : result.content;
-  return { content, ok };
+  if ( minimalList ) {
+    return {
+      ok     : result.ok,
+      content: result.content.map(e => {return { id: e.id, title: e.title };})
+    };
+  }
+  else return result;
 }
