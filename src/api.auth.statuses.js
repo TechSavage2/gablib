@@ -32,13 +32,13 @@ export async function postStatus(lo, markdown, options = {}) {
   options = Object.assign({}, options);
 
   if ( arguments.length > 3 ) {
-    throw new Error('attachments and editId are now moved into the options object.');
+    throw new Error('attachmentIds and editId are now moved into the options object.');
   }
 
   const status = markdownStripperIsAsync ? await markdownStripper(markdown) : markdownStripper(markdown);
-  const attachments = Array.isArray(options.attachments) ? options.attachments : [];
+  const attachments = Array.isArray(options.attachmentIds) ? options.attachmentIds : [];
 
-  if ( !attachments.length && !status.length ) {
+  if ( !options.attachmentIds.length && !status.length ) {
     throw new Error('Status text is empty and no attachments. At least one must be present.');
   }
 
