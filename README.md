@@ -4,16 +4,14 @@ gablib
 API package for scripting/programming Mastodon nodes where OAuth for custom apps has been disabled
 on the server.
 
-**⚠️ NOTE: The API is currently _not stable_ and in ALPHA. Changes may and will happen. Use it as a
-tech preview. Avoid use for production as of now.**
+**⚠️ NOTE: The API is currently _not stable_ and in ALPHA, a WIP. Changes may and will happen. Use
+it as a tech preview. Avoid use for production as of now.**
 
 This package will allow you to build apps by logging in programmatically via the regular "human"
 auth/sign_in page and extract tokens for operations that requires authentication.
 
 This is not a standalone package/app but intended to be used as part of a custom client or for
 scripting.
-
-_NOTE: Alpha version. WIP. Use at own risk!_
 
 Requirements
 ------------
@@ -23,7 +21,8 @@ One of:
 - [NodeJS](https://nodejs.org/en/) version 18 or newer (for the fetch api).
 - [Bun](https://bun.sh/) version 1.0.21 or newer.
 
-**Note** that this package and modules uses ES module format (i.e. use `import` statements.)
+**Note** that this package and modules uses ES module format
+(i.e. use `import` statements.)
 
 To use ESM in your project, either update `package.json` with the following:
 
@@ -36,7 +35,7 @@ or use the `.mjs` extension for your JavaScript files.
 Install
 -------
 
-Use NPM to install the package into your nodejs project:
+Using NPM to install the package into your nodejs project:
 
 ```bash
 $ npm i https://github.com/TechSavage2/gablib
@@ -84,43 +83,11 @@ import { login } from 'gablib/gablib.js';
 const loginObject = await login();  // note that the call is asynchronous
 ```
 
-If successful login the object is now initialized for use with API functions. If login failed it
-will throw an error. Check that your credentials are correct and if a complex password properly
-escaped (if using env.)
+If successful login, the object is now initialized for use with API functions. If login failed it
+will _throw an error_. Check that your credentials are correct and if a complex password that it's
+properly escaped (if using env.)
 
-To test if your env credentials are correct and login is working, you can run:
-
-```bash
-$ node test-login
-```
-
-If everything is fine you will see "SUCCESS" printed to console together with some account
-information for your account.
-
-To call API functions then is simply a matter of logging in and use the resulting
-`LoginObject` as argument for API calls that require authentication.
-
-See [wiki page](https://github.com/TechSavage2/gablib/wiki) for more examples on usage.
-
-Additional modules
-------------------
-
-- `src/login.js` : main module to perform automated login
-- `src/obj/Poll.js` : Poll helper object to make polls for new statuses
-- `src/api.auth.js` : API calls for misc calls
-- `src/api.auth.statuses.js` : API calls related to statuses
-- `src/api.auth.groups.js` : API calls related to groups
-- `src/api.auth.bookmarks.js` : API calls related to bookmark management
-- `src/api.public.js` : API calls that don't require authentication
-- `src/enums.js` : enum helpers to set proper values for some calls
-
-(more will come)
-
-Most modules are intended for internal use. You can explore them if you want, but use them at your
-own risk as they could change/disappear at any time during the alpha state.
-
-_Note that using this package may cause you to be logged out from other sessions due to server
-session expiration and possibly UserAgent. In worst case, all you need to do is to log back in._
+See [wiki page](https://github.com/TechSavage2/gablib/wiki) for more examples.
 
 Features
 --------
