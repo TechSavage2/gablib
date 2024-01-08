@@ -107,7 +107,11 @@ Features
 Documentation
 -------------
 
-Check out the wiki page for this repo as it will be updated with examples as we go.
+Online documentation (JSDoc) can be found here
+
+https://techsavage2.github.io/gablib/
+
+Wiki page with examples and tips:
 
 https://github.com/TechSavage2/gablib/wiki
 
