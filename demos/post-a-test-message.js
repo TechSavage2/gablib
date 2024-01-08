@@ -10,13 +10,13 @@
 
 import { login } from '../src/login.js';
 import { enumVisibility } from '../src/enums.js';
-import { postStatus } from '../src/api.auth.statuses.js';
+import { createStatus } from '../src/api.auth.statuses.js';
 
 // login to your account
 const lo = await login();
 
 // post a message
-const result = await postStatus(lo,
+const result = await createStatus(lo,
   '### This message was posted with gablib\n\n#gablib **rocks!** Find gablib here:\n\nhttps://github.com/TechSavage2/gablib',
   {
     visibility: enumVisibility.public
