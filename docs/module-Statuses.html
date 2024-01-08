@@ -4040,6 +4040,181 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             
 <hr>
 <dt>
+    <h4 class="name" id=".getStatusesWithCard"><span class="type-signature">&lt;static> </span>getStatusesWithCard(lo, cardId)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>List statuses with the same link card.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>lo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Valid and active LoginObject</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cardId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>ID of link card</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;*></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id=".getTimelineStatuses"><span class="type-signature">&lt;static> </span>getTimelineStatuses(lo, timeline [, pageOrMaxId] [, sort] [, pinned])</h4>
     
     
@@ -4344,6 +4519,214 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
     <dd>
         
 <span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".moveStatus"><span class="type-signature">&lt;static> </span>moveStatus(lo, status, groupId)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Convenience function to emulate status moving between home timeline and a
+group and vice verse, or from one group to another.</p>
+<p>NOTE: This does not perform a real move as mastodon doesn't support moving
+statuses other than admins 'removing' statuses from groups.</p>
+<p>This function will create a new status based on the original, but with target
+set to a group or null (if already in a group.)</p>
+<p>If that succeeds the original status is deleted and the new status is returned.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>lo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Valid and active LoginObject</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>status</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>status to &quot;move&quot;</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>groupId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+|
+
+<span class="param-type">null</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>groupId to &quot;move&quot; to, or null if to home timeline.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;({ok: boolean, content: null}|{ok}|*)></span>
 
 
 
