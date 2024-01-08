@@ -47,7 +47,13 @@ It's now ready for use. As of now there are no other dependencies to be installe
 To import a function you can use:
 
 ```JavaScript
-import { login } from 'gablib/gablib.js'
+import { login } from 'gablib/gablib.js';
+```
+
+or if you prefer the entire library on a single object:
+
+```JavaScript
+import * as gablib from 'gablib/gablib.js';
 ```
 
 Getting Started
@@ -73,7 +79,7 @@ see [wiki](https://github.com/TechSavage2/gablib/wiki/Authenticating).)
 In your JavaScript you can now call as the first function:
 
 ```JavaScript
-import { login } from './src/login.js';
+import { login } from 'gablib/gablib.js';
 
 const loginObject = await login();  // note that the call is asynchronous
 ```
