@@ -29,8 +29,8 @@ It's now ready for use. As of now there are no other dependencies to be installe
 
 **Note** that this package and modules uses ESM format (i.e. use `import` statements.)
 
-Usage
------
+Getting Started
+---------------
 
 Make sure you have a registered and active account with the Mastodon site you want to log on to.
 
@@ -44,10 +44,10 @@ export MASTODON_PASSWORD='yourSecretPassword'
 export MASTODON_BASEURL='https://somemastodon.site'
 ```
 
-Put this in your ~/.profile file.
+Put this in for example your `~/.profile` file.
 
-You can also use different environment names and simply supply them instead
-(see below.)
+You can also use different environment names and simply supply them instead (
+see [wiki](https://github.com/TechSavage2/gablib/wiki/Authenticating).)
 
 In your JavaScript you can now call as the first function:
 
@@ -61,106 +61,19 @@ If successful login the object is now initialized for use with API functions. If
 will throw an error. Check that your credentials are correct and if a complex password properly
 escaped.
 
-If you want to use a different set of env variables, you can specify them like:
-
-```JavaScript
-import { login } from './src/login.js';
-
-// export ALTEMAIL="myother@email.com"
-// export ALTPASSWORD="altsecret"
-// export ALTBASEURL="https://altmastodon.com"
-const loginObject = await login('ALTEMAIL', 'ALTPASSWORD', 'ALTBASEURL');
-```
-
-Alternatively you can specify the login credentials as arguments (**not recommended** unless they
-are loaded from a database or credential store):
-
-```JavaScript
-import { login } from './src/login.js';
-
-const loginObject = await login({
-  userEmail: 'your@mastodon.email',
-  password : 'yourSecretPassword',
-  baseUrl  : 'https://somemastodon.site'
-});
-```
-
 To test if your env credentials are correct and login is working, you can run:
 
 ```bash
 $ node test-login
 ```
 
-If everything is fine you will see SUCCESS printed to console together with some account information
-for your account.
+If everything is fine you will see "SUCCESS" printed to console together with some account
+information for your account.
 
 To call API functions then is simply a matter of logging in and use the resulting
 `LoginObject` as argument for API calls that require authentication:
 
-```JavaScript
-import { login } from './src/login.js';
-import { postStatus } from './api.auth.timelines.js';
-import { Poll } from './src/obj/Poll.js';
-
-const loginObject = await login();
-
-// post a message to your own timeline (text can be markdown)
-const result1 = await postStatus(loginObject, 'some text');
-
-// post a message to a group
-const result2 = await postStatus(loginObject, 'some text', { groupId: '1501' });
-
-// post a message to a group with a poll attached
-const result3 = await postStatus(loginObject, 'some text', {
-  groupId: '1501',
-  poll   : new Poll([ 'option 1', 'option 2', 'options 3' ])
-});
-
-// post a message to your own timeline only your followers can see
-const result4 = await postStatus(loginObject, 'some text', {
-  visibility: 'private' // or use enumVisibility.private
-});
-```
-
-To get a list of groups you are member of:
-
-```JavaScript
-import { login } from '../src/login.js';
-import { getMyGroups } from '../src/api.auth.groups.js';
-
-const loginObject = await login();
-
-// list groups
-const result = await getMyGroups(loginObject);
-console.log(result);
-
-// You can also set 'minimal' list to true for only id and group title:
-//const result = await getMyGroups(loginObject, true);
-```
-
-Upload media as attachments (this method will likely change in the future!):
-
-```JavaScript
-// after login, first upload media files in parallel
-const mediaResult = await Promise.all([
-  uploadMedia(loginObject, '/path/to/file1.jpg'),
-  uploadMedia(loginObject, '/path/to/file2.png'),
-  uploadMedia(loginObject, '/path/to/file3.mp4')
-]);
-
-// extract media Ids
-const attachmentIds = mediaResult.map(e => e.content.id);
-
-// post message with attachment ids as an array 
-const result = await postStatus(
-  loginObject,
-  'Take a look at these files:',
-  {},
-  attachmentIds
-);
-
-console.log(result);
-```
+See [wiki page](https://github.com/TechSavage2/gablib/wiki) for more examples on usage.
 
 Additional modules
 ------------------
