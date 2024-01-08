@@ -64,7 +64,7 @@ export async function createStatus(lo, markdown, options = {}) {
   const status = markdownStripperIsAsync ? await markdownStripper(markdown) : markdownStripper(markdown);
   const attachments = Array.isArray(options.attachmentIds) ? options.attachmentIds : [];
 
-  if ( !options.attachmentIds.length && !status.length ) {
+  if ( !options.attachmentIds?.length && !status.length ) {
     throw new Error('Status text is empty and no attachments. At least one must be present.');
   }
 
@@ -415,6 +415,16 @@ export async function getStatusStats(lo, statusId) {
   return await _fetch(lo, url);
 }
 
+/**
+ * List statuses with the same link card.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} cardId - ID of link card
+ * @returns {Promise<*>}
+ */
+export async function getStatusesWithCard(lo, cardId) {
+  const url = new URL(`/api/v1/links/${ cardId }`, lo.baseUrl);
+  return _fetch(lo, url);
+}
 /*******************************************************************************
 
  HELPER FUNCTIONS
