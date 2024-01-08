@@ -106,6 +106,12 @@ export async function uploadMedia(lo, pathOrBuffer, filename = null) {
   }
 }
 
+export async function getStatus(lo, statusId) {
+  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }`;
+  const result = await _fetch(lo, url);
+  return { content: result.content, ok: result.status === 200 };
+}
+
 export async function deleteStatus(lo, statusId) {
   const url = lo.baseUrl + `/api/v1/statuses/${ statusId }`;
   const result = await _fetch(lo, url, 'DELETE');
