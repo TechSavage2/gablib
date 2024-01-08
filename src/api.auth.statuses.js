@@ -114,12 +114,24 @@ export async function createStatus(lo, markdown, options = {}) {
 }
 
 /**
- * Edit an existing post you own.
+ * Edit an existing status. You need to be the owner of the status.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string|number} statusId - Status ID of the status you want to edit.
  * @param {string} newMarkdown - New text for the status
- * @param {Object} [options] options
- * @returns {Promise<*>}
+ * @param {Object} [options]
+ * @param {string|number} [options.groupId] GroupID to post to. You must be a member of the group.
+ * @param {Array} [options.attachmentIds] Array of attachment IDs from previous [`uploadMedia()`]{@link Statuses:uploadMedia}.
+ * @param {Object|Poll} [options.poll] Poll object, JSON or a stringified JSON string representing the poll options and expiration.
+ * See {@link enumPollExpires} for options.
+ * @param {string} [options.visibility] Visibility of post see {@link enumVisibility}.
+ * @param {Boolean} [options.sensitive] if the content should be hidden by default
+ * @param {string} [options.expires] when the post should expire, see {@link enumPostExpires} for options.
+ * @param {} [options.privateGroup]
+ * @param {string|number} [options.replyId] Status or comment ID this is a reply to.
+ * @param {string|number} [options.quoteId] Status ID this is a quote for.
+ * @param {string} [options.spoiler] Spoiler text for sensitive statuses
+ * @param {string} [options.language='en] ISO 639 language code for the status
+ * @param {string} [options.scheduledAt] ISO 8601 formatted date when this status should become posted.
  */
 export async function editStatus(lo, statusId, newMarkdown, options) {
   options = Object.assign({}, options, { editId: statusId });
