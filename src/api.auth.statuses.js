@@ -103,8 +103,14 @@ export async function createStatus(lo, markdown, options = {}) {
     'scheduled_at'  : options.scheduledAt ? options.scheduledAt : null    // ISO 8601
   };
 
-  const url = lo.baseUrl + '/api/v1/statuses' + (options.editId ? `/${ options.editId }` : '');
-  return await _fetch(lo, url, options.editId ? 'PUT' : 'POST', 'json', body);
+  const url = new URL('/api/v1/statuses', lo.baseUrl);
+  let method = 'POST';
+  if ( options.editId ) {
+    url.pathname += `/${ options.editId }`;
+    method = 'PUT';
+  }
+
+  return await _fetch(lo, url, method, 'json', body);
 }
 
 /**
