@@ -81,7 +81,7 @@ export const enumReactions = {
  * @global
  * @type {{explore: string, clips: string, links: string, video: string, list: string, home: string, group: string}}
  */
-export const enumKnownTimelines = {
+export const enumTimelines = {
   'home'   : 'home',
   'group'  : 'group',
   'explore': 'explore',
@@ -89,21 +89,6 @@ export const enumKnownTimelines = {
   'clips'  : 'clips', // NOTE this will be converted to 'video' and have an additional argument added to it (Gab thing.)
   'links'  : 'links',
   'list'   : 'list'
-};
-
-/**
- * @global
- * @type {{all: null, feed: string, top: string, link: string, account: string, status: string, group: string, hashtag: string}}
- */
-export const enumSearchFilterTypes = {
-  'all'    : null,
-  'status' : 'status',
-  'group'  : 'group',
-  'top'    : 'top',
-  'account': 'account',
-  'link'   : 'link',
-  'feed'   : 'feed',
-  'hashtag': 'hashtag'
 };
 
 /**
