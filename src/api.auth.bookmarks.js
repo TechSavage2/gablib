@@ -57,3 +57,37 @@ export async function deleteBookmarkCollection(lo, bookmarkCollectionId) {
   const url = new URL(`/api/v1/bookmark_collections/${ bookmarkCollectionId }`, lo.baseUrl);
   return await _fetch(lo, url, 'DELETE');
 }
+
+/**
+ * Create a new bookmark collection.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string} title Title of new bookmark collection
+ * @returns {Promise<*>}
+ */
+export async function createBookmarkCollection(lo, title) {
+  const url = new URL('/api/v1/bookmark_collections', lo.baseUrl);
+  return await _fetch(lo, url, 'POST', 'json', { title });
+}
+
+/**
+ * Edit an existing bookmark collection.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} bookmarkCollectionId id of bookmark collection
+ * @param {string} title New title of bookmark collection
+ * @returns {Promise<*>}
+ */
+export async function editBookmarkCollection(lo, bookmarkCollectionId, title) {
+  const url = new URL(`/api/v1/bookmark_collections/${ bookmarkCollectionId }`, lo.baseUrl);
+  return await _fetch(lo, url, 'PUT', 'json', { title });
+}
+
+/**
+ * Delete an existing bookmark collection
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} bookmarkCollectionId id of bookmark collection
+ * @returns {Promise<*>}
+ */
+export async function deleteBookmarkCollection(lo, bookmarkCollectionId) {
+  const url = new URL(`/api/v1/bookmark_collections/${ bookmarkCollectionId }`, lo.baseUrl);
+  return await _fetch(lo, url, 'DELETE');
+}
