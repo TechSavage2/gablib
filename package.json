@@ -1,6 +1,6 @@
 {
   "name": "gablib",
-  "version": "0.5.0-alpha",
+  "version": "0.6.0-alpha",
   "description": "API package to allow login and doing auth ops for Mastodon without using OAuth where this has been disabled.",
   "type": "module",
   "main": "gablib.js",
