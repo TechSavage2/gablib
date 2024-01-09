@@ -80,7 +80,8 @@ APIs
 - Support for **Chats/DM** (TODO)
 - Support for **Public** APIs (requires no authentication)
   - Account information, Trends feed, News feed, Popular statuses
-- Support for **search** (TODO)
+- Full support for site wide **search**
+  - All, filters
 - Support for **settings** (TODO)
 
 Getting Started

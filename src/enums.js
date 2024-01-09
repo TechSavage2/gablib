@@ -90,3 +90,33 @@ export const enumKnownTimelines = {
   'links'  : 'links',
   'list'   : 'list'
 };
+
+/**
+ * @global
+ * @type {{all: null, feed: string, top: string, link: string, account: string, status: string, group: string, hashtag: string}}
+ */
+export const enumSearchFilterTypes = {
+  'all'    : null,
+  'status' : 'status',
+  'group'  : 'group',
+  'top'    : 'top',
+  'account': 'account',
+  'link'   : 'link',
+  'feed'   : 'feed',
+  'hashtag': 'hashtag'
+};
+
+/**
+ * @global
+ * @type {{all: null, feed: string, top: string, link: string, account: string, status: string, group: string, hashtag: string}}
+ */
+export const enumSearchFilterTypes = {
+  'all'    : null,
+  'status' : 'status',
+  'group'  : 'group',
+  'top'    : 'top',
+  'account': 'account',
+  'link'   : 'link',
+  'feed'   : 'feed',
+  'hashtag': 'hashtag'
+};
