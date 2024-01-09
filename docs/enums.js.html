@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Bookmarks - gablib</title>
+    <title>enums.js - gablib</title>
     
     
     
@@ -40,257 +40,111 @@
 
 <div id="main">
     
-    <h1 class="page-title">Bookmarks</h1>
+    <h1 class="page-title">enums.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-<dl class="details">
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.bookmarks.js.html">api.auth.bookmarks.js</a>, <a href="api.auth.bookmarks.js.html#line9">line 9</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-            
-
-            
-        
-        </div>
-    
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id=".getBookmarkCollection"><span class="type-signature type-signature-static">(static) </span>getBookmarkCollection<span class="signature">(lo)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Get your bookmark collections.</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.bookmarks.js.html">api.auth.bookmarks.js</a>, <a href="api.auth.bookmarks.js.html#line22">line 22</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>lo</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Valid and active LoginObject</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;*></span>
-
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*******************************************************************************
+
+ gablib
+ enums.js (2024-01-04)
+ Copyright (c) 2024 TechSavage
+
+ *******************************************************************************/
+
+'use strict';
+
+/**
+ * @global
+ * @type {{rising: string, top: string, top_today: string, 'newest-with-groups': string, top_yearly: string, top_all_time: string, hot: string, newest: string, recent: string, top_weekly: string, top_monthly: string, 'newest-no-reposts': string}}
+ */
+export const enumStatusSort = {
+  'newest'            : 'newest',
+  'newest-with-groups': 'with-groups',
+  'newest-no-reposts' : 'no-reposts',
+  'hot'               : 'hot',
+  'top'               : 'top',
+  'recent'            : 'recent', // pro??
+  'rising'            : 'rising', // does not work with pro, does with explore
+  'top_today'         : 'top_today', // pro??
+  'top_weekly'        : 'top_weekly', // pro??
+  'top_monthly'       : 'top_monthly', // pro??
+  'top_yearly'        : 'top_yearly', // pro??
+  'top_all_time'      : 'top_all_time' // pro??
+};
+
+/**
+ * @global
+ * @type {{oneHour: string, oneDay: string, never: string, sixHours: string, threeDays: string, oneWeek: string, fiveMinutes: string}}
+ */
+export const enumPostExpires = {
+  never      : '',
+  fiveMinutes: 'five_minutes',
+  oneHour    : 'one_hour',
+  sixHours   : 'six_hours',
+  oneDay     : 'one_day',
+  threeDays  : 'three_days',
+  oneWeek    : 'one_week'
+};
+
+/**
+ * @global
+ * @type {{oneHour: number, oneDay: number, sixHours: number, threeDays: number, oneWeek: number}}
+ */
+export const enumPollExpires = {
+  oneHour  : 3600,
+  sixHours : 21600,
+  oneDay   : 86400,
+  threeDays: 259200,
+  oneWeek  : 604800
+};
+
+/**
+ * @global
+ * @type {{private: string, public: string, unlisted: string}}
+ */
+export const enumVisibility = {
+  public  : 'public',
+  private : 'private',
+  unlisted: 'unlisted'
+};
+
+/**
+ * @global
+ * @type {{honked: string, laughedAt: string, thumbsDown: string, angry: string, thumbsUp: string, heart: string, salute: string}}
+ */
+export const enumReactions = {
+  thumbsUp  : '1',
+  thumbsDown: '2',
+  laughedAt : '3',
+  angry     : '4',
+  honked    : '5',
+  heart     : '6',
+  salute    : '11'
+};
+
+/**
+ * @global
+ * @type {{explore: string, clips: string, links: string, video: string, list: string, home: string, group: string}}
+ */
+export const enumKnownTimelines = {
+  'home'   : 'home',
+  'group'  : 'group',
+  'explore': 'explore',
+  'video'  : 'video',
+  'clips'  : 'clips', // NOTE this will be converted to 'video' and have an additional argument added to it (Gab thing.)
+  'links'  : 'links',
+  'list'   : 'list'
+};
+</code></pre>
+        </article>
+    </section>
 
 
 

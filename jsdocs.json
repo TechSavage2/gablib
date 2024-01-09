@@ -2,7 +2,10 @@
   "tags": {
     "allowUnknownTags": true
   },
-  "plugins": [
+  "source": {
+    "include": "./src",
+    "includePattern": "\\.js$"
+  },"plugins": [
     "plugins/markdown"
   ],
   "templates": {
@@ -29,10 +32,52 @@
     "hardwrap": false
   },
   "opts": {
-    "template": "./node_modules/ink-docstrap/template",
+    "template": "./node_modules/docdash",
     "destination": "docs",
     "recurse": true,
     "readme": "README.md",
     "encoding": "utf8"
+  },
+  "docdash": {
+    "static": true,
+    "sort": true,
+    "sectionOrder": [
+      "Modules",
+      "Classes",
+      "Globals",
+      "Namespaces",
+      "Events",
+      "Externals",
+      "Mixins",
+      "Tutorials",
+      "Interfaces"
+    ],
+    "disqus": "",
+    "meta": {
+      "title": "gablib",
+      "description": "",
+      "keyword": ""
+    },
+    "search": true,
+    "commonNav": false,
+    "collapse": false,
+    "wrap": false,
+    "typedefs": true,
+    "navLevel": 2,
+    "private": false,
+    "removeQuotes": "trim",
+    "scripts": [],
+    "ShortenTypes": true,
+    "menu": {
+      "Project Website": {
+        "href":"https://github.com/TechSavage2/gablib",
+        "target":"_parent",
+        "class":"menu-item",
+        "id":"website_link"
+      }
+    },
+    "scopeInOutputPath": true,
+    "nameInOutputPath": true,
+    "versionInOutputPath": true
   }
 }

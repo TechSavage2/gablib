@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Bookmarks - gablib</title>
+    <title>api.auth.notifications.js - gablib</title>
     
     
     
@@ -40,257 +40,87 @@
 
 <div id="main">
     
-    <h1 class="page-title">Bookmarks</h1>
+    <h1 class="page-title">api.auth.notifications.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-<dl class="details">
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.bookmarks.js.html">api.auth.bookmarks.js</a>, <a href="api.auth.bookmarks.js.html#line9">line 9</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-            
-
-            
-        
-        </div>
-    
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id=".getBookmarkCollection"><span class="type-signature type-signature-static">(static) </span>getBookmarkCollection<span class="signature">(lo)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Get your bookmark collections.</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.bookmarks.js.html">api.auth.bookmarks.js</a>, <a href="api.auth.bookmarks.js.html#line22">line 22</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>lo</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Valid and active LoginObject</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;*></span>
-
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*******************************************************************************
+
+ gablib
+ api.auth.notifications.js (2024-01-08)
+ Copyright (c) 2024 TechSavage
+
+ *******************************************************************************/
+
+/**
+ * @module Notifications
+ */
+
+'use strict';
+
+import { _fetch } from './_fetch.js';
+
+/**
+ * Get notification list. Supports paginating and various filters.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {number|string|null} [maxId] - for paginating
+ * @param {number|string|null} [sinceId] - to get new notifications
+ * @param {*|null} [filters] - filter options
+ * @returns {Promise&lt;*>}
+ */
+export async function getNotifications(lo, maxId = null, sinceId = null, filters = {}) {
+  const filterTypes = [ 'follow', 'reblog', 'favourite', 'poll', 'mention', 'group_moderation_event' ];
+  const url = new URL('/api/v1/notifications', lo.baseUrl);
+
+  if ( maxId ) {
+    url.searchParams.append('max_id', maxId);
+  }
+
+  if ( sinceId ) {
+    url.searchParams.append('since_id', sinceId);
+  }
+
+  if ( filters.onlyFollowing ) {
+    url.searchParams.append('only_following', 'true');
+  }
+
+  if ( filters.onlyVerified ) {
+    url.searchParams.append('only_verified', 'true');
+  }
+
+  // mastodon uses exclude list for type filters:
+  if ( Array.isArray(filters.types) &amp;&amp; filters.types.length ) {
+    const list = [];
+    filterTypes.forEach(type => {
+      if ( !filters.types.includes(type) ) list.push(type);
+    });
+
+    list.forEach(type => {
+      url.searchParams.append('exclude_types[]', type);
+    });
+  }
+
+  return await _fetch(lo, url);
+}
+
+/**
+ * Mark all notifications read.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @returns {Promise&lt;*>}
+ */
+export async function markNotificationsRead(lo) {
+  const url = new URL('/api/v1/notifications/mark_read', lo.baseUrl);
+  return _fetch(lo, url, 'POST', 'json', '{}');
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -1,126 +1,142 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>gablib Class: LoginObject</title>
-
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
-
-	<link type="text/css" rel="stylesheet" href="styles/site.lumen.css">
-
+    
+    <meta charset="utf-8">
+    <title>LoginObject - gablib</title>
+    
+    
+    
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
 
-<div class="navbar navbar-default navbar-fixed-top ">
-<div class="container">
-	<div class="navbar-header">
-		<a class="navbar-brand" href="index.html">gablib</a>
-		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-        </button>
-	</div>
-	<div class="navbar-collapse collapse" id="topNavigation">
-		<ul class="nav navbar-nav">
-			
-			<li class="dropdown">
-				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="module-Accounts.html">Accounts</a></li><li><a href="module-Bookmarks.html">Bookmarks</a></li><li><a href="module-Groups.html">Groups</a></li><li><a href="module-Login.html">Login</a></li><li><a href="module-Misc.html">Misc</a></li><li><a href="module-Notifications.html">Notifications</a></li><li><a href="module-Public.html">Public</a></li><li><a href="module-Statuses.html">Statuses</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
-				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="LoginObject.html">LoginObject</a></li><li><a href="Poll.html">Poll</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
-				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="global.html#enumAccountFollowRequest">enumAccountFollowRequest</a></li><li><a href="global.html#enumAccountMediaType">enumAccountMediaType</a></li><li><a href="global.html#enumGroupModerationJoin">enumGroupModerationJoin</a></li><li><a href="global.html#enumPollExpires">enumPollExpires</a></li><li><a href="global.html#enumPostExpires">enumPostExpires</a></li><li><a href="global.html#enumReactions">enumReactions</a></li><li><a href="global.html#enumSearchFilterTypes">enumSearchFilterTypes</a></li><li><a href="global.html#enumStatusSort">enumStatusSort</a></li><li><a href="global.html#enumTimelines">enumTimelines</a></li><li><a href="global.html#enumVisibility">enumVisibility</a></li>
-				</ul>
-			</li>
-			
-		</ul>
-        
-            <div class="col-sm-3 col-md-3">
-                <form class="navbar-form" role="search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        
-	</div>
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
 
-</div>
-</div>
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/TechSavage2/gablib" target="_parent" class="menu-item" id="website_link" >Project Website</a></h2><h3>Modules</h3><ul><li><a href="module-Bookmarks.html">Bookmarks</a><ul class='methods'><li data-type='method'><a href="module-Bookmarks.html#.getBookmarkCollection">getBookmarkCollection</a></li></ul></li><li><a href="module-Groups.html">Groups</a><ul class='methods'><li data-type='method'><a href="module-Groups.html#.createGroup">createGroup</a></li><li data-type='method'><a href="module-Groups.html#.editGroup">editGroup</a></li><li data-type='method'><a href="module-Groups.html#.getGroup">getGroup</a></li><li data-type='method'><a href="module-Groups.html#.getGroupCategories">getGroupCategories</a></li><li data-type='method'><a href="module-Groups.html#.getMyGroups">getMyGroups</a></li></ul></li><li><a href="module-Login.html">Login</a><ul class='methods'><li data-type='method'><a href="module-Login.html#.login">login</a></li><li data-type='method'><a href="module-Login.html#.refreshSession">refreshSession</a></li></ul></li><li><a href="module-Misc.html">Misc</a><ul class='methods'><li data-type='method'><a href="module-Misc.html#.getAccountFromId">getAccountFromId</a></li><li data-type='method'><a href="module-Misc.html#.getAccountFromUsername">getAccountFromUsername</a></li><li data-type='method'><a href="module-Misc.html#.getConversationOwner">getConversationOwner</a></li><li data-type='method'><a href="module-Misc.html#.getMyShortcuts">getMyShortcuts</a></li><li data-type='method'><a href="module-Misc.html#.getNewsFeed">getNewsFeed</a></li><li data-type='method'><a href="module-Misc.html#.getPopularStatuses">getPopularStatuses</a></li><li data-type='method'><a href="module-Misc.html#.getTrendsFeed">getTrendsFeed</a></li></ul></li><li></li><li><a href="module-Notifications.html">Notifications</a><ul class='methods'><li data-type='method'><a href="module-Notifications.html#.getNotifications">getNotifications</a></li><li data-type='method'><a href="module-Notifications.html#.markNotificationsRead">markNotificationsRead</a></li></ul></li><li><a href="module-Statuses.html">Statuses</a><ul class='methods'><li data-type='method'><a href="module-Statuses.html#.bookmarkStatus">bookmarkStatus</a></li><li data-type='method'><a href="module-Statuses.html#.bookmarkStatusState">bookmarkStatusState</a></li><li data-type='method'><a href="module-Statuses.html#.createStatus">createStatus</a></li><li data-type='method'><a href="module-Statuses.html#.deleteStatus">deleteStatus</a></li><li data-type='method'><a href="module-Statuses.html#.editStatus">editStatus</a></li><li data-type='method'><a href="module-Statuses.html#.favoritePost">favoritePost</a></li><li data-type='method'><a href="module-Statuses.html#.getAccountStatuses">getAccountStatuses</a></li><li data-type='method'><a href="module-Statuses.html#.getComments">getComments</a></li><li data-type='method'><a href="module-Statuses.html#.getStatus">getStatus</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusContext">getStatusContext</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusQuotes">getStatusQuotes</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusRepostedBy">getStatusRepostedBy</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusRevisions">getStatusRevisions</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusStats">getStatusStats</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusesFromTag">getStatusesFromTag</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusesWithCard">getStatusesWithCard</a></li><li data-type='method'><a href="module-Statuses.html#.getTimelineStatuses">getTimelineStatuses</a></li><li data-type='method'><a href="module-Statuses.html#.moveStatus">moveStatus</a></li><li data-type='method'><a href="module-Statuses.html#.pinStatus">pinStatus</a></li><li data-type='method'><a href="module-Statuses.html#.pinStatusState">pinStatusState</a></li><li data-type='method'><a href="module-Statuses.html#.setMarkdownFunction">setMarkdownFunction</a></li><li data-type='method'><a href="module-Statuses.html#.unbookmarkStatus">unbookmarkStatus</a></li><li data-type='method'><a href="module-Statuses.html#.unfavoritePost">unfavoritePost</a></li><li data-type='method'><a href="module-Statuses.html#.unpinStatus">unpinStatus</a></li><li data-type='method'><a href="module-Statuses.html#.uploadMedia">uploadMedia</a></li></ul></li></ul><h3>Classes</h3><ul><li><a href="LoginObject.html">LoginObject</a></li><li><a href="Poll.html">Poll</a></li></ul>undefined
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">LoginObject</h1>
+    
+
+    
 
 
-<div class="container" id="toc-content">
-<div class="row">
 
-	
-	<div class="col-md-8">
-	
-		<div id="main">
-			
 
-	<h1 class="page-title">Class: LoginObject</h1>
 <section>
 
 <header>
     
         <h2>
-        LoginObject
+        
+            LoginObject
+        
         </h2>
         
     
 </header>
 
-
 <article>
-    <div class="container-overview">
     
+        <div class="container-overview">
         
-<hr>
-<dt>
-    <h4 class="name" id="LoginObject"><span class="type-signature"></span>new LoginObject(credentials, altPassword, altBaseUrl)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>LoginObject is returned initialized by the login() function. See documentation
-for login().</p>
-    </div>
-    
+            
 
     
 
+    <h4 class="name" id="LoginObject"><span class="type-signature"></span>new LoginObject<span class="signature">(credentials, altPassword, altBaseUrl)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>LoginObject is returned initialized by the login() function. See documentation
+for login().</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="obj_LoginObject.js.html">obj/LoginObject.js</a>, <a href="obj_LoginObject.js.html#line70">line 70</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -196,48 +212,26 @@ for login().</p>
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
     
 
     
@@ -245,24 +239,10 @@ for login().</p>
     
 
     
-
+    
     
 
-    
-
-    
-</dd>
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
+     
 
     
 
@@ -280,137 +260,22 @@ for login().</p>
 
 
 
-		</div>
-	</div>
-
-	<div class="clearfix"></div>
-
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
-	
-
-</div>
+    
+    
 </div>
 
-
-    <div class="modal fade" id="searchResults">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Search results</h4>
-          </div>
-          <div class="modal-body"></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div>
-
+<br class="clear">
 
 <footer>
-
-	<p><b><a href='https://github.com/TechSavage2/'>TechSavage at GitHub</a></b></p>
-
-
-	<span class="copyright">
-	Copyright &copy; 2024 TechSavage
-	</span>
-
-<span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a>
-	
-		on Tue Jan 9th 2024
-	
-	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
-</span>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Tue Jan 09 2024 16:27:38 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
-<script src="scripts/docstrap.lib.js"></script>
-<script src="scripts/toc.js"></script>
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
 
-    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+<script src="scripts/search.js" defer></script>
 
-
-<script>
-$( function () {
-	$( "[id*='$']" ).each( function () {
-		var $this = $( this );
-
-		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
-	} );
-
-	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
-		var $this = $( this );
-
-		var example = $this.find( "code" );
-		exampleText = example.html();
-		var lang = /{@lang (.*?)}/.exec( exampleText );
-		if ( lang && lang[1] ) {
-			exampleText = exampleText.replace( lang[0], "" );
-			example.html( exampleText );
-			lang = lang[1];
-		} else {
-			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
-			lang = langClassMatch ? langClassMatch[1] : "javascript";
-		}
-
-		if ( lang ) {
-
-			$this
-			.addClass( "sunlight-highlight-" + lang )
-			.addClass( "linenums" )
-			.html( example.html() );
-
-		}
-	} );
-
-	Sunlight.highlightAll( {
-		lineNumbers : false,
-		showMenu : true,
-		enableDoclinks : true
-	} );
-
-	$.catchAnchorLinks( {
-        navbarOffset: 10
-	} );
-	$( "#toc" ).toc( {
-		anchorName  : function ( i, heading, prefix ) {
-			return $( heading ).attr( "id" ) || ( prefix + i );
-		},
-		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
-		showAndHide : false,
-		smoothScrolling: true
-	} );
-
-	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
-	$( '.dropdown-toggle' ).dropdown();
-
-    $( "table" ).each( function () {
-      var $this = $( this );
-      $this.addClass('table');
-    } );
-
-} );
-</script>
-
-
-
-<!--Navigation and Symbol Display-->
-
-
-<!--Google Analytics-->
-
-
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            SearcherDisplay.init();
-        });
-    </script>
 
 
 </body>

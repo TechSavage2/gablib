@@ -1,106 +1,80 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>gablib Module: Statuses</title>
-
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
-
-	<link type="text/css" rel="stylesheet" href="styles/site.lumen.css">
-
+    
+    <meta charset="utf-8">
+    <title>Statuses - gablib</title>
+    
+    
+    
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
 
-<div class="navbar navbar-default navbar-fixed-top ">
-<div class="container">
-	<div class="navbar-header">
-		<a class="navbar-brand" href="index.html">gablib</a>
-		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-        </button>
-	</div>
-	<div class="navbar-collapse collapse" id="topNavigation">
-		<ul class="nav navbar-nav">
-			
-			<li class="dropdown">
-				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="module-Accounts.html">Accounts</a></li><li><a href="module-Bookmarks.html">Bookmarks</a></li><li><a href="module-Groups.html">Groups</a></li><li><a href="module-Login.html">Login</a></li><li><a href="module-Misc.html">Misc</a></li><li><a href="module-Notifications.html">Notifications</a></li><li><a href="module-Public.html">Public</a></li><li><a href="module-Statuses.html">Statuses</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
-				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="LoginObject.html">LoginObject</a></li><li><a href="Poll.html">Poll</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
-				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="global.html#enumAccountFollowRequest">enumAccountFollowRequest</a></li><li><a href="global.html#enumAccountMediaType">enumAccountMediaType</a></li><li><a href="global.html#enumGroupModerationJoin">enumGroupModerationJoin</a></li><li><a href="global.html#enumPollExpires">enumPollExpires</a></li><li><a href="global.html#enumPostExpires">enumPostExpires</a></li><li><a href="global.html#enumReactions">enumReactions</a></li><li><a href="global.html#enumSearchFilterTypes">enumSearchFilterTypes</a></li><li><a href="global.html#enumStatusSort">enumStatusSort</a></li><li><a href="global.html#enumTimelines">enumTimelines</a></li><li><a href="global.html#enumVisibility">enumVisibility</a></li>
-				</ul>
-			</li>
-			
-		</ul>
-        
-            <div class="col-sm-3 col-md-3">
-                <form class="navbar-form" role="search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        
-	</div>
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
 
-</div>
-</div>
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/TechSavage2/gablib" target="_parent" class="menu-item" id="website_link" >Project Website</a></h2><h3>Modules</h3><ul><li><a href="module-Bookmarks.html">Bookmarks</a><ul class='methods'><li data-type='method'><a href="module-Bookmarks.html#.getBookmarkCollection">getBookmarkCollection</a></li></ul></li><li><a href="module-Groups.html">Groups</a><ul class='methods'><li data-type='method'><a href="module-Groups.html#.createGroup">createGroup</a></li><li data-type='method'><a href="module-Groups.html#.editGroup">editGroup</a></li><li data-type='method'><a href="module-Groups.html#.getGroup">getGroup</a></li><li data-type='method'><a href="module-Groups.html#.getGroupCategories">getGroupCategories</a></li><li data-type='method'><a href="module-Groups.html#.getMyGroups">getMyGroups</a></li></ul></li><li><a href="module-Login.html">Login</a><ul class='methods'><li data-type='method'><a href="module-Login.html#.login">login</a></li><li data-type='method'><a href="module-Login.html#.refreshSession">refreshSession</a></li></ul></li><li><a href="module-Misc.html">Misc</a><ul class='methods'><li data-type='method'><a href="module-Misc.html#.getAccountFromId">getAccountFromId</a></li><li data-type='method'><a href="module-Misc.html#.getAccountFromUsername">getAccountFromUsername</a></li><li data-type='method'><a href="module-Misc.html#.getConversationOwner">getConversationOwner</a></li><li data-type='method'><a href="module-Misc.html#.getMyShortcuts">getMyShortcuts</a></li><li data-type='method'><a href="module-Misc.html#.getNewsFeed">getNewsFeed</a></li><li data-type='method'><a href="module-Misc.html#.getPopularStatuses">getPopularStatuses</a></li><li data-type='method'><a href="module-Misc.html#.getTrendsFeed">getTrendsFeed</a></li></ul></li><li></li><li><a href="module-Notifications.html">Notifications</a><ul class='methods'><li data-type='method'><a href="module-Notifications.html#.getNotifications">getNotifications</a></li><li data-type='method'><a href="module-Notifications.html#.markNotificationsRead">markNotificationsRead</a></li></ul></li><li><a href="module-Statuses.html">Statuses</a><ul class='methods'><li data-type='method'><a href="module-Statuses.html#.bookmarkStatus">bookmarkStatus</a></li><li data-type='method'><a href="module-Statuses.html#.bookmarkStatusState">bookmarkStatusState</a></li><li data-type='method'><a href="module-Statuses.html#.createStatus">createStatus</a></li><li data-type='method'><a href="module-Statuses.html#.deleteStatus">deleteStatus</a></li><li data-type='method'><a href="module-Statuses.html#.editStatus">editStatus</a></li><li data-type='method'><a href="module-Statuses.html#.favoritePost">favoritePost</a></li><li data-type='method'><a href="module-Statuses.html#.getAccountStatuses">getAccountStatuses</a></li><li data-type='method'><a href="module-Statuses.html#.getComments">getComments</a></li><li data-type='method'><a href="module-Statuses.html#.getStatus">getStatus</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusContext">getStatusContext</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusQuotes">getStatusQuotes</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusRepostedBy">getStatusRepostedBy</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusRevisions">getStatusRevisions</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusStats">getStatusStats</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusesFromTag">getStatusesFromTag</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusesWithCard">getStatusesWithCard</a></li><li data-type='method'><a href="module-Statuses.html#.getTimelineStatuses">getTimelineStatuses</a></li><li data-type='method'><a href="module-Statuses.html#.moveStatus">moveStatus</a></li><li data-type='method'><a href="module-Statuses.html#.pinStatus">pinStatus</a></li><li data-type='method'><a href="module-Statuses.html#.pinStatusState">pinStatusState</a></li><li data-type='method'><a href="module-Statuses.html#.setMarkdownFunction">setMarkdownFunction</a></li><li data-type='method'><a href="module-Statuses.html#.unbookmarkStatus">unbookmarkStatus</a></li><li data-type='method'><a href="module-Statuses.html#.unfavoritePost">unfavoritePost</a></li><li data-type='method'><a href="module-Statuses.html#.unpinStatus">unpinStatus</a></li><li data-type='method'><a href="module-Statuses.html#.uploadMedia">uploadMedia</a></li></ul></li></ul><h3>Classes</h3><ul><li><a href="LoginObject.html">LoginObject</a></li><li><a href="Poll.html">Poll</a></li></ul>undefined
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Statuses</h1>
+    
+
+    
 
 
-<div class="container" id="toc-content">
-<div class="row">
 
-	
-	<div class="col-md-8">
-	
-		<div id="main">
-			
 
-	<h1 class="page-title">Module: Statuses</h1>
 <section>
 
 <header>
     
 </header>
 
-
 <article>
-    <div class="container-overview">
     
+        <div class="container-overview">
         
+            
 
-        
 <dl class="details">
     
 
-	
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
 
-	
+    
 
-	
+    
+
+    
 
     
 
@@ -110,32 +84,31 @@
 
     
 
-	
+    
 
-	
+    
 
-	
+    
 
-	
+    
 
-	
+    
 
+    
 
+    
 
-	
-
-	
-
-	
-
-	
+    
 </dl>
 
 
+
+
+            
+
+            
         
-    
-    </div>
-
+        </div>
     
 
     
@@ -143,6 +116,10 @@
     
 
     
+    
+    
+
+     
 
     
 
@@ -151,32 +128,78 @@
     
         <h3 class="subsection-title">Methods</h3>
 
-        <dl>
-            
-<hr>
-<dt>
-    <h4 class="name" id=".bookmarkStatus"><span class="type-signature">&lt;static> </span>bookmarkStatus(lo, statusId, collectionId)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Bookmark this status.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
         
+            
 
-<table class="params table table-striped">
+    
+
+    <h4 class="name" id=".bookmarkStatus"><span class="type-signature type-signature-static">(static) </span>bookmarkStatus<span class="signature">(lo, statusId, collectionId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Bookmark this status.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line368">line 368</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -227,22 +250,13 @@
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
             </td>
 
             
 
             
 
-            <td class="description last"><p>Status ID</p></td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -267,65 +281,27 @@
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -338,38 +314,82 @@
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".bookmarkStatusState"><span class="type-signature">&lt;static> </span>bookmarkStatusState(lo, statusId)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get bookmark status of this post.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".bookmarkStatusState"><span class="type-signature type-signature-static">(static) </span>bookmarkStatusState<span class="signature">(lo, statusId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get bookmark status of this post.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line356">line 356</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -420,87 +440,40 @@
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
             </td>
 
             
 
             
 
-            <td class="description last"><p>Status ID</p></td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -513,38 +486,82 @@
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".createStatus"><span class="type-signature">&lt;static> </span>createStatus(lo, markdown [, options])</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Post or edit a new status to home timeline or a group.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".createStatus"><span class="type-signature type-signature-static">(static) </span>createStatus<span class="signature">(lo, markdown, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Post or edit a new status to home timeline or a group.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line57">line 57</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -554,7 +571,7 @@
         <th>Type</th>
 
         
-        <th>Argument</th>
+        <th>Attributes</th>
         
 
         
@@ -664,10 +681,10 @@ otherwise it is required.</p></td>
             
 
             <td class="description last">
-                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                <h6>Properties</h6>
                 
 
-<table class="params table table-striped">
+<table class="params">
     <thead>
     <tr>
         
@@ -677,7 +694,7 @@ otherwise it is required.</p></td>
         <th>Type</th>
 
         
-        <th>Argument</th>
+        <th>Attributes</th>
         
 
         
@@ -1108,7 +1125,7 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             
                 <td class="default">
                 
-                    'en
+                    <code>'en</code>
                 
                 </td>
             
@@ -1206,65 +1223,27 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -1277,38 +1256,82 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".deleteStatus"><span class="type-signature">&lt;static> </span>deleteStatus(lo, statusId)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Delete a single status post.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".deleteStatus"><span class="type-signature type-signature-static">(static) </span>deleteStatus<span class="signature">(lo, statusId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Delete a single status post.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line188">line 188</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -1381,65 +1404,27 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -1452,38 +1437,82 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".editStatus"><span class="type-signature">&lt;static> </span>editStatus(lo, statusId, newMarkdown [, options])</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Edit an existing status. You need to be the owner of the status.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".editStatus"><span class="type-signature type-signature-static">(static) </span>editStatus<span class="signature">(lo, statusId, newMarkdown, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Edit an existing status. You need to be the owner of the status.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line136">line 136</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -1493,7 +1522,7 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
         <th>Type</th>
 
         
-        <th>Argument</th>
+        <th>Attributes</th>
         
 
         
@@ -1634,10 +1663,10 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             
 
             <td class="description last">
-                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                <h6>Properties</h6>
                 
 
-<table class="params table table-striped">
+<table class="params">
     <thead>
     <tr>
         
@@ -1647,7 +1676,7 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
         <th>Type</th>
 
         
-        <th>Argument</th>
+        <th>Attributes</th>
         
 
         
@@ -2078,7 +2107,7 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             
                 <td class="default">
                 
-                    'en
+                    <code>'en</code>
                 
                 </td>
             
@@ -2135,89 +2164,96 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
-</dd>
+
+
+
+
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".favoritePost"><span class="type-signature">&lt;static> </span>favoritePost(lo, statusId [, reactId])</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Mark this status as favorite (like, reaction.)</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".favoritePost"><span class="type-signature type-signature-static">(static) </span>favoritePost<span class="signature">(lo, statusId, reactId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Mark this status as favorite (like, reaction.)</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line297">line 297</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -2227,7 +2263,197 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
         <th>Type</th>
 
         
-        <th>Argument</th>
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>lo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Valid and active LoginObject</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>statusId</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>reactId</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;*></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getAccountStatuses"><span class="type-signature type-signature-static">(static) </span>getAccountStatuses<span class="signature">(lo, account, page<span class="signature-attributes">opt</span>, sort<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get a list of statuses based on an account.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line212">line 212</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
         
 
         
@@ -2270,243 +2496,6 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
                 <td class="default">
                 
                 </td>
-            
-
-            <td class="description last"><p>Valid and active LoginObject</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>statusId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Status ID</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>reactId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    "1"
-                
-                </td>
-            
-
-            <td class="description last"><p>React Id. See <a href="global.html#enumReactions">enumReactions</a>.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;*></span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".getAccountStatuses"><span class="type-signature">&lt;static> </span>getAccountStatuses(lo, account [, page] [, sort])</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get a list of statuses based on an account.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Argument</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>lo</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
             
 
             <td class="description last"><p>Valid and active LoginObject</p></td>
@@ -2543,6 +2532,10 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last"><p>ID of account</p></td>
         </tr>
@@ -2558,9 +2551,6 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             
                 
 <span class="param-type">number</span>
-|
-
-<span class="param-type">null</span>
 
 
 
@@ -2579,6 +2569,12 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
                 </td>
             
 
+            
+                <td class="default">
+                
+                    <code>1</code>
+                
+                </td>
             
 
             <td class="description last"><p>page number</p></td>
@@ -2614,6 +2610,10 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last"><p>sort method. Valid options: see <a href="global.html#enumStatusSort">enumStatusSort</a>.</p></td>
         </tr>
@@ -2622,65 +2622,27 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -2693,38 +2655,82 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".getComments"><span class="type-signature">&lt;static> </span>getComments(lo, statusId [, maxId] [, sort])</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get comments from a status or a comment branch.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".getComments"><span class="type-signature type-signature-static">(static) </span>getComments<span class="signature">(lo, statusId, maxId, sort)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get comments from a status or a comment branch.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line225">line 225</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -2734,11 +2740,7 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
         <th>Type</th>
 
         
-        <th>Argument</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -2764,19 +2766,7 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             </td>
 
             
-                <td class="attributes">
-                
 
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
             
 
             <td class="description last"><p>Valid and active LoginObject</p></td>
@@ -2791,34 +2781,13 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last"><p>Status ID to get comments from</p></td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -2830,39 +2799,13 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-|
-
-<span class="param-type">null</span>
-
-
-
-            
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last"><p>status ID for paging</p></td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -2874,100 +2817,40 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-
-
-
-            
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                    "oldest"
-                
-                </td>
-            
 
-            <td class="description last"><p>Sort method</p></td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -2980,38 +2863,82 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".getStatus"><span class="type-signature">&lt;static> </span>getStatus(lo, statusId)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get a single status post.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".getStatus"><span class="type-signature type-signature-static">(static) </span>getStatus<span class="signature">(lo, statusId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get a single status post.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line177">line 177</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -3084,65 +3011,27 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -3155,38 +3044,82 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".getStatusContext"><span class="type-signature">&lt;static> </span>getStatusContext(lo, statusId)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get context for this status.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".getStatusContext"><span class="type-signature type-signature-static">(static) </span>getStatusContext<span class="signature">(lo, statusId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get context for this status.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line402">line 402</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -3237,87 +3170,40 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
             </td>
 
             
 
             
 
-            <td class="description last"><p>Status ID</p></td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -3330,38 +3216,82 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".getStatusQuotes"><span class="type-signature">&lt;static> </span>getStatusQuotes(lo, statusId)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get quotes of this status.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".getStatusQuotes"><span class="type-signature type-signature-static">(static) </span>getStatusQuotes<span class="signature">(lo, statusId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get quotes of this status.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line391">line 391</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -3412,87 +3342,40 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
             </td>
 
             
 
             
 
-            <td class="description last"><p>Status ID</p></td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -3505,38 +3388,82 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".getStatusRepostedBy"><span class="type-signature">&lt;static> </span>getStatusRepostedBy(lo, statusId [, maxId])</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get a list of who reposted this status.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".getStatusRepostedBy"><span class="type-signature type-signature-static">(static) </span>getStatusRepostedBy<span class="signature">(lo, statusId, maxId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get a list of who reposted this status.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line274">line 274</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -3545,8 +3472,6 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
         <th>Type</th>
 
-        
-        <th>Argument</th>
         
 
         
@@ -3574,14 +3499,6 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
@@ -3597,30 +3514,13 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last"><p>Status ID</p></td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -3632,100 +3532,40 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-|
-
-<span class="param-type">null</span>
-
-
-
-            
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last"><p>last Status ID for pagination</p></td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -3738,38 +3578,82 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".getStatusRevisions"><span class="type-signature">&lt;static> </span>getStatusRevisions(lo, statusId)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get a status' revisions (edits)</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".getStatusRevisions"><span class="type-signature type-signature-static">(static) </span>getStatusRevisions<span class="signature">(lo, statusId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get a status' revisions (edits)</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line285">line 285</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -3820,87 +3704,40 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
             </td>
 
             
 
             
 
-            <td class="description last"><p>Status ID</p></td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -3913,38 +3750,82 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".getStatusStats"><span class="type-signature">&lt;static> </span>getStatusStats(lo, statusId)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get status statistics like number of likes, reposts etc.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".getStatusStats"><span class="type-signature type-signature-static">(static) </span>getStatusStats<span class="signature">(lo, statusId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get status statistics like number of likes, reposts etc.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line413">line 413</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -3995,87 +3876,40 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
             </td>
 
             
 
             
 
-            <td class="description last"><p>Status ID</p></td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -4088,38 +3922,82 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".getStatusesFromTag"><span class="type-signature">&lt;static> </span>getStatusesFromTag(lo, tagName)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get a list of statuses based on a tag.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".getStatusesFromTag"><span class="type-signature type-signature-static">(static) </span>getStatusesFromTag<span class="signature">(lo, tagName)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get a list of statuses based on a tag.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line199">line 199</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -4189,65 +4067,27 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -4260,38 +4100,82 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".getStatusesWithCard"><span class="type-signature">&lt;static> </span>getStatusesWithCard(lo, cardId)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>List statuses with the same link card.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".getStatusesWithCard"><span class="type-signature type-signature-static">(static) </span>getStatusesWithCard<span class="signature">(lo, cardId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>List statuses with the same link card.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line424">line 424</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -4364,65 +4248,27 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -4435,28 +4281,35 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".getTimelineStatuses"><span class="type-signature">&lt;static> </span>getTimelineStatuses(lo, timeline [, pageOrMaxId] [, sort] [, pinned])</h4>
-    
-    
-</dt>
-<dd>
 
     
-    <div class="description">
-        <p>Valid timeline names:</p>
+
+    <h4 class="name" id=".getTimelineStatuses"><span class="type-signature type-signature-static">(static) </span>getTimelineStatuses<span class="signature">(lo, timeline, pageOrMaxId<span class="signature-attributes">opt</span>, sort<span class="signature-attributes">opt</span>, pinned<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Valid lists:</p>
 <p>home, explore, group_collection, group_pins, group/id (see groups), links,
-list/id, pro, related/statusId, video, &quot;clips&quot;</p>
-    </div>
+list/id, pro, related/statusId, video, &quot;clips&quot;</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line244">line 244</a>
+    </li></ul></dd>
     
 
     
@@ -4464,11 +4317,48 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
     
 
     
-    
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -4478,7 +4368,7 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
         <th>Type</th>
 
         
-        <th>Argument</th>
+        <th>Attributes</th>
         
 
         
@@ -4523,7 +4413,7 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
                 </td>
             
 
-            <td class="description last"><p>Valid and active LoginObject</p></td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -4559,7 +4449,7 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
                 </td>
             
 
-            <td class="description last"><p>a valid timeline name (see <a href="global.html#enumTimelines">enumTimelines</a>.</p></td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -4573,12 +4463,6 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
             
                 
 <span class="param-type">number</span>
-|
-
-<span class="param-type">string</span>
-|
-
-<span class="param-type">null</span>
 
 
 
@@ -4603,7 +4487,7 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
                 </td>
             
 
-            <td class="description last"><p>either page or max status ID for pagination</p></td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -4638,12 +4522,12 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
             
                 <td class="default">
                 
-                    "no-reposts"
+                    <code>"no-reposts"</code>
                 
                 </td>
             
 
-            <td class="description last"><p>Sort method</p></td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -4678,115 +4562,84 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
             
                 <td class="default">
                 
-                    false
+                    <code>false</code>
                 
                 </td>
             
 
-            <td class="description last"><p>if true, request pinned posts instead</p></td>
+            <td class="description last"><p>if true, request pinned posts</p></td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;*></span>
+<span class="param-type">Promise</span>
 
 
 
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".moveStatus"><span class="type-signature">&lt;static> </span>moveStatus(lo, status, groupId)</h4>
-    
-    
-</dt>
-<dd>
 
     
-    <div class="description">
-        <p>Convenience function to emulate status moving between home timeline and a
+
+    <h4 class="name" id=".moveStatus"><span class="type-signature type-signature-static">(static) </span>moveStatus<span class="signature">(lo, status, groupId)</span><span class="type-signature"> &rarr; {Promise.&lt;({ok: boolean, content: null}|{ok}|*)>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Convenience function to emulate status moving between home timeline and a
 group and vice verse, or from one group to another.</p>
 <p>NOTE: This does not perform a real move as mastodon doesn't support moving
 statuses other than admins 'removing' statuses from groups.</p>
 <p>This function will create a new status based on the original, but with target
 set to a group or null (if already in a group.)</p>
-<p>If that succeeds the original status is deleted and the new status is returned.</p>
-    </div>
+<p>If that succeeds the original status is deleted and the new status is returned.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line446">line 446</a>
+    </li></ul></dd>
     
 
     
@@ -4794,11 +4647,48 @@ set to a group or null (if already in a group.)</p>
     
 
     
-    
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -4898,65 +4788,27 @@ set to a group or null (if already in a group.)</p>
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -4969,38 +4821,82 @@ set to a group or null (if already in a group.)</p>
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".pinStatus"><span class="type-signature">&lt;static> </span>pinStatus(lo, statusId)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Pin this status.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".pinStatus"><span class="type-signature type-signature-static">(static) </span>pinStatus<span class="signature">(lo, statusId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Pin this status.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line334">line 334</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -5051,87 +4947,40 @@ set to a group or null (if already in a group.)</p>
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
             </td>
 
             
 
             
 
-            <td class="description last"><p>Status ID</p></td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -5144,38 +4993,82 @@ set to a group or null (if already in a group.)</p>
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".pinStatusState"><span class="type-signature">&lt;static> </span>pinStatusState(lo, statusId)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Get the pin status of this post.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".pinStatusState"><span class="type-signature type-signature-static">(static) </span>pinStatusState<span class="signature">(lo, statusId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get the pin status of this post.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line323">line 323</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -5226,87 +5119,40 @@ set to a group or null (if already in a group.)</p>
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
             </td>
 
             
 
             
 
-            <td class="description last"><p>Status ID</p></td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -5319,38 +5165,82 @@ set to a group or null (if already in a group.)</p>
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".setMarkdownFunction"><span class="type-signature">&lt;static> </span>setMarkdownFunction(fn [, isAsync])</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Set a custom Markdown function to strip markdown from Status texts.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".setMarkdownFunction"><span class="type-signature type-signature-static">(static) </span>setMarkdownFunction<span class="signature">(fn, isAsync<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Set a custom Markdown function to strip markdown from Status texts.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line28">line 28</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -5360,7 +5250,7 @@ set to a group or null (if already in a group.)</p>
         <th>Type</th>
 
         
-        <th>Argument</th>
+        <th>Attributes</th>
         
 
         
@@ -5440,7 +5330,7 @@ set to a group or null (if already in a group.)</p>
             
                 <td class="default">
                 
-                    false
+                    <code>false</code>
                 
                 </td>
             
@@ -5452,89 +5342,96 @@ set to a group or null (if already in a group.)</p>
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
-</dd>
+
+
+
+
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".unbookmarkStatus"><span class="type-signature">&lt;static> </span>unbookmarkStatus(lo, statusId)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Un-bookmark this status.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".unbookmarkStatus"><span class="type-signature type-signature-static">(static) </span>unbookmarkStatus<span class="signature">(lo, statusId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Un-bookmark this status.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line380">line 380</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -5585,87 +5482,40 @@ set to a group or null (if already in a group.)</p>
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
             </td>
 
             
 
             
 
-            <td class="description last"><p>Status ID</p></td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -5678,38 +5528,82 @@ set to a group or null (if already in a group.)</p>
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".unfavoritePost"><span class="type-signature">&lt;static> </span>unfavoritePost(lo, statusId)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Unmark this status as favorite (unlike.)</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".unfavoritePost"><span class="type-signature type-signature-static">(static) </span>unfavoritePost<span class="signature">(lo, statusId, reactId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Unmark this status as favorite (unlike.)</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line311">line 311</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -5760,14 +5654,23 @@ set to a group or null (if already in a group.)</p>
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-|
+            </td>
 
-<span class="param-type">number</span>
+            
 
+            
 
+            <td class="description last"></td>
+        </tr>
 
+    
+
+        <tr>
+            
+                <td class="name"><code>reactId</code></td>
+            
+
+            <td class="type">
             
             </td>
 
@@ -5775,72 +5678,34 @@ set to a group or null (if already in a group.)</p>
 
             
 
-            <td class="description last"><p>Status ID</p></td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -5853,38 +5718,82 @@ set to a group or null (if already in a group.)</p>
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".unpinStatus"><span class="type-signature">&lt;static> </span>unpinStatus(lo, statusId)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Unpin this status.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".unpinStatus"><span class="type-signature type-signature-static">(static) </span>unpinStatus<span class="signature">(lo, statusId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Unpin this status.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line345">line 345</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -5935,87 +5844,40 @@ set to a group or null (if already in a group.)</p>
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
             </td>
 
             
 
             
 
-            <td class="description last"><p>Status ID</p></td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -6028,38 +5890,82 @@ set to a group or null (if already in a group.)</p>
     </dd>
 </dl>
 
-
-        
-
     
-</dd>
+
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id=".uploadMedia"><span class="type-signature">&lt;static> </span>uploadMedia(lo, pathOrBuffer [, filename])</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Upload media files for attachments.</p>
-    </div>
-    
 
     
 
+    <h4 class="name" id=".uploadMedia"><span class="type-signature type-signature-static">(static) </span>uploadMedia<span class="signature">(lo, pathOrBuffer, filename<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Upload media files for attachments.</p></li></ul></dd>
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.statuses.js.html">api.auth.statuses.js</a>, <a href="api.auth.statuses.js.html#line149">line 149</a>
+    </li></ul></dd>
     
-        <h5>Parameters:</h5>
-        
 
-<table class="params table table-striped">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -6069,7 +5975,7 @@ set to a group or null (if already in a group.)</p>
         <th>Type</th>
 
         
-        <th>Argument</th>
+        <th>Attributes</th>
         
 
         
@@ -6173,9 +6079,6 @@ a pre-initialized Buffer object.</p></td>
             
                 
 <span class="param-type">string</span>
-|
-
-<span class="param-type">null</span>
 
 
 
@@ -6203,65 +6106,27 @@ a pre-initialized Buffer object.</p></td>
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
 
 
 
-	
-
-	
-
-	
-
-	
-</dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
-<dl>
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -6274,13 +6139,11 @@ a pre-initialized Buffer object.</p></td>
     </dd>
 </dl>
 
+    
+
+
 
         
-
-    
-</dd>
-
-        </dl>
     
 
     
@@ -6293,137 +6156,22 @@ a pre-initialized Buffer object.</p></td>
 
 
 
-		</div>
-	</div>
-
-	<div class="clearfix"></div>
-
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
-	
-
-</div>
+    
+    
 </div>
 
-
-    <div class="modal fade" id="searchResults">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Search results</h4>
-          </div>
-          <div class="modal-body"></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div>
-
+<br class="clear">
 
 <footer>
-
-	<p><b><a href='https://github.com/TechSavage2/'>TechSavage at GitHub</a></b></p>
-
-
-	<span class="copyright">
-	Copyright &copy; 2024 TechSavage
-	</span>
-
-<span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a>
-	
-		on Tue Jan 9th 2024
-	
-	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
-</span>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Tue Jan 09 2024 16:27:38 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
-<script src="scripts/docstrap.lib.js"></script>
-<script src="scripts/toc.js"></script>
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
 
-    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+<script src="scripts/search.js" defer></script>
 
-
-<script>
-$( function () {
-	$( "[id*='$']" ).each( function () {
-		var $this = $( this );
-
-		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
-	} );
-
-	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
-		var $this = $( this );
-
-		var example = $this.find( "code" );
-		exampleText = example.html();
-		var lang = /{@lang (.*?)}/.exec( exampleText );
-		if ( lang && lang[1] ) {
-			exampleText = exampleText.replace( lang[0], "" );
-			example.html( exampleText );
-			lang = lang[1];
-		} else {
-			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
-			lang = langClassMatch ? langClassMatch[1] : "javascript";
-		}
-
-		if ( lang ) {
-
-			$this
-			.addClass( "sunlight-highlight-" + lang )
-			.addClass( "linenums" )
-			.html( example.html() );
-
-		}
-	} );
-
-	Sunlight.highlightAll( {
-		lineNumbers : false,
-		showMenu : true,
-		enableDoclinks : true
-	} );
-
-	$.catchAnchorLinks( {
-        navbarOffset: 10
-	} );
-	$( "#toc" ).toc( {
-		anchorName  : function ( i, heading, prefix ) {
-			return $( heading ).attr( "id" ) || ( prefix + i );
-		},
-		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
-		showAndHide : false,
-		smoothScrolling: true
-	} );
-
-	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
-	$( '.dropdown-toggle' ).dropdown();
-
-    $( "table" ).each( function () {
-      var $this = $( this );
-      $this.addClass('table');
-    } );
-
-} );
-</script>
-
-
-
-<!--Navigation and Symbol Display-->
-
-
-<!--Google Analytics-->
-
-
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            SearcherDisplay.init();
-        });
-    </script>
 
 
 </body>

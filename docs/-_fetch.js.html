@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Bookmarks - gablib</title>
+    <title>_fetch.js - gablib</title>
     
     
     
@@ -40,257 +40,147 @@
 
 <div id="main">
     
-    <h1 class="page-title">Bookmarks</h1>
+    <h1 class="page-title">_fetch.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-<dl class="details">
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.bookmarks.js.html">api.auth.bookmarks.js</a>, <a href="api.auth.bookmarks.js.html#line9">line 9</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-            
-
-            
-        
-        </div>
-    
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id=".getBookmarkCollection"><span class="type-signature type-signature-static">(static) </span>getBookmarkCollection<span class="signature">(lo)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Get your bookmark collections.</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.bookmarks.js.html">api.auth.bookmarks.js</a>, <a href="api.auth.bookmarks.js.html#line22">line 22</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>lo</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Valid and active LoginObject</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;*></span>
-
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*******************************************************************************
+
+ gablib
+ apiFetch.js (2024-01-04)
+ Copyright (c) 2024 TechSavage
+
+ *******************************************************************************/
+
+'use strict';
+
+import { login } from './login.js';
+
+const debug = false;
+
+/**
+ * Private function that handles all our scenarios. This function is not intended
+ *  to be called directly, but through wrappers that will provide the correct
+ *  arguments.
+ *
+ * @param loginObject
+ * @param url
+ * @param method
+ * @param resultType
+ * @param body
+ * @param expectedReturnCode
+ * @returns {Promise}
+ * @private
+ */
+export async function _fetch(
+  loginObject,
+  url,
+  method = 'GET',
+  resultType = 'json',
+  body = null,
+  expectedReturnCode = [ 200 ]) {
+
+  const ua = loginObject ? loginObject.userAgent : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/120.0';
+
+  const options = {
+    headers    : {
+      'Accept'                   : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+      'Accept-Language'          : 'en-US,en;q=0.5',
+      'Accept-Encoding'          : 'gzip,deflate',
+      'Cache-Control'            : 'no-cache',
+      'Connection'               : 'keep-alive',
+      'Pragma'                   : 'no-cache',
+      'Sec-Fetch-Dest'           : 'document', /** empty,document */
+      'Sec-Fetch-Mode'           : 'navigate', /** cors,navigate */
+      'Sec-Fetch-Site'           : 'same-origin', /** none,same-origin */
+      'Sec-Gpc'                  : '1',
+      'Sec-Fetch-User'           : '?1',
+      'Upgrade-Insecure-Requests': '1',
+      'User-Agent'               : ua
+    },
+    method     : method,
+    mode       : 'cors',
+    credentials: 'include',
+    redirect   : 'manual'   // we need to handle redirects manually to transfer auth/cookies to redirected page
+  };
+
+  if ( loginObject ) {
+    if ( loginObject.cookies.has() ) {
+      options.headers[ 'Cookie' ] = loginObject.cookies.toString();
+    }
+
+    if ( loginObject.lastUrl ) {
+      options.headers[ 'Referer' ] = loginObject.lastUrl;
+    }
+
+    if ( loginObject.accessToken ) {
+      options.headers[ 'Authorization' ] = `Bearer ${ loginObject.accessToken }`;
+    }
+
+    if ( loginObject.csrfToken ) {
+      // does not seem to be required
+      options.headers[ 'X-Csrf-Token' ] = loginObject.csrfToken;
+    }
+  }
+
+  if ( resultType === 'json' ) {
+    options.headers[ 'Content-Type' ] = 'application/json;charset=UTF-8';
+    if ( body ) options.body = JSON.stringify(body);
+  }
+  else if ( resultType === 'binary' ) {
+    //options.headers[ 'Content-Type' ] = 'application/json;charset=UTF-8';
+    if ( body ) options.body = body;
+  }
+  else if ( resultType === 'html' ) {
+    options.headers[ 'Content-Type' ] = 'application/x-www-form-urlencoded';
+    if ( body ) {
+      const bodyParts = [];
+      Object.keys(body).forEach(part => {
+        bodyParts.push(encodeURIComponent(part) + '=' + encodeURIComponent(body[ part ]));
+      });
+      options.body = bodyParts.join('&amp;');
+    }
+  }
+  else {
+    options.headers[ 'Content-Type' ] = 'text/plain;charset=UTF-8';
+    if ( body ) options.body = JSON.stringify(body);
+  }
+
+  if ( body &amp;&amp; options.body.length &amp;&amp; resultType !== 'binary' ) {
+    options[ 'Content-Length' ] = options.body.length;
+  }
+
+  const response = await fetch(url, options);
+  const headers = response.headers;
+  const status = response.status;
+  const content = status !== 204 ? resultType === 'json' || resultType === 'binary' ? await response.json() : await response.text() : null;
+
+  // update login object
+  if ( loginObject ) {
+    loginObject.cookies.set(headers.getSetCookie());
+    loginObject.lastUrl = response.url;
+  }
+
+  if ( debug ) {
+    return { content, ok: expectedReturnCode.includes(status | 0), headers, status, url: response.url };
+  }
+  else {
+    return { content, ok: expectedReturnCode.includes(status | 0) };
+  }
+
+  //return { content, headers, status, url: response.url };
+  //todo consolidate return as in almost all cases we only need content and status:
+  //{ content: result.content, ok: result.status === 200 } // 202, 204 are possible too..hm
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
