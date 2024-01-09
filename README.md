@@ -68,7 +68,7 @@ APIs
   - Custom (optional) plugin for handling Markdown stripping.
   - Handles and remaps Gab's rearranged results as well as the shortened properties on status JSONs.
 - Partial support for **Groups** (WIP)
-  - Create, Edit, Categories, (Administration)
+  - Create, Edit, Categories, (Moderation)
 - Full support for **Notifications**
   - Get notifications, Mark read, Filters
 - Support for **Accounts** (TODO)
@@ -77,8 +77,11 @@ APIs
   - (List  collections, Create, Delete)
 - Support for **Lists** (TODO)
 - Support for **Feeds** (TODO)
+- Support for **Chats/DM** (TODO)
 - Support for **Public** APIs (requires no authentication)
   - Account information, Trends feed, News feed, Popular statuses
+- Support for **search** (TODO)
+- Support for **settings** (TODO)
 
 Getting Started
 ---------------
@@ -105,7 +108,9 @@ This package uses the ES module format (i.e. use `import` statements.)
 To use ESM in your project, either update `package.json` with the following:
 
 ```json
-"type": "module",
+{
+  "type": "module"
+}
 ```
 
 or use the `.mjs` extension for your JavaScript files.
