@@ -34,3 +34,14 @@ export async function getConversationOwner(lo, convId) {
   const url = new URL(`/api/v1/conversation_owner/${ convId }`, lo.baseUrl);
   return await _fetch(lo, url);
 }
+
+/**
+ * Get list of suggested feeds
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @returns {Promise<*>}
+ */
+export async function getSuggestedFeeds(lo) {
+  const url = new URL(`/api/v2/suggestions`, lo.baseUrl);
+  url.searchParams.append('type', 'feeds');
+  return _fetch(lo, url);
+}

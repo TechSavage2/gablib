@@ -67,3 +67,27 @@ export async function getPopularStatuses(baseUrl, type = 'gab') {
   url.searchParams.append('type', type || 'gab');
   return await _fetch(null, url);
 }
+
+/**
+ * Get list of suggested feeds
+ * @param {string} baseUrl - base url for site
+ * @param {string} sort - sort method
+ * @returns {Promise<*>}
+ */
+export async function getExplore(baseUrl, sort = 'rising') {
+  const url = new URL(`/api/v2/timelines/explore`, baseUrl);
+  url.searchParams.append('sort_by', sort);
+  return _fetch(null, url);
+}
+
+/**
+ * Get list of suggested feeds (public version.)
+ * @param {string} baseUrl - base url for site
+ * @param {string} sort - sort method
+ * @returns {Promise<*>}
+ */
+export async function getProFeed(baseUrl, sort = 'hot') {
+  const url = new URL(`/timeline/pro`, baseUrl);
+  url.searchParams.append('sort_by', sort);
+  return _fetch(null, url);
+}
