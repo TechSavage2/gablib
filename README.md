@@ -69,12 +69,12 @@ APIs
   - Handles and remaps Gab's rearranged results as well as the shortened properties on status JSONs.
 - Partial support for **Groups** (WIP)
   - Create, Edit, Categories, (Moderation)
+- Full support for **Bookmark Collections**
+    - List collections, Create, Edit, Delete
 - Full support for **Notifications**
   - Get notifications, Mark read, Filters
 - Support for **Accounts** (TODO)
-  - (Edit, Delete, Settings, Stats (following, followers, blocks, mutes, blocking))
-- Support for **Bookmarks** administration (TODO)
-  - (List  collections, Create, Delete)
+  - (Edit, Settings, Stats (following, followers, blocks, mutes, blocking))
 - Support for **Lists** (TODO)
 - Support for **Feeds** (TODO)
 - Support for **Chats/DM** (TODO)
