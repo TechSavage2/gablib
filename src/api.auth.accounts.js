@@ -16,6 +16,40 @@ import { _fetch } from './_fetch.js';
 import { sleep } from './utils.js';
 
 /**
+ * Get your own account details, including source (for updating.)
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @returns {Promise<*>}
+ */
+export async function getMyAccount(lo) {
+  const url = new URL('/api/v1/accounts/verify_credentials', lo.baseUrl);
+  return _fetch(lo, url);
+}
+
+/**
+ * Update your own account information.
+ * NOTE: Images are provided as Base64 encoded Data URLs.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {Object} options - new settings
+ * @param {string} [options.displayName] New display name if provided
+ * @param {string} [options.note] New "bio" if provided
+ * @param {string} [options.avatar] New avatar image provided as a Base64 encoded Data-URL
+ * @param {string} [options.header] New header image provided as a Base64 encoded Data-URL
+ * @returns {Promise<*>}
+ */
+export async function editMyAccount(lo, options) {
+  const body = {};
+  if (typeof options.displayName === 'string') body.display_name = options.displayName;
+  if (typeof options.note === 'string') body.note = options.note;
+  if (typeof options.avatar === 'string' && options.avatar.startsWith('data:image/')) body.avatar = options.avatar;
+  if (typeof options.header === 'string' && options.header.startsWith('data:image/')) body.header = options.header;
+
+  if (!Object.keys(body).length) return {content: null, ok: false}
+
+  const url = new URL('/api/v1/accounts/update_credentials', lo.baseUrl);
+  return _fetch(lo, url, 'PATCH', 'json', body);
+}
+
+/**
  * Get list of suggested accounts
  * @param {LoginObject} lo - Valid and active LoginObject
  * @returns {Promise<*>}
