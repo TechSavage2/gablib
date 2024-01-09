@@ -72,12 +72,12 @@ APIs
 - Full support for **Notifications**
   - Get notifications, Mark read, Filters
 - Support for **Accounts** (TODO)
-  - Edit, Delete, Settings
+  - (Edit, Delete, Settings, Stats (following, followers, blocks, mutes, blocking))
 - Support for **Bookmarks** administration (TODO)
-  - List  collections, Create, Delete
+  - (List  collections, Create, Delete)
 - Support for **Lists** (TODO)
 - Support for **Feeds** (TODO)
-- Support for **Public** (no-auth) APIs
+- Support for **Public** APIs (requires no authentication)
   - Account information, Trends feed, News feed, Popular statuses
 
 Getting Started
