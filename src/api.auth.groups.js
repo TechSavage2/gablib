@@ -83,7 +83,7 @@ export async function createGroup(lo, config) {
  * @returns {Promise<*>}
  */
 export async function editGroup(lo, group, newConfig = {}) {
-  const url = `${ lo.baseUrl }/api/v1/groups/${ group.id }`;
+  const url = new URL(`/api/v1/groups/${ group.id }`, lo.baseUrl);
   const result = _formatGroupConfig({
     title           : group.title,
     description     : group.description,

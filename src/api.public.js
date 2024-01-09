@@ -16,33 +16,33 @@ import { _fetch } from './_fetch.js';
 
 /**
  * Get account JSON from an account id.
- * @param baseUrl
+ * @param {string} baseUrl
  * @param accountId
  * @returns {Promise<*>}
  */
 export async function getAccountFromId(baseUrl, accountId) {
-  const url = `${ baseUrl }/api/v1/accounts/${ accountId }`;
+  const url = new URL(`/api/v1/accounts/${ accountId }`, baseUrl);
   return await _fetch(null, url);
 }
 
 /**
  * Get account JSON from a username.
- * @param baseUrl
+ * @param {string} baseUrl
  * @param username
  * @returns {Promise<*>}
  */
 export async function getAccountFromUsername(baseUrl, username) {
-  const url = `${ baseUrl }/api/v1/account_by_username/${ username }`;
+  const url = new URL(`/api/v1/account_by_username/${ username }`, baseUrl);
   return await _fetch(null, url);
 }
 
 /**
  * Get the trend feed.
- * @param baseUrl
+ * @param {string} baseUrl
  * @returns {Promise<*>}
  */
 export async function getTrendsFeed(baseUrl) {
-  const url = baseUrl + '/api/v3/trends_feed';
+  const url = new URL('/api/v3/trends_feed', baseUrl);
   return await _fetch(null, url);
 }
 
@@ -56,11 +56,12 @@ export async function getNewsFeed() {
 
 /**
  * Get a list of popular statuses.
- * @param baseUrl
- * @param type
+ * @param {string} baseUrl
+ * @param {string} [type='gab]
  * @returns {Promise<*>}
  */
 export async function getPopularStatuses(baseUrl, type = 'gab') {
-  const url = `${ baseUrl }/api/v1/popular_links?type=${ type }`;
+  const url = new URL('/api/v1/popular_links', baseUrl);
+  url.searchParams.append('type', type || 'gab');
   return await _fetch(null, url);
 }

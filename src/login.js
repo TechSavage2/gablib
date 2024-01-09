@@ -33,7 +33,7 @@ import { _fetch } from './_fetch.js';
  */
 export async function login(credentials, altPassword, altBaseUrl) {
   const lo = new LoginObject(credentials, altPassword, altBaseUrl);
-  const url = `${ lo.baseUrl }/auth/sign_in`;
+  const url = new URL('/auth/sign_in', lo.baseUrl);
 
   // Step 1: get login page (extract Authenticity, CSRF tokens, initial cookies.)
   try {
@@ -76,7 +76,7 @@ export async function login(credentials, altPassword, altBaseUrl) {
  */
 export async function refreshSession(lo) {
   try {
-    const finalResult = await _fetch(lo, lo.baseUrl, 'GET', 'html');
+    const finalResult = await _fetch(lo, new URL('/', lo.baseUrl), 'GET', 'html');
     if ( finalResult.ok ) {
       Object.assign(lo, getTokens(finalResult.content));
     }

@@ -20,6 +20,6 @@ import { _fetch } from './_fetch.js';
  * @returns {Promise<*>}
  */
 export async function getBookmarkCollection(lo) {
-  const url = lo.baseUrl + `/api/v1/bookmark_collections`;
+  const url = new URL(`/api/v1/bookmark_collections`, lo.baseUrl);
   return await _fetch(lo, url);
 }

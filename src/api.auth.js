@@ -20,17 +20,17 @@ import { _fetch } from './_fetch.js';
  * @returns {Promise<*>}
  */
 export async function getMyShortcuts(lo) {
-  const url = lo.baseUrl + '/api/v1/shortcuts';
+  const url = new URL('/api/v1/shortcuts', lo.baseUrl);
   return await _fetch(lo, url, 'GET', 'json');
 }
 
 /**
- * Get conversation owner from a conversation Id.
+ * Get conversation owner from a conversation ID.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param convId
  * @returns {Promise<*>}
  */
 export async function getConversationOwner(lo, convId) {
-  const url = lo.baseUrl + `/api/v1/conversation_owner/${ convId }`;
+  const url = new URL(`/api/v1/conversation_owner/${ convId }`, lo.baseUrl);
   return await _fetch(lo, url);
 }

@@ -104,6 +104,7 @@ export async function createStatus(lo, markdown, options = {}) {
   };
 
   const url = new URL('/api/v1/statuses', lo.baseUrl);
+
   let method = 'POST';
   if ( options.editId ) {
     url.pathname += `/${ options.editId }`;
@@ -160,7 +161,7 @@ export async function uploadMedia(lo, pathOrBuffer, filename = null) {
   }
 
   try {
-    const url = lo.baseUrl + '/api/v1/media';
+    const url = new URL('/api/v1/media', lo.baseUrl);
     return await _fetch(lo, url, 'POST', 'binary', form, [ 200, 202 ]);
   }
   catch {
@@ -175,7 +176,7 @@ export async function uploadMedia(lo, pathOrBuffer, filename = null) {
  * @returns {Promise<*>}
  */
 export async function getStatus(lo, statusId) {
-  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }`;
+  const url = new URL(`/api/v1/statuses/${ statusId }`, lo.baseUrl);
   return await _fetch(lo, url);
 }
 
@@ -186,7 +187,7 @@ export async function getStatus(lo, statusId) {
  * @returns {Promise<*>}
  */
 export async function deleteStatus(lo, statusId) {
-  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }`;
+  const url = new URL(`/api/v1/statuses/${ statusId }`, lo.baseUrl);
   return await _fetch(lo, url, 'DELETE', 'json', null, [ 204 ]);
 }
 
@@ -197,7 +198,7 @@ export async function deleteStatus(lo, statusId) {
  * @returns {Promise<*>}
  */
 export async function getStatusesFromTag(lo, tagName) {
-  const url = lo.baseUrl + `/api/v2/timelines/tag/${ tagName }`;
+  const url = new URL(`/api/v2/timelines/tag/${ tagName }`, lo.baseUrl);
   return await _getStatuses(lo, url);
 }
 
@@ -205,168 +206,170 @@ export async function getStatusesFromTag(lo, tagName) {
  * Get a list of statuses based on an account.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string|number} account - ID of account
- * @param {number} [page=1] - page number
+ * @param {number|null} [page] - page number
  * @param {string} [sort] - sort method. Valid options: see {@link enumStatusSort}.
  * @returns {Promise<*>}
  */
-export async function getAccountStatuses(lo, account, page = 1, sort = 'newest') {
-  const url = lo.baseUrl + `/api/v2/accounts/${ account }/statuses?page=${ page }&sort_by=${ sort }`;
+export async function getAccountStatuses(lo, account, page = null, sort = 'newest') {
+  const url = new URL(`/api/v2/accounts/${ account }/statuses`, lo.baseUrl);
+  if (page) url.searchParams.append('page', page.toString());
+  if (sort) url.searchParams.append('sort_by', sort);
   return await _getStatuses(lo, url);
 }
 
 /**
  * Get comments from a status or a comment branch.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
- * @param maxId
- * @param sort
+ * @param {string|number} statusId Status ID to get comments from
+ * @param {string|number|null} [maxId] status ID for paging
+ * @param {string} [sort="oldest"] Sort method
  * @returns {Promise<*>}
  */
 export async function getComments(lo, statusId, maxId = null, sort = 'oldest') {
-  const maxIdFormatted = maxId ? `&max_id=${ maxId }` : '';
-  const url = lo.baseUrl + `/api/v1/status_comments/${ statusId }?&sort_by=${ sort }${ maxIdFormatted }`;
+  const url = new URL(`/api/v1/status_comments/${ statusId }`, lo.baseUrl);
+  if (maxId) url.searchParams.append('max_id', maxId);
+  if (sort) url.searchParams.append('sort', sort);
   return await _fetch(lo, url);  // todo comments are not (yet?) modified by Gab
 }
 
 /**
- * Valid lists:
+ * Valid timeline names:
  *
  * home, explore, group_collection, group_pins, group/id (see groups), links,
  * list/id, pro, related/statusId, video, "clips"
  *
- * @param {LoginObject} lo
- * @param {string} timeline
- * @param {number} [pageOrMaxId]
- * @param {string} [sort="no-reposts"]
- * @param {boolean} [pinned=false] if true, request pinned posts
- * @returns {Promise}
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string} timeline - a valid timeline name
+ * @param {number|string|null} [pageOrMaxId] either page or max status ID for pagination
+ * @param {string} [sort="no-reposts"] Sort method
+ * @param {boolean} [pinned=false] if true, request pinned posts instead
+ * @returns {Promise<*>}
  */
-export async function getTimelineStatuses(lo, timeline = 'home', pageOrMaxId = 0, sort = 'no-reposts', pinned = false) {
-  //todo validate sort arguments
+export async function getTimelineStatuses(lo, timeline = 'home', pageOrMaxId = null, sort = 'no-reposts', pinned = false) {
   //todo video timeline additions args: only_following=1, media_type=clips|<none> (sort clips: newest,top_today, video: top* all)
+  const url = new URL(`/api/v2/timelines/${ timeline === 'clips' ? 'video' : timeline}`, lo.baseUrl);
 
   if ( timeline === 'clips' ) {
-    timeline = 'video';
-    sort += '&media_type=clips';
+    url.searchParams.append('media_type', 'clips');
   }
 
   if ( pinned ) {
-    sort += '&pinned=true';
+    url.searchParams.append('pinned', 'true');
   }
 
-  let maxIdFormatted = '';  // assume maxId if > 500,000, otherwise page
-  pageOrMaxId |= 0;
-  if ( pageOrMaxId > 1 ) {
-    maxIdFormatted = (pageOrMaxId > 5000000) ? `max_id=${ pageOrMaxId }&` : `page=${ pageOrMaxId }?`;
+  if ( pageOrMaxId ) {
+    url.searchParams.append((pageOrMaxId | 0) > 5000000 ? 'max_id' : 'page', pageOrMaxId.toString());
   }
 
-  const url = lo.baseUrl + `/api/v2/timelines/${ timeline }?${ maxIdFormatted }sort_by=${ sort }`;
   return await _getStatuses(lo, url);
 }
 
 /**
  * Get a list of who reposted this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
- * @param maxId
+ * @param {string|number} statusId - Status ID
+ * @param {string|number|null} [maxId] last Status ID for pagination
  * @returns {Promise<*>}
  */
-export async function getStatusRepostedBy(lo, statusId, maxId = 0) {
-  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/reblogged_by${ maxId > 0 ? '&max_id=' + maxId : '' }`;
+export async function getStatusRepostedBy(lo, statusId, maxId = null) {
+  const url = new URL(`/api/v1/statuses/${ statusId }/reblogged_by`, lo.baseUrl);
+  if (maxId) {
+    url.searchParams.append('max_id', maxId);
+  }
   return await _fetch(lo, url);
 }
 
 /**
  * Get a status' revisions (edits)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
+ * @param {string|number} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function getStatusRevisions(lo, statusId) {
-  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/revisions`;
+  const url = new URL(`/api/v1/statuses/${ statusId }/revisions`, lo.baseUrl);
   return await _fetch(lo, url);
 }
 
 /**
  * Mark this status as favorite (like, reaction.)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
- * @param reactId
+ * @param {string|number} statusId - Status ID
+ * @param {string} [reactId="1"] React Id. See {@link enumReactions}.
  * @returns {Promise<*>}
  */
 export async function favoritePost(lo, statusId, reactId = '1') {
-  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/favourite`;
+  const url = new URL(`/api/v1/statuses/${ statusId }/favourite`, lo.baseUrl);
   const body = {};
-  if ( reactId !== '1' ) body.reaction_id = reactId;
+  if ( reactId !== '1' ) {
+    body.reaction_id = reactId;
+  }
   return await _fetch(lo, url, 'POST', 'json', body);
 }
 
 /**
  * Unmark this status as favorite (unlike.)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
- * @param reactId
+ * @param {string|number} statusId - Status ID
  * @returns {Promise<*>}
  */
-export async function unfavoritePost(lo, statusId, reactId = '1') {
-  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/unfavourite`;
-  const body = {};
-  return await _fetch(lo, url, 'POST', 'json', body);
+export async function unfavoritePost(lo, statusId) {
+  const url = new URL(`/api/v1/statuses/${ statusId }/unfavourite`, lo.baseUrl);
+  return await _fetch(lo, url, 'POST', 'json', {});
 }
 
 /**
  * Get the pin status of this post.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
+ * @param {string|number} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function pinStatusState(lo, statusId) {
-  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/pin`;
+  const url = new URL(`/api/v1/statuses/${ statusId }/pin`, lo.baseUrl);
   return await _fetch(lo, url);
 }
 
 /**
  * Pin this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
+ * @param {string|number} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function pinStatus(lo, statusId) {
-  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/pin`;
+  const url = new URL(`/api/v1/statuses/${ statusId }/pin`, lo.baseUrl);
   return await _fetch(lo, url, 'POST', 'json', {});
 }
 
 /**
  * Unpin this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
+ * @param {string|number} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function unpinStatus(lo, statusId) {
-  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/unpin`;
+  const url = new URL(`/api/v1/statuses/${ statusId }/unpin`, lo.baseUrl);
   return await _fetch(lo, url, 'POST', 'json', {});
 }
 
 /**
  * Get bookmark status of this post.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
+ * @param {string|number} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function bookmarkStatusState(lo, statusId) {
-  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/bookmark`;
+  const url = new URL(`/api/v1/statuses/${ statusId }/bookmark`, lo.baseUrl);
   return await _fetch(lo, url);
 }
 
 /**
  * Bookmark this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
+ * @param {string|number} statusId - Status ID
  * @param collectionId
  * @returns {Promise<*>}
  */
 export async function bookmarkStatus(lo, statusId, collectionId) {
-  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/bookmark`;
+  const url = new URL(`/api/v1/statuses/${ statusId }/bookmark`, lo.baseUrl);
   const body = { bookmarkCollectionId: collectionId };
   return await _fetch(lo, url, 'POST', 'json', body);
 }
@@ -374,44 +377,44 @@ export async function bookmarkStatus(lo, statusId, collectionId) {
 /**
  * Un-bookmark this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
+ * @param {string|number} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function unbookmarkStatus(lo, statusId) {
-  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/unbookmark`;
+  const url = new URL(`/api/v1/statuses/${ statusId }/unbookmark`, lo.baseUrl);
   return await _fetch(lo, url, 'POST', 'json', {});
 }
 
 /**
  * Get quotes of this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
+ * @param {string|number} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function getStatusQuotes(lo, statusId) {
-  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/quotes`;
+  const url = new URL(`/api/v1/statuses/${ statusId }/quotes`, lo.baseUrl);
   return await _fetch(lo, url);
 }
 
 /**
  * Get context for this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
+ * @param {string|number} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function getStatusContext(lo, statusId) {
-  const url = lo.baseUrl + `/api/v1/statuses/${ statusId }/context`;
+  const url = new URL(`/api/v1/statuses/${ statusId }/context`, lo.baseUrl);
   return await _fetch(lo, url);
 }
 
 /**
  * Get status statistics like number of likes, reposts etc.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param statusId
+ * @param {string|number} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function getStatusStats(lo, statusId) {
-  const url = lo.baseUrl + `/api/v1/status_stats/${ statusId }`;
+  const url = new URL(`/api/v1/status_stats/${ statusId }`, lo.baseUrl);
   return await _fetch(lo, url);
 }
 
