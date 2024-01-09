@@ -47,7 +47,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#enumKnownTimelines">enumKnownTimelines</a></li><li><a href="global.html#enumPollExpires">enumPollExpires</a></li><li><a href="global.html#enumPostExpires">enumPostExpires</a></li><li><a href="global.html#enumReactions">enumReactions</a></li><li><a href="global.html#enumStatusSort">enumStatusSort</a></li><li><a href="global.html#enumVisibility">enumVisibility</a></li>
+					<li><a href="global.html#enumKnownTimelines">enumKnownTimelines</a></li><li><a href="global.html#enumPollExpires">enumPollExpires</a></li><li><a href="global.html#enumPostExpires">enumPostExpires</a></li><li><a href="global.html#enumReactions">enumReactions</a></li><li><a href="global.html#enumSearchFilterTypes">enumSearchFilterTypes</a></li><li><a href="global.html#enumStatusSort">enumStatusSort</a></li><li><a href="global.html#enumVisibility">enumVisibility</a></li>
 				</ul>
 			</li>
 			
@@ -103,55 +103,30 @@
         <article><h1>gablib</h1>
 <p>API package for scripting/programming Mastodon nodes where OAuth for custom apps has been disabled
 on the server.</p>
-<p><strong>⚠️ NOTE: The API is currently <em>not stable</em> and in ALPHA, a WIP. Changes may and will happen. Use
-it as a tech preview. Avoid use for production as of now.</strong></p>
 <p>This package will allow you to build apps by logging in programmatically via the regular &quot;human&quot;
 auth/sign_in page and extract tokens for operations that requires authentication.</p>
 <p>This is not a standalone package/app but intended to be used as part of a custom client or for
 scripting.</p>
+<p><strong>⚠️ NOTE: The API is currently <em>not stable</em> and in ALPHA, a WIP. Breaking changes could happen.
+Use it as a tech preview. Avoid use for production as of now. This message will go away when the
+API is frozen.</strong></p>
 <h2>Requirements</h2>
 <p>One of:</p>
 <ul>
 <li><a href="https://nodejs.org/en/">NodeJS</a> version 18 or newer (for the fetch api).</li>
 <li><a href="https://bun.sh/">Bun</a> version 1.0.21 or newer.</li>
 </ul>
-<p><strong>Note</strong> that this package and modules uses ES module format
-(i.e. use <code>import</code> statements.)</p>
-<p>To use ESM in your project, either update <code>package.json</code> with the following:</p>
-<pre class="prettyprint source lang-json"><code>&quot;type&quot;: &quot;module&quot;,
+<h2>Installation</h2>
+<p>Using <code>npm</code> to install the package into your nodejs project:</p>
+<pre class="prettyprint source lang-bash"><code>$ npm install https://github.com/TechSavage2/gablib
 </code></pre>
-<p>or use the <code>.mjs</code> extension for your JavaScript files.</p>
-<h2>Install</h2>
-<p>Using NPM to install the package into your nodejs project:</p>
-<pre class="prettyprint source lang-bash"><code>$ npm i https://github.com/TechSavage2/gablib
+<p>Alternatively, you can use <code>yarn</code> to install the package into your nodejs project:</p>
+<pre class="prettyprint source lang-bash"><code>$ yarn add https://github.com/TechSavage2/gablib
+</code></pre>
+<p>or <code>pnpm</code>:</p>
+<pre class="prettyprint source lang-bash"><code>$ pnpm install https://github.com/TechSavage2/gablib
 </code></pre>
 <p>It's now ready for use. As of now there are no other dependencies to be installed.</p>
-<p>To import a function you can use:</p>
-<pre class="prettyprint source lang-JavaScript"><code>import { login } from 'gablib/gablib.js';
-</code></pre>
-<p>or if you prefer the entire library on a single object:</p>
-<pre class="prettyprint source lang-JavaScript"><code>import * as gablib from 'gablib/gablib.js';
-</code></pre>
-<h2>Getting Started</h2>
-<p>Make sure you have a registered and active account with the Mastodon site you want to log on to.</p>
-<p>Make sure to initialize environmental variables on your system.</p>
-<p>For Linux, you can use:</p>
-<pre class="prettyprint source lang-bash"><code>export MASTODON_USEREMAIL='your@mastodon.email'
-export MASTODON_PASSWORD='yourSecretPassword'
-export MASTODON_BASEURL='https://somemastodon.site'
-</code></pre>
-<p>Put this in for example your <code>~/.profile</code> file.</p>
-<p>You can also use different environment names and simply supply them instead (
-see <a href="https://github.com/TechSavage2/gablib/wiki/Authenticating">wiki</a>.)</p>
-<p>In your JavaScript you can now call as the first function:</p>
-<pre class="prettyprint source lang-JavaScript"><code>import { login } from 'gablib/gablib.js';
-
-const loginObject = await login();  // note that the call is asynchronous
-</code></pre>
-<p>If successful login, the object is now initialized for use with API functions. If login failed it
-will <em>throw an error</em>. Check that your credentials are correct and if a complex password that it's
-properly escaped (if using env.)</p>
-<p>See <a href="https://github.com/TechSavage2/gablib/wiki">wiki page</a> for more examples.</p>
 <h2>Features</h2>
 <ul>
 <li>[x] Easy to use</li>
@@ -166,6 +141,82 @@ properly escaped (if using env.)</p>
 <li>[ ] (de)serializing of session/auth data for reuse between executions (experimental)</li>
 <li>[ ] events (responses, errors, upload/download progress, etc.)</li>
 </ul>
+<h2>APIs</h2>
+<ul>
+<li>Full support for <strong>Statuses</strong>
+<ul>
+<li>Create Edit, Delete, Attachments, Timelines, (Un)Favorite, (Un)Bookmark, (Un)Pin, Move (aux function), Comment, Comment trees, Context, Posting to groups, Statuses from Tags, Revisions, Cards, Quotes, Replies, Stats</li>
+<li>Custom (optional) plugin for handling Markdown stripping.</li>
+<li>Handles and remaps Gab's rearranged results as well as the shortened properties on status JSONs.</li>
+</ul>
+</li>
+<li>Partial support for <strong>Groups</strong> (WIP)
+<ul>
+<li>Create, Edit, Categories, (Moderation)</li>
+</ul>
+</li>
+<li>Full support for <strong>Bookmark Collections</strong>
+<ul>
+<li>List collections, Create, Edit, Delete</li>
+</ul>
+</li>
+<li>Full support for <strong>Notifications</strong>
+<ul>
+<li>Get notifications, Mark read, Filters</li>
+</ul>
+</li>
+<li>Support for <strong>Accounts</strong> (TODO)
+<ul>
+<li>(Edit, Settings, Stats (following, followers, blocks, mutes, blocking))</li>
+</ul>
+</li>
+<li>Support for <strong>Lists</strong> (TODO)</li>
+<li>Support for <strong>Feeds</strong> (TODO)</li>
+<li>Support for <strong>Chats/DM</strong> (TODO)</li>
+<li>Support for <strong>Public</strong> APIs (requires no authentication)
+<ul>
+<li>Account information, Trends feed, News feed, Popular statuses</li>
+</ul>
+</li>
+<li>Full support for site wide <strong>search</strong>
+<ul>
+<li>All, filters</li>
+</ul>
+</li>
+<li>Support for <strong>settings</strong> (TODO)</li>
+</ul>
+<h2>Getting Started</h2>
+<p>Make sure you have a registered and active account with the Mastodon site you want to log on to.</p>
+<p>Make sure to initialize environmental variables on your system.</p>
+<p>For Linux, you can use:</p>
+<pre class="prettyprint source lang-bash"><code>export MASTODON_USEREMAIL='your@mastodon.email'
+export MASTODON_PASSWORD='yourSecretPassword'
+export MASTODON_BASEURL='https://somemastodon.site'
+</code></pre>
+<p>Put this in for example your <code>~/.profile</code> file.</p>
+<p>You can also use different environment names and simply supply them instead (
+see <a href="https://github.com/TechSavage2/gablib/wiki/Authenticating">wiki</a>.)</p>
+<p>This package uses the ES module format (i.e. use <code>import</code> statements.)</p>
+<p>To use ESM in your project, either update <code>package.json</code> with the following:</p>
+<pre class="prettyprint source lang-json"><code>{
+  &quot;type&quot;: &quot;module&quot;
+}
+</code></pre>
+<p>or use the <code>.mjs</code> extension for your JavaScript files.</p>
+<p>To import a function you can then use:</p>
+<pre class="prettyprint source lang-JavaScript"><code>import { login } from 'gablib/gablib.js';
+</code></pre>
+<p>or if you prefer the entire library on a single object:</p>
+<pre class="prettyprint source lang-JavaScript"><code>import * as gablib from 'gablib/gablib.js';
+</code></pre>
+<p>Now call the primary function to log in:</p>
+<pre class="prettyprint source lang-JavaScript"><code>import { login } from 'gablib/gablib.js';
+
+const loginObject = await login();  // note that the call is asynchronous
+</code></pre>
+<p>If successful login, the object is now initialized for use with API functions. If login failed it
+will <em>throw an error</em>. Check that your credentials are correct and if a complex password that it's
+properly escaped (if using env.)</p>
 <h2>Documentation</h2>
 <p>Online documentation (JSDoc) can be found here</p>
 <p>https://techsavage2.github.io/gablib/</p>
@@ -175,11 +226,26 @@ properly escaped (if using env.)</p>
 Note that some Mastodon sites (such as Gab) have modified some of these responses, JSONs and API
 calls, but to get the broader gist this is still helpful:</p>
 <p>https://docs.joinmastodon.org/methods/</p>
+<h2>Local Docs</h2>
+<p>You can generate a local version of the documentation by installing the
+developer dependencies. While in the project root folder:</p>
+<pre class="prettyprint source lang-bash"><code>$ npm i -D
+</code></pre>
+<p>Then run:</p>
+<pre class="prettyprint source lang-bash"><code>$ npm run docs
+</code></pre>
+<p>The docs are now found in the <code>docs/</code> folder. You may want to fire up a local
+server for the folder for everything to work smoothly.</p>
+<p>For example if you have python installed:</p>
+<pre class="prettyprint source lang-bash"><code>cd docs/
+python -m http.server
+</code></pre>
+<p>Go to the link to see the docs.</p>
 <h2>Issues</h2>
-<p>See https://github.com/TechSavage2/gablib/issues</p>
+<p>See <a href="https://github.com/TechSavage2/gablib/issues">issues</a></p>
 <h2>Notes</h2>
-<p>The package has only been tested with Linux, but there shouldn't be anything preventing it from
-working with Windows, macOS and other platforms as well.</p>
+<p>The package has only been tested with Linux so far, but there shouldn't be anything preventing
+it from working with Windows, macOS and other platforms as well.</p>
 <h2>License</h2>
 <p>AGPL</p>
 <p>Copyright (c) 2024 TechSavage</p></article>
@@ -234,7 +300,7 @@ working with Windows, macOS and other platforms as well.</p>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a>
 	
-		on Mon Jan 8th 2024
+		on Tue Jan 9th 2024
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

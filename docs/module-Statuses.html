@@ -47,7 +47,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#enumKnownTimelines">enumKnownTimelines</a></li><li><a href="global.html#enumPollExpires">enumPollExpires</a></li><li><a href="global.html#enumPostExpires">enumPostExpires</a></li><li><a href="global.html#enumReactions">enumReactions</a></li><li><a href="global.html#enumStatusSort">enumStatusSort</a></li><li><a href="global.html#enumVisibility">enumVisibility</a></li>
+					<li><a href="global.html#enumKnownTimelines">enumKnownTimelines</a></li><li><a href="global.html#enumPollExpires">enumPollExpires</a></li><li><a href="global.html#enumPostExpires">enumPostExpires</a></li><li><a href="global.html#enumReactions">enumReactions</a></li><li><a href="global.html#enumSearchFilterTypes">enumSearchFilterTypes</a></li><li><a href="global.html#enumStatusSort">enumStatusSort</a></li><li><a href="global.html#enumVisibility">enumVisibility</a></li>
 				</ul>
 			</li>
 			
@@ -227,13 +227,22 @@
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Status ID</p></td>
         </tr>
 
     
@@ -411,13 +420,22 @@
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Status ID</p></td>
         </tr>
 
     
@@ -2178,7 +2196,7 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             
 <hr>
 <dt>
-    <h4 class="name" id=".favoritePost"><span class="type-signature">&lt;static> </span>favoritePost(lo, statusId, reactId)</h4>
+    <h4 class="name" id=".favoritePost"><span class="type-signature">&lt;static> </span>favoritePost(lo, statusId [, reactId])</h4>
     
     
 </dt>
@@ -2209,7 +2227,11 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -2235,7 +2257,19 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>Valid and active LoginObject</p></td>
@@ -2250,13 +2284,34 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last"></td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Status ID</p></td>
         </tr>
 
     
@@ -2268,13 +2323,35 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+
+
+
+            
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last"></td>
+            
+                <td class="default">
+                
+                    "1"
+                
+                </td>
+            
+
+            <td class="description last"><p>React Id. See <a href="global.html#enumReactions">enumReactions</a>.</p></td>
         </tr>
 
     
@@ -2397,8 +2474,6 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
         
 
         
-        <th>Default</th>
-        
 
         <th class="last">Description</th>
     </tr>
@@ -2432,10 +2507,6 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
                 </td>
             
 
-            
-                <td class="default">
-                
-                </td>
             
 
             <td class="description last"><p>Valid and active LoginObject</p></td>
@@ -2472,10 +2543,6 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             
 
             
-                <td class="default">
-                
-                </td>
-            
 
             <td class="description last"><p>ID of account</p></td>
         </tr>
@@ -2491,6 +2558,9 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             
                 
 <span class="param-type">number</span>
+|
+
+<span class="param-type">null</span>
 
 
 
@@ -2509,12 +2579,6 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
                 </td>
             
 
-            
-                <td class="default">
-                
-                    1
-                
-                </td>
             
 
             <td class="description last"><p>page number</p></td>
@@ -2549,10 +2613,6 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
                 </td>
             
 
-            
-                <td class="default">
-                
-                </td>
             
 
             <td class="description last"><p>sort method. Valid options: see <a href="global.html#enumStatusSort">enumStatusSort</a>.</p></td>
@@ -2643,7 +2703,7 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             
 <hr>
 <dt>
-    <h4 class="name" id=".getComments"><span class="type-signature">&lt;static> </span>getComments(lo, statusId, maxId, sort)</h4>
+    <h4 class="name" id=".getComments"><span class="type-signature">&lt;static> </span>getComments(lo, statusId [, maxId] [, sort])</h4>
     
     
 </dt>
@@ -2674,7 +2734,11 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -2700,7 +2764,19 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>Valid and active LoginObject</p></td>
@@ -2715,13 +2791,34 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last"></td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Status ID to get comments from</p></td>
         </tr>
 
     
@@ -2733,13 +2830,39 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+|
+
+<span class="param-type">null</span>
+
+
+
+            
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last"></td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>status ID for paging</p></td>
         </tr>
 
     
@@ -2751,13 +2874,35 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+
+
+
+            
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last"></td>
+            
+                <td class="default">
+                
+                    "oldest"
+                
+                </td>
+            
+
+            <td class="description last"><p>Sort method</p></td>
         </tr>
 
     
@@ -3092,13 +3237,22 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Status ID</p></td>
         </tr>
 
     
@@ -3258,13 +3412,22 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Status ID</p></td>
         </tr>
 
     
@@ -3352,7 +3515,7 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             
 <hr>
 <dt>
-    <h4 class="name" id=".getStatusRepostedBy"><span class="type-signature">&lt;static> </span>getStatusRepostedBy(lo, statusId, maxId)</h4>
+    <h4 class="name" id=".getStatusRepostedBy"><span class="type-signature">&lt;static> </span>getStatusRepostedBy(lo, statusId [, maxId])</h4>
     
     
 </dt>
@@ -3383,6 +3546,8 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
         
 
@@ -3409,6 +3574,14 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -3424,13 +3597,30 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Status ID</p></td>
         </tr>
 
     
@@ -3442,13 +3632,35 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+|
+
+<span class="param-type">null</span>
+
+
+
+            
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>last Status ID for pagination</p></td>
         </tr>
 
     
@@ -3608,13 +3820,22 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Status ID</p></td>
         </tr>
 
     
@@ -3774,13 +3995,22 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Status ID</p></td>
         </tr>
 
     
@@ -4223,7 +4453,7 @@ See <a href="global.html#enumPollExpires">enumPollExpires</a> for options.</p></
 
     
     <div class="description">
-        <p>Valid lists:</p>
+        <p>Valid timeline names:</p>
 <p>home, explore, group_collection, group_pins, group/id (see groups), links,
 list/id, pro, related/statusId, video, &quot;clips&quot;</p>
     </div>
@@ -4293,7 +4523,7 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
                 </td>
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Valid and active LoginObject</p></td>
         </tr>
 
     
@@ -4329,7 +4559,7 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
                 </td>
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>a valid timeline name</p></td>
         </tr>
 
     
@@ -4343,6 +4573,12 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
             
                 
 <span class="param-type">number</span>
+|
+
+<span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
 
 
 
@@ -4367,7 +4603,7 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
                 </td>
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>either page or max status ID for pagination</p></td>
         </tr>
 
     
@@ -4407,7 +4643,7 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
                 </td>
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Sort method</p></td>
         </tr>
 
     
@@ -4447,7 +4683,7 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
                 </td>
             
 
-            <td class="description last"><p>if true, request pinned posts</p></td>
+            <td class="description last"><p>if true, request pinned posts instead</p></td>
         </tr>
 
     
@@ -4518,7 +4754,7 @@ list/id, pro, related/statusId, video, &quot;clips&quot;</p>
     </dt>
     <dd>
         
-<span class="param-type">Promise</span>
+<span class="param-type">Promise.&lt;*></span>
 
 
 
@@ -4815,13 +5051,22 @@ set to a group or null (if already in a group.)</p>
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Status ID</p></td>
         </tr>
 
     
@@ -4981,13 +5226,22 @@ set to a group or null (if already in a group.)</p>
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Status ID</p></td>
         </tr>
 
     
@@ -5331,13 +5585,22 @@ set to a group or null (if already in a group.)</p>
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Status ID</p></td>
         </tr>
 
     
@@ -5425,7 +5688,7 @@ set to a group or null (if already in a group.)</p>
             
 <hr>
 <dt>
-    <h4 class="name" id=".unfavoritePost"><span class="type-signature">&lt;static> </span>unfavoritePost(lo, statusId, reactId)</h4>
+    <h4 class="name" id=".unfavoritePost"><span class="type-signature">&lt;static> </span>unfavoritePost(lo, statusId)</h4>
     
     
 </dt>
@@ -5497,23 +5760,14 @@ set to a group or null (if already in a group.)</p>
 
             <td class="type">
             
-            </td>
+                
+<span class="param-type">string</span>
+|
 
-            
+<span class="param-type">number</span>
 
-            
 
-            <td class="description last"></td>
-        </tr>
 
-    
-
-        <tr>
-            
-                <td class="name"><code>reactId</code></td>
-            
-
-            <td class="type">
             
             </td>
 
@@ -5521,7 +5775,7 @@ set to a group or null (if already in a group.)</p>
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Status ID</p></td>
         </tr>
 
     
@@ -5681,13 +5935,22 @@ set to a group or null (if already in a group.)</p>
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Status ID</p></td>
         </tr>
 
     
@@ -5910,6 +6173,9 @@ a pre-initialized Buffer object.</p></td>
             
                 
 <span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
 
 
 
@@ -6070,7 +6336,7 @@ a pre-initialized Buffer object.</p></td>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a>
 	
-		on Mon Jan 8th 2024
+		on Tue Jan 9th 2024
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
