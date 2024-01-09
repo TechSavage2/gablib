@@ -20,6 +20,10 @@ import { _fetch } from './_fetch.js';
  * @param {number|string|null} [maxId] - for paginating
  * @param {number|string|null} [sinceId] - to get new notifications
  * @param {*|null} [filters] - filter options
+ * @param {boolean} [filters.onlyFollowing=false] - only show notifications from accounts you follow
+ * @param {boolean} [filters.onlyVerified=false] - only show notifications from verified accounts
+ * @param {Array} [filters.types=[]] - filter by one or several types:
+ * 'follow', 'reblog', 'favourite', 'poll', 'mention', 'group_moderation_event'
  * @returns {Promise<*>}
  */
 export async function getNotifications(lo, maxId = null, sinceId = null, filters = {}) {

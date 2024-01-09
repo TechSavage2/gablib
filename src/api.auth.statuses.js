@@ -144,7 +144,7 @@ export async function editStatus(lo, statusId, newMarkdown, options) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string|Buffer|ArrayBuffer|TypedArray|Uint8Array|Blob|File} pathOrBuffer - path to a media file to upload or
  * a pre-initialized Buffer object.
- * @param {string} [filename] - filename is required if pathOrBuffer is buffer
+ * @param {string|null} [filename] - filename is required if pathOrBuffer is buffer
  * @returns {Promise<*>}
  */
 export async function uploadMedia(lo, pathOrBuffer, filename = null) {
@@ -245,7 +245,13 @@ export async function getComments(lo, statusId, maxId = null, sort = 'oldest') {
  * @param {boolean} [pinned=false] if true, request pinned posts instead
  * @returns {Promise<*>}
  */
-export async function getTimelineStatuses(lo, timeline = 'home', pageOrMaxId = null, sort = 'no-reposts', pinned = false) {
+export async function getTimelineStatuses(
+  lo,
+  timeline = 'home',
+  pageOrMaxId = null,
+  sort = 'no-reposts',
+  pinned = false) {
+
   //todo video timeline additions args: only_following=1, media_type=clips|<none> (sort clips: newest,top_today, video: top* all)
   const url = new URL(`/api/v2/timelines/${ timeline === 'clips' ? 'video' : timeline}`, lo.baseUrl);
 
