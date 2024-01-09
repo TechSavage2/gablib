@@ -27,15 +27,38 @@ export async function getGroupCategories(lo) {
 }
 
 /**
+ * List featured groups
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param minimalList
+ * @returns {Promise<*>}
+ */
+export async function getFeaturedGroups(lo, minimalList = false) {
+  return _getGroupTypes(lo, 'featured', minimalList);
+}
+
+/**
  * List groups you are member of.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param minimalList
  * @returns {Promise<*>}
  */
 export async function getMyGroups(lo, minimalList = false) {
-  const url = lo.baseUrl + '/api/v1/groups?tab=member';
-  const result = await _fetch(lo, url, 'GET', 'json');
+  return _getGroupTypes(lo, 'member', minimalList);
+}
 
+/**
+ *
+ * @param lo
+ * @param type
+ * @param minimalList
+ * @returns {Promise<*>}
+ * @private
+ */
+async function _getGroupTypes(lo, type, minimalList) {
+  const url = new URL('/api/v1/groups', lo.baseUrl);
+  url.searchParams.append('tab', type);
+
+  const result = await _fetch(lo, url);
   if ( minimalList ) {
     return {
       ok     : result.ok,
@@ -43,6 +66,64 @@ export async function getMyGroups(lo, minimalList = false) {
     };
   }
   else return result;
+}
+
+/**
+ * List groups you are administrating.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param minimalList
+ * @returns {Promise<*>}
+ */
+export async function getMyAdminGroups(lo, minimalList = false) {
+  return _getGroupTypes(lo, 'admin', minimalList);
+}
+
+/**
+ * Get list of suggested groups
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @returns {Promise<*>}
+ */
+export async function getSuggestedGroups(lo) {
+  const url = new URL(`/api/v2/suggestions`, lo.baseUrl);
+  url.searchParams.append('type', 'groups');
+  return _fetch(lo, url);
+}
+
+/**
+ * List groups by category name (see `getGroupCategories()`).
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string} categoryName - name of a valid category
+ * @param {number|string} [page=1] - page, for pagination
+ * @returns {Promise<*>}
+ */
+export async function getGroupsByCategory(lo, categoryName, page = 1) {
+  const url = new URL(`/api/v1/groups/_/category/${ categoryName }`, lo.baseUrl);
+  url.searchParams.append('page', page.toString());
+  return _fetch(lo, url);
+}
+
+/**
+ * List groups by hashtag.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string} tag - name of a hashtag without hash-symbol (for example 'linux')
+ * @param {number|string} [page=1] - page, for pagination
+ * @returns {Promise<*>}
+ */
+export async function getGroupsByTag(lo, tag, page = 1) {
+  const url = new URL(`/api/v1/groups/_/tag/${ tag }`, lo.baseUrl);
+  url.searchParams.append('page', page.toString());
+  return _fetch(lo, url);
+}
+
+/**
+ * List relationship (member or not etc.) for array with group Ids.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {Array} groupIds - list of group Ids to check
+ * @returns {Promise<*>}
+ */
+export async function getGroupRelationships(lo, groupIds) {
+  const url = new URL('/api/v1/group_relationships', lo.baseUrl);
+  return _fetch(lo, url, 'POST', 'json', {groupIds})
 }
 
 /**
@@ -59,8 +140,20 @@ export async function getGroup(lo, groupId) {
 /**
  * Create a new group.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param config
- * @returns {Promise<*>}
+ * @param {Object} config - group configuration
+ * @param {string} config.title - Name of group
+ * @param {string|number} config.groupCategoryId - Group category (see `getGroupCategories()`).
+ * @param {string} [config.description] - Group description
+ * @param {string} [config.slug] - Group slug (short name)
+ * @param {boolean} [config.isPrivate=true] - If group is private
+ * @param {boolean} [config.isVisible=true] - If group shows up in search
+ * @param {boolean} [config.isAdminsVisible=false] - If administrators and moderators are visible to group members
+ * @param {boolean} [config.isMembersVisible=false] - If member list is visible to other members
+ * @param {boolean} [config.isMediaVisible=true] - show media files (images, videos) in statuses
+ * @param {boolean} [config.isLinksVisible=true] - show link cards in statuses
+ * @param {boolean} [config.isModerated=true] - if group is moderated
+ * @param {boolean} [config.allowQuotes=true] - if statuses can be quoted
+ * @param {string} [config.password] - password if group requires a password to join * @returns {Promise<*>}
  */
 export async function createGroup(lo, config) {
   const url = `${ lo.baseUrl }/api/v1/groups`;
@@ -78,8 +171,21 @@ export async function createGroup(lo, config) {
 /**
  * Edit an existing group you are owner/admin of.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param group
- * @param newConfig
+ * @param {Object} group - a group object
+ * @param {Object} [newConfig={}] new configuration for group
+ * @param {string} [newConfig.title] - Name of group
+ * @param {string|number} [newConfig.groupCategoryId] - Group category (see `getGroupCategories()`).
+ * @param {string} [newConfig.description] - Group description
+ * @param {string} [newConfig.slug] - Group slug (short name)
+ * @param {boolean} [newConfig.isPrivate=true] - If group is private
+ * @param {boolean} [newConfig.isVisible=true] - If group shows up in search
+ * @param {boolean} [newConfig.isAdminsVisible=false] - If administrators and moderators are visible to group members
+ * @param {boolean} [newConfig.isMembersVisible=false] - If member list is visible to other members
+ * @param {boolean} [newConfig.isMediaVisible=true] - show media files (images, videos) in statuses
+ * @param {boolean} [newConfig.isLinksVisible=true] - show link cards in statuses
+ * @param {boolean} [newConfig.isModerated=true] - if group is moderated
+ * @param {boolean} [newConfig.allowQuotes=true] - if statuses can be quoted
+ * @param {string} [newConfig.password] - password if group requires a password to join
  * @returns {Promise<*>}
  */
 export async function editGroup(lo, group, newConfig = {}) {
@@ -167,7 +273,7 @@ function _formatGroupConfig(config, newConfig) {
  */
 export async function joinGroup(lo, groupId) {
   const url = new URL(`/api/v1/groups/${ groupId }/accounts`, lo.baseUrl);
-  return _fetch(lo, url,'POST');
+  return _fetch(lo, url, 'POST');
 }
 
 /**
@@ -190,10 +296,10 @@ export async function leaveGroup(lo, groupId) {
  * @returns {Promise<*>}
  * @throws If password is missing it will throw an error
  */
-export async function requestGroupJoin(lo, groupId, password =null) {
+export async function requestGroupJoin(lo, groupId, password = null) {
   const url = new URL(`/api/v1/groups/${ groupId }/password`, lo.baseUrl);
-  if (!password) throw new Error('Group join requests require a password.')
-  return _fetch(lo, url, 'POST', 'json', {password});
+  if ( !password ) throw new Error('Group join requests require a password.');
+  return _fetch(lo, url, 'POST', 'json', { password });
 }
 
 /**
@@ -310,10 +416,10 @@ export async function listGroupLinks(lo, groupId) {
  * @param {string} query - keyword to search for in the member list
  * @returns {Promise<*>}
  */
-export async function searchGroupMembers(lo, groupId, query ) {
+export async function searchGroupMembers(lo, groupId, query) {
   const url = new URL(`/api/v1/groups/${ groupId }/member_search`, lo.baseUrl);
-  if (!query) {
-    throw new Error('Group member search requires a query.')
+  if ( !query ) {
+    throw new Error('Group member search requires a query.');
   }
   url.searchParams.append('q', query);
   return _fetch(lo, url);
@@ -339,4 +445,92 @@ export async function groupModeration(lo, groupId) {
 export async function listGroupRemovedAccounts(lo, groupId) {
   const url = new URL(`/api/v1/groups/${ groupId }/removed_accounts`, lo.baseUrl);
   return _fetch(lo, url);
+}
+
+/**
+ *
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @param {string|number} statusId - status id to approve
+ * @returns {Promise<*>}
+ */
+export async function groupApproveStatus(lo, groupId, statusId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/moderation/approve_post`, lo.baseUrl);
+  return _fetch(lo, url, 'POST', 'json', { statusId });
+}
+
+/**
+ *
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @param {string|number} statusId - status id to reject
+ * @returns {Promise<*>}
+ */
+export async function groupRejectStatus(lo, groupId, statusId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/moderation/remove_post`, lo.baseUrl);
+  return _fetch(lo, url, 'POST', 'json', { statusId });
+}
+
+/**
+ *
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @param {string|number} statusId - status id to use for whitelisting account
+ * @returns {Promise<*>}
+ */
+export async function groupWhitelistFromStatus(lo, groupId, statusId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/moderation/approve_user`, lo.baseUrl);
+  return _fetch(lo, url, 'POST', 'json', { statusId }, [ 204 ]);
+}
+
+/**
+ *
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @param {string|number} accountId - account id to remove from group (permanently, i.e banned)
+ * @returns {Promise<*>}
+ */
+export async function groupRemoveAccount(lo, groupId, accountId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/removed_accounts`, lo.baseUrl);
+  url.searchParams.append('account_id', accountId);
+  return _fetch(lo, url, 'POST');
+}
+
+/**
+ *
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @param {string|number} accountId - account id to make non-permanently removed (i.e. unbanned)
+ * @returns {Promise<*>}
+ */
+export async function groupRemoveRemovedAccount(lo, groupId, accountId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/removed_accounts`, lo.baseUrl);
+  url.searchParams.append('account_id', accountId);
+  return _fetch(lo, url, 'DELETE');
+}
+
+/**
+ *
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @param {string|number} statusId - status id to remove from group
+ * @returns {Promise<*>}
+ */
+export async function groupRemoveStatus(lo, groupId, statusId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/statuses/${ statusId }`, lo.baseUrl);
+  return _fetch(lo, url, 'DELETE');
+}
+
+/**
+ *
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @param {string|number} accountId - account id update role for
+ * @param role
+ * @returns {Promise<*>}
+ */
+export async function groupUpdateRole(lo, groupId, accountId, role) {
+  const url = new URL(`/api/v1/groups/${ groupId }/accounts`, lo.baseUrl);
+  url.searchParams.append('account_id', accountId);
+  return _fetch(lo, url, 'PATCH', 'json', { role });
 }
