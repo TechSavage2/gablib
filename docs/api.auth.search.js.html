@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>api.auth.js - gablib</title>
+    <title>api.auth.search.js - gablib</title>
     
     
     
@@ -40,7 +40,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">api.auth.js</h1>
+    <h1 class="page-title">api.auth.search.js</h1>
     
 
     
@@ -53,13 +53,13 @@
             <pre class="prettyprint source linenums"><code>/*******************************************************************************
 
  gablib
- api.auth.js (2024-01-04)
+ api.auth.search.js (2024-01-09)
  Copyright (c) 2024 TechSavage
 
  *******************************************************************************/
 
 /**
- * @module Misc
+ * @module Search
  */
 
 'use strict';
@@ -67,34 +67,42 @@
 import { _fetch } from './_fetch.js';
 
 /**
- * Get your shortcut list.
+ * Search site for query. Filter type must be set to one type, defaults to 'status'.
  * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string} query Search query, keywords
+ * @param {number|string} [page=1] page number for results
+ * @param {Object} [filters={}] filters for query
+ * @param {boolean} [filters.onlyVerified] only show results from verified accounts
+ * @param {string} [filters.type='status'] filter results on type: See {@link enumSearchFilterTypes}.
+ * 'status', 'group', 'top', 'account', 'link', 'feed', 'hashtag'
  * @returns {Promise&lt;*>}
+ * @throws If query is empty
  */
-export async function getMyShortcuts(lo) {
-  const url = new URL('/api/v1/shortcuts', lo.baseUrl);
-  return await _fetch(lo, url, 'GET', 'json');
-}
+export async function search(lo, query, page = 1, filters = {}) {
+    filters = Object.assign({}, {
+      onlyVerified: false,
+      type: 'status'
+    }, filters)
 
-/**
- * Get conversation owner from a conversation ID.
- * @param {LoginObject} lo - Valid and active LoginObject
- * @param convId
- * @returns {Promise&lt;*>}
- */
-export async function getConversationOwner(lo, convId) {
-  const url = new URL(`/api/v1/conversation_owner/${ convId }`, lo.baseUrl);
-  return await _fetch(lo, url);
-}
+  const url = new URL('/api/v3/search', lo.baseUrl);
 
-/**
- * Get list of suggested feeds
- * @param {LoginObject} lo - Valid and active LoginObject
- * @returns {Promise&lt;*>}
- */
-export async function getSuggestedFeeds(lo) {
-  const url = new URL(`/api/v2/suggestions`, lo.baseUrl);
-  url.searchParams.append('type', 'feeds');
+  if ( typeof query !== 'string' || !query.trim().length ) {
+    throw new Error('Search query is empty.');
+  }
+
+  url.searchParams.append('q', query);
+  url.searchParams.append('resolve', 'true');
+  url.searchParams.append('onlyVerified', (!!filters.onlyVerified).toString());
+
+  page |= 0;
+  if ( page > 0 ) {
+    url.searchParams.append('page', page);
+  }
+
+  if ( typeof filters.type === 'string' ) {
+    url.searchParams.append('type', filters.type);
+  }
+
   return _fetch(lo, url);
 }
 </code></pre>

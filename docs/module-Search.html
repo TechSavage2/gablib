@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>api.auth.js - gablib</title>
+    <title>Search - gablib</title>
     
     
     
@@ -40,66 +40,513 @@
 
 <div id="main">
     
-    <h1 class="page-title">api.auth.js</h1>
+    <h1 class="page-title">Search</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/*******************************************************************************
+</header>
 
- gablib
- api.auth.js (2024-01-04)
- Copyright (c) 2024 TechSavage
+<article>
+    
+        <div class="container-overview">
+        
+            
 
- *******************************************************************************/
+<dl class="details">
+    
 
-/**
- * @module Misc
- */
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.search.js.html">api.auth.search.js</a>, <a href="api.auth.search.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
 
-'use strict';
+    
 
-import { _fetch } from './_fetch.js';
+    
 
-/**
- * Get your shortcut list.
- * @param {LoginObject} lo - Valid and active LoginObject
- * @returns {Promise&lt;*>}
- */
-export async function getMyShortcuts(lo) {
-  const url = new URL('/api/v1/shortcuts', lo.baseUrl);
-  return await _fetch(lo, url, 'GET', 'json');
-}
+    
 
-/**
- * Get conversation owner from a conversation ID.
- * @param {LoginObject} lo - Valid and active LoginObject
- * @param convId
- * @returns {Promise&lt;*>}
- */
-export async function getConversationOwner(lo, convId) {
-  const url = new URL(`/api/v1/conversation_owner/${ convId }`, lo.baseUrl);
-  return await _fetch(lo, url);
-}
+    
 
-/**
- * Get list of suggested feeds
- * @param {LoginObject} lo - Valid and active LoginObject
- * @returns {Promise&lt;*>}
- */
-export async function getSuggestedFeeds(lo) {
-  const url = new URL(`/api/v2/suggestions`, lo.baseUrl);
-  url.searchParams.append('type', 'feeds');
-  return _fetch(lo, url);
-}
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".search"><span class="type-signature type-signature-static">(static) </span>search<span class="signature">(lo, query, page<span class="signature-attributes">opt</span>, filters<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Search site for query. Filter type must be set to one type, defaults to 'status'.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.search.js.html">api.auth.search.js</a>, <a href="api.auth.search.js.html#line29">line 29</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>lo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Valid and active LoginObject</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Search query, keywords</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>page</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>1</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>page number for results</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filters</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>{}</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>filters for query</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>onlyVerified</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>only show results from verified accounts</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'status'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>filter results on type: See <a href="global.html#enumSearchFilterTypes">enumSearchFilterTypes</a>.
+'status', 'group', 'top', 'account', 'link', 'feed', 'hashtag'</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-throws">Throws:</h5>
+
+        
+
+    <div class="param-desc usertext">
+    
+        <p>If query is empty</p>
+    
+    </div>
+
+
+    
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;*></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
