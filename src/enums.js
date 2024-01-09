@@ -86,7 +86,9 @@ export const enumTimelines = {
   'group'  : 'group',
   'explore': 'explore',
   'video'  : 'video',
-  'clips'  : 'clips', // NOTE this will be converted to 'video' and have an additional argument added to it (Gab thing.)
+  'clips'  : 'clips', // NOTE this will be converted to 'video' and have an additional argument added to the request url (Gab thing.)
+  'photos' : 'photos',
+  'polls'  : 'polls',
   'links'  : 'links',
   'list'   : 'list'
 };
@@ -113,4 +115,22 @@ export const enumSearchFilterTypes = {
 export const enumGroupModerationJoin = {
   'approve': 'approve',
   'reject' : 'reject'
+};
+
+/**
+ * @global
+ * @type {{approve: string, reject: string}}
+ */
+export const enumAccountFollowRequest = {
+  'approve': 'authorize',
+  'reject' : 'reject'
+};
+
+/**
+ * @global
+ * @type {{image: string, video: string}}
+ */
+export const enumAccountMediaType = {
+  'image': 'image',
+  'video': 'video'
 };
