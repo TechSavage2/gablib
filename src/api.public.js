@@ -7,7 +7,7 @@
  *******************************************************************************/
 
 /**
- * @module Misc
+ * @module Public
  */
 
 'use strict';
@@ -48,10 +48,12 @@ export async function getTrendsFeed(baseUrl) {
 
 /**
  * Get the news feed.
+ * @param {string} baseUrl
  * @returns {Promise<*>}
  */
-export async function getNewsFeed() {
-  return await _fetch(null, 'https://news.gab.com/feed/?feed=json');
+export async function getNewsFeed(baseUrl) {
+  const url = new URL('/feed/?feed=json', baseUrl);
+  return await _fetch(null, url);
 }
 
 /**
