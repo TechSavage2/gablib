@@ -9,27 +9,31 @@
 'use strict';
 
 /**
+ * Sorting methods for when requesting timelines.
  * @global
- * @type {{rising: string, top: string, top_today: string, 'newest-with-groups': string, top_yearly: string, top_all_time: string, hot: string, newest: string, recent: string, top_weekly: string, top_monthly: string, 'newest-no-reposts': string}}
+ * @enum {string}
+ * @readonly
  */
 export const enumStatusSort = {
-  'newest'            : 'newest',
-  'newest-with-groups': 'with-groups',
-  'newest-no-reposts' : 'no-reposts',
-  'hot'               : 'hot',
-  'top'               : 'top',
-  'recent'            : 'recent', // pro??
-  'rising'            : 'rising', // does not work with pro, does with explore
-  'top_today'         : 'top_today', // pro??
-  'top_weekly'        : 'top_weekly', // pro??
-  'top_monthly'       : 'top_monthly', // pro??
-  'top_yearly'        : 'top_yearly', // pro??
-  'top_all_time'      : 'top_all_time' // pro??
+  'newest'          : 'newest',
+  'newestWithGroups': 'with-groups',
+  'newestNoReposts' : 'no-reposts',
+  'hot'             : 'hot',
+  'top'             : 'top',
+  'recent'          : 'recent', // pro??
+  'rising'          : 'rising', // does not work with pro, does with explore
+  'topToday'        : 'top_today', // pro??
+  'topWeekly'       : 'top_weekly', // pro??
+  'topMonthly'      : 'top_monthly', // pro??
+  'topYearly'       : 'top_yearly', // pro??
+  'topAllTime'      : 'top_all_time' // pro??
 };
 
 /**
+ * Expire times for new statuses.
  * @global
- * @type {{oneHour: string, oneDay: string, never: string, sixHours: string, threeDays: string, oneWeek: string, fiveMinutes: string}}
+ * @enum {string}
+ * @readonly
  */
 export const enumPostExpires = {
   never      : '',
@@ -42,8 +46,11 @@ export const enumPostExpires = {
 };
 
 /**
+ * Expire times for new polls. You can use other values than these,
+ * but these are the defaults some sites are using.
  * @global
- * @type {{oneHour: number, oneDay: number, sixHours: number, threeDays: number, oneWeek: number}}
+ * @enum {string}
+ * @readonly
  */
 export const enumPollExpires = {
   oneHour  : 3600,
@@ -54,8 +61,10 @@ export const enumPollExpires = {
 };
 
 /**
+ * Visibility for new or edited statuses.
  * @global
- * @type {{private: string, public: string, unlisted: string}}
+ * @enum {string}
+ * @readonly
  */
 export const enumVisibility = {
   public  : 'public',
@@ -64,8 +73,10 @@ export const enumVisibility = {
 };
 
 /**
+ * Reaction IDs for when marking a status favorite.
  * @global
- * @type {{honked: string, laughedAt: string, thumbsDown: string, angry: string, thumbsUp: string, heart: string, salute: string}}
+ * @enum {string}
+ * @readonly
  */
 export const enumReactions = {
   thumbsUp  : '1',
@@ -78,8 +89,10 @@ export const enumReactions = {
 };
 
 /**
+ * Valid timeline types for `getTimelineStatuses()`
  * @global
- * @type {{explore: string, clips: string, links: string, video: string, list: string, home: string, group: string}}
+ * @enum {string}
+ * @readonly
  */
 export const enumTimelines = {
   'home'   : 'home',
@@ -94,8 +107,10 @@ export const enumTimelines = {
 };
 
 /**
+ * Valid filters for global `search()`
  * @global
- * @type {{all: null, feed: string, top: string, link: string, account: string, status: string, group: string, hashtag: string}}
+ * @enum {string}
+ * @readonly
  */
 export const enumSearchFilterTypes = {
   'all'    : null,
@@ -109,8 +124,10 @@ export const enumSearchFilterTypes = {
 };
 
 /**
+ * Enum for handling group join requests.
  * @global
- * @type {{approve: string, reject: string}}
+ * @enum {string}
+ * @readonly
  */
 export const enumGroupModerationJoin = {
   'approve': 'approve',
@@ -118,17 +135,21 @@ export const enumGroupModerationJoin = {
 };
 
 /**
+ * Enum for handling account follow requests.
  * @global
- * @type {{approve: string, reject: string}}
+ * @enum {string}
+ * @readonly
  */
 export const enumAccountFollowRequest = {
   'approve': 'authorize',
-  'reject' : 'reject'
+   'reject' : 'reject'
 };
 
 /**
+ * Valid media types when requesting media attachments from account timelines.
  * @global
- * @type {{image: string, video: string}}
+ * @enum {string}
+ * @readonly
  */
 export const enumAccountMediaType = {
   'image': 'image',
