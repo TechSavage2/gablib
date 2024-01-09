@@ -105,3 +105,12 @@ export const enumSearchFilterTypes = {
   'feed'   : 'feed',
   'hashtag': 'hashtag'
 };
+
+/**
+ * @global
+ * @type {{approve: string, reject: string}}
+ */
+export const enumGroupModerationJoin = {
+  'approve': 'approve',
+  'reject' : 'reject'
+};

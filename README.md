@@ -51,9 +51,8 @@ Features
 - [x] Easy to use
 - [x] ES modules (import/export)
 - [x] login using the _sign_in_ form instead of OAuth
-- [x] API calls using authentications (WIP)
+- [x] API calls requiring authentications (WIP)
 - [x] public API calls (WIP)
-- [x] full support for statuses and comments
 - [x] 'normalizes' Gab's remapped status lists format to that of normal Mastodon
 - [x] can use a custom markdown stripper
 - [ ] streams and sockets wrapper objects (for client use)
@@ -63,12 +62,14 @@ Features
 APIs
 ----
 
-- Full support for **Statuses**
+NOTE: currently unstable/may change.
+
+- Full support for **Statuses and Comments**
   - Create Edit, Delete, Attachments, Timelines, (Un)Favorite, (Un)Bookmark, (Un)Pin, Move (aux function), Comment, Comment trees, Context, Posting to groups, Statuses from Tags, Revisions, Cards, Quotes, Replies, Stats
   - Custom (optional) plugin for handling Markdown stripping.
   - Handles and remaps Gab's rearranged results as well as the shortened properties on status JSONs.
-- Partial support for **Groups** (WIP)
-  - Create, Edit, Categories, (Moderation)
+- Full support for **Groups**
+  - Create, Edit, Categories, Moderation
 - Full support for **Bookmark Collections**
     - List collections, Create, Edit, Delete
 - Full support for **Notifications**

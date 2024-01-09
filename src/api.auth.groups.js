@@ -156,3 +156,187 @@ function _formatGroupConfig(config, newConfig) {
 
   return { config, form };
 }
+
+/**
+ * NOTE: Before joining a group request group information using `getGroup()`. If
+ * the flag `hasPassword` is true you will instead first need to send a request
+ * using `requestGroupJoin()` rather than using this function.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @returns {Promise<*>}
+ */
+export async function joinGroup(lo, groupId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/accounts`, lo.baseUrl);
+  return _fetch(lo, url,'POST');
+}
+
+/**
+ * Leave a group you're already a member of.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @returns {Promise<*>}
+ */
+export async function leaveGroup(lo, groupId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/accounts`, lo.baseUrl);
+  return _fetch(lo, url, 'DELETE');
+}
+
+/**
+ * If a group require a password to join, use this function to request a join.
+ * You need to supply the password for the group you want to join.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @param {string} password - password to join the group
+ * @returns {Promise<*>}
+ * @throws If password is missing it will throw an error
+ */
+export async function requestGroupJoin(lo, groupId, password =null) {
+  const url = new URL(`/api/v1/groups/${ groupId }/password`, lo.baseUrl);
+  if (!password) throw new Error('Group join requests require a password.')
+  return _fetch(lo, url, 'POST', 'json', {password});
+}
+
+/**
+ * Mute a group you are member of.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @returns {Promise<*>}
+ */
+export async function muteGroup(lo, groupId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/block`, lo.baseUrl);
+  return _fetch(lo, url, 'POST');
+}
+
+/**
+ * Unmute a group you are member of.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @returns {Promise<*>}
+ */
+export async function unmuteGroup(lo, groupId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/unblock`, lo.baseUrl);
+  return _fetch(lo, url, 'POST');
+}
+
+/*******************************************************************************
+
+ Moderation functions
+
+ ******************************************************************************/
+
+/**
+ * Get moderation stats, number of statuses that needs review (held back.)
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @returns {Promise<*>}
+ */
+export async function getGroupModerationStats(lo, groupId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/moderation/stats`, lo.baseUrl);
+  return _fetch(lo, url);
+}
+
+/**
+ * List join requests if your group require a password to join.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @returns {Promise<*>}
+ */
+export async function getGroupJoinRequests(lo, groupId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/join_requests`, lo.baseUrl);
+  return _fetch(lo, url);
+}
+
+/**
+ * Handle a join request. You can either 'accept' or 'reject' a request.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @param {string|number} accountId - ID of account that requested to join.
+ * @param {string} type - need to be either 'accept' or 'reject' (see {@link enumGroupModerationJoin}).
+ * @returns {Promise<*>}
+ */
+export async function handleGroupJoinRequest(lo, groupId, accountId, type) {
+  const url = new URL(`/api/v1/groups/${ groupId }/join_requests/respond`, lo.baseUrl);
+  return _fetch(lo, url, 'POST', 'json', { accountId, type });
+}
+
+/**
+ * List group members
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @returns {Promise<*>} List of accounts
+ */
+export async function listGroupAccounts(lo, groupId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/accounts`, lo.baseUrl);
+  return _fetch(lo, url);
+}
+
+/**
+ * List administrators and moderators of this group.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @returns {Promise<*>}  lists for accounts and roles
+ */
+export async function listGroupAdminsAndMods(lo, groupId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/admins_and_mods`, lo.baseUrl);
+  return _fetch(lo, url);
+}
+
+/**
+ * List media attachments in this group (videos and images.)
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @returns {Promise<*>}
+ */
+export async function listGroupAttachments(lo, groupId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/media_attachments`, lo.baseUrl);
+  return _fetch(lo, url);
+}
+
+/**
+ * List links (cards) in this group (links, embeddings.)
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @returns {Promise<*>}
+ */
+export async function listGroupLinks(lo, groupId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/preview_cards`, lo.baseUrl);
+  return _fetch(lo, url);
+}
+
+/**
+ * Search for a group member using a keyword query.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @param {string} query - keyword to search for in the member list
+ * @returns {Promise<*>}
+ */
+export async function searchGroupMembers(lo, groupId, query ) {
+  const url = new URL(`/api/v1/groups/${ groupId }/member_search`, lo.baseUrl);
+  if (!query) {
+    throw new Error('Group member search requires a query.')
+  }
+  url.searchParams.append('q', query);
+  return _fetch(lo, url);
+}
+
+/**
+ * Get list of statuses that need review.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @returns {Promise<*>}
+ */
+export async function groupModeration(lo, groupId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/moderation/`, lo.baseUrl);
+  return _fetch(lo, url);
+}
+
+/**
+ *
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} groupId - Group ID to join
+ * @returns {Promise<*>}
+ */
+export async function listGroupRemovedAccounts(lo, groupId) {
+  const url = new URL(`/api/v1/groups/${ groupId }/removed_accounts`, lo.baseUrl);
+  return _fetch(lo, url);
+}
