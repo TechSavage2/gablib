@@ -74,16 +74,16 @@ NOTE: currently unstable/may change.
     - List collections, Create, Edit, Delete
 - Full support for **Notifications**
   - Get notifications, Mark read, Filters
-- Support for **Accounts** (TODO)
-  - (Edit, Settings, Stats (following, followers, blocks, mutes, blocking))
+- Support for **Accounts** (WIP)
+  - Stats, (Edit, Account Settings)
 - Support for **Lists** (TODO)
 - Support for **Feeds** (TODO)
 - Support for **Chats/DM** (TODO)
-- Support for **Public** APIs (requires no authentication)
+- Support for **Public** APIs (no authentication required)
   - Account information, Trends feed, News feed, Popular statuses
 - Full support for site wide **search**
   - All, filters
-- Support for **settings** (TODO)
+- Support for **Site Settings** (TODO)
 
 Getting Started
 ---------------
