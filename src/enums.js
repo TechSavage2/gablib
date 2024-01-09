@@ -15,18 +15,18 @@
  * @readonly
  */
 export const enumStatusSort = {
-  'newest'          : 'newest',
-  'newestWithGroups': 'with-groups',
-  'newestNoReposts' : 'no-reposts',
-  'hot'             : 'hot',
-  'top'             : 'top',
-  'recent'          : 'recent', // pro??
-  'rising'          : 'rising', // does not work with pro, does with explore
-  'topToday'        : 'top_today', // pro??
-  'topWeekly'       : 'top_weekly', // pro??
-  'topMonthly'      : 'top_monthly', // pro??
-  'topYearly'       : 'top_yearly', // pro??
-  'topAllTime'      : 'top_all_time' // pro??
+  newest          : 'newest',
+  newestWithGroups: 'with-groups',
+  newestNoReposts : 'no-reposts',
+  hot             : 'hot',
+  top             : 'top',
+  recent          : 'recent', // pro??
+  rising          : 'rising', // does not work with pro, does with explore
+  topToday        : 'top_today', // pro??
+  topWeekly       : 'top_weekly', // pro??
+  topMonthly      : 'top_monthly', // pro??
+  topYearly       : 'top_yearly', // pro??
+  topAllTime      : 'top_all_time' // pro??
 };
 
 /**
@@ -95,15 +95,17 @@ export const enumReactions = {
  * @readonly
  */
 export const enumTimelines = {
-  'home'   : 'home',
-  'group'  : 'group',
-  'explore': 'explore',
-  'video'  : 'video',
-  'clips'  : 'clips', // NOTE this will be converted to 'video' and have an additional argument added to the request url (Gab thing.)
-  'photos' : 'photos',
-  'polls'  : 'polls',
-  'links'  : 'links',
-  'list'   : 'list'
+  home           : 'home',
+  group          : 'group',
+  explore        : 'explore',
+  video          : 'video',
+  clips          : 'clips', // NOTE this will be converted to 'video' and have an additional argument added to the request url (Gab thing.)
+  photos         : 'photos',
+  polls          : 'polls',
+  links          : 'links',
+  list           : 'list',
+  groupCollection: 'group_collection',
+  groupPins      : 'group_pins'
 };
 
 /**
@@ -113,14 +115,14 @@ export const enumTimelines = {
  * @readonly
  */
 export const enumSearchFilterTypes = {
-  'all'    : null,
-  'status' : 'status',
-  'group'  : 'group',
-  'top'    : 'top',
-  'account': 'account',
-  'link'   : 'link',
-  'feed'   : 'feed',
-  'hashtag': 'hashtag'
+  all    : null,
+  status : 'status',
+  group  : 'group',
+  top    : 'top',
+  account: 'account',
+  link   : 'link',
+  feed   : 'feed',
+  hashtag: 'hashtag'
 };
 
 /**
@@ -130,8 +132,8 @@ export const enumSearchFilterTypes = {
  * @readonly
  */
 export const enumGroupModerationJoin = {
-  'approve': 'approve',
-  'reject' : 'reject'
+  approve: 'approve',
+  reject : 'reject'
 };
 
 /**
@@ -141,8 +143,8 @@ export const enumGroupModerationJoin = {
  * @readonly
  */
 export const enumAccountFollowRequest = {
-  'approve': 'authorize',
-   'reject' : 'reject'
+  approve: 'authorize',
+  reject : 'reject'
 };
 
 /**
@@ -152,6 +154,6 @@ export const enumAccountFollowRequest = {
  * @readonly
  */
 export const enumAccountMediaType = {
-  'image': 'image',
-  'video': 'video'
+  image: 'image',
+  video: 'video'
 };
