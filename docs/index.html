@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-Bookmarks.html">Bookmarks</a></li><li><a href="module-Groups.html">Groups</a></li><li><a href="module-Login.html">Login</a></li><li><a href="module-Misc.html">Misc</a></li><li><a href="module-Notifications.html">Notifications</a></li><li><a href="module-Statuses.html">Statuses</a></li>
+					<li><a href="module-Bookmarks.html">Bookmarks</a></li><li><a href="module-Groups.html">Groups</a></li><li><a href="module-Login.html">Login</a></li><li><a href="module-Misc.html">Misc</a></li><li><a href="module-Notifications.html">Notifications</a></li><li><a href="module-Public.html">Public</a></li><li><a href="module-Statuses.html">Statuses</a></li>
 				</ul>
 			</li>
 			
@@ -47,7 +47,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#enumKnownTimelines">enumKnownTimelines</a></li><li><a href="global.html#enumPollExpires">enumPollExpires</a></li><li><a href="global.html#enumPostExpires">enumPostExpires</a></li><li><a href="global.html#enumReactions">enumReactions</a></li><li><a href="global.html#enumSearchFilterTypes">enumSearchFilterTypes</a></li><li><a href="global.html#enumStatusSort">enumStatusSort</a></li><li><a href="global.html#enumVisibility">enumVisibility</a></li>
+					<li><a href="global.html#enumGroupModerationJoin">enumGroupModerationJoin</a></li><li><a href="global.html#enumPollExpires">enumPollExpires</a></li><li><a href="global.html#enumPostExpires">enumPostExpires</a></li><li><a href="global.html#enumReactions">enumReactions</a></li><li><a href="global.html#enumSearchFilterTypes">enumSearchFilterTypes</a></li><li><a href="global.html#enumStatusSort">enumStatusSort</a></li><li><a href="global.html#enumTimelines">enumTimelines</a></li><li><a href="global.html#enumVisibility">enumVisibility</a></li>
 				</ul>
 			</li>
 			
@@ -132,9 +132,8 @@ API is frozen.</strong></p>
 <li>[x] Easy to use</li>
 <li>[x] ES modules (import/export)</li>
 <li>[x] login using the <em>sign_in</em> form instead of OAuth</li>
-<li>[x] API calls using authentications (WIP)</li>
+<li>[x] API calls requiring authentications (WIP)</li>
 <li>[x] public API calls (WIP)</li>
-<li>[x] full support for statuses and comments</li>
 <li>[x] 'normalizes' Gab's remapped status lists format to that of normal Mastodon</li>
 <li>[x] can use a custom markdown stripper</li>
 <li>[ ] streams and sockets wrapper objects (for client use)</li>
@@ -142,17 +141,18 @@ API is frozen.</strong></p>
 <li>[ ] events (responses, errors, upload/download progress, etc.)</li>
 </ul>
 <h2>APIs</h2>
+<p>NOTE: currently unstable/may change.</p>
 <ul>
-<li>Full support for <strong>Statuses</strong>
+<li>Full support for <strong>Statuses and Comments</strong>
 <ul>
 <li>Create Edit, Delete, Attachments, Timelines, (Un)Favorite, (Un)Bookmark, (Un)Pin, Move (aux function), Comment, Comment trees, Context, Posting to groups, Statuses from Tags, Revisions, Cards, Quotes, Replies, Stats</li>
 <li>Custom (optional) plugin for handling Markdown stripping.</li>
 <li>Handles and remaps Gab's rearranged results as well as the shortened properties on status JSONs.</li>
 </ul>
 </li>
-<li>Partial support for <strong>Groups</strong> (WIP)
+<li>Full support for <strong>Groups</strong>
 <ul>
-<li>Create, Edit, Categories, (Moderation)</li>
+<li>Create, Edit, Categories, Moderation</li>
 </ul>
 </li>
 <li>Full support for <strong>Bookmark Collections</strong>
