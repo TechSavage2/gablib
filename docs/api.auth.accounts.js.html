@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Home - gablib</title>
+    <title>api.auth.accounts.js - gablib</title>
     
     
     
@@ -40,183 +40,165 @@
 
 <div id="main">
     
+    <h1 class="page-title">api.auth.accounts.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*******************************************************************************
 
+ gablib
+ api.auth.accounts.js (2024-01-06)
+ Copyright (c) 2024 TechSavage
 
-    <section class="package">
-        <h3> </h3>		
-    </section>
+ *******************************************************************************/
 
+/**
+ * @module Accounts
+ */
 
+'use strict';
 
+import { _fetch } from './_fetch.js';
+import { sleep } from './utils.js';
 
+/**
+ * Get list of suggested accounts
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @returns {Promise&lt;*>}
+ */
+export async function getSuggestedAccounts(lo) {
+  const url = new URL(`/api/v2/suggestions`, lo.baseUrl);
+  url.searchParams.append('type', 'verified');
+  return _fetch(lo, url);
+}
 
+/**
+ * Get list of related accounts
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @returns {Promise&lt;*>}
+ */
+export async function getRelatedAccounts(lo) {
+  const url = new URL(`/api/v2/suggestions`, lo.baseUrl);
+  url.searchParams.append('type', 'related');
+  return _fetch(lo, url);
+}
 
+/**
+ * List relationship (member or not etc.) for array with account Ids.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {Array} accountIds - list of account Ids to check
+ * @returns {Promise&lt;*>}
+ */
+export async function getAccountRelationships(lo, accountId, accountIds) {
+  const url = new URL(`/api/v1/accounts/${ accountId }/relationships`, lo.baseUrl);
+  return _fetch(lo, url, 'POST', 'json', { accountIds });
+}
 
+/**
+ * List follower accounts to given account. Note that if the account has blocked
+ * public lists this function will fail.
+ * @param {LoginObject} lo - Valid and active LoginObject.
+ * @param {string} accountId - followers to account id
+ * @returns {Promise&lt;unknown>}
+ */
+export async function getAccountFollowers(lo, accountId) {
+  const url = new URL(`/api/v1/accounts/${ accountId }/followers`, lo.baseUrl);
+  return _fetch(lo, url);
+}
 
+/**
+ * List following accounts to given account. Note that if the account has blocked
+ * public lists this function will fail.
+ * @param {LoginObject} lo - Valid and active LoginObject.
+ * @param {string} accountId - followings to account id
+ * @returns {Promise&lt;unknown>}
+ */
+export async function getAccountFollowing(lo, accountId) {
+  const url = new URL(`/api/v1/accounts/${ accountId }/following`, lo.baseUrl);
+  return _fetch(lo, url);
+}
 
-    
+/**
+ * List accounts you have blocked.
+ * @param {LoginObject} lo - Valid and active LoginObject.
+ * @returns {Promise&lt;unknown>}
+ */
+export async function getAccountBlocks(lo) {
+  const url = new URL(`/api/v1/blocks`, lo.baseUrl);
+  return _fetch(lo, url);
+}
 
+/**
+ * List accounts you have muted.
+ * @param {LoginObject} lo - Valid and active LoginObject.
+ * @returns {Promise&lt;unknown>}
+ */
+export async function getAccountMutes(lo) {
+  const url = new URL(`/api/v1/mutes`, lo.baseUrl);
+  return _fetch(lo, url);
+}
 
+/**
+ * List accounts that have you blocked.
+ * @param {LoginObject} lo - Valid and active LoginObject.
+ * @returns {Promise&lt;unknown>}
+ */
+export async function getAccountBlockedBys(lo) {
+  await sleep(0);
+  return { content: { accounts: lo.initJSON.meta.blocked_by }, ok: true };
+}
 
-    <section class="readme usertext">
-        <article><h1>gablib</h1>
-<p>API package for scripting/programming Mastodon nodes where OAuth for custom apps has been disabled
-on the server.</p>
-<p>This package will allow you to build apps by logging in programmatically via the regular &quot;human&quot;
-auth/sign_in page and extract tokens for operations that requires authentication.</p>
-<p>This is not a standalone package/app but intended to be used as part of a custom client or for
-scripting.</p>
-<p><strong>⚠️ NOTE: The API is currently <em>not stable</em> and in ALPHA, a WIP. Breaking changes could happen.
-Use it as a tech preview. Avoid use for production as of now. This message will go away when the
-API is frozen.</strong></p>
-<h2>Requirements</h2>
-<p>One of:</p>
-<ul>
-<li><a href="https://nodejs.org/en/">NodeJS</a> version 18 or newer (for the fetch api).</li>
-<li><a href="https://bun.sh/">Bun</a> version 1.0.21 or newer.</li>
-</ul>
-<h2>Installation</h2>
-<p>Using <code>npm</code> to install the package into your nodejs project:</p>
-<pre class="prettyprint source lang-bash"><code>$ npm install https://github.com/TechSavage2/gablib
-</code></pre>
-<p>Alternatively, you can use <code>yarn</code> to install the package into your nodejs project:</p>
-<pre class="prettyprint source lang-bash"><code>$ yarn add https://github.com/TechSavage2/gablib
-</code></pre>
-<p>or <code>pnpm</code>:</p>
-<pre class="prettyprint source lang-bash"><code>$ pnpm install https://github.com/TechSavage2/gablib
-</code></pre>
-<p>It's now ready for use. As of now there are no other dependencies to be installed.</p>
-<h2>Features</h2>
-<ul>
-<li>[x] Easy to use</li>
-<li>[x] ES modules (import/export)</li>
-<li>[x] login using the <em>sign_in</em> form instead of OAuth</li>
-<li>[x] API calls requiring authentications (WIP)</li>
-<li>[x] public API calls (WIP)</li>
-<li>[x] 'normalizes' Gab's remapped status lists format to that of normal Mastodon</li>
-<li>[x] can use a custom markdown stripper</li>
-<li>[ ] streams and sockets wrapper objects (for client use)</li>
-<li>[ ] (de)serializing of session/auth data for reuse between executions (experimental)</li>
-<li>[ ] events (responses, errors, upload/download progress, etc.)</li>
-</ul>
-<h2>APIs</h2>
-<p>NOTE: currently unstable/may change.</p>
-<ul>
-<li>Full support for <strong>Statuses and Comments</strong>
-<ul>
-<li>Create Edit, Delete, Attachments, Timelines, (Un)Favorite, (Un)Bookmark, (Un)Pin, Move (aux function), Comment, Comment trees, Context, Posting to groups, Statuses from Tags, Revisions, Cards, Quotes, Replies, Stats</li>
-<li>Custom (optional) plugin for handling Markdown stripping.</li>
-<li>Handles and remaps Gab's rearranged results as well as the shortened properties on status JSONs.</li>
-</ul>
-</li>
-<li>Full support for <strong>Groups</strong>
-<ul>
-<li>Create, Edit, Categories, Moderation</li>
-</ul>
-</li>
-<li>Full support for <strong>Bookmark Collections</strong>
-<ul>
-<li>List collections, Create, Edit, Delete</li>
-</ul>
-</li>
-<li>Full support for <strong>Notifications</strong>
-<ul>
-<li>Get notifications, Mark read, Filters</li>
-</ul>
-</li>
-<li>Support for <strong>Accounts</strong> (WIP)
-<ul>
-<li>Stats, (Edit, Account Settings)</li>
-</ul>
-</li>
-<li>Support for <strong>Lists</strong> (TODO)</li>
-<li>Support for <strong>Feeds</strong> (TODO)</li>
-<li>Support for <strong>Chats/DM</strong> (TODO)</li>
-<li>Support for <strong>Public</strong> APIs (no authentication required)
-<ul>
-<li>Account information, Trends feed, News feed, Popular statuses</li>
-</ul>
-</li>
-<li>Full support for site wide <strong>search</strong>
-<ul>
-<li>All, filters</li>
-</ul>
-</li>
-<li>Support for <strong>Site Settings</strong> (TODO)</li>
-</ul>
-<h2>Getting Started</h2>
-<p>Make sure you have a registered and active account with the Mastodon site you want to log on to.</p>
-<p>Make sure to initialize environmental variables on your system.</p>
-<p>For Linux, you can use:</p>
-<pre class="prettyprint source lang-bash"><code>export MASTODON_USEREMAIL='your@mastodon.email'
-export MASTODON_PASSWORD='yourSecretPassword'
-export MASTODON_BASEURL='https://somemastodon.site'
-</code></pre>
-<p>Put this in for example your <code>~/.profile</code> file.</p>
-<p>You can also use different environment names and simply supply them instead (
-see <a href="https://github.com/TechSavage2/gablib/wiki/Authenticating">wiki</a>.)</p>
-<p>This package uses the ES module format (i.e. use <code>import</code> statements.)</p>
-<p>To use ESM in your project, either update <code>package.json</code> with the following:</p>
-<pre class="prettyprint source lang-json"><code>{
-  &quot;type&quot;: &quot;module&quot;
+/**
+ *
+ * @param {LoginObject} lo - Valid and active LoginObject.
+ * @param {string|number} [maxId]
+ * @param {string|number} [sinceId]
+ * @param {string|number} [limit=40] max items, max can be 80
+ * @returns {Promise&lt;unknown>}
+ */
+export async function getFollowRequests(lo, maxId, sinceId, limit = 40) {
+  const url = new URL(`/api/v1/follow_requests`, lo.baseUrl);
+  if ( maxId ) url.searchParams.append('max_id', maxId);
+  if ( sinceId ) url.searchParams.append('since_id', sinceId);
+  if ( limit ) url.searchParams.append('limit', limit);
+  return _fetch(lo, url);
+}
+
+/**
+ * Accept or reject an account follow request.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} accountId - account to handle
+ * @param {string} type - authorize or reject request. See {@link enumAccountFollowRequest}
+ * @returns {Promise&lt;unknown>}
+ */
+export async function handleAccountFollowRequests(lo, accountId, type) {
+  const url = new URL(`/api/v1/follow_requests/${ accountId }/${ type }`, lo.baseUrl);
+  return _fetch(lo, url, 'BODY');
+}
+
+/**
+ * Get list of media attachments based on type (video, image)
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} accountId - account to list
+ * @param {string} type - media type to list. See {@link enumAccountMediaType}
+ * @param {string|number} [maxId]
+ * @returns {Promise&lt;unknown>}
+ */
+export async function getAccountAttachments(lo, accountId, type, maxId) {
+  const url = new URL(`/api/v1/accounts/${ accountId }/media_attachments`, lo.baseUrl);
+  url.searchParams.append('type', type);
+  if ( maxId ) url.searchParams.append('max_id', maxId);
+  return _fetch(lo, url);
 }
 </code></pre>
-<p>or use the <code>.mjs</code> extension for your JavaScript files.</p>
-<p>To import a function you can then use:</p>
-<pre class="prettyprint source lang-JavaScript"><code>import { login } from 'gablib/gablib.js';
-</code></pre>
-<p>or if you prefer the entire library on a single object:</p>
-<pre class="prettyprint source lang-JavaScript"><code>import * as gablib from 'gablib/gablib.js';
-</code></pre>
-<p>Now call the primary function to log in:</p>
-<pre class="prettyprint source lang-JavaScript"><code>import { login } from 'gablib/gablib.js';
-
-const loginObject = await login();  // note that the call is asynchronous
-</code></pre>
-<p>If successful login, the object is now initialized for use with API functions. If login failed it
-will <em>throw an error</em>. Check that your credentials are correct and if a complex password that it's
-properly escaped (if using env.)</p>
-<h2>Documentation</h2>
-<p>Online documentation (JSDoc) can be found here</p>
-<p>https://techsavage2.github.io/gablib/</p>
-<p>Wiki page with examples and tips:</p>
-<p>https://github.com/TechSavage2/gablib/wiki</p>
-<p>To see specifics for each API call, JSON structures and so on, the official Mastodon can be useful.
-Note that some Mastodon sites (such as Gab) have modified some of these responses, JSONs and API
-calls, but to get the broader gist this is still helpful:</p>
-<p>https://docs.joinmastodon.org/methods/</p>
-<h2>Local Docs</h2>
-<p>You can generate a local version of the documentation by installing the
-developer dependencies. While in the project root folder:</p>
-<pre class="prettyprint source lang-bash"><code>$ npm i -D
-</code></pre>
-<p>Then run:</p>
-<pre class="prettyprint source lang-bash"><code>$ npm run docs
-</code></pre>
-<p>The docs are now found in the <code>docs/</code> folder. You may want to fire up a local
-server for the folder for everything to work smoothly.</p>
-<p>For example if you have python installed:</p>
-<pre class="prettyprint source lang-bash"><code>cd docs/
-python -m http.server
-</code></pre>
-<p>Go to the link to see the docs.</p>
-<h2>Issues</h2>
-<p>See <a href="https://github.com/TechSavage2/gablib/issues">issues</a></p>
-<h2>Notes</h2>
-<p>The package has only been tested with Linux so far, but there shouldn't be anything preventing
-it from working with Windows, macOS and other platforms as well.</p>
-<h2>License</h2>
-<p>AGPL</p>
-<p>Copyright (c) 2024 TechSavage</p></article>
+        </article>
     </section>
-
-
 
 
 

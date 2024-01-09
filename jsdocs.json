@@ -44,7 +44,7 @@
     "sectionOrder": [
       "Modules",
       "Classes",
-      "Globals",
+      "Global",
       "Namespaces",
       "Events",
       "Externals",

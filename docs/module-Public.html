@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Bookmarks - gablib</title>
+    <title>Public - gablib</title>
     
     
     
@@ -40,7 +40,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Bookmarks</h1>
+    <h1 class="page-title">Public</h1>
     
 
     
@@ -66,7 +66,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.bookmarks.js.html">api.auth.bookmarks.js</a>, <a href="api.auth.bookmarks.js.html#line9">line 9</a>
+        <a href="api.public.js.html">api.public.js</a>, <a href="api.public.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -133,7 +133,7 @@
 
     
 
-    <h4 class="name" id=".createBookmarkCollection"><span class="type-signature type-signature-static">(static) </span>createBookmarkCollection<span class="signature">(lo, title)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+    <h4 class="name" id=".getAccountFromId"><span class="type-signature type-signature-static">(static) </span>getAccountFromId<span class="signature">(baseUrl, accountId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
 
     
 
@@ -143,13 +143,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Create a new bookmark collection.</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get account JSON from an account id.</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.bookmarks.js.html">api.auth.bookmarks.js</a>, <a href="api.auth.bookmarks.js.html#line33">line 33</a>
+        <a href="api.public.js.html">api.public.js</a>, <a href="api.public.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -221,31 +221,7 @@
 
         <tr>
             
-                <td class="name"><code>lo</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Valid and active LoginObject</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>title</code></td>
+                <td class="name"><code>baseUrl</code></td>
             
 
             <td class="type">
@@ -262,7 +238,25 @@
 
             
 
-            <td class="description last"><p>Title of new bookmark collection</p></td>
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>accountId</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
         </tr>
 
     
@@ -311,7 +305,7 @@
 
     
 
-    <h4 class="name" id=".deleteBookmarkCollection"><span class="type-signature type-signature-static">(static) </span>deleteBookmarkCollection<span class="signature">(lo, bookmarkCollectionId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+    <h4 class="name" id=".getAccountFromUsername"><span class="type-signature type-signature-static">(static) </span>getAccountFromUsername<span class="signature">(baseUrl, username)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
 
     
 
@@ -321,13 +315,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Delete an existing bookmark collection</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get account JSON from a username.</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.bookmarks.js.html">api.auth.bookmarks.js</a>, <a href="api.auth.bookmarks.js.html#line56">line 56</a>
+        <a href="api.public.js.html">api.public.js</a>, <a href="api.public.js.html#line34">line 34</a>
     </li></ul></dd>
     
 
@@ -399,40 +393,13 @@
 
         <tr>
             
-                <td class="name"><code>lo</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Valid and active LoginObject</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>bookmarkCollectionId</code></td>
+                <td class="name"><code>baseUrl</code></td>
             
 
             <td class="type">
             
                 
 <span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
 
 
 
@@ -443,7 +410,25 @@
 
             
 
-            <td class="description last"><p>id of bookmark collection</p></td>
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>username</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
         </tr>
 
     
@@ -492,7 +477,7 @@
 
     
 
-    <h4 class="name" id=".editBookmarkCollection"><span class="type-signature type-signature-static">(static) </span>editBookmarkCollection<span class="signature">(lo, bookmarkCollectionId, title)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+    <h4 class="name" id=".getExplore"><span class="type-signature type-signature-static">(static) </span>getExplore<span class="signature">(baseUrl, sort)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
 
     
 
@@ -502,13 +487,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Edit an existing bookmark collection.</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get list of suggested feeds</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.bookmarks.js.html">api.auth.bookmarks.js</a>, <a href="api.auth.bookmarks.js.html#line45">line 45</a>
+        <a href="api.public.js.html">api.public.js</a>, <a href="api.public.js.html#line77">line 77</a>
     </li></ul></dd>
     
 
@@ -580,58 +565,7 @@
 
         <tr>
             
-                <td class="name"><code>lo</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Valid and active LoginObject</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>bookmarkCollectionId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>id of bookmark collection</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>title</code></td>
+                <td class="name"><code>baseUrl</code></td>
             
 
             <td class="type">
@@ -648,7 +582,31 @@
 
             
 
-            <td class="description last"><p>New title of bookmark collection</p></td>
+            <td class="description last"><p>base url for site</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sort</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>sort method</p></td>
         </tr>
 
     
@@ -697,7 +655,7 @@
 
     
 
-    <h4 class="name" id=".getBookmarkCollection"><span class="type-signature type-signature-static">(static) </span>getBookmarkCollection<span class="signature">(lo)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+    <h4 class="name" id=".getNewsFeed"><span class="type-signature type-signature-static">(static) </span>getNewsFeed<span class="signature">(baseUrl)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
 
     
 
@@ -707,13 +665,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Get your bookmark collections.</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get the news feed.</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.bookmarks.js.html">api.auth.bookmarks.js</a>, <a href="api.auth.bookmarks.js.html#line22">line 22</a>
+        <a href="api.public.js.html">api.public.js</a>, <a href="api.public.js.html#line54">line 54</a>
     </li></ul></dd>
     
 
@@ -785,13 +743,13 @@
 
         <tr>
             
-                <td class="name"><code>lo</code></td>
+                <td class="name"><code>baseUrl</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
+<span class="param-type">string</span>
 
 
 
@@ -802,7 +760,549 @@
 
             
 
-            <td class="description last"><p>Valid and active LoginObject</p></td>
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;*></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getPopularStatuses"><span class="type-signature type-signature-static">(static) </span>getPopularStatuses<span class="signature">(baseUrl, type<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get a list of popular statuses.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.public.js.html">api.public.js</a>, <a href="api.public.js.html#line65">line 65</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>baseUrl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'gab</code>
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;*></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getProFeed"><span class="type-signature type-signature-static">(static) </span>getProFeed<span class="signature">(baseUrl, sort)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get list of suggested feeds (public version.)</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.public.js.html">api.public.js</a>, <a href="api.public.js.html#line89">line 89</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>baseUrl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>base url for site</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sort</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>sort method</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;*></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getTrendsFeed"><span class="type-signature type-signature-static">(static) </span>getTrendsFeed<span class="signature">(baseUrl)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get the trend feed.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.public.js.html">api.public.js</a>, <a href="api.public.js.html#line44">line 44</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>baseUrl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
         </tr>
 
     
