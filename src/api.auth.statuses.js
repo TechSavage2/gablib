@@ -239,7 +239,7 @@ export async function getComments(lo, statusId, maxId = null, sort = 'oldest') {
  * list/id, pro, related/statusId, video, "clips"
  *
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} timeline - a valid timeline name
+ * @param {string} timeline - a valid timeline name (see {@link enumTimelines}.
  * @param {number|string|null} [pageOrMaxId] either page or max status ID for pagination
  * @param {string} [sort="no-reposts"] Sort method
  * @param {boolean} [pinned=false] if true, request pinned posts instead
