@@ -157,3 +157,14 @@ export const enumAccountMediaType = {
   image: 'image',
   video: 'video'
 };
+
+/**
+ * Valid shortcut types.
+ * @global
+ * @enum {string}
+ * @readonly
+ */
+export const enumShortType = {
+  group  : 'group',
+  account: 'account'
+};
