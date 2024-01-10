@@ -74,6 +74,8 @@ NOTE: currently unstable/may change.
     - List collections, Create, Edit, Delete
 - Full support for **Notifications**
   - Get notifications, Mark read, Filters
+- Full support for **Shortcuts**
+  - List, Add, Delete, Reorder
 - Support for **Accounts** (WIP)
   - Stats, (Edit, Account Settings)
 - Support for **Lists** (TODO)
