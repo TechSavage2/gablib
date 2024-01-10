@@ -85,7 +85,8 @@ export const enumReactions = {
   angry     : '4',
   honked    : '5',
   heart     : '6',
-  salute    : '11'
+  salute    : '11',
+  xmasTree  : '15'
 };
 
 /**
