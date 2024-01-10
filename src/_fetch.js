@@ -10,7 +10,7 @@
 
 import { login } from './login.js';
 
-const debug = false;
+const DEBUG = false;
 
 /**
  * Private function that handles all our scenarios. This function is not intended
@@ -72,7 +72,6 @@ export async function _fetch(
     }
 
     if ( loginObject.csrfToken ) {
-      // does not seem to be required
       options.headers[ 'X-Csrf-Token' ] = loginObject.csrfToken;
     }
   }
@@ -82,7 +81,6 @@ export async function _fetch(
     if ( body ) options.body = JSON.stringify(body);
   }
   else if ( resultType === 'binary' ) {
-    //options.headers[ 'Content-Type' ] = 'application/json;charset=UTF-8';
     if ( body ) options.body = body;
   }
   else if ( resultType === 'html' ) {
@@ -115,14 +113,10 @@ export async function _fetch(
     loginObject.lastUrl = response.url;
   }
 
-  if ( debug ) {
+  if ( DEBUG ) {
     return { content, ok: expectedReturnCode.includes(status | 0), headers, status, url: response.url };
   }
   else {
     return { content, ok: expectedReturnCode.includes(status | 0) };
   }
-
-  //return { content, headers, status, url: response.url };
-  //todo consolidate return as in almost all cases we only need content and status:
-  //{ content: result.content, ok: result.status === 200 } // 202, 204 are possible too..hm
 }
