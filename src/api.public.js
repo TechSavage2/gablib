@@ -16,8 +16,8 @@ import { _fetch } from './_fetch.js';
 
 /**
  * Get account JSON from an account id.
- * @param {string} baseUrl
- * @param accountId
+ * @param {string} baseUrl - sites' base URL
+ * @param {string} accountId
  * @returns {Promise<*>}
  */
 export async function getAccountFromId(baseUrl, accountId) {
@@ -27,8 +27,8 @@ export async function getAccountFromId(baseUrl, accountId) {
 
 /**
  * Get account JSON from a username.
- * @param {string} baseUrl
- * @param username
+ * @param {string} baseUrl - sites' base URL
+ * @param {string} username - username for account
  * @returns {Promise<*>}
  */
 export async function getAccountFromUsername(baseUrl, username) {
@@ -38,7 +38,7 @@ export async function getAccountFromUsername(baseUrl, username) {
 
 /**
  * Get the trend feed.
- * @param {string} baseUrl
+ * @param {string} baseUrl - sites' base URL
  * @returns {Promise<*>}
  */
 export async function getTrendsFeed(baseUrl) {
@@ -48,7 +48,7 @@ export async function getTrendsFeed(baseUrl) {
 
 /**
  * Get the news feed.
- * @param {string} baseUrl
+ * @param {string} baseUrl - sites' base URL
  * @returns {Promise<*>}
  */
 export async function getNewsFeed(baseUrl) {
@@ -58,8 +58,8 @@ export async function getNewsFeed(baseUrl) {
 
 /**
  * Get a list of popular statuses.
- * @param {string} baseUrl
- * @param {string} [type='gab]
+ * @param {string} baseUrl - sites' base URL
+ * @param {string} [type='gab'] popular statuses type
  * @returns {Promise<*>}
  */
 export async function getPopularStatuses(baseUrl, type = 'gab') {
@@ -70,8 +70,8 @@ export async function getPopularStatuses(baseUrl, type = 'gab') {
 
 /**
  * Get list of suggested feeds
- * @param {string} baseUrl - base url for site
- * @param {string} sort - sort method
+ * @param {string} baseUrl - sites' base URL
+ * @param {string} [sort='rising'] - sort method
  * @returns {Promise<*>}
  */
 export async function getExplore(baseUrl, sort = 'rising') {
@@ -82,8 +82,8 @@ export async function getExplore(baseUrl, sort = 'rising') {
 
 /**
  * Get list of suggested feeds (public version.)
- * @param {string} baseUrl - base url for site
- * @param {string} sort - sort method
+ * @param {string} baseUrl - sites' base URL
+ * @param {string} [sort='hot'] - sort method
  * @returns {Promise<*>}
  */
 export async function getProFeed(baseUrl, sort = 'hot') {

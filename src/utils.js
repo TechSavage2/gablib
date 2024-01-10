@@ -8,6 +8,13 @@
 
 'use strict';
 
+/**
+ * Map properties of json to those of map.
+ * @param {{}} json - object to remap
+ * @param {{}} map - map holding the property names corresponding with json, and
+ * values for the new property names.
+ * @returns {{}}
+ */
 export function mapObject(json, map) {
   const newJSON = {};
   Object.keys(map).forEach(key => {
@@ -18,6 +25,11 @@ export function mapObject(json, map) {
   return newJSON;
 }
 
+/**
+ * Map JSON so that properties becomes values, and vice verse.
+ * @param {{}} map - map for properties vs. values
+ * @returns {{}}
+ */
 export function inverseMap(map) {
   const newMap = {};
   Object.keys(map).forEach(key => {
@@ -26,6 +38,13 @@ export function inverseMap(map) {
   return newMap;
 }
 
+/**
+ * Find object with id in an array of objects.
+ * @param {*} id
+ * @param {Array} array
+ * @param {string} [key='id'] key for 'id' in array objects.
+ * @returns {null|*}
+ */
 export function findObjectId(id, array, key = 'id') {
   for(const o of array) {
     if ( o[ key ] === id ) return o;
@@ -33,9 +52,15 @@ export function findObjectId(id, array, key = 'id') {
   return null;
 }
 
-// remove-markdown By stiang, MIT License:
-// https://github.com/stiang/remove-markdown
-// Some modifications by TechSavage
+/**
+ * Basic Markdown stripper. You can replace this with a custom plugin.
+ * @param md
+ * @param options
+ * @returns {*}
+ * @license MIT
+ * @author remove-markdown by stiang. Modified by TechSavage.
+ * @see https://github.com/stiang/remove-markdown
+ */
 export function stripMD(md, options) {
   options = Object.assign({}, {
     listUnicodeChar    : false,
@@ -133,6 +158,11 @@ export function stripMD(md, options) {
   return output;
 }
 
+/**
+ * Sleep function.
+ * @param {number} ms - delay in milliseconds
+ * @returns {Promise<*>}
+ */
 export async function sleep(ms) {
   return new Promise(success => {
     setTimeout(success, ms);

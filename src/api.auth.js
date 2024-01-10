@@ -17,7 +17,7 @@ import { _fetch } from './_fetch.js';
 /**
  * Get conversation owner from a conversation ID.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param convId
+ * @param {string} convId - conversation id
  * @returns {Promise<*>}
  */
 export async function getConversationOwner(lo, convId) {

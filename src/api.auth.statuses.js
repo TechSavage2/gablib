@@ -144,11 +144,13 @@ export async function editStatus(lo, statusId, newMarkdown, options) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string|Buffer|ArrayBuffer|TypedArray|Uint8Array|Blob|File} pathOrBuffer - path to a media file to upload or
  * a pre-initialized Buffer object.
- * @param {string|null} [filename] - filename is required if pathOrBuffer is buffer
+ * @param {string} [filename] - filename is required if pathOrBuffer is buffer
  * @returns {Promise<*>}
  */
-export async function uploadMedia(lo, pathOrBuffer, filename = null) {
+export async function uploadMedia(lo, pathOrBuffer, filename) {
   const form = new FormData();
+
+  // todo check if Base64 encoded Data-URL is still supported
 
   try {
     const buffer = typeof pathOrBuffer === 'string' ? readFileSync(pathOrBuffer) : pathOrBuffer;
@@ -172,7 +174,7 @@ export async function uploadMedia(lo, pathOrBuffer, filename = null) {
 /**
  * Get a single status post.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - ID of status to retrieve
+ * @param {string} statusId - ID of status to retrieve
  * @returns {Promise<*>}
  */
 export async function getStatus(lo, statusId) {
@@ -183,7 +185,7 @@ export async function getStatus(lo, statusId) {
 /**
  * Delete a single status post.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - ID of status to delete
+ * @param {string} statusId - ID of status to delete
  * @returns {Promise<*>}
  */
 export async function deleteStatus(lo, statusId) {
@@ -205,30 +207,30 @@ export async function getStatusesFromTag(lo, tagName) {
 /**
  * Get a list of statuses based on an account.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} account - ID of account
- * @param {number|null} [page] - page number
+ * @param {string} account - ID of account
+ * @param {number} [page] - page number
  * @param {string} [sort] - sort method. Valid options: see {@link enumStatusSort}.
  * @returns {Promise<*>}
  */
-export async function getAccountStatuses(lo, account, page = null, sort = 'newest') {
+export async function getAccountStatuses(lo, account, page = 0, sort = 'newest') {
   const url = new URL(`/api/v2/accounts/${ account }/statuses`, lo.baseUrl);
-  if (page) url.searchParams.append('page', page.toString());
-  if (sort) url.searchParams.append('sort_by', sort);
+  if ( page ) url.searchParams.append('page', page.toString());
+  if ( sort ) url.searchParams.append('sort_by', sort);
   return await _getStatuses(lo, url);
 }
 
 /**
  * Get comments from a status or a comment branch.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId Status ID to get comments from
- * @param {string|number|null} [maxId] status ID for paging
+ * @param {string} statusId Status ID to get comments from
+ * @param {string} [maxId] status ID for paging
  * @param {string} [sort="oldest"] Sort method
  * @returns {Promise<*>}
  */
-export async function getComments(lo, statusId, maxId = null, sort = 'oldest') {
+export async function getComments(lo, statusId, maxId, sort = 'oldest') {
   const url = new URL(`/api/v1/status_comments/${ statusId }`, lo.baseUrl);
-  if (maxId) url.searchParams.append('max_id', maxId);
-  if (sort) url.searchParams.append('sort', sort);
+  if ( maxId ) url.searchParams.append('max_id', maxId);
+  if ( sort ) url.searchParams.append('sort', sort);
   return await _fetch(lo, url);  // todo comments are not (yet?) modified by Gab
 }
 
@@ -240,7 +242,7 @@ export async function getComments(lo, statusId, maxId = null, sort = 'oldest') {
  *
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} timeline - a valid timeline name (see {@link enumTimelines}.
- * @param {number|string|null} [pageOrMaxId] either page or max status ID for pagination
+ * @param {number|string} [pageOrMaxId] either page or max status ID for pagination
  * @param {string} [sort="no-reposts"] Sort method
  * @param {boolean} [pinned=false] if true, request pinned posts instead
  * @returns {Promise<*>}
@@ -248,12 +250,12 @@ export async function getComments(lo, statusId, maxId = null, sort = 'oldest') {
 export async function getTimelineStatuses(
   lo,
   timeline = 'home',
-  pageOrMaxId = null,
+  pageOrMaxId,
   sort = 'no-reposts',
   pinned = false) {
 
   //todo video timeline additions args: only_following=1, media_type=clips|<none> (sort clips: newest,top_today, video: top* all)
-  const url = new URL(`/api/v2/timelines/${ timeline === 'clips' ? 'video' : timeline}`, lo.baseUrl);
+  const url = new URL(`/api/v2/timelines/${ timeline === 'clips' ? 'video' : timeline }`, lo.baseUrl);
 
   if ( timeline === 'clips' ) {
     url.searchParams.append('media_type', 'clips');
@@ -273,13 +275,13 @@ export async function getTimelineStatuses(
 /**
  * Get a list of who reposted this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
- * @param {string|number|null} [maxId] last Status ID for pagination
+ * @param {string} statusId - Status ID
+ * @param {string} [maxId] last Status ID for pagination
  * @returns {Promise<*>}
  */
-export async function getStatusRepostedBy(lo, statusId, maxId = null) {
+export async function getStatusRepostedBy(lo, statusId, maxId ) {
   const url = new URL(`/api/v1/statuses/${ statusId }/reblogged_by`, lo.baseUrl);
-  if (maxId) {
+  if ( maxId ) {
     url.searchParams.append('max_id', maxId);
   }
   return await _fetch(lo, url);
@@ -288,7 +290,7 @@ export async function getStatusRepostedBy(lo, statusId, maxId = null) {
 /**
  * Get a status' revisions (edits)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function getStatusRevisions(lo, statusId) {
@@ -299,7 +301,7 @@ export async function getStatusRevisions(lo, statusId) {
 /**
  * Mark this status as favorite (like, reaction.)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @param {string} [reactId="1"] React Id. See {@link enumReactions}.
  * @returns {Promise<*>}
  */
@@ -315,7 +317,7 @@ export async function favoritePost(lo, statusId, reactId = '1') {
 /**
  * Unmark this status as favorite (unlike.)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function unfavoritePost(lo, statusId) {
@@ -326,7 +328,7 @@ export async function unfavoritePost(lo, statusId) {
 /**
  * Get the pin status of this post.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function pinStatusState(lo, statusId) {
@@ -337,7 +339,7 @@ export async function pinStatusState(lo, statusId) {
 /**
  * Pin this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function pinStatus(lo, statusId) {
@@ -348,7 +350,7 @@ export async function pinStatus(lo, statusId) {
 /**
  * Unpin this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function unpinStatus(lo, statusId) {
@@ -359,7 +361,7 @@ export async function unpinStatus(lo, statusId) {
 /**
  * Get bookmark status of this post.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function bookmarkStatusState(lo, statusId) {
@@ -370,7 +372,7 @@ export async function bookmarkStatusState(lo, statusId) {
 /**
  * Bookmark this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @param collectionId
  * @returns {Promise<*>}
  */
@@ -383,7 +385,7 @@ export async function bookmarkStatus(lo, statusId, collectionId) {
 /**
  * Un-bookmark this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function unbookmarkStatus(lo, statusId) {
@@ -394,7 +396,7 @@ export async function unbookmarkStatus(lo, statusId) {
 /**
  * Get quotes of this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function getStatusQuotes(lo, statusId) {
@@ -405,7 +407,7 @@ export async function getStatusQuotes(lo, statusId) {
 /**
  * Get context for this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function getStatusContext(lo, statusId) {
@@ -416,7 +418,7 @@ export async function getStatusContext(lo, statusId) {
 /**
  * Get status statistics like number of likes, reposts etc.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise<*>}
  */
 export async function getStatusStats(lo, statusId) {
@@ -427,7 +429,7 @@ export async function getStatusStats(lo, statusId) {
 /**
  * List statuses with the same link card.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} cardId - ID of link card
+ * @param {string} cardId - ID of link card
  * @returns {Promise<*>}
  */
 export async function getStatusesWithCard(lo, cardId) {
@@ -448,9 +450,9 @@ export async function getStatusesWithCard(lo, cardId) {
  * If that succeeds the original status is deleted and the new status is returned.
  *
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {*} status - status to "move"
- * @param {string|number|null} groupId - groupId to "move" to, or null if to home timeline.
- * @returns {Promise<{ok: boolean, content: null}|{ok}|*>}
+ * @param {*} status - status object to "move"
+ * @param {string} groupId - groupId to "move" to, or null if to home timeline.
+ * @returns {Promise<*>}
  */
 export async function moveStatus(lo, status, groupId) {
   // todo more to move...

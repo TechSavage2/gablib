@@ -29,7 +29,7 @@ export async function getGroupCategories(lo) {
 /**
  * List featured groups
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param minimalList
+ * @param {boolean} [minimalList=false] reduce resulting list to id and title
  * @returns {Promise<*>}
  */
 export async function getFeaturedGroups(lo, minimalList = false) {
@@ -39,11 +39,21 @@ export async function getFeaturedGroups(lo, minimalList = false) {
 /**
  * List groups you are member of.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param minimalList
+ * @param {boolean} [minimalList=false] reduce resulting list to id and title
  * @returns {Promise<*>}
  */
 export async function getMyGroups(lo, minimalList = false) {
   return _getGroupTypes(lo, 'member', minimalList);
+}
+
+/**
+ * List groups you are administrating.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {boolean} [minimalList=false] reduce resulting list to id and title
+ * @returns {Promise<*>}
+ */
+export async function getMyAdminGroups(lo, minimalList = false) {
+  return _getGroupTypes(lo, 'admin', minimalList);
 }
 
 /**
@@ -69,16 +79,6 @@ async function _getGroupTypes(lo, type, minimalList) {
 }
 
 /**
- * List groups you are administrating.
- * @param {LoginObject} lo - Valid and active LoginObject
- * @param minimalList
- * @returns {Promise<*>}
- */
-export async function getMyAdminGroups(lo, minimalList = false) {
-  return _getGroupTypes(lo, 'admin', minimalList);
-}
-
-/**
  * Get list of suggested groups
  * @param {LoginObject} lo - Valid and active LoginObject
  * @returns {Promise<*>}
@@ -93,7 +93,7 @@ export async function getSuggestedGroups(lo) {
  * List groups by category name (see `getGroupCategories()`).
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} categoryName - name of a valid category
- * @param {number|string} [page=1] - page, for pagination
+ * @param {number} [page=1] - page, for pagination
  * @returns {Promise<*>}
  */
 export async function getGroupsByCategory(lo, categoryName, page = 1) {
@@ -106,7 +106,7 @@ export async function getGroupsByCategory(lo, categoryName, page = 1) {
  * List groups by hashtag.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} tag - name of a hashtag without hash-symbol (for example 'linux')
- * @param {number|string} [page=1] - page, for pagination
+ * @param {number} [page=1] - page, for pagination
  * @returns {Promise<*>}
  */
 export async function getGroupsByTag(lo, tag, page = 1) {
@@ -142,7 +142,7 @@ export async function getGroup(lo, groupId) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {Object} config - group configuration
  * @param {string} config.title - Name of group
- * @param {string|number} config.groupCategoryId - Group category (see `getGroupCategories()`).
+ * @param {string} config.groupCategoryId - Group category (see `getGroupCategories()`).
  * @param {string} [config.description] - Group description
  * @param {string} [config.slug] - Group slug (short name)
  * @param {boolean} [config.isPrivate=true] - If group is private
@@ -174,7 +174,7 @@ export async function createGroup(lo, config) {
  * @param {Object} group - a group object
  * @param {Object} [newConfig={}] new configuration for group
  * @param {string} [newConfig.title] - Name of group
- * @param {string|number} [newConfig.groupCategoryId] - Group category (see `getGroupCategories()`).
+ * @param {string} [newConfig.groupCategoryId] - Group category (see `getGroupCategories()`).
  * @param {string} [newConfig.description] - Group description
  * @param {string} [newConfig.slug] - Group slug (short name)
  * @param {boolean} [newConfig.isPrivate=true] - If group is private
@@ -268,7 +268,7 @@ function _formatGroupConfig(config, newConfig) {
  * the flag `hasPassword` is true you will instead first need to send a request
  * using `requestGroupJoin()` rather than using this function.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
+ * @param {string} groupId - Group ID to join
  * @returns {Promise<*>}
  */
 export async function joinGroup(lo, groupId) {
@@ -279,7 +279,7 @@ export async function joinGroup(lo, groupId) {
 /**
  * Leave a group you're already a member of.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
+ * @param {string} groupId - Group ID to join
  * @returns {Promise<*>}
  */
 export async function leaveGroup(lo, groupId) {
@@ -291,7 +291,7 @@ export async function leaveGroup(lo, groupId) {
  * If a group require a password to join, use this function to request a join.
  * You need to supply the password for the group you want to join.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
+ * @param {string} groupId - Group ID to join
  * @param {string} password - password to join the group
  * @returns {Promise<*>}
  * @throws If password is missing it will throw an error
@@ -305,7 +305,7 @@ export async function requestGroupJoin(lo, groupId, password = null) {
 /**
  * Mute a group you are member of.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
+ * @param {string} groupId - Group ID to join
  * @returns {Promise<*>}
  */
 export async function muteGroup(lo, groupId) {
@@ -316,7 +316,7 @@ export async function muteGroup(lo, groupId) {
 /**
  * Unmute a group you are member of.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
+ * @param {string} groupId - Group ID to join
  * @returns {Promise<*>}
  */
 export async function unmuteGroup(lo, groupId) {
@@ -333,7 +333,7 @@ export async function unmuteGroup(lo, groupId) {
 /**
  * Get moderation stats, number of statuses that needs review (held back.)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
+ * @param {string} groupId - Group ID to join
  * @returns {Promise<*>}
  */
 export async function getGroupModerationStats(lo, groupId) {
@@ -344,7 +344,7 @@ export async function getGroupModerationStats(lo, groupId) {
 /**
  * List join requests if your group require a password to join.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
+ * @param {string} groupId - Group ID to join
  * @returns {Promise<*>}
  */
 export async function getGroupJoinRequests(lo, groupId) {
@@ -355,8 +355,8 @@ export async function getGroupJoinRequests(lo, groupId) {
 /**
  * Handle a join request. You can either 'accept' or 'reject' a request.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
- * @param {string|number} accountId - ID of account that requested to join.
+ * @param {string} groupId - Group ID to join
+ * @param {string} accountId - ID of account that requested to join.
  * @param {string} type - need to be either 'accept' or 'reject' (see {@link enumGroupModerationJoin}).
  * @returns {Promise<*>}
  */
@@ -368,7 +368,7 @@ export async function handleGroupJoinRequest(lo, groupId, accountId, type) {
 /**
  * List group members
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
+ * @param {string} groupId - Group ID to join
  * @returns {Promise<*>} List of accounts
  */
 export async function listGroupAccounts(lo, groupId) {
@@ -379,7 +379,7 @@ export async function listGroupAccounts(lo, groupId) {
 /**
  * List administrators and moderators of this group.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
+ * @param {string} groupId - Group ID to join
  * @returns {Promise<*>}  lists for accounts and roles
  */
 export async function listGroupAdminsAndMods(lo, groupId) {
@@ -390,7 +390,7 @@ export async function listGroupAdminsAndMods(lo, groupId) {
 /**
  * List media attachments in this group (videos and images.)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
+ * @param {string} groupId - Group ID to join
  * @returns {Promise<*>}
  */
 export async function listGroupAttachments(lo, groupId) {
@@ -401,7 +401,7 @@ export async function listGroupAttachments(lo, groupId) {
 /**
  * List links (cards) in this group (links, embeddings.)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
+ * @param {string} groupId - Group ID to join
  * @returns {Promise<*>}
  */
 export async function listGroupLinks(lo, groupId) {
@@ -412,7 +412,7 @@ export async function listGroupLinks(lo, groupId) {
 /**
  * Search for a group member using a keyword query.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
+ * @param {string} groupId - Group ID to join
  * @param {string} query - keyword to search for in the member list
  * @returns {Promise<*>}
  */
@@ -428,7 +428,7 @@ export async function searchGroupMembers(lo, groupId, query) {
 /**
  * Get list of statuses that need review.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
+ * @param {string} groupId - Group ID to join
  * @returns {Promise<*>}
  */
 export async function groupModeration(lo, groupId) {
@@ -439,7 +439,7 @@ export async function groupModeration(lo, groupId) {
 /**
  *
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
+ * @param {string} groupId - Group ID to join
  * @returns {Promise<*>}
  */
 export async function listGroupRemovedAccounts(lo, groupId) {
@@ -450,8 +450,8 @@ export async function listGroupRemovedAccounts(lo, groupId) {
 /**
  *
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
- * @param {string|number} statusId - status id to approve
+ * @param {string} groupId - Group ID to join
+ * @param {string} statusId - status id to approve
  * @returns {Promise<*>}
  */
 export async function groupApproveStatus(lo, groupId, statusId) {
@@ -462,8 +462,8 @@ export async function groupApproveStatus(lo, groupId, statusId) {
 /**
  *
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
- * @param {string|number} statusId - status id to reject
+ * @param {string} groupId - Group ID to join
+ * @param {string} statusId - status id to reject
  * @returns {Promise<*>}
  */
 export async function groupRejectStatus(lo, groupId, statusId) {
@@ -474,8 +474,8 @@ export async function groupRejectStatus(lo, groupId, statusId) {
 /**
  *
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
- * @param {string|number} statusId - status id to use for whitelisting account
+ * @param {string} groupId - Group ID to join
+ * @param {string} statusId - status id to use for whitelisting account
  * @returns {Promise<*>}
  */
 export async function groupWhitelistFromStatus(lo, groupId, statusId) {
@@ -486,8 +486,8 @@ export async function groupWhitelistFromStatus(lo, groupId, statusId) {
 /**
  *
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
- * @param {string|number} accountId - account id to remove from group (permanently, i.e banned)
+ * @param {string} groupId - Group ID to join
+ * @param {string} accountId - account id to remove from group (permanently, i.e banned)
  * @returns {Promise<*>}
  */
 export async function groupRemoveAccount(lo, groupId, accountId) {
@@ -499,8 +499,8 @@ export async function groupRemoveAccount(lo, groupId, accountId) {
 /**
  *
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
- * @param {string|number} accountId - account id to make non-permanently removed (i.e. unbanned)
+ * @param {string} groupId - Group ID to join
+ * @param {string} accountId - account id to make non-permanently removed (i.e. unbanned)
  * @returns {Promise<*>}
  */
 export async function groupRemoveRemovedAccount(lo, groupId, accountId) {
@@ -512,8 +512,8 @@ export async function groupRemoveRemovedAccount(lo, groupId, accountId) {
 /**
  *
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
- * @param {string|number} statusId - status id to remove from group
+ * @param {string} groupId - Group ID to join
+ * @param {string} statusId - status id to remove from group
  * @returns {Promise<*>}
  */
 export async function groupRemoveStatus(lo, groupId, statusId) {
@@ -524,8 +524,8 @@ export async function groupRemoveStatus(lo, groupId, statusId) {
 /**
  *
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} groupId - Group ID to join
- * @param {string|number} accountId - account id update role for
+ * @param {string} groupId - Group ID to join
+ * @param {string} accountId - account id update role for
  * @param role
  * @returns {Promise<*>}
  */

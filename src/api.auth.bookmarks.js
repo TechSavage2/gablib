@@ -38,7 +38,7 @@ export async function createBookmarkCollection(lo, title) {
 /**
  * Edit an existing bookmark collection.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} bookmarkCollectionId id of bookmark collection
+ * @param {string} bookmarkCollectionId id of bookmark collection
  * @param {string} title New title of bookmark collection
  * @returns {Promise<*>}
  */
@@ -50,7 +50,7 @@ export async function editBookmarkCollection(lo, bookmarkCollectionId, title) {
 /**
  * Delete an existing bookmark collection
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} bookmarkCollectionId id of bookmark collection
+ * @param {string} bookmarkCollectionId id of bookmark collection
  * @returns {Promise<*>}
  */
 export async function deleteBookmarkCollection(lo, bookmarkCollectionId) {

@@ -9,7 +9,7 @@
 'use strict';
 
 import { LoginObject } from './obj/LoginObject.js';
-import { getTokens } from './getTokens.js';
+import { _getTokens } from './_getTokens.js';
 import { _fetch } from './_fetch.js';
 
 /**
@@ -38,7 +38,7 @@ export async function login(credentials, altPassword, altBaseUrl) {
   // Step 1: get login page (extract Authenticity, CSRF tokens, initial cookies.)
   try {
     const signInPageResult = await _fetch(lo, `${ lo.baseUrl }/auth/sign_in`, 'GET', 'html');
-    Object.assign(lo, getTokens(signInPageResult.content));
+    Object.assign(lo, _getTokens(signInPageResult.content));
     lo.lastUrl = url;
   }
   catch(err) {
@@ -78,7 +78,7 @@ export async function refreshSession(lo) {
   try {
     const finalResult = await _fetch(lo, new URL('/', lo.baseUrl), 'GET', 'html');
     if ( finalResult.ok ) {
-      Object.assign(lo, getTokens(finalResult.content));
+      Object.assign(lo, _getTokens(finalResult.content));
     }
     else {
       console.error(`Could not obtain initialized and authenticated page.`);

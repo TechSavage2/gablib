@@ -8,7 +8,11 @@
 
 'use strict';
 
-// Simple cookie jar
+/**
+ * Basic cookie jar for _fetch
+ * @constructor
+ * @private
+ */
 export function CookieJar() {
   let cookies = {};
 

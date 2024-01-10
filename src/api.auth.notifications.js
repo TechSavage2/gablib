@@ -17,9 +17,9 @@ import { _fetch } from './_fetch.js';
 /**
  * Get notification list. Supports paginating and various filters.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {number|string|null} [maxId] - for paginating
- * @param {number|string|null} [sinceId] - to get new notifications
- * @param {*|null} [filters] - filter options
+ * @param {string|null} [maxId] - for paginating
+ * @param {string|null} [sinceId] - to get new notifications
+ * @param {*} [filters] - filter options
  * @param {boolean} [filters.onlyFollowing=false] - only show notifications from accounts you follow
  * @param {boolean} [filters.onlyVerified=false] - only show notifications from verified accounts
  * @param {Array} [filters.types=[]] - filter by one or several types:

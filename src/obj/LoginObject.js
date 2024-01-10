@@ -61,13 +61,17 @@ const commonUserAgents = [
 
 /**
  * LoginObject is returned initialized by the login() function. See documentation
- * for login().
- * @param credentials
- * @param altPassword
- * @param altBaseUrl
+ * for `login()`. Don't provide any arguments to use the default env names
+ * ('MASTODON_USEREMAIL', 'MASTODON_PASSWORD', 'MASTODON_BASEURL').
+ * @param {string|{}} [credentials] - credential object, or env name for alternative user email.
+ * @param {string} [credentials.userEmail] - email for user
+ * @param {string} [credentials.password] - password
+ * @param {string} [credentials.baseUrl] - base URL of site
+ * @param {string} [altPassword] - alternative env name for password
+ * @param {string} [altBaseUrl] - alternative env name for base URL
  * @constructor
  */
-export function LoginObject(credentials, altPassword = null, altBaseUrl = null) {
+export function LoginObject(credentials, altPassword, altBaseUrl) {
   let userEmail = defEmailEnv;
   let password = defaultPasswordEnv;
   let baseUrl = defaultBaseUrlEnv;

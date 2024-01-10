@@ -13,7 +13,6 @@
 'use strict';
 
 import { _fetch } from './_fetch.js';
-import { sleep } from './utils.js';
 
 /**
  * Get your own account details, including source (for updating.)
@@ -91,7 +90,7 @@ export async function getRelatedAccounts(lo) {
 /**
  * List relationship (member or not etc.) for array with account Ids.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {Array} accountIds - list of account Ids to check
+ * @param {Array} accountIds - list of account (ids as strings) to check
  * @returns {Promise<*>}
  */
 export async function getAccountRelationships(lo, accountId, accountIds) {
@@ -149,15 +148,14 @@ export async function getAccountMutes(lo) {
  * @returns {Promise<unknown>}
  */
 export async function getAccountBlockedBys(lo) {
-  await sleep(0);
   return { content: { accounts: lo.initJSON.meta.blocked_by }, ok: true };
 }
 
 /**
  *
  * @param {LoginObject} lo - Valid and active LoginObject.
- * @param {string|number} [maxId]
- * @param {string|number} [sinceId]
+ * @param {string} [maxId]
+ * @param {string} [sinceId]
  * @param {string|number} [limit=40] max items, max can be 80
  * @returns {Promise<unknown>}
  */
@@ -172,7 +170,7 @@ export async function getFollowRequests(lo, maxId, sinceId, limit = 40) {
 /**
  * Accept or reject an account follow request.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} accountId - account to handle
+ * @param {string} accountId - account to handle
  * @param {string} type - authorize or reject request. See {@link enumAccountFollowRequest}
  * @returns {Promise<unknown>}
  */
@@ -184,7 +182,7 @@ export async function handleAccountFollowRequests(lo, accountId, type) {
 /**
  * Get list of media attachments based on type (video, image)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} accountId - account to list
+ * @param {string} accountId - account to list
  * @param {string} type - media type to list. See {@link enumAccountMediaType}
  * @param {string|number} [maxId]
  * @returns {Promise<unknown>}
