@@ -1,14 +1,14 @@
 /*******************************************************************************
 
  gablib
- getTokens.js (2024-01-02)
+ _getTokens.js (2024-01-02)
  Copyright (c) 2024 TechSavage
 
  *******************************************************************************/
 
 'use strict';
 
-export function getTokens(html) {
+export function _getTokens(html) {
   // WARN note that this is sensitive to changes in the html (in use for now.)
   // Alt: lightweight DOM parser for nodejs and iterate over each node/JSON
   const rxAuthToken = /<input type="hidden" name="authenticity_token" value="([^"]+)" \/>/gim;
