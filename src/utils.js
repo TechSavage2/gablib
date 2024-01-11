@@ -10,6 +10,10 @@
 
 import { EventEmitter } from 'node:events';
 
+/**
+ * Returns an event handler that can be used across a gablib application.
+ * @type {module:events.EventEmitter}
+ */
 export const gablibEvents = new EventEmitter();
 
 /**
