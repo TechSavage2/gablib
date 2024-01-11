@@ -12,7 +12,7 @@
 
 'use strict';
 
-import { streamEmitter } from './utils.js';
+import { gablibEvents } from './utils.js';
 
 /**
  * Subscribe to the streaming API. It will emit two events:
@@ -20,12 +20,12 @@ import { streamEmitter } from './utils.js';
  * stream-event
  * stream-ended
  *
- * You can obtain an event handler by importing `streamEmitter` from gablib.
+ * You can obtain an event handler by importing `gablibEvents` from gablib.
  * @param {LoginObject} lo - Valid and active LoginObject@param {string} shortcutId - id of shortcut to delete
  * @returns {Promise<*>}
  * @event
  * @example
- * streamEmitter.on('stream-message', json => {  });
+ * gablibEvents.on('stream-message', json => {  });
  */
 export async function getStream(lo) {
   const url = new URL('/api/v4/streaming', lo.baseUrl);
@@ -66,7 +66,7 @@ export async function getStream(lo) {
          * @type {Object}
          * @property {{}} json - the event message as JSON
          */
-        streamEmitter.emit('stream-event', JSON.parse(part));
+        gablibEvents.emit('stream-event', JSON.parse(part));
         chunk = '';
       }
       catch {}
@@ -77,5 +77,5 @@ export async function getStream(lo) {
    * stream-ended event.
    * @event stream-ended
    */
-  streamEmitter.emit('stream-ended');
+  gablibEvents.emit('stream-ended');
 }

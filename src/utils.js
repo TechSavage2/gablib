@@ -10,7 +10,7 @@
 
 import { EventEmitter } from 'node:events';
 
-export const streamEmitter = new EventEmitter();
+export const gablibEvents = new EventEmitter();
 
 /**
  * Map properties of json to those of map.
