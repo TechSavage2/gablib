@@ -25,7 +25,7 @@ import { streamEmitter } from './utils.js';
  * @returns {Promise<*>}
  * @event
  * @example
- * streamEmitter.on('stream-message, json => {  });
+ * streamEmitter.on('stream-message', json => {  });
  */
 export async function getStream(lo) {
   const url = new URL('/api/v4/streaming', lo.baseUrl);
