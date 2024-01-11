@@ -12,6 +12,18 @@
 
 'use strict';
 
+/**
+ * stream-event event.
+ * @event stream-event
+ * @type {Object}
+ * @property {{}} json - the event message as JSON
+ */
+
+/**
+ * stream-ended event.
+ * @event stream-ended
+ */
+
 import { gablibEvents } from './utils.js';
 
 /**
@@ -60,22 +72,13 @@ export async function getStream(lo) {
     // todo this is NOT super elegant.. :) works for now. We can get incomplete json strings, we need to merge chunks.
     chunk.split('data: ').forEach(part => {
       try {
-        /**
-         * stream-event event.
-         * @event stream-event
-         * @type {Object}
-         * @property {{}} json - the event message as JSON
-         */
-        gablibEvents.emit('stream-event', JSON.parse(part));
+        const msg = Object.assign({}, {event: 'ping'}, JSON.parse(part));
+        gablibEvents.emit('stream-event', msg);
         chunk = '';
       }
       catch {}
     });
   }
 
-  /**
-   * stream-ended event.
-   * @event stream-ended
-   */
   gablibEvents.emit('stream-ended');
 }
