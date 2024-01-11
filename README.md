@@ -55,7 +55,7 @@ Features
 - [x] public API calls (WIP)
 - [x] 'normalizes' Gab's remapped status lists format to that of normal Mastodon
 - [x] can use a custom markdown stripper
-- [ ] streams and sockets wrapper objects (for client use)
+- [x] streams and (sockets WIP) wrapper objects (for client use)
 - [ ] (de)serializing of session/auth data for reuse between executions (experimental)
 - [ ] events (responses, errors, upload/download progress, etc.)
 
@@ -86,6 +86,7 @@ NOTE: currently unstable/may change.
 - Full support for site wide **search**
   - All, filters
 - Support for **Site Settings** (TODO)
+- Supports streaming API
 
 Getting Started
 ---------------
