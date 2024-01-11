@@ -8,6 +8,10 @@
 
 'use strict';
 
+import { EventEmitter } from 'node:events';
+
+export const streamEmitter = new EventEmitter();
+
 /**
  * Map properties of json to those of map.
  * @param {{}} json - object to remap
