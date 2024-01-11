@@ -14,6 +14,19 @@
 
 import { streamEmitter } from './utils.js';
 
+/**
+ * Subscribe to the streaming API. It will emit two events:
+ *
+ * stream-event
+ * stream-ended
+ *
+ * You can obtain an event handler by importing `streamEmitter` from gablib.
+ * @param {LoginObject} lo - Valid and active LoginObject@param {string} shortcutId - id of shortcut to delete
+ * @returns {Promise<*>}
+ * @event
+ * @example
+ * streamEmitter.on('stream-message, json => {  });
+ */
 export async function getStream(lo) {
   const url = new URL('/api/v4/streaming', lo.baseUrl);
 
@@ -47,6 +60,12 @@ export async function getStream(lo) {
     // todo this is NOT super elegant.. :) works for now. We can get incomplete json strings, we need to merge chunks.
     chunk.split('data: ').forEach(part => {
       try {
+        /**
+         * stream-event event.
+         * @event stream-event
+         * @type {Object}
+         * @property {{}} json - the event message as JSON
+         */
         streamEmitter.emit('stream-event', JSON.parse(part));
         chunk = '';
       }
@@ -54,5 +73,9 @@ export async function getStream(lo) {
     });
   }
 
-  streamEmitter.emit('stream-ended', { value: null });
+  /**
+   * stream-ended event.
+   * @event stream-ended
+   */
+  streamEmitter.emit('stream-ended');
 }
