@@ -49,6 +49,17 @@ export async function deleteShortcut(lo, shortcutId) {
 }
 
 /**
+ * Clear unread count for shortcut
+ * @param {LoginObject} lo - Valid and active LoginObject@param {string} shortcutId - id of shortcut to delete
+ * @param {string} shortcutId - shortcut id to clear unread count for
+ * @returns {Promise<*>}
+ */
+export async function clearShortcutCount(lo, shortcutId) {
+  const url = new URL(`/api/v1/shortcuts/${ shortcutId }/clear_count`, lo.baseUrl);
+  return _fetch(lo, url, 'POST');
+}
+
+/**
  * Reorder your shortcuts.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {Array} idArray - array of shortcut ids in the order you want them to appear
