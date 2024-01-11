@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>api.auth.accounts.js - gablib</title>
+    <title>Streaming - gablib</title>
 
 
 
@@ -11,10 +11,10 @@
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link type="text/css" rel="stylesheet" href="styles/prettify.css">
     <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
     <script src="scripts/nav.js" defer></script>
 
@@ -22,7 +22,7 @@
 </head>
 <body>
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<input type="checkbox" id="nav-trigger" class="nav-trigger"/>
 <label for="nav-trigger" class="navicon-button x">
   <div class="navicon"></div>
 </label>
@@ -40,7 +40,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">api.auth.accounts.js</h1>
+    <h1 class="page-title">Streaming</h1>
 
 
 
@@ -48,215 +48,91 @@
 
 
 
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/*******************************************************************************
+<section>
 
- gablib
- api.auth.accounts.js (2024-01-06)
- Copyright (c) 2024 TechSavage
+<header>
 
- *******************************************************************************/
+</header>
 
-/**
- * @module Accounts
- */
+<article>
 
-'use strict';
+        <div class="container-overview">
 
-import { _fetch } from './_fetch.js';
 
-/**
- * Get your own account details, including source (for updating.)
- * @param {LoginObject} lo - Valid and active LoginObject
- * @returns {Promise&lt;*>}
- */
-export async function getMyAccount(lo) {
-  const url = new URL('/api/v1/accounts/verify_credentials', lo.baseUrl);
-  return _fetch(lo, url);
-}
 
-/**
- * Update your own account information.
- * @param {LoginObject} lo - Valid and active LoginObject
- * @param {Object} options - new settings
- * @param {string} [options.displayName] New display name if provided
- * @param {string} [options.note] New "bio" if provided
- * @param {boolean} [options.locked] If account is locked or not.
- * @param {string} [options.avatar] New avatar image provided as Buffer
- * @param {string} [options.header] New header image provided as Buffer
- * @returns {Promise&lt;*>}
- */
-export async function editMyAccount(lo, options) {
-  if ( !Object.keys(options).length ) {
-    return { content: null, ok: false };
-  }
+<dl class="details">
 
-  const body = new FormData();
-  if ( typeof options.displayName === 'string' ) {
-    body.append('display_name', options.displayName);
-  }
 
-  if ( typeof options.note === 'string' ) {
-    body.append('note', options.note);
-  }
 
-  if ( typeof options.avatar !== 'undefined' ) {
-    body.append('avatar', options.avatar);
-  }
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.stream.js.html">api.auth.stream.js</a>, <a href="api.auth.stream.js.html#line9">line 9</a>
+    </li></ul></dd>
 
-  if ( typeof options.header !== 'undefined' ) {
-    body.append('header', options.header);
-  }
 
-  if ( typeof options.locked === 'boolean' ) {
-    body.append('header', options.locked.toString());
-  }
 
-  const url = new URL('/api/v1/accounts/update_credentials', lo.baseUrl);
-  return _fetch(lo, url, 'PATCH', 'binary', body);
-}
 
-/**
- * Get list of suggested accounts
- * @param {LoginObject} lo - Valid and active LoginObject
- * @returns {Promise&lt;*>}
- */
-export async function getSuggestedAccounts(lo) {
-  const url = new URL(`/api/v2/suggestions`, lo.baseUrl);
-  url.searchParams.append('type', 'verified');
-  return _fetch(lo, url);
-}
 
-/**
- * Get list of related accounts
- * @param {LoginObject} lo - Valid and active LoginObject
- * @returns {Promise&lt;*>}
- */
-export async function getRelatedAccounts(lo) {
-  const url = new URL(`/api/v2/suggestions`, lo.baseUrl);
-  url.searchParams.append('type', 'related');
-  return _fetch(lo, url);
-}
 
-/**
- * List relationship (member or not etc.) for array with account Ids.
- * @param {LoginObject} lo - Valid and active LoginObject
- * @param {Array} accountIds - list of account (ids as strings) to check
- * @returns {Promise&lt;*>}
- */
-export async function getAccountRelationships(lo, accountId, accountIds) {
-  const url = new URL(`/api/v1/accounts/${ accountId }/relationships`, lo.baseUrl);
-  return _fetch(lo, url, 'POST', 'json', { accountIds });
-}
 
-/**
- * List follower accounts to given account. Note that if the account has blocked
- * public lists this function will fail.
- * @param {LoginObject} lo - Valid and active LoginObject.
- * @param {string} accountId - followers to account id
- * @returns {Promise&lt;unknown>}
- */
-export async function getAccountFollowers(lo, accountId) {
-  const url = new URL(`/api/v1/accounts/${ accountId }/followers`, lo.baseUrl);
-  return _fetch(lo, url);
-}
 
-/**
- * List following accounts to given account. Note that if the account has blocked
- * public lists this function will fail.
- * @param {LoginObject} lo - Valid and active LoginObject.
- * @param {string} accountId - followings to account id
- * @returns {Promise&lt;unknown>}
- */
-export async function getAccountFollowing(lo, accountId) {
-  const url = new URL(`/api/v1/accounts/${ accountId }/following`, lo.baseUrl);
-  return _fetch(lo, url);
-}
 
-/**
- * List accounts you have blocked.
- * @param {LoginObject} lo - Valid and active LoginObject.
- * @returns {Promise&lt;unknown>}
- */
-export async function getAccountBlocks(lo) {
-  const url = new URL(`/api/v1/blocks`, lo.baseUrl);
-  return _fetch(lo, url);
-}
 
-/**
- * List accounts you have muted.
- * @param {LoginObject} lo - Valid and active LoginObject.
- * @returns {Promise&lt;unknown>}
- */
-export async function getAccountMutes(lo) {
-  const url = new URL(`/api/v1/mutes`, lo.baseUrl);
-  return _fetch(lo, url);
-}
 
-/**
- * List accounts that have you blocked.
- * @param {LoginObject} lo - Valid and active LoginObject.
- * @returns {Promise&lt;unknown>}
- */
-export async function getAccountBlockedBys(lo) {
-  return { content: { accounts: lo.initJSON.meta.blocked_by }, ok: true };
-}
 
-/**
- *
- * @param {LoginObject} lo - Valid and active LoginObject.
- * @param {string} [maxId]
- * @param {string} [sinceId]
- * @param {string|number} [limit=40] max items, max can be 80
- * @returns {Promise&lt;unknown>}
- */
-export async function getFollowRequests(lo, maxId, sinceId, limit = 40) {
-  const url = new URL(`/api/v1/follow_requests`, lo.baseUrl);
-  if ( maxId ) url.searchParams.append('max_id', maxId);
-  if ( sinceId ) url.searchParams.append('since_id', sinceId);
-  if ( limit ) url.searchParams.append('limit', limit);
-  return _fetch(lo, url);
-}
 
-/**
- * Accept or reject an account follow request.
- * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} accountId - account to handle
- * @param {string} type - authorize or reject request. See {@link enumAccountFollowRequest}
- * @returns {Promise&lt;unknown>}
- */
-export async function handleAccountFollowRequests(lo, accountId, type) {
-  const url = new URL(`/api/v1/follow_requests/${ accountId }/${ type }`, lo.baseUrl);
-  return _fetch(lo, url, 'BODY');
-}
 
-/**
- * Get list of media attachments based on type (video, image)
- * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} accountId - account to list
- * @param {string} type - media type to list. See {@link enumAccountMediaType}
- * @param {string|number} [maxId]
- * @returns {Promise&lt;unknown>}
- */
-export async function getAccountAttachments(lo, accountId, type, maxId) {
-  const url = new URL(`/api/v1/accounts/${ accountId }/media_attachments`, lo.baseUrl);
-  url.searchParams.append('type', type);
-  if ( maxId ) url.searchParams.append('max_id', maxId);
-  return _fetch(lo, url);
-}
 
-// https://gab.com/api/v1/accounts/search?q=a&amp;resolve=false&amp;limit=4
-export async function searchAccounts(lo, keyword, limit = 4) {
-  const url = new URL('/api/v1/accounts/search', lo.baseUrl);
-  url.searchParams.append('q', keyword);
-  url.searchParams.append('limit', limit.toString());
-  url.searchParams.append('resolve', 'false');
-  return _fetch(lo, url);
-}
-</code></pre>
-        </article>
-    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</dl>
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+</section>
 
 
 

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+
     <meta charset="utf-8">
     <title>api.auth.statuses.js - gablib</title>
-    
-    
-    
-    
-    
+
+
+
+
+
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
     <!--[if lt IE 9]>
@@ -17,7 +17,7 @@
     <link type="text/css" rel="stylesheet" href="styles/prettify.css">
     <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
     <script src="scripts/nav.js" defer></script>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -29,25 +29,25 @@
 
 <label for="nav-trigger" class="overlay"></label>
 
-<nav >
-    
-    <input type="text" id="nav-search" placeholder="Search" />
-    
-    
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/TechSavage2/gablib" target="_parent" class="menu-item" id="website_link" >Project Website</a></h2><h3>Modules</h3><ul><li><a href="module-Accounts.html">Accounts</a><ul class='methods'><li data-type='method'><a href="module-Accounts.html#.editMyAccount">editMyAccount</a></li><li data-type='method'><a href="module-Accounts.html#.getAccountAttachments">getAccountAttachments</a></li><li data-type='method'><a href="module-Accounts.html#.getAccountBlockedBys">getAccountBlockedBys</a></li><li data-type='method'><a href="module-Accounts.html#.getAccountBlocks">getAccountBlocks</a></li><li data-type='method'><a href="module-Accounts.html#.getAccountFollowers">getAccountFollowers</a></li><li data-type='method'><a href="module-Accounts.html#.getAccountFollowing">getAccountFollowing</a></li><li data-type='method'><a href="module-Accounts.html#.getAccountMutes">getAccountMutes</a></li><li data-type='method'><a href="module-Accounts.html#.getAccountRelationships">getAccountRelationships</a></li><li data-type='method'><a href="module-Accounts.html#.getFollowRequests">getFollowRequests</a></li><li data-type='method'><a href="module-Accounts.html#.getMyAccount">getMyAccount</a></li><li data-type='method'><a href="module-Accounts.html#.getRelatedAccounts">getRelatedAccounts</a></li><li data-type='method'><a href="module-Accounts.html#.getSuggestedAccounts">getSuggestedAccounts</a></li><li data-type='method'><a href="module-Accounts.html#.handleAccountFollowRequests">handleAccountFollowRequests</a></li></ul></li><li><a href="module-Bookmarks.html">Bookmarks</a><ul class='methods'><li data-type='method'><a href="module-Bookmarks.html#.createBookmarkCollection">createBookmarkCollection</a></li><li data-type='method'><a href="module-Bookmarks.html#.deleteBookmarkCollection">deleteBookmarkCollection</a></li><li data-type='method'><a href="module-Bookmarks.html#.editBookmarkCollection">editBookmarkCollection</a></li><li data-type='method'><a href="module-Bookmarks.html#.getBookmarkCollection">getBookmarkCollection</a></li></ul></li><li><a href="module-Groups.html">Groups</a><ul class='methods'><li data-type='method'><a href="module-Groups.html#.createGroup">createGroup</a></li><li data-type='method'><a href="module-Groups.html#.editGroup">editGroup</a></li><li data-type='method'><a href="module-Groups.html#.getFeaturedGroups">getFeaturedGroups</a></li><li data-type='method'><a href="module-Groups.html#.getGroup">getGroup</a></li><li data-type='method'><a href="module-Groups.html#.getGroupCategories">getGroupCategories</a></li><li data-type='method'><a href="module-Groups.html#.getGroupJoinRequests">getGroupJoinRequests</a></li><li data-type='method'><a href="module-Groups.html#.getGroupModerationStats">getGroupModerationStats</a></li><li data-type='method'><a href="module-Groups.html#.getGroupRelationships">getGroupRelationships</a></li><li data-type='method'><a href="module-Groups.html#.getGroupsByCategory">getGroupsByCategory</a></li><li data-type='method'><a href="module-Groups.html#.getGroupsByTag">getGroupsByTag</a></li><li data-type='method'><a href="module-Groups.html#.getMyAdminGroups">getMyAdminGroups</a></li><li data-type='method'><a href="module-Groups.html#.getMyGroups">getMyGroups</a></li><li data-type='method'><a href="module-Groups.html#.getSuggestedGroups">getSuggestedGroups</a></li><li data-type='method'><a href="module-Groups.html#.groupApproveStatus">groupApproveStatus</a></li><li data-type='method'><a href="module-Groups.html#.groupModeration">groupModeration</a></li><li data-type='method'><a href="module-Groups.html#.groupRejectStatus">groupRejectStatus</a></li><li data-type='method'><a href="module-Groups.html#.groupRemoveAccount">groupRemoveAccount</a></li><li data-type='method'><a href="module-Groups.html#.groupRemoveRemovedAccount">groupRemoveRemovedAccount</a></li><li data-type='method'><a href="module-Groups.html#.groupRemoveStatus">groupRemoveStatus</a></li><li data-type='method'><a href="module-Groups.html#.groupUpdateRole">groupUpdateRole</a></li><li data-type='method'><a href="module-Groups.html#.groupWhitelistFromStatus">groupWhitelistFromStatus</a></li><li data-type='method'><a href="module-Groups.html#.handleGroupJoinRequest">handleGroupJoinRequest</a></li><li data-type='method'><a href="module-Groups.html#.joinGroup">joinGroup</a></li><li data-type='method'><a href="module-Groups.html#.leaveGroup">leaveGroup</a></li><li data-type='method'><a href="module-Groups.html#.listGroupAccounts">listGroupAccounts</a></li><li data-type='method'><a href="module-Groups.html#.listGroupAdminsAndMods">listGroupAdminsAndMods</a></li><li data-type='method'><a href="module-Groups.html#.listGroupAttachments">listGroupAttachments</a></li><li data-type='method'><a href="module-Groups.html#.listGroupLinks">listGroupLinks</a></li><li data-type='method'><a href="module-Groups.html#.listGroupRemovedAccounts">listGroupRemovedAccounts</a></li><li data-type='method'><a href="module-Groups.html#.muteGroup">muteGroup</a></li><li data-type='method'><a href="module-Groups.html#.requestGroupJoin">requestGroupJoin</a></li><li data-type='method'><a href="module-Groups.html#.searchGroupMembers">searchGroupMembers</a></li><li data-type='method'><a href="module-Groups.html#.unmuteGroup">unmuteGroup</a></li></ul></li><li><a href="module-Login.html">Login</a><ul class='methods'><li data-type='method'><a href="module-Login.html#.login">login</a></li><li data-type='method'><a href="module-Login.html#.refreshSession">refreshSession</a></li></ul></li><li><a href="module-Misc.html">Misc</a><ul class='methods'><li data-type='method'><a href="module-Misc.html#.getConversationOwner">getConversationOwner</a></li><li data-type='method'><a href="module-Misc.html#.getSuggestedFeeds">getSuggestedFeeds</a></li></ul></li><li><a href="module-Notifications.html">Notifications</a><ul class='methods'><li data-type='method'><a href="module-Notifications.html#.getNotifications">getNotifications</a></li><li data-type='method'><a href="module-Notifications.html#.markNotificationsRead">markNotificationsRead</a></li></ul></li><li><a href="module-Public.html">Public</a><ul class='methods'><li data-type='method'><a href="module-Public.html#.getAccountFromId">getAccountFromId</a></li><li data-type='method'><a href="module-Public.html#.getAccountFromUsername">getAccountFromUsername</a></li><li data-type='method'><a href="module-Public.html#.getExplore">getExplore</a></li><li data-type='method'><a href="module-Public.html#.getNewsFeed">getNewsFeed</a></li><li data-type='method'><a href="module-Public.html#.getPopularStatuses">getPopularStatuses</a></li><li data-type='method'><a href="module-Public.html#.getProFeed">getProFeed</a></li><li data-type='method'><a href="module-Public.html#.getTrendsFeed">getTrendsFeed</a></li></ul></li><li><a href="module-Shortcuts.html">Shortcuts</a><ul class='methods'><li data-type='method'><a href="module-Shortcuts.html#.addShortcut">addShortcut</a></li><li data-type='method'><a href="module-Shortcuts.html#.deleteShortcut">deleteShortcut</a></li><li data-type='method'><a href="module-Shortcuts.html#.getShortcuts">getShortcuts</a></li><li data-type='method'><a href="module-Shortcuts.html#.reorderShortcut">reorderShortcut</a></li></ul></li><li><a href="module-Statuses.html">Statuses</a><ul class='methods'><li data-type='method'><a href="module-Statuses.html#.bookmarkStatus">bookmarkStatus</a></li><li data-type='method'><a href="module-Statuses.html#.bookmarkStatusState">bookmarkStatusState</a></li><li data-type='method'><a href="module-Statuses.html#.createStatus">createStatus</a></li><li data-type='method'><a href="module-Statuses.html#.deleteStatus">deleteStatus</a></li><li data-type='method'><a href="module-Statuses.html#.editStatus">editStatus</a></li><li data-type='method'><a href="module-Statuses.html#.favoritePost">favoritePost</a></li><li data-type='method'><a href="module-Statuses.html#.getAccountStatuses">getAccountStatuses</a></li><li data-type='method'><a href="module-Statuses.html#.getComments">getComments</a></li><li data-type='method'><a href="module-Statuses.html#.getStatus">getStatus</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusContext">getStatusContext</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusQuotes">getStatusQuotes</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusRepostedBy">getStatusRepostedBy</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusRevisions">getStatusRevisions</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusStats">getStatusStats</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusesFromTag">getStatusesFromTag</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusesWithCard">getStatusesWithCard</a></li><li data-type='method'><a href="module-Statuses.html#.getTimelineStatuses">getTimelineStatuses</a></li><li data-type='method'><a href="module-Statuses.html#.moveStatus">moveStatus</a></li><li data-type='method'><a href="module-Statuses.html#.pinStatus">pinStatus</a></li><li data-type='method'><a href="module-Statuses.html#.pinStatusState">pinStatusState</a></li><li data-type='method'><a href="module-Statuses.html#.setMarkdownFunction">setMarkdownFunction</a></li><li data-type='method'><a href="module-Statuses.html#.unbookmarkStatus">unbookmarkStatus</a></li><li data-type='method'><a href="module-Statuses.html#.unfavoritePost">unfavoritePost</a></li><li data-type='method'><a href="module-Statuses.html#.unpinStatus">unpinStatus</a></li><li data-type='method'><a href="module-Statuses.html#.uploadMedia">uploadMedia</a></li></ul></li></ul><h3>Classes</h3><ul><li><a href="LoginObject.html">LoginObject</a></li><li><a href="Poll.html">Poll</a></li></ul><h3>Global</h3><ul><li><a href="global.html#enumAccountFollowRequest">enumAccountFollowRequest</a></li><li><a href="global.html#enumAccountMediaType">enumAccountMediaType</a></li><li><a href="global.html#enumGroupModerationJoin">enumGroupModerationJoin</a></li><li><a href="global.html#enumPollExpires">enumPollExpires</a></li><li><a href="global.html#enumPostExpires">enumPostExpires</a></li><li><a href="global.html#enumReactions">enumReactions</a></li><li><a href="global.html#enumSearchFilterTypes">enumSearchFilterTypes</a></li><li><a href="global.html#enumShortType">enumShortType</a></li><li><a href="global.html#enumStatusSort">enumStatusSort</a></li><li><a href="global.html#enumTimelines">enumTimelines</a></li><li><a href="global.html#enumVisibility">enumVisibility</a></li></ul>
-    
+<nav>
+
+    <input type="text" id="nav-search" placeholder="Search"/>
+
+
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/TechSavage2/gablib" target="_parent" class="menu-item" id="website_link">Project Website</a></h2><h3>Modules</h3><ul><li><a href="module-Accounts.html">Accounts</a><ul class='methods'><li data-type='method'><a href="module-Accounts.html#.editMyAccount">editMyAccount</a></li><li data-type='method'><a href="module-Accounts.html#.getAccountAttachments">getAccountAttachments</a></li><li data-type='method'><a href="module-Accounts.html#.getAccountBlockedBys">getAccountBlockedBys</a></li><li data-type='method'><a href="module-Accounts.html#.getAccountBlocks">getAccountBlocks</a></li><li data-type='method'><a href="module-Accounts.html#.getAccountFollowers">getAccountFollowers</a></li><li data-type='method'><a href="module-Accounts.html#.getAccountFollowing">getAccountFollowing</a></li><li data-type='method'><a href="module-Accounts.html#.getAccountMutes">getAccountMutes</a></li><li data-type='method'><a href="module-Accounts.html#.getAccountRelationships">getAccountRelationships</a></li><li data-type='method'><a href="module-Accounts.html#.getFollowRequests">getFollowRequests</a></li><li data-type='method'><a href="module-Accounts.html#.getMyAccount">getMyAccount</a></li><li data-type='method'><a href="module-Accounts.html#.getRelatedAccounts">getRelatedAccounts</a></li><li data-type='method'><a href="module-Accounts.html#.getSuggestedAccounts">getSuggestedAccounts</a></li><li data-type='method'><a href="module-Accounts.html#.handleAccountFollowRequests">handleAccountFollowRequests</a></li></ul></li><li><a href="module-Bookmarks.html">Bookmarks</a><ul class='methods'><li data-type='method'><a href="module-Bookmarks.html#.createBookmarkCollection">createBookmarkCollection</a></li><li data-type='method'><a href="module-Bookmarks.html#.deleteBookmarkCollection">deleteBookmarkCollection</a></li><li data-type='method'><a href="module-Bookmarks.html#.editBookmarkCollection">editBookmarkCollection</a></li><li data-type='method'><a href="module-Bookmarks.html#.getBookmarkCollection">getBookmarkCollection</a></li></ul></li><li><a href="module-Groups.html">Groups</a><ul class='methods'><li data-type='method'><a href="module-Groups.html#.createGroup">createGroup</a></li><li data-type='method'><a href="module-Groups.html#.editGroup">editGroup</a></li><li data-type='method'><a href="module-Groups.html#.getFeaturedGroups">getFeaturedGroups</a></li><li data-type='method'><a href="module-Groups.html#.getGroup">getGroup</a></li><li data-type='method'><a href="module-Groups.html#.getGroupCategories">getGroupCategories</a></li><li data-type='method'><a href="module-Groups.html#.getGroupJoinRequests">getGroupJoinRequests</a></li><li data-type='method'><a href="module-Groups.html#.getGroupModerationStats">getGroupModerationStats</a></li><li data-type='method'><a href="module-Groups.html#.getGroupRelationships">getGroupRelationships</a></li><li data-type='method'><a href="module-Groups.html#.getGroupsByCategory">getGroupsByCategory</a></li><li data-type='method'><a href="module-Groups.html#.getGroupsByTag">getGroupsByTag</a></li><li data-type='method'><a href="module-Groups.html#.getMyAdminGroups">getMyAdminGroups</a></li><li data-type='method'><a href="module-Groups.html#.getMyGroups">getMyGroups</a></li><li data-type='method'><a href="module-Groups.html#.getSuggestedGroups">getSuggestedGroups</a></li><li data-type='method'><a href="module-Groups.html#.groupApproveStatus">groupApproveStatus</a></li><li data-type='method'><a href="module-Groups.html#.groupModeration">groupModeration</a></li><li data-type='method'><a href="module-Groups.html#.groupRejectStatus">groupRejectStatus</a></li><li data-type='method'><a href="module-Groups.html#.groupRemoveAccount">groupRemoveAccount</a></li><li data-type='method'><a href="module-Groups.html#.groupRemoveRemovedAccount">groupRemoveRemovedAccount</a></li><li data-type='method'><a href="module-Groups.html#.groupRemoveStatus">groupRemoveStatus</a></li><li data-type='method'><a href="module-Groups.html#.groupUpdateRole">groupUpdateRole</a></li><li data-type='method'><a href="module-Groups.html#.groupWhitelistFromStatus">groupWhitelistFromStatus</a></li><li data-type='method'><a href="module-Groups.html#.handleGroupJoinRequest">handleGroupJoinRequest</a></li><li data-type='method'><a href="module-Groups.html#.joinGroup">joinGroup</a></li><li data-type='method'><a href="module-Groups.html#.leaveGroup">leaveGroup</a></li><li data-type='method'><a href="module-Groups.html#.listGroupAccounts">listGroupAccounts</a></li><li data-type='method'><a href="module-Groups.html#.listGroupAdminsAndMods">listGroupAdminsAndMods</a></li><li data-type='method'><a href="module-Groups.html#.listGroupAttachments">listGroupAttachments</a></li><li data-type='method'><a href="module-Groups.html#.listGroupLinks">listGroupLinks</a></li><li data-type='method'><a href="module-Groups.html#.listGroupRemovedAccounts">listGroupRemovedAccounts</a></li><li data-type='method'><a href="module-Groups.html#.muteGroup">muteGroup</a></li><li data-type='method'><a href="module-Groups.html#.requestGroupJoin">requestGroupJoin</a></li><li data-type='method'><a href="module-Groups.html#.searchGroupMembers">searchGroupMembers</a></li><li data-type='method'><a href="module-Groups.html#.unmuteGroup">unmuteGroup</a></li></ul></li><li><a href="module-Login.html">Login</a><ul class='methods'><li data-type='method'><a href="module-Login.html#.login">login</a></li><li data-type='method'><a href="module-Login.html#.refreshSession">refreshSession</a></li></ul></li><li><a href="module-Misc.html">Misc</a><ul class='methods'><li data-type='method'><a href="module-Misc.html#.getConversationOwner">getConversationOwner</a></li><li data-type='method'><a href="module-Misc.html#.getSuggestedFeeds">getSuggestedFeeds</a></li></ul></li><li><a href="module-Notifications.html">Notifications</a><ul class='methods'><li data-type='method'><a href="module-Notifications.html#.getNotifications">getNotifications</a></li><li data-type='method'><a href="module-Notifications.html#.markNotificationsRead">markNotificationsRead</a></li></ul></li><li><a href="module-Public.html">Public</a><ul class='methods'><li data-type='method'><a href="module-Public.html#.getAccountFromId">getAccountFromId</a></li><li data-type='method'><a href="module-Public.html#.getAccountFromUsername">getAccountFromUsername</a></li><li data-type='method'><a href="module-Public.html#.getExplore">getExplore</a></li><li data-type='method'><a href="module-Public.html#.getNewsFeed">getNewsFeed</a></li><li data-type='method'><a href="module-Public.html#.getPopularStatuses">getPopularStatuses</a></li><li data-type='method'><a href="module-Public.html#.getProFeed">getProFeed</a></li><li data-type='method'><a href="module-Public.html#.getTrendsFeed">getTrendsFeed</a></li></ul></li><li><a href="module-Search.html">Search</a><ul class='methods'><li data-type='method'><a href="module-Search.html#.search">search</a></li></ul></li><li><a href="module-Shortcuts.html">Shortcuts</a><ul class='methods'><li data-type='method'><a href="module-Shortcuts.html#.addShortcut">addShortcut</a></li><li data-type='method'><a href="module-Shortcuts.html#.clearShortcutCount">clearShortcutCount</a></li><li data-type='method'><a href="module-Shortcuts.html#.deleteShortcut">deleteShortcut</a></li><li data-type='method'><a href="module-Shortcuts.html#.getShortcuts">getShortcuts</a></li><li data-type='method'><a href="module-Shortcuts.html#.reorderShortcut">reorderShortcut</a></li></ul></li><li><a href="module-Statuses.html">Statuses</a><ul class='methods'><li data-type='method'><a href="module-Statuses.html#.bookmarkStatus">bookmarkStatus</a></li><li data-type='method'><a href="module-Statuses.html#.bookmarkStatusState">bookmarkStatusState</a></li><li data-type='method'><a href="module-Statuses.html#.createStatus">createStatus</a></li><li data-type='method'><a href="module-Statuses.html#.deleteStatus">deleteStatus</a></li><li data-type='method'><a href="module-Statuses.html#.editStatus">editStatus</a></li><li data-type='method'><a href="module-Statuses.html#.favoritePost">favoritePost</a></li><li data-type='method'><a href="module-Statuses.html#.getAccountStatuses">getAccountStatuses</a></li><li data-type='method'><a href="module-Statuses.html#.getComments">getComments</a></li><li data-type='method'><a href="module-Statuses.html#.getStatus">getStatus</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusContext">getStatusContext</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusQuotes">getStatusQuotes</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusRepostedBy">getStatusRepostedBy</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusRevisions">getStatusRevisions</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusStats">getStatusStats</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusesFromTag">getStatusesFromTag</a></li><li data-type='method'><a href="module-Statuses.html#.getStatusesWithCard">getStatusesWithCard</a></li><li data-type='method'><a href="module-Statuses.html#.getTimelineStatuses">getTimelineStatuses</a></li><li data-type='method'><a href="module-Statuses.html#.moveStatus">moveStatus</a></li><li data-type='method'><a href="module-Statuses.html#.pinStatus">pinStatus</a></li><li data-type='method'><a href="module-Statuses.html#.pinStatusState">pinStatusState</a></li><li data-type='method'><a href="module-Statuses.html#.setMarkdownFunction">setMarkdownFunction</a></li><li data-type='method'><a href="module-Statuses.html#.unbookmarkStatus">unbookmarkStatus</a></li><li data-type='method'><a href="module-Statuses.html#.unfavoritePost">unfavoritePost</a></li><li data-type='method'><a href="module-Statuses.html#.unpinStatus">unpinStatus</a></li><li data-type='method'><a href="module-Statuses.html#.uploadMedia">uploadMedia</a></li></ul></li><li><a href="module-Streaming.html">Streaming</a></li></ul><h3>Classes</h3><ul><li><a href="LoginObject.html">LoginObject</a></li><li><a href="Poll.html">Poll</a></li></ul><h3>Global</h3><ul><li><a href="global.html#enumAccountFollowRequest">enumAccountFollowRequest</a></li><li><a href="global.html#enumAccountMediaType">enumAccountMediaType</a></li><li><a href="global.html#enumGroupModerationJoin">enumGroupModerationJoin</a></li><li><a href="global.html#enumPollExpires">enumPollExpires</a></li><li><a href="global.html#enumPostExpires">enumPostExpires</a></li><li><a href="global.html#enumReactions">enumReactions</a></li><li><a href="global.html#enumSearchFilterTypes">enumSearchFilterTypes</a></li><li><a href="global.html#enumShortType">enumShortType</a></li><li><a href="global.html#enumStatusSort">enumStatusSort</a></li><li><a href="global.html#enumTimelines">enumTimelines</a></li><li><a href="global.html#enumVisibility">enumVisibility</a></li><li><a href="global.html#findObjectId">findObjectId</a></li><li><a href="global.html#inverseMap">inverseMap</a></li><li><a href="global.html#mapObject">mapObject</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#stripMD">stripMD</a></li></ul>
+
 </nav>
 
 <div id="main">
-    
+
     <h1 class="page-title">api.auth.statuses.js</h1>
-    
-
-    
 
 
 
-    
+
+
+
+
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/*******************************************************************************
@@ -196,11 +196,13 @@ export async function editStatus(lo, statusId, newMarkdown, options) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string|Buffer|ArrayBuffer|TypedArray|Uint8Array|Blob|File} pathOrBuffer - path to a media file to upload or
  * a pre-initialized Buffer object.
- * @param {string|null} [filename] - filename is required if pathOrBuffer is buffer
+ * @param {string} [filename] - filename is required if pathOrBuffer is buffer
  * @returns {Promise&lt;*>}
  */
-export async function uploadMedia(lo, pathOrBuffer, filename = null) {
+export async function uploadMedia(lo, pathOrBuffer, filename) {
   const form = new FormData();
+
+  // todo check if Base64 encoded Data-URL is still supported
 
   try {
     const buffer = typeof pathOrBuffer === 'string' ? readFileSync(pathOrBuffer) : pathOrBuffer;
@@ -224,7 +226,7 @@ export async function uploadMedia(lo, pathOrBuffer, filename = null) {
 /**
  * Get a single status post.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - ID of status to retrieve
+ * @param {string} statusId - ID of status to retrieve
  * @returns {Promise&lt;*>}
  */
 export async function getStatus(lo, statusId) {
@@ -235,7 +237,7 @@ export async function getStatus(lo, statusId) {
 /**
  * Delete a single status post.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - ID of status to delete
+ * @param {string} statusId - ID of status to delete
  * @returns {Promise&lt;*>}
  */
 export async function deleteStatus(lo, statusId) {
@@ -257,30 +259,30 @@ export async function getStatusesFromTag(lo, tagName) {
 /**
  * Get a list of statuses based on an account.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} account - ID of account
- * @param {number|null} [page] - page number
+ * @param {string} account - ID of account
+ * @param {number} [page] - page number
  * @param {string} [sort] - sort method. Valid options: see {@link enumStatusSort}.
  * @returns {Promise&lt;*>}
  */
-export async function getAccountStatuses(lo, account, page = null, sort = 'newest') {
+export async function getAccountStatuses(lo, account, page = 0, sort = 'newest') {
   const url = new URL(`/api/v2/accounts/${ account }/statuses`, lo.baseUrl);
-  if (page) url.searchParams.append('page', page.toString());
-  if (sort) url.searchParams.append('sort_by', sort);
+  if ( page ) url.searchParams.append('page', page.toString());
+  if ( sort ) url.searchParams.append('sort_by', sort);
   return await _getStatuses(lo, url);
 }
 
 /**
  * Get comments from a status or a comment branch.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId Status ID to get comments from
- * @param {string|number|null} [maxId] status ID for paging
+ * @param {string} statusId Status ID to get comments from
+ * @param {string} [maxId] status ID for paging
  * @param {string} [sort="oldest"] Sort method
  * @returns {Promise&lt;*>}
  */
-export async function getComments(lo, statusId, maxId = null, sort = 'oldest') {
+export async function getComments(lo, statusId, maxId, sort = 'oldest') {
   const url = new URL(`/api/v1/status_comments/${ statusId }`, lo.baseUrl);
-  if (maxId) url.searchParams.append('max_id', maxId);
-  if (sort) url.searchParams.append('sort', sort);
+  if ( maxId ) url.searchParams.append('max_id', maxId);
+  if ( sort ) url.searchParams.append('sort', sort);
   return await _fetch(lo, url);  // todo comments are not (yet?) modified by Gab
 }
 
@@ -292,7 +294,7 @@ export async function getComments(lo, statusId, maxId = null, sort = 'oldest') {
  *
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} timeline - a valid timeline name (see {@link enumTimelines}.
- * @param {number|string|null} [pageOrMaxId] either page or max status ID for pagination
+ * @param {number|string} [pageOrMaxId] either page or max status ID for pagination
  * @param {string} [sort="no-reposts"] Sort method
  * @param {boolean} [pinned=false] if true, request pinned posts instead
  * @returns {Promise&lt;*>}
@@ -300,12 +302,12 @@ export async function getComments(lo, statusId, maxId = null, sort = 'oldest') {
 export async function getTimelineStatuses(
   lo,
   timeline = 'home',
-  pageOrMaxId = null,
+  pageOrMaxId,
   sort = 'no-reposts',
   pinned = false) {
 
   //todo video timeline additions args: only_following=1, media_type=clips|&lt;none> (sort clips: newest,top_today, video: top* all)
-  const url = new URL(`/api/v2/timelines/${ timeline === 'clips' ? 'video' : timeline}`, lo.baseUrl);
+  const url = new URL(`/api/v2/timelines/${ timeline === 'clips' ? 'video' : timeline }`, lo.baseUrl);
 
   if ( timeline === 'clips' ) {
     url.searchParams.append('media_type', 'clips');
@@ -325,13 +327,13 @@ export async function getTimelineStatuses(
 /**
  * Get a list of who reposted this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
- * @param {string|number|null} [maxId] last Status ID for pagination
+ * @param {string} statusId - Status ID
+ * @param {string} [maxId] last Status ID for pagination
  * @returns {Promise&lt;*>}
  */
-export async function getStatusRepostedBy(lo, statusId, maxId = null) {
+export async function getStatusRepostedBy(lo, statusId, maxId ) {
   const url = new URL(`/api/v1/statuses/${ statusId }/reblogged_by`, lo.baseUrl);
-  if (maxId) {
+  if ( maxId ) {
     url.searchParams.append('max_id', maxId);
   }
   return await _fetch(lo, url);
@@ -340,7 +342,7 @@ export async function getStatusRepostedBy(lo, statusId, maxId = null) {
 /**
  * Get a status' revisions (edits)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise&lt;*>}
  */
 export async function getStatusRevisions(lo, statusId) {
@@ -351,7 +353,7 @@ export async function getStatusRevisions(lo, statusId) {
 /**
  * Mark this status as favorite (like, reaction.)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @param {string} [reactId="1"] React Id. See {@link enumReactions}.
  * @returns {Promise&lt;*>}
  */
@@ -367,7 +369,7 @@ export async function favoritePost(lo, statusId, reactId = '1') {
 /**
  * Unmark this status as favorite (unlike.)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise&lt;*>}
  */
 export async function unfavoritePost(lo, statusId) {
@@ -378,7 +380,7 @@ export async function unfavoritePost(lo, statusId) {
 /**
  * Get the pin status of this post.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise&lt;*>}
  */
 export async function pinStatusState(lo, statusId) {
@@ -389,7 +391,7 @@ export async function pinStatusState(lo, statusId) {
 /**
  * Pin this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise&lt;*>}
  */
 export async function pinStatus(lo, statusId) {
@@ -400,7 +402,7 @@ export async function pinStatus(lo, statusId) {
 /**
  * Unpin this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise&lt;*>}
  */
 export async function unpinStatus(lo, statusId) {
@@ -411,7 +413,7 @@ export async function unpinStatus(lo, statusId) {
 /**
  * Get bookmark status of this post.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise&lt;*>}
  */
 export async function bookmarkStatusState(lo, statusId) {
@@ -422,7 +424,7 @@ export async function bookmarkStatusState(lo, statusId) {
 /**
  * Bookmark this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @param collectionId
  * @returns {Promise&lt;*>}
  */
@@ -435,7 +437,7 @@ export async function bookmarkStatus(lo, statusId, collectionId) {
 /**
  * Un-bookmark this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise&lt;*>}
  */
 export async function unbookmarkStatus(lo, statusId) {
@@ -446,7 +448,7 @@ export async function unbookmarkStatus(lo, statusId) {
 /**
  * Get quotes of this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise&lt;*>}
  */
 export async function getStatusQuotes(lo, statusId) {
@@ -457,7 +459,7 @@ export async function getStatusQuotes(lo, statusId) {
 /**
  * Get context for this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise&lt;*>}
  */
 export async function getStatusContext(lo, statusId) {
@@ -468,7 +470,7 @@ export async function getStatusContext(lo, statusId) {
 /**
  * Get status statistics like number of likes, reposts etc.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID
+ * @param {string} statusId - Status ID
  * @returns {Promise&lt;*>}
  */
 export async function getStatusStats(lo, statusId) {
@@ -479,7 +481,7 @@ export async function getStatusStats(lo, statusId) {
 /**
  * List statuses with the same link card.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} cardId - ID of link card
+ * @param {string} cardId - ID of link card
  * @returns {Promise&lt;*>}
  */
 export async function getStatusesWithCard(lo, cardId) {
@@ -500,9 +502,9 @@ export async function getStatusesWithCard(lo, cardId) {
  * If that succeeds the original status is deleted and the new status is returned.
  *
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {*} status - status to "move"
- * @param {string|number|null} groupId - groupId to "move" to, or null if to home timeline.
- * @returns {Promise&lt;{ok: boolean, content: null}|{ok}|*>}
+ * @param {*} status - status object to "move"
+ * @param {string} groupId - groupId to "move" to, or null if to home timeline.
+ * @returns {Promise&lt;*>}
  */
 export async function moveStatus(lo, status, groupId) {
   // todo more to move...
@@ -629,14 +631,14 @@ function _formatStatus(result, statusId, doRecursive = true) {
 
 
 
-    
-    
+
+
 </div>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Wed Jan 10 2024 09:22:32 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu Jan 11 2024 11:06:43 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
