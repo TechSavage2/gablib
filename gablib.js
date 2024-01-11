@@ -17,5 +17,6 @@ export * from './src/api.auth.groups.js';
 export * from './src/api.auth.statuses.js';
 export * from './src/api.auth.notifications.js';
 export * from './src/api.auth.shortcuts.js';
+export * from './src/api.auth.stream.js';
 //export * from './src/api.auth.settings.js';
 export * from './src/obj/Poll.js';
