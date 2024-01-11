@@ -193,3 +193,12 @@ export async function getAccountAttachments(lo, accountId, type, maxId) {
   if ( maxId ) url.searchParams.append('max_id', maxId);
   return _fetch(lo, url);
 }
+
+// https://gab.com/api/v1/accounts/search?q=a&resolve=false&limit=4
+export async function searchAccounts(lo, keyword, limit = 4) {
+  const url = new URL('/api/v1/accounts/search', lo.baseUrl);
+  url.searchParams.append('q', keyword);
+  url.searchParams.append('limit', limit.toString());
+  url.searchParams.append('resolve', 'false');
+  return _fetch(lo, url);
+}
