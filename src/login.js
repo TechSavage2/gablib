@@ -79,7 +79,6 @@ export async function login(credentials, altPassword, altBaseUrl) {
   }
 
   // Step 4: Get final HTML page with initial JSON set incl. access_token
-  lo.loginOk = true;
   return await refreshSession(lo);
 }
 
@@ -90,6 +89,7 @@ export async function login(credentials, altPassword, altBaseUrl) {
  * @returns {Promise<LoginObject>} updated LoginObject
  */
 export async function refreshSession(lo) {
+  lo.loginOk = false;
   try {
     const finalResult = await _fetch(lo, new URL('/', lo.baseUrl), 'GET', 'html');
     if ( finalResult.ok ) {
@@ -104,5 +104,6 @@ export async function refreshSession(lo) {
     throw new Error(`Could not obtain initialized and authenticated page: ${ err.message }`);
   }
 
+  lo.loginOk = true;
   return lo;
 }
