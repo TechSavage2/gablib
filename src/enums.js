@@ -166,6 +166,7 @@ export const enumAccountMediaType = {
  * @readonly
  */
 export const enumShortType = {
+  account: 'account',
   group  : 'group',
-  account: 'account'
+  list   : 'list'
 };

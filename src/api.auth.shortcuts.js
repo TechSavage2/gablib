@@ -28,11 +28,11 @@ export async function getShortcuts(lo) {
  * Add a new shortcut providing type of shortcut and the id for that object.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} id - id of the object you want to create a shortcut for
- * @param {string} [type='group'] type of shortcut, for example 'group', 'account'
+ * @param {string} type type of shortcut, for example 'group', 'account', 'list'
  * (See {@link enumShortType}).
  * @returns {Promise<*>}
  */
-export async function addShortcut(lo, id, type = 'group') {
+export async function addShortcut(lo, id, type) {
   const url = new URL('/api/v1/shortcuts', lo.baseUrl);
   return _fetch(lo, url, 'POST', 'json', { shortcut_type: type, shortcut_id: id });
 }
