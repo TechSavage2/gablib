@@ -48,17 +48,18 @@ It's now ready for use. As of now there are no other dependencies to be installe
 Features
 --------
 
-- [x] Asynchronous
 - [x] Easy to use
+- [x] Asynchronous
 - [x] ES modules (import/export)
-- [x] login using the _sign_in_ form instead of OAuth
+- [x] Login using the _sign_in_ form instead of OAuth
 - [x] API calls requiring authentications (WIP)
-- [x] public API calls (WIP)
-- [x] 'normalizes' Gab's remapped status lists format to that of normal Mastodon
-- [x] can use a custom markdown stripper
-- [x] streaming API as events
-- [x] Optional automatic (de)serializing of session/auth data for reuse between executions (experimental)
-- [ ] events (responses, errors, upload/download progress, etc.)
+- [x] Public API calls (WIP)
+- [x] 'Normalizes' Gab's remapped status lists format to that of normal Mastodon
+- [x] Can use a custom Markdown stripper
+- [x] Streaming API as events
+- [x] Optional automatic (de)serializing of session/auth data for reuse between executions (
+  experimental)
+- [ ] Events (responses, errors, upload/download progress, etc.)
 
 APIs
 ----
@@ -76,18 +77,20 @@ NOTE: currently unstable/may change.
 - Full support for **Notifications**
   - Get notifications, Mark read, Filters
 - Full support for **Shortcuts**
-  - List, Add, Delete, Reorder
-- Support for **Accounts** (WIP)
-  - Stats, (Edit, Account Settings)
+    - List, Add, Delete, Reorder
+- Support for **Accounts**
+    - Stats, Edit, Account Settings
 - Support for **Lists** (TODO)
-- Support for **Feeds** (TODO)
+- Full support for **Feeds**
+    - Create, Edit, Delete, Add/Remove members, (Un)Subscribe, Timelines, Feed lists, List members
+      and Subscribers
 - Support for **Chats/DM** (TODO)
+- Supports the **Streaming API**
 - Support for **Public** APIs (no authentication required)
-  - Account information, Trends feed, News feed, Popular statuses
+    - Account information, Trends feed, News feed, Popular statuses
 - Full support for site wide **search**
   - All, filters
 - Support for **Site Settings** (TODO)
-- Supports the streaming API
 - Experimental support for (de)serialization of session/auth between executions.
 
 Getting Started
