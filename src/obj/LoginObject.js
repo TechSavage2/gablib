@@ -10,7 +10,7 @@
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { CookieJar } from './CookieJar.js';
-import * as crypto from 'crypto';
+import { createHash } from 'crypto';
 
 const defEmailEnv = 'MASTODON_USEREMAIL';
 const defaultPasswordEnv = 'MASTODON_PASSWORD';
@@ -128,9 +128,9 @@ You can also provide alternative names for env values as login('myemailenv', 'my
    * @private
    */
   this._getMD5 = function() {
-    const md5Hash = crypto.createHash('md5');
-    md5Hash.update(`${ this.email() }${ this.password() }${ this.baseUrl }`);
-    return md5Hash.digest('hex');
+    return createHash('md5')
+      .update(`${ this.email() }${ this.password() }${ this.baseUrl }`)
+      .digest('hex');
   };
 
   /**
