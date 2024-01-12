@@ -371,7 +371,7 @@ export async function handleGroupJoinRequest(lo, groupId, accountId, type) {
  * @param {string} groupId - Group ID to join
  * @returns {Promise<*>} List of accounts
  */
-export async function listGroupAccounts(lo, groupId) {
+export async function getGroupAccounts(lo, groupId) {
   const url = new URL(`/api/v1/groups/${ groupId }/accounts`, lo.baseUrl);
   return _fetch(lo, url);
 }
@@ -382,7 +382,7 @@ export async function listGroupAccounts(lo, groupId) {
  * @param {string} groupId - Group ID to join
  * @returns {Promise<*>}  lists for accounts and roles
  */
-export async function listGroupAdminsAndMods(lo, groupId) {
+export async function getGroupAdminsAndMods(lo, groupId) {
   const url = new URL(`/api/v1/groups/${ groupId }/admins_and_mods`, lo.baseUrl);
   return _fetch(lo, url);
 }
@@ -393,7 +393,7 @@ export async function listGroupAdminsAndMods(lo, groupId) {
  * @param {string} groupId - Group ID to join
  * @returns {Promise<*>}
  */
-export async function listGroupAttachments(lo, groupId) {
+export async function getGroupAttachments(lo, groupId) {
   const url = new URL(`/api/v1/groups/${ groupId }/media_attachments`, lo.baseUrl);
   return _fetch(lo, url);
 }
@@ -404,7 +404,7 @@ export async function listGroupAttachments(lo, groupId) {
  * @param {string} groupId - Group ID to join
  * @returns {Promise<*>}
  */
-export async function listGroupLinks(lo, groupId) {
+export async function getGroupCards(lo, groupId) {
   const url = new URL(`/api/v1/groups/${ groupId }/preview_cards`, lo.baseUrl);
   return _fetch(lo, url);
 }
@@ -442,7 +442,7 @@ export async function groupModeration(lo, groupId) {
  * @param {string} groupId - Group ID to join
  * @returns {Promise<*>}
  */
-export async function listGroupRemovedAccounts(lo, groupId) {
+export async function getGroupRemovedAccounts(lo, groupId) {
   const url = new URL(`/api/v1/groups/${ groupId }/removed_accounts`, lo.baseUrl);
   return _fetch(lo, url);
 }
