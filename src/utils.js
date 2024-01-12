@@ -6,6 +6,10 @@
 
  *******************************************************************************/
 
+/**
+ * @module Utils
+ */
+
 'use strict';
 
 import { EventEmitter } from 'node:events';
