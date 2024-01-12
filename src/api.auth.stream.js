@@ -33,9 +33,15 @@ import { gablibEvents } from './utils.js';
  * stream-ended
  *
  * You can obtain an event handler by importing `gablibEvents` from gablib.
- * @param {LoginObject} lo - Valid and active LoginObject@param {string} shortcutId - id of shortcut to delete
+ *
+ * NOTE: This call doesn't return unless a stream-ended event occurred. Therefor
+ * we don't recommend using await for this call, but instead the regular
+ * Promise.then().catch() approach to allow successive code to execute unhindered.
+ *
+ * @param {LoginObject} lo - Valid and active LoginObject
  * @returns {Promise<*>}
- * @event
+ * @fires stream-event
+ * @fires stream-ended
  * @example
  * gablibEvents.on('stream-message', json => {  });
  */
