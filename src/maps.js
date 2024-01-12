@@ -70,15 +70,15 @@ export const mapStatus = {
   'rc'  : 'replies_count',
   'rcs' : 'reaction_counts',
   'rid' : 'reaction_id',      // *your* reaction ID (1=liked, etc.)
-  //'roi' : 'reblog_of_id', // ?? latter is missing in Gabs remapped results
-  's'  : 'sensitive',
-  'sci': 'status_context_id',
-  'st' : 'spoiler_text',
-  't'  : 'text',
-  'tg' : 'tags',
-  'u'  : 'uri',
-  'ul' : 'url',
-  'v'  : 'visibility'
+  'robi': 'reblog_of_id',     // ?? latter is missing in Gabs remapped results
+  's'   : 'sensitive',
+  'sci' : 'status_context_id',
+  'st'  : 'spoiler_text',
+  't'   : 'text',
+  'tg'  : 'tags',
+  'u'   : 'uri',
+  'ul'  : 'url',
+  'v'   : 'visibility'
 };
 
 export const mapAttachmentRoot = {
