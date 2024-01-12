@@ -105,8 +105,17 @@ export async function _fetch(
   const response = await fetch(url, options);
   const headers = response.headers;
   const status = response.status;
-  const content = status !== 204 ? resultType === 'json' || resultType === 'binary' ? await response.json() : await response.text() : null;
   const ok = expectedReturnCode.includes(status | 0);
+
+  let content = null;
+  if ( ok && status !== 204 ) {
+    if ( resultType === 'json' || resultType === 'binary' ) {
+      content = await response.json();
+    }
+    else {
+      content = response.text();
+    }
+  }
 
   if ( loginObject.loginOk && typeof loginObject.serializePath === 'string' ) {
     if ( ok ) {
