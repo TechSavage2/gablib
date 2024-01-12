@@ -45,24 +45,8 @@ $ pnpm install https://github.com/TechSavage2/gablib
 
 It's now ready for use. As of now there are no other dependencies to be installed.
 
-Features
---------
-
-- [x] Easy to use
-- [x] Asynchronous
-- [x] ES modules (import/export)
-- [x] Login using the _sign_in_ form instead of OAuth
-- [x] API calls requiring authentications (WIP)
-- [x] Public API calls (WIP)
-- [x] 'Normalizes' Gab's remapped status lists format to that of normal Mastodon
-- [x] Can use a custom Markdown stripper
-- [x] Streaming API as events
-- [x] Optional automatic (de)serializing of session/auth data for reuse between executions (
-  experimental)
-- [ ] Events (responses, errors, upload/download progress, etc.)
-
-APIs
-----
+API Features
+------------
 
 NOTE: currently unstable/may change.
 
@@ -86,6 +70,7 @@ NOTE: currently unstable/may change.
       and Subscribers
 - Support for **Chats/DM** (TODO)
 - Supports the **Streaming API**
+    - Realtime events for new posts, reposts, likes, notifications etc.
 - Support for **Public** APIs (no authentication required)
     - Account information, Trends feed, News feed, Popular statuses
 - Full support for site wide **search**
@@ -196,6 +181,22 @@ python -m http.server
 ```
 
 Go to the link to see the docs.
+
+TODOs
+-----
+
+- [x] Easy to use
+- [x] Asynchronous
+- [x] ES modules (import/export)
+- [x] Login using the _sign_in_ form instead of OAuth
+- [x] API calls requiring authentications (WIP)
+- [x] Public API calls (WIP)
+- [x] 'Normalizes' Gab's remapped status lists format to that of normal Mastodon
+- [x] Can use a custom Markdown stripper
+- [x] Streaming API as events
+- [x] Optional automatic (de)serializing of session/auth data for reuse between executions (
+  experimental)
+- [ ] Events (responses, errors, upload/download progress, etc.)
 
 Issues
 ------
