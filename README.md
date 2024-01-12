@@ -1,7 +1,7 @@
 gablib
 ======
 
-API package for scripting/programming Mastodon nodes where OAuth for custom apps has been disabled
+API package for scripting/programming Mastodon nodes where OAuth2 for custom apps has been disabled
 on the server.
 
 This package will allow you to build apps by logging in programmatically via the regular "human"
@@ -55,8 +55,8 @@ Features
 - [x] public API calls (WIP)
 - [x] 'normalizes' Gab's remapped status lists format to that of normal Mastodon
 - [x] can use a custom markdown stripper
-- [x] streams and (sockets WIP) wrapper objects (for client use)
-- [ ] (de)serializing of session/auth data for reuse between executions (experimental)
+- [x] streaming API as events
+- [x] Optional automatic (de)serializing of session/auth data for reuse between executions (experimental)
 - [ ] events (responses, errors, upload/download progress, etc.)
 
 APIs
@@ -86,7 +86,8 @@ NOTE: currently unstable/may change.
 - Full support for site wide **search**
   - All, filters
 - Support for **Site Settings** (TODO)
-- Supports streaming API
+- Supports the streaming API
+- Experimental support for (de)serialization of session/auth between executions.
 
 Getting Started
 ---------------
