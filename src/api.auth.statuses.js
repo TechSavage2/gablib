@@ -221,6 +221,8 @@ export async function getAccountStatuses(lo, account, page = 0, sort = 'newest')
 
 /**
  * Get comments from a status or a comment branch.
+ * If a user have you blocked the `content` property of the status will show
+ * "[HIDDEN – USER BLOCKS YOU]". (Also see {@link getAccountBlockedBys}.)
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} statusId Status ID to get comments from
  * @param {string} [maxId] status ID for paging
@@ -230,8 +232,8 @@ export async function getAccountStatuses(lo, account, page = 0, sort = 'newest')
 export async function getComments(lo, statusId, maxId, sort = 'oldest') {
   const url = new URL(`/api/v1/status_comments/${ statusId }`, lo.baseUrl);
   if ( maxId ) url.searchParams.append('max_id', maxId);
-  if ( sort ) url.searchParams.append('sort', sort);
-  return await _fetch(lo, url);  // todo comments are not (yet?) modified by Gab
+  if ( sort ) url.searchParams.append('sort_by', sort);
+  return await _fetch(lo, url);
 }
 
 /**
