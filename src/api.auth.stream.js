@@ -24,13 +24,21 @@
  * @event stream-ended
  */
 
+/**
+ * stream-error event.
+ * @event stream-error
+ * @type {Object}
+ * @property {*} error object as argument
+ */
+
 import { gablibEvents } from './utils.js';
 
 /**
- * Subscribe to the streaming API. It will emit two events:
+ * Subscribe to the streaming API. It may emit three events:
  *
  * stream-event
  * stream-ended
+ * stream-error
  *
  * You can obtain an event handler by importing `gablibEvents` from gablib.
  *
@@ -38,14 +46,18 @@ import { gablibEvents } from './utils.js';
  * we don't recommend using await for this call, but instead the regular
  * Promise.then().catch() approach to allow successive code to execute unhindered.
  *
+ * A stream-error is also transmitted on error with the error object passed in
+ * as the second argument.
+ *
  * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {boolean} [autoReconnect=false] - if socket closed error, attempt to reconnect.
  * @returns {Promise<*>}
  * @fires stream-event
  * @fires stream-ended
  * @example
  * gablibEvents.on('stream-message', json => {  });
  */
-export async function getStream(lo) {
+export async function getStream(lo, autoReconnect = false) {
   const url = new URL('/api/v4/streaming', lo.baseUrl);
 
   const options = {
@@ -68,28 +80,36 @@ export async function getStream(lo) {
 
   const response = await fetch(url, options);
   const header = response.headers;
-  const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
+  try {
+    const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
 
-  // serialize if active
-  if (lo.loginOk && typeof lo.serializePath === 'string') {
-    lo.serialize();
+    // serialize if active
+    if ( lo.loginOk && typeof lo.serializePath === 'string' ) {
+      lo.serialize();
+    }
+
+    let chunk = '';
+
+    while( true ) {
+      const { value, done } = await reader.read();
+      if ( done ) break;
+      chunk += value;
+      // todo this is NOT super elegant.. :) works for now. We can get incomplete json strings, we need to merge chunks.
+      chunk.split('data: ').forEach(part => {
+        try {
+          const msg = Object.assign({}, { event: 'ping' }, JSON.parse(part));
+          gablibEvents.emit('stream-event', msg);
+          chunk = '';
+        }
+        catch {}
+      });
+    }
   }
-
-  let chunk = '';
-
-  while( true ) {
-    const { value, done } = await reader.read();
-    if ( done ) break;
-    chunk += value;
-    // todo this is NOT super elegant.. :) works for now. We can get incomplete json strings, we need to merge chunks.
-    chunk.split('data: ').forEach(part => {
-      try {
-        const msg = Object.assign({}, {event: 'ping'}, JSON.parse(part));
-        gablibEvents.emit('stream-event', msg);
-        chunk = '';
-      }
-      catch {}
-    });
+  catch(err) {
+    gablibEvents.emit('stream-error', err);
+    if ( autoReconnect ) {
+      return await getStream(lo); //todo recursion check
+    }
   }
 
   gablibEvents.emit('stream-ended');
