@@ -170,3 +170,15 @@ export const enumShortType = {
   group  : 'group',
   list   : 'list'
 };
+
+/**
+ * Valid feed types.
+ * @global
+ * @enum {string}
+ * @readonly
+ */
+export const enumFeedType = {
+  own     : 'own',
+  featured: 'featured',
+  memberOf: 'member_of'
+};
