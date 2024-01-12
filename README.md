@@ -48,6 +48,7 @@ It's now ready for use. As of now there are no other dependencies to be installe
 Features
 --------
 
+- [x] Asynchronous
 - [x] Easy to use
 - [x] ES modules (import/export)
 - [x] login using the _sign_in_ form instead of OAuth
@@ -177,6 +178,9 @@ Then run:
 ```bash
 $ npm run docs
 ```
+
+If you don't like to use the dark theme simply edit the `jsdocs.json` and remove the custom
+CSS file referenced in the `scripts` property.
 
 The docs are now found in the `docs/` folder. You may want to fire up a local
 server for the folder for everything to work smoothly.

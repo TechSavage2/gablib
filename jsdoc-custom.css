@@ -1,0 +1,52 @@
+body, section, nav, p, .params td {
+  color:#9da0b1;
+  background-color:#222224;
+  }
+
+h1, h2, h3, nav h3, h4, h5, h6 {
+  color:#fff !important;
+  }
+
+tt, code, kbd, samp, pre, .name code {
+  color:#c5c6f6;
+  background:#3d3d5e;
+  }
+
+nav > ul > li > a,
+nav > h2 > a,
+a,
+a:active,
+.param-type {
+  color:#bee49f !important;
+  }
+
+nav ul ul a {
+  line-height:20px;
+  }
+
+nav ul a:hover,
+nav ul ul a:hover{
+  color:#eef6e7 !important;
+  }
+
+table, h4.name {
+  box-shadow:none;
+  border:1px solid #000;
+  }
+
+thead tr, thead tr {
+  background:#111112;
+  border-bottom:1px solid #000;
+  }
+
+.params td {
+  border-top:1px solid #000;
+  }
+
+.details {
+  border-left:2px solid #111112;
+  }
+
+nav ul ul a {
+  border-left:1px solid #38383c;
+  }
