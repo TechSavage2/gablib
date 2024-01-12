@@ -168,7 +168,7 @@ export async function unsubscribeFeed(lo, feedId) {
  * @param {string} feedId - id of a feed
  * @returns {Promise<*>}
  */
-export async function listFeedSubscribers(lo, feedId) {
+export async function getFeedSubscribers(lo, feedId) {
   const url = new URL(`/api/v1/lists/${ feedId }/subscribers`, lo.baseUrl);
   return await _fetch(lo, url, 'GET');
 }
