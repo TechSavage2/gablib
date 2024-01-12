@@ -194,7 +194,13 @@ export async function getAccountAttachments(lo, accountId, type, maxId) {
   return _fetch(lo, url);
 }
 
-// https://gab.com/api/v1/accounts/search?q=a&resolve=false&limit=4
+/**
+ * Search for an account name.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string} keyword - starting part of an account or username
+ * @param {number} [limit=4] - max result in a single query (absolute mastodon max is 80, default 40, some uses 4.)
+ * @returns {Promise<*>}
+ */
 export async function searchAccounts(lo, keyword, limit = 4) {
   const url = new URL('/api/v1/accounts/search', lo.baseUrl);
   url.searchParams.append('q', keyword);
