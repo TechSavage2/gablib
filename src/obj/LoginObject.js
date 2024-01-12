@@ -10,6 +10,7 @@
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { CookieJar } from './CookieJar.js';
+import * as crypto from 'crypto';
 
 const defEmailEnv = 'MASTODON_USEREMAIL';
 const defaultPasswordEnv = 'MASTODON_PASSWORD';
@@ -100,13 +101,15 @@ You can also provide alternative names for env values as login('myemailenv', 'my
     this.baseUrl = this.baseUrl.substring(0, this.baseUrl.length - 1);
   }
 
-  this.lastUrl = this.baseUrl;
+  this.serializePath = null;
+  this.lastUrl = this.baseUrl;  // used for referer in header
+  this.loginOk = false;
   this.cookies = new CookieJar();
 
-  this.authToken = null;      // for login
-  this.accessToken = null;    // for bearer authorization
-  this.csrfToken = null;      // improved xss protection (not too useful here, but we'll include it)
-  this.initJSON = {};         // meta, settings, your userid, name etc.
+  this.authToken = null;        // for login
+  this.accessToken = null;      // for bearer authorization
+  this.csrfToken = null;        // improved xss protection (not too useful here, but we'll include it)
+  this.initJSON = {};           // meta, settings, your userid, name etc.
 
   this.userAgent = commonUserAgents[ (commonUserAgents.length * Math.random()) | 0 ];
 
@@ -119,41 +122,67 @@ You can also provide alternative names for env values as login('myemailenv', 'my
     return this.initJSON.meta.version;
   };
 
-  // NOTE experimental area! (so far untested)
-  this.serialize = function(filename) {
+  /**
+   * Get MD5 checksum from credentials. This is used internally only
+   * @returns {string}
+   * @private
+   */
+  this._getMD5 = function() {
+    const md5Hash = crypto.createHash('md5');
+    md5Hash.update(`${ this.email() }${ this.password() }${ this.baseUrl }`);
+    return md5Hash.digest('hex');
+  };
+
+  /**
+   * Serialize current auth session to disk.
+   * See `<LoginObject>.serializePath`
+   * @param {string} [path] for manually serializing
+   * @returns {string}
+   */
+  this.serialize = function(path) {
     const obj = {
       lo     : this,
-      cookies: this.cookies.serialize()
+      cookies: this.cookies.serialize(),
+      hash   : this._getMD5()
     };
     const ser = JSON.stringify(obj);
+    const filepath = path || this.serializePath;
 
-    if ( filename ) {
+    if ( filepath ) {
       try {
-        writeFileSync(filename, ser, 'utf8');
+        writeFileSync(this.serializePath, ser, 'utf8');
       }
       catch(err) {
-        console.error(`Error - Could not write serialized object: ${ err }`);
+        console.error(`Could not write serialized object: ${ err }`);
       }
     }
     return ser;
   };
 
-  this.deserialize = function(filename) {
+  /**
+   * Deserialize login session previously stored to disk.
+   * See `<LoginObject>.serializePath`
+   * @param {string} [path] for manually deserializing
+   * @returns {LoginObject|null}
+   */
+  this.deserialize = function(path) {
     let obj;
-    if ( !filename.startsWith('{"lo') ) {
-      try {
-        obj = readFileSync(filename, 'utf8');
-      }
-      catch(err) {
-        console.error(`Error - Could not read serialized object: ${ err }`);
-        return null;
-      }
+    const filepath = path || this.serializePath;
+    try {
+      obj = readFileSync(filepath, 'utf8');
     }
-    else obj = filename;
+    catch(err) {
+      return null;
+    }
 
     const json = JSON.parse(obj);
-    Object.assign(this, json.lo);
-    this.cookies = new CookieJar();
-    this.cookies.deserialize(json.cookies);
+
+    if ( this._getMD5() === json.hash ) {
+      Object.assign(this, json.lo);
+      this.cookies = new CookieJar();
+      this.cookies.deserialize(json.cookies);
+      return this;
+    }
+    else return null;
   };
 }

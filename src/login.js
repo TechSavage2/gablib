@@ -25,14 +25,28 @@ import { _fetch } from './_fetch.js';
  * - provide a JSON object as first argument manually setting credentials in code (**not recommended!**):
  *   login({userEmail: 'my@email', password: 'secret', baseUrl: 'https://base.url'})
  *
- * @param {string|{}} [credentials] - either JSON object with credentials, or string with env name for email used with the two next arguments.
+ * @param {string|{}|LoginObject} [credentials] - either JSON object with credentials, or string with env name for email used with the two next arguments.
+ * If a LoginObject is passed in it will use this instead. The usual case for that is to enable serializing of auth/session data.
  * @param {string} [altPassword] - name of custom env name for password when credentials and altBaseUrl are used for alternative env names
  * @param {string} [altBaseUrl] - name of custom env name for base URL when credentials and altPassword are used for alternative env names
  * @returns {Promise<LoginObject>} this object is used with other API calls that require authentication.
  * @throws when the script could not log in user
  */
 export async function login(credentials, altPassword, altBaseUrl) {
-  const lo = new LoginObject(credentials, altPassword, altBaseUrl);
+  let lo;
+  if (credentials instanceof LoginObject) {
+    lo = credentials;
+    credentials = undefined;
+    if (lo.serializePath) {
+      lo = lo.deserialize(lo.serializePath);
+      if (lo) return lo;
+    }
+  }
+
+  if (!lo) {
+    lo = new LoginObject(credentials, altPassword, altBaseUrl);
+  }
+
   const url = new URL('/auth/sign_in', lo.baseUrl);
 
   // Step 1: get login page (extract Authenticity, CSRF tokens, initial cookies.)
@@ -65,6 +79,7 @@ export async function login(credentials, altPassword, altBaseUrl) {
   }
 
   // Step 4: Get final HTML page with initial JSON set incl. access_token
+  lo.loginOk = true;
   return await refreshSession(lo);
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "gablib",
   "version": "0.10.0-alpha",
-  "description": "API package to allow login and doing auth ops for Mastodon without using OAuth where this has been disabled.",
+  "description": "API package for scripting/programming Mastodon nodes where OAuth2 for custom apps has been disabled on the server.",
   "type": "module",
   "main": "gablib.js",
   "scripts": {

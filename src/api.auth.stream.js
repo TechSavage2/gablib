@@ -61,7 +61,13 @@ export async function getStream(lo) {
   };
 
   const response = await fetch(url, options);
+  const header = response.headers;
   const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
+
+  // serialize if active
+  if (lo.loginOk && typeof lo.serializePath === 'string') {
+    lo.serialize();
+  }
 
   let chunk = '';
 

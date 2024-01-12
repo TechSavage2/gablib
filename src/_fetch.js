@@ -106,6 +106,16 @@ export async function _fetch(
   const headers = response.headers;
   const status = response.status;
   const content = status !== 204 ? resultType === 'json' || resultType === 'binary' ? await response.json() : await response.text() : null;
+  const ok = expectedReturnCode.includes(status | 0);
+
+  if ( loginObject.loginOk && typeof loginObject.serializePath === 'string' ) {
+    if ( ok ) {
+      loginObject.serialize();
+    }
+    else {
+      // todo if auth error attempt to refresh page. If that fails do a full login()
+    }
+  }
 
   // update login object
   if ( loginObject ) {
@@ -114,9 +124,9 @@ export async function _fetch(
   }
 
   if ( DEBUG ) {
-    return { content, ok: expectedReturnCode.includes(status | 0), headers, status, url: response.url };
+    return { content, ok, headers, status, url: response.url };
   }
   else {
-    return { content, ok: expectedReturnCode.includes(status | 0) };
+    return { content, ok };
   }
 }
