@@ -45,40 +45,21 @@ $ pnpm install https://github.com/TechSavage2/gablib
 
 It's now ready for use. As of now there are no other dependencies to be installed.
 
-Features
---------
-
-- [x] Easy to use
-- [x] Asynchronous
-- [x] ES modules (import/export)
-- [x] Login using the _sign_in_ form instead of OAuth
-- [x] API calls requiring authentications (WIP)
-- [x] Public API calls (WIP)
-- [x] 'Normalizes' Gab's remapped status lists format to that of normal Mastodon
-- [x] Can use a custom Markdown stripper
-- [x] Streaming API as events
-- [x] Optional automatic (de)serializing of session/auth data for reuse between executions (
-  experimental)
-- [ ] Events (responses, errors, upload/download progress, etc.)
-
-APIs
-----
+API Features
+------------
 
 NOTE: currently unstable/may change.
 
 - Full support for **Statuses and Comments**
-    - Create Edit, Delete, Attachments, Timelines, (Un)Favorite, (Un)Bookmark, (Un)Pin, Move (aux
-      function), Comment, Comment trees, Context, Posting to groups, Statuses from Tags, Revisions,
-      Cards, Quotes, Replies, Stats
-    - Custom (optional) plugin for handling Markdown stripping.
-    - Handles and remaps Gab's rearranged results as well as the shortened properties on status
-      JSONs.
+  - Create Edit, Delete, Attachments, Timelines, (Un)Favorite, (Un)Bookmark, (Un)Pin, Move (aux function), Comment, Comment trees, Context, Posting to groups, Statuses from Tags, Revisions, Cards, Quotes, Replies, Stats
+  - Custom (optional) plugin for handling Markdown stripping.
+  - Handles and remaps Gab's rearranged results as well as the shortened properties on status JSONs.
 - Full support for **Groups**
-    - Create, Edit, Categories, Moderation
+  - Create, Edit, Categories, Moderation
 - Full support for **Bookmark Collections**
     - List collections, Create, Edit, Delete
 - Full support for **Notifications**
-    - Get notifications, Mark read, Filters
+  - Get notifications, Mark read, Filters
 - Full support for **Shortcuts**
     - List, Add, Delete, Reorder
 - Support for **Accounts**
@@ -89,10 +70,11 @@ NOTE: currently unstable/may change.
       and Subscribers
 - Support for **Chats/DM** (TODO)
 - Supports the **Streaming API**
+    - Realtime events for new posts, reposts, likes, notifications etc.
 - Support for **Public** APIs (no authentication required)
     - Account information, Trends feed, News feed, Popular statuses
 - Full support for site wide **search**
-    - All, filters
+  - All, filters
 - Support for **Site Settings** (TODO)
 - Experimental support for (de)serialization of session/auth between executions.
 
@@ -199,6 +181,22 @@ python -m http.server
 ```
 
 Go to the link to see the docs.
+
+TODOs
+-----
+
+- [x] Easy to use
+- [x] Asynchronous
+- [x] ES modules (import/export)
+- [x] Login using the _sign_in_ form instead of OAuth
+- [x] API calls requiring authentications (WIP)
+- [x] Public API calls (WIP)
+- [x] 'Normalizes' Gab's remapped status lists format to that of normal Mastodon
+- [x] Can use a custom Markdown stripper
+- [x] Streaming API as events
+- [x] Optional automatic (de)serializing of session/auth data for reuse between executions (
+  experimental)
+- [ ] Events (responses, errors, upload/download progress, etc.)
 
 Issues
 ------
