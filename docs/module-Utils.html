@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>login.js - gablib</title>
+    <title>Utils - gablib</title>
     
     
     
@@ -40,128 +40,1104 @@
 
 <div id="main">
     
-    <h1 class="page-title">login.js</h1>
+    <h1 class="page-title">Utils</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/*******************************************************************************
+</header>
 
- gablib
- login.js (2024-01-04)
- Copyright (c) 2024 TechSavage
+<article>
+    
+        <div class="container-overview">
+        
+            
 
- *******************************************************************************/
+<dl class="details">
+    
 
-'use strict';
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
 
-import { LoginObject } from './obj/LoginObject.js';
-import { _getTokens } from './_getTokens.js';
-import { _fetch } from './_fetch.js';
+    
 
-/**
- * @module Login
- */
+    
 
-/**
- * Primary function to log onto into the mastodon site. The function can be
- * provided credentials in three ways:
- *
- * - export env variables using the default MASTODON_USEREMAIL, MASTODON_PASSWORD and MASTODON_BASEURL
- * - export custom env variables and provide the env names as `login('myemailenv', 'mypwdenv', 'myurlenv')`
- * - provide a JSON object as first argument manually setting credentials in code (**not recommended!**):
- *   login({userEmail: 'my@email', password: 'secret', baseUrl: 'https://base.url'})
- *
- * @param {string|{}|LoginObject} [credentials] - either JSON object with credentials, or string with env name for email used with the two next arguments.
- * If a LoginObject is passed in it will use this instead. The usual case for that is to enable serializing of auth/session data.
- * @param {string} [altPassword] - name of custom env name for password when credentials and altBaseUrl are used for alternative env names
- * @param {string} [altBaseUrl] - name of custom env name for base URL when credentials and altPassword are used for alternative env names
- * @returns {Promise&lt;LoginObject>} this object is used with other API calls that require authentication.
- * @throws when the script could not log in user
- */
-export async function login(credentials, altPassword, altBaseUrl) {
-  let lo;
-  if (credentials instanceof LoginObject) {
-    lo = credentials;
-    credentials = undefined;
-    if (lo.serializePath) {
-      lo = lo.deserialize(lo.serializePath);
-      if (lo) return lo;
-    }
-  }
+    
 
-  if (!lo) {
-    lo = new LoginObject(credentials, altPassword, altBaseUrl);
-  }
+    
 
-  const url = new URL('/auth/sign_in', lo.baseUrl);
+    
 
-  // Step 1: get login page (extract Authenticity, CSRF tokens, initial cookies.)
-  try {
-    const signInPageResult = await _fetch(lo, `${ lo.baseUrl }/auth/sign_in`, 'GET', 'html');
-    Object.assign(lo, _getTokens(signInPageResult.content));
-    lo.lastUrl = url;
-  }
-  catch(err) {
-    throw new Error(`Could not request sign_in page: ${ err.message }`);
-  }
+    
 
-  // Step 2: do a POST request with login form data (credentials, auth token)
-  let loginResult;
-  try {
-    loginResult = await _fetch(lo, url, 'POST', 'html', {
-      'authenticity_token': lo.authToken,
-      'user[email]'       : lo.email(),
-      'user[password]'    : lo.password()
-    }, [ 302 ]);
-  }
-  catch(err) {
-    throw new Error(`Could not POST form data: ${ err.message }`);
-  }
+    
 
-  // Step 3: Handle redirect manually to transfer auth/cookies to final page request
-  if ( !loginResult.ok ) {
-    // fail if not logged in (user will anyway need to update env settings/credentials)
-    throw new Error('Expected a redirect. Check if login credentials are set/correct.');
-  }
+    
 
-  // Step 4: Get final HTML page with initial JSON set incl. access_token
-  return await refreshSession(lo);
-}
+    
 
-/**
- * Reload current authenticated page (after login) to refresh access_tokens
- * and cookies, session values. Perhaps useful if server sessions expires (experimental!)
- * @param {LoginObject} lo - current logged in LoginObject from the original `login()` call
- * @returns {Promise&lt;LoginObject>} updated LoginObject
- */
-export async function refreshSession(lo) {
-  lo.loginOk = false;
-  try {
-    const finalResult = await _fetch(lo, new URL('/', lo.baseUrl), 'GET', 'html');
-    if ( finalResult.ok ) {
-      Object.assign(lo, _getTokens(finalResult.content));
-    }
-    else {
-      console.error(`Could not obtain initialized and authenticated page.`);
-      process.exit(1);
-    }
-  }
-  catch(err) {
-    throw new Error(`Could not obtain initialized and authenticated page: ${ err.message }`);
-  }
+    
 
-  lo.loginOk = true;
-  return lo;
-}
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".gablibEvents"><span class="type-signature type-signature-static, constant">(static, constant) </span>gablibEvents<span class="type-signature"> :module:events.EventEmitter</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Returns an event handler that can be used across a gablib application.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Returns an event handler that can be used across a gablib application.</p>
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">module:events.EventEmitter</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".findObjectId"><span class="type-signature type-signature-static">(static) </span>findObjectId<span class="signature">(id, array, key<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {null|*}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Find object with id in an array of objects.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line60">line 60</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>array</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'id'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>key for 'id' in array objects.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">null</span>
+|
+
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".inverseMap"><span class="type-signature type-signature-static">(static) </span>inverseMap<span class="signature">(map)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Map JSON so that properties becomes values, and vice verse.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line45">line 45</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>map</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>map for properties vs. values</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".mapObject"><span class="type-signature type-signature-static">(static) </span>mapObject<span class="signature">(json, map)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Map properties of json to those of map.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line30">line 30</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>json</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>object to remap</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>map</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>map holding the property names corresponding with json, and
+values for the new property names.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".sleep"><span class="type-signature type-signature-static">(static) </span>sleep<span class="signature">(ms)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Sleep function.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line178">line 178</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ms</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>delay in milliseconds</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;*></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".stripMD"><span class="type-signature type-signature-static">(static) </span>stripMD<span class="signature">(md, options)</span><span class="type-signature"> &rarr; {*}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Basic Markdown stripper. You can replace this with a custom plugin.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line76">line 76</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>remove-markdown by stiang. Modified by TechSavage.</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+    <dt class="tag-license">License:</dt>
+    <dd class="tag-license"><ul class="dummy"><li>MIT</li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://github.com/stiang/remove-markdown">https://github.com/stiang/remove-markdown</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>md</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

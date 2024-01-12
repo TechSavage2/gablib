@@ -21,12 +21,17 @@ a:active,
   }
 
 nav ul ul a {
+  color:#eef6e7 !important;
   line-height:20px;
   }
 
 nav ul a:hover,
 nav ul ul a:hover{
-  color:#eef6e7 !important;
+  color:#fff !important;
+  }
+
+nav ul ul a:hover{
+  text-decoration:underline;
   }
 
 table, h4.name {
