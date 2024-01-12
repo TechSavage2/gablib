@@ -93,8 +93,8 @@ export async function getRelatedAccounts(lo) {
  * @param {Array} accountIds - list of account (ids as strings) to check
  * @returns {Promise<*>}
  */
-export async function getAccountRelationships(lo, accountId, accountIds) {
-  const url = new URL(`/api/v1/accounts/${ accountId }/relationships`, lo.baseUrl);
+export async function getAccountRelationships(lo, accountIds) {
+  const url = new URL(`/api/v1/accounts/${ accountIds }/relationships`, lo.baseUrl);
   return _fetch(lo, url, 'POST', 'json', { accountIds });
 }
 
