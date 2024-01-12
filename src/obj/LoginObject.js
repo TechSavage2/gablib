@@ -150,7 +150,7 @@ You can also provide alternative names for env values as login('myemailenv', 'my
 
     if ( filepath ) {
       try {
-        writeFileSync(this.serializePath, ser, 'utf8');
+        writeFileSync(filepath, ser, 'utf8');
       }
       catch(err) {
         console.error(`Could not write serialized object: ${ err }`);
