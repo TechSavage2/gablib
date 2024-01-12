@@ -184,6 +184,7 @@ export async function handleAccountFollowRequests(lo, accountId, type) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} accountId - account to list
  * @param {string} type - media type to list. See {@link enumAccountMediaType}
+ * 'image', 'video'
  * @param {string|number} [maxId]
  * @returns {Promise<unknown>}
  */
