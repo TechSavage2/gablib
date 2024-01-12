@@ -66,7 +66,7 @@
     "navLevel": 2,
     "private": false,
     "removeQuotes": "trim",
-    "scripts": ["https://raw.githubusercontent.com/TechSavage2/gablib/master/jsdoc-custom.css"],
+    "scripts": ["jsdoc-custom.css"],
     "ShortenTypes": true,
     "menu": {
       "Project Website": {
