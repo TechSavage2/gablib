@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>Accounts - gablib</title>
+    <title>Feeds - gablib</title>
 
 
 
@@ -11,10 +11,10 @@
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link type="text/css" rel="stylesheet" href="styles/prettify.css">
     <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
     <script src="scripts/nav.js" defer></script>
 
@@ -22,7 +22,7 @@
 </head>
 <body>
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<input type="checkbox" id="nav-trigger" class="nav-trigger"/>
 <label for="nav-trigger" class="navicon-button x">
   <div class="navicon"></div>
 </label>
@@ -40,7 +40,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Accounts</h1>
+    <h1 class="page-title">Feeds</h1>
 
 
 
@@ -66,7 +66,7 @@
 
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.accounts.js.html">api.auth.accounts.js</a>, <a href="api.auth.accounts.js.html#line9">line 9</a>
+        <a href="api.auth.feeds.js.html">api.auth.feeds.js</a>, <a href="api.auth.feeds.js.html#line9">line 9</a>
     </li></ul></dd>
 
 
@@ -133,7 +133,7 @@
 
 
 
-    <h4 class="name" id=".editMyAccount"><span class="type-signature type-signature-static">(static) </span>editMyAccount<span class="signature">(lo, options)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+    <h4 class="name" id=".addFeedMember"><span class="type-signature type-signature-static">(static) </span>addFeedMember<span class="signature">(lo, feedId, accountId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
 
 
 
@@ -143,13 +143,215 @@
 <dl class="details">
 
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Update your own account information.</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Add an account as member to your feed.</p></li></ul></dd>
 
 
 
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.accounts.js.html">api.auth.accounts.js</a>, <a href="api.auth.accounts.js.html#line38">line 38</a>
+        <a href="api.auth.feeds.js.html">api.auth.feeds.js</a>, <a href="api.auth.feeds.js.html#line125">line 125</a>
+    </li></ul></dd>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+
+
+<table class="params">
+    <thead>
+    <tr>
+
+        <th>Name</th>
+
+
+        <th>Type</th>
+
+
+
+
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+
+        <tr>
+
+                <td class="name"><code>lo</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
+
+
+
+
+            </td>
+
+
+
+
+
+            <td class="description last"><p>Valid and active LoginObject</p></td>
+        </tr>
+
+
+
+        <tr>
+
+                <td class="name"><code>feedId</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type">string</span>
+
+
+
+
+            </td>
+
+
+
+
+
+            <td class="description last"><p>id of your feed</p></td>
+        </tr>
+
+
+
+        <tr>
+
+                <td class="name"><code>accountId</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type">string</span>
+
+
+
+
+            </td>
+
+
+
+
+
+            <td class="description last"><p>id of account you want to add as member</p></td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+
+<span class="param-type">Promise.&lt;*></span>
+
+
+
+    </dd>
+</dl>
+
+
+
+
+
+
+
+
+
+
+    <h4 class="name" id=".createFeed"><span class="type-signature type-signature-static">(static) </span>createFeed<span class="signature">(lo, options)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+
+
+
+
+
+<dl class="details">
+
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Create a new feed.</p></li></ul></dd>
+
+
+
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.feeds.js.html">api.auth.feeds.js</a>, <a href="api.auth.feeds.js.html#line53">line 53</a>
     </li></ul></dd>
 
 
@@ -262,7 +464,7 @@
 
 
 
-            <td class="description last"><p>new settings</p>
+            <td class="description last"><p>Options for the new feed</p>
                 <h6>Properties</h6>
 
 
@@ -280,6 +482,8 @@
 
 
 
+        <th>Default</th>
+
 
         <th class="last">Description</th>
     </tr>
@@ -290,7 +494,7 @@
 
         <tr>
 
-                <td class="name"><code>displayName</code></td>
+                <td class="name"><code>title</code></td>
 
 
             <td class="type">
@@ -306,42 +510,6 @@
 
                 <td class="attributes">
 
-                    &lt;optional><br>
-
-
-
-
-
-                </td>
-
-
-
-
-            <td class="description last"><p>New display name if provided</p></td>
-        </tr>
-
-
-
-        <tr>
-
-                <td class="name"><code>note</code></td>
-
-
-            <td class="type">
-
-
-<span class="param-type">string</span>
-
-
-
-
-            </td>
-
-
-                <td class="attributes">
-
-                    &lt;optional><br>
-
 
 
 
@@ -350,15 +518,19 @@
 
 
 
+                <td class="default">
 
-            <td class="description last"><p>New &quot;bio&quot; if provided</p></td>
+                </td>
+
+
+            <td class="description last"><p>title of the new feed</p></td>
         </tr>
 
 
 
         <tr>
 
-                <td class="name"><code>locked</code></td>
+                <td class="name"><code>visibility</code></td>
 
 
             <td class="type">
@@ -384,15 +556,21 @@
 
 
 
+                <td class="default">
 
-            <td class="description last"><p>If account is locked or not.</p></td>
+                    <code>'private'</code>
+
+                </td>
+
+
+            <td class="description last"><p>visibility of feed.</p></td>
         </tr>
 
 
 
         <tr>
 
-                <td class="name"><code>avatar</code></td>
+                <td class="name"><code>slug</code></td>
 
 
             <td class="type">
@@ -418,42 +596,16 @@
 
 
 
+                <td class="default">
 
-            <td class="description last"><p>New avatar image provided as Buffer</p></td>
-        </tr>
-
-
-
-        <tr>
-
-                <td class="name"><code>header</code></td>
-
-
-            <td class="type">
-
-
-<span class="param-type">string</span>
-
-
-
-
-            </td>
-
-
-                <td class="attributes">
-
-                    &lt;optional><br>
-
-
-
-
+                    <code>null</code>
 
                 </td>
 
 
-
-
-            <td class="description last"><p>New header image provided as Buffer</p></td>
+            <td class="description last"><p>slug for the feed. Note that creating a
+slug requires permission to do so.
+Valid values: 'private', 'public'</p></td>
         </tr>
 
 
@@ -509,7 +661,7 @@
 
 
 
-    <h4 class="name" id=".getAccountAttachments"><span class="type-signature type-signature-static">(static) </span>getAccountAttachments<span class="signature">(lo, accountId, type, maxId<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;unknown>}</span></h4>
+    <h4 class="name" id=".deleteFeed"><span class="type-signature type-signature-static">(static) </span>deleteFeed<span class="signature">(lo, feedId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
 
 
 
@@ -519,13 +671,13 @@
 <dl class="details">
 
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Get list of media attachments based on type (video, image)</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Delete a feed</p></li></ul></dd>
 
 
 
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.accounts.js.html">api.auth.accounts.js</a>, <a href="api.auth.accounts.js.html#line190">line 190</a>
+        <a href="api.auth.feeds.js.html">api.auth.feeds.js</a>, <a href="api.auth.feeds.js.html#line113">line 113</a>
     </li></ul></dd>
 
 
@@ -585,7 +737,183 @@
         <th>Type</th>
 
 
-        <th>Attributes</th>
+
+
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+
+        <tr>
+
+                <td class="name"><code>lo</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
+
+
+
+
+            </td>
+
+
+
+
+
+            <td class="description last"><p>Valid and active LoginObject</p></td>
+        </tr>
+
+
+
+        <tr>
+
+                <td class="name"><code>feedId</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type">string</span>
+
+
+
+
+            </td>
+
+
+
+
+
+            <td class="description last"><p>id of your feed</p></td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+
+<span class="param-type">Promise.&lt;*></span>
+
+
+
+    </dd>
+</dl>
+
+
+
+
+
+
+
+
+
+
+    <h4 class="name" id=".editFeed"><span class="type-signature type-signature-static">(static) </span>editFeed<span class="signature">(lo, feedId, options)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+
+
+
+
+
+<dl class="details">
+
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Edit an existing feed.</p></li></ul></dd>
+
+
+
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.feeds.js.html">api.auth.feeds.js</a>, <a href="api.auth.feeds.js.html#line72">line 72</a>
+    </li></ul></dd>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+
+
+<table class="params">
+    <thead>
+    <tr>
+
+        <th>Name</th>
+
+
+        <th>Type</th>
+
 
 
 
@@ -613,14 +941,6 @@
             </td>
 
 
-                <td class="attributes">
-
-
-
-
-
-                </td>
-
 
 
 
@@ -631,7 +951,78 @@
 
         <tr>
 
-                <td class="name"><code>accountId</code></td>
+                <td class="name"><code>feedId</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type">string</span>
+
+
+
+
+            </td>
+
+
+
+
+
+            <td class="description last"><p>id of your feed</p></td>
+        </tr>
+
+
+
+        <tr>
+
+                <td class="name"><code>options</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type">Object</span>
+
+
+
+
+            </td>
+
+
+
+
+
+            <td class="description last"><p>Options for the new feed</p>
+                <h6>Properties</h6>
+
+
+<table class="params">
+    <thead>
+    <tr>
+
+        <th>Name</th>
+
+
+        <th>Type</th>
+
+
+        <th>Attributes</th>
+
+
+
+        <th>Default</th>
+
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+
+        <tr>
+
+                <td class="name"><code>title</code></td>
 
 
             <td class="type">
@@ -655,8 +1046,255 @@
 
 
 
+                <td class="default">
 
-            <td class="description last"><p>account to list</p></td>
+                </td>
+
+
+            <td class="description last"><p>title of the new feed</p></td>
+        </tr>
+
+
+
+        <tr>
+
+                <td class="name"><code>visibility</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type">boolean</span>
+
+
+
+
+            </td>
+
+
+                <td class="attributes">
+
+                    &lt;optional><br>
+
+
+
+
+
+                </td>
+
+
+
+                <td class="default">
+
+                    <code>'private'</code>
+
+                </td>
+
+
+            <td class="description last"><p>visibility of feed.</p></td>
+        </tr>
+
+
+
+        <tr>
+
+                <td class="name"><code>slug</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type">string</span>
+
+
+
+
+            </td>
+
+
+                <td class="attributes">
+
+                    &lt;optional><br>
+
+
+
+
+
+                </td>
+
+
+
+                <td class="default">
+
+                    <code>null</code>
+
+                </td>
+
+
+            <td class="description last"><p>slug for the feed. Note that creating a
+slug requires permission to do so.
+Valid values: 'private', 'public'</p></td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+
+<span class="param-type">Promise.&lt;*></span>
+
+
+
+    </dd>
+</dl>
+
+
+
+
+
+
+
+
+
+
+    <h4 class="name" id=".getFeed"><span class="type-signature type-signature-static">(static) </span>getFeed<span class="signature">(lo, type)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+
+
+
+
+
+<dl class="details">
+
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get status list of feed based on type</p></li></ul></dd>
+
+
+
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.feeds.js.html">api.auth.feeds.js</a>, <a href="api.auth.feeds.js.html#line25">line 25</a>
+    </li></ul></dd>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+
+
+<table class="params">
+    <thead>
+    <tr>
+
+        <th>Name</th>
+
+
+        <th>Type</th>
+
+
+
+
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+
+        <tr>
+
+                <td class="name"><code>lo</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
+
+
+
+
+            </td>
+
+
+
+
+
+            <td class="description last"><p>Valid and active LoginObject</p></td>
         </tr>
 
 
@@ -677,55 +1315,11 @@
             </td>
 
 
-                <td class="attributes">
 
 
 
-
-
-                </td>
-
-
-
-
-            <td class="description last"><p>media type to list. See <a href="global.html#enumAccountMediaType">enumAccountMediaType</a></p></td>
-        </tr>
-
-
-
-        <tr>
-
-                <td class="name"><code>maxId</code></td>
-
-
-            <td class="type">
-
-
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-
-            </td>
-
-
-                <td class="attributes">
-
-                    &lt;optional><br>
-
-
-
-
-
-                </td>
-
-
-
-
-            <td class="description last"></td>
+            <td class="description last"><p>type of feed (see <a href="global.html#enumFeedType">enumFeedType</a>).
+Valid types: 'own', 'featured', 'member_of'</p></td>
         </tr>
 
 
@@ -758,7 +1352,7 @@
     </dt>
     <dd>
 
-<span class="param-type">Promise.&lt;unknown></span>
+<span class="param-type">Promise.&lt;*></span>
 
 
 
@@ -774,7 +1368,7 @@
 
 
 
-    <h4 class="name" id=".getAccountBlockedBys"><span class="type-signature type-signature-static">(static) </span>getAccountBlockedBys<span class="signature">(lo)</span><span class="type-signature"> &rarr; {Promise.&lt;unknown>}</span></h4>
+    <h4 class="name" id=".getFeedMembers"><span class="type-signature type-signature-static">(static) </span>getFeedMembers<span class="signature">(lo, feedId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
 
 
 
@@ -784,833 +1378,13 @@
 <dl class="details">
 
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>List accounts that have you blocked.</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>List member accounts for a feed id.</p></li></ul></dd>
 
 
 
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.accounts.js.html">api.auth.accounts.js</a>, <a href="api.auth.accounts.js.html#line150">line 150</a>
-    </li></ul></dd>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-
-
-<table class="params">
-    <thead>
-    <tr>
-
-        <th>Name</th>
-
-
-        <th>Type</th>
-
-
-
-
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-
-
-        <tr>
-
-                <td class="name"><code>lo</code></td>
-
-
-            <td class="type">
-
-
-<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
-
-
-
-
-            </td>
-
-
-
-
-
-            <td class="description last"><p>Valid and active LoginObject.</p></td>
-        </tr>
-
-
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-
-<span class="param-type">Promise.&lt;unknown></span>
-
-
-
-    </dd>
-</dl>
-
-
-
-
-
-
-
-
-
-
-    <h4 class="name" id=".getAccountBlocks"><span class="type-signature type-signature-static">(static) </span>getAccountBlocks<span class="signature">(lo)</span><span class="type-signature"> &rarr; {Promise.&lt;unknown>}</span></h4>
-
-
-
-
-
-
-<dl class="details">
-
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>List accounts you have blocked.</p></li></ul></dd>
-
-
-
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.accounts.js.html">api.auth.accounts.js</a>, <a href="api.auth.accounts.js.html#line130">line 130</a>
-    </li></ul></dd>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-
-
-<table class="params">
-    <thead>
-    <tr>
-
-        <th>Name</th>
-
-
-        <th>Type</th>
-
-
-
-
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-
-
-        <tr>
-
-                <td class="name"><code>lo</code></td>
-
-
-            <td class="type">
-
-
-<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
-
-
-
-
-            </td>
-
-
-
-
-
-            <td class="description last"><p>Valid and active LoginObject.</p></td>
-        </tr>
-
-
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-
-<span class="param-type">Promise.&lt;unknown></span>
-
-
-
-    </dd>
-</dl>
-
-
-
-
-
-
-
-
-
-
-    <h4 class="name" id=".getAccountFollowers"><span class="type-signature type-signature-static">(static) </span>getAccountFollowers<span class="signature">(lo, accountId)</span><span class="type-signature"> &rarr; {Promise.&lt;unknown>}</span></h4>
-
-
-
-
-
-
-<dl class="details">
-
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>List follower accounts to given account. Note that if the account has blocked
-public lists this function will fail.</p></li></ul></dd>
-
-
-
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.accounts.js.html">api.auth.accounts.js</a>, <a href="api.auth.accounts.js.html#line108">line 108</a>
-    </li></ul></dd>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-
-
-<table class="params">
-    <thead>
-    <tr>
-
-        <th>Name</th>
-
-
-        <th>Type</th>
-
-
-
-
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-
-
-        <tr>
-
-                <td class="name"><code>lo</code></td>
-
-
-            <td class="type">
-
-
-<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
-
-
-
-
-            </td>
-
-
-
-
-
-            <td class="description last"><p>Valid and active LoginObject.</p></td>
-        </tr>
-
-
-
-        <tr>
-
-                <td class="name"><code>accountId</code></td>
-
-
-            <td class="type">
-
-
-<span class="param-type">string</span>
-
-
-
-
-            </td>
-
-
-
-
-
-            <td class="description last"><p>followers to account id</p></td>
-        </tr>
-
-
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-
-<span class="param-type">Promise.&lt;unknown></span>
-
-
-
-    </dd>
-</dl>
-
-
-
-
-
-
-
-
-
-
-    <h4 class="name" id=".getAccountFollowing"><span class="type-signature type-signature-static">(static) </span>getAccountFollowing<span class="signature">(lo, accountId)</span><span class="type-signature"> &rarr; {Promise.&lt;unknown>}</span></h4>
-
-
-
-
-
-
-<dl class="details">
-
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>List following accounts to given account. Note that if the account has blocked
-public lists this function will fail.</p></li></ul></dd>
-
-
-
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.accounts.js.html">api.auth.accounts.js</a>, <a href="api.auth.accounts.js.html#line120">line 120</a>
-    </li></ul></dd>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-
-
-<table class="params">
-    <thead>
-    <tr>
-
-        <th>Name</th>
-
-
-        <th>Type</th>
-
-
-
-
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-
-
-        <tr>
-
-                <td class="name"><code>lo</code></td>
-
-
-            <td class="type">
-
-
-<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
-
-
-
-
-            </td>
-
-
-
-
-
-            <td class="description last"><p>Valid and active LoginObject.</p></td>
-        </tr>
-
-
-
-        <tr>
-
-                <td class="name"><code>accountId</code></td>
-
-
-            <td class="type">
-
-
-<span class="param-type">string</span>
-
-
-
-
-            </td>
-
-
-
-
-
-            <td class="description last"><p>followings to account id</p></td>
-        </tr>
-
-
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-
-<span class="param-type">Promise.&lt;unknown></span>
-
-
-
-    </dd>
-</dl>
-
-
-
-
-
-
-
-
-
-
-    <h4 class="name" id=".getAccountMutes"><span class="type-signature type-signature-static">(static) </span>getAccountMutes<span class="signature">(lo)</span><span class="type-signature"> &rarr; {Promise.&lt;unknown>}</span></h4>
-
-
-
-
-
-
-<dl class="details">
-
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>List accounts you have muted.</p></li></ul></dd>
-
-
-
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.accounts.js.html">api.auth.accounts.js</a>, <a href="api.auth.accounts.js.html#line140">line 140</a>
-    </li></ul></dd>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-
-
-<table class="params">
-    <thead>
-    <tr>
-
-        <th>Name</th>
-
-
-        <th>Type</th>
-
-
-
-
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-
-
-        <tr>
-
-                <td class="name"><code>lo</code></td>
-
-
-            <td class="type">
-
-
-<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
-
-
-
-
-            </td>
-
-
-
-
-
-            <td class="description last"><p>Valid and active LoginObject.</p></td>
-        </tr>
-
-
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-
-<span class="param-type">Promise.&lt;unknown></span>
-
-
-
-    </dd>
-</dl>
-
-
-
-
-
-
-
-
-
-
-    <h4 class="name" id=".getAccountRelationships"><span class="type-signature type-signature-static">(static) </span>getAccountRelationships<span class="signature">(lo, accountIds)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
-
-
-
-
-
-
-<dl class="details">
-
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>List relationship (member or not etc.) for array with account Ids.</p></li></ul></dd>
-
-
-
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.accounts.js.html">api.auth.accounts.js</a>, <a href="api.auth.accounts.js.html#line96">line 96</a>
+        <a href="api.auth.feeds.js.html">api.auth.feeds.js</a>, <a href="api.auth.feeds.js.html#line37">line 37</a>
     </li></ul></dd>
 
 
@@ -1706,7 +1480,185 @@ public lists this function will fail.</p></li></ul></dd>
 
         <tr>
 
-                <td class="name"><code>accountIds</code></td>
+                <td class="name"><code>feedId</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type">string</span>
+
+
+
+
+            </td>
+
+
+
+
+
+            <td class="description last"><p>feed id</p></td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+
+<span class="param-type">Promise.&lt;*></span>
+
+
+
+    </dd>
+</dl>
+
+
+
+
+
+
+
+
+
+
+    <h4 class="name" id=".getFeedRelationships"><span class="type-signature type-signature-static">(static) </span>getFeedRelationships<span class="signature">(lo, feedIds)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+
+
+
+
+
+<dl class="details">
+
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get relationship between you and the feeds (membership, subscriber, admin status).</p></li></ul></dd>
+
+
+
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.feeds.js.html">api.auth.feeds.js</a>, <a href="api.auth.feeds.js.html#line182">line 182</a>
+    </li></ul></dd>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+
+
+<table class="params">
+    <thead>
+    <tr>
+
+        <th>Name</th>
+
+
+        <th>Type</th>
+
+
+
+
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+
+        <tr>
+
+                <td class="name"><code>lo</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
+
+
+
+
+            </td>
+
+
+
+
+
+            <td class="description last"><p>Valid and active LoginObject</p></td>
+        </tr>
+
+
+
+        <tr>
+
+                <td class="name"><code>feedIds</code></td>
 
 
             <td class="type">
@@ -1723,7 +1675,7 @@ public lists this function will fail.</p></li></ul></dd>
 
 
 
-            <td class="description last"><p>list of account (ids as strings) to check</p></td>
+            <td class="description last"><p>array with list of feed ids</p></td>
         </tr>
 
 
@@ -1772,7 +1724,7 @@ public lists this function will fail.</p></li></ul></dd>
 
 
 
-    <h4 class="name" id=".getFollowRequests"><span class="type-signature type-signature-static">(static) </span>getFollowRequests<span class="signature">(lo, maxId<span class="signature-attributes">opt</span>, sinceId<span class="signature-attributes">opt</span>, limit<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;unknown>}</span></h4>
+    <h4 class="name" id=".getFeedSuggestions"><span class="type-signature type-signature-static">(static) </span>getFeedSuggestions<span class="signature">(lo)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
 
 
 
@@ -1781,11 +1733,168 @@ public lists this function will fail.</p></li></ul></dd>
 
 <dl class="details">
 
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get feed suggestions</p></li></ul></dd>
+
 
 
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.accounts.js.html">api.auth.accounts.js</a>, <a href="api.auth.accounts.js.html#line162">line 162</a>
+        <a href="api.auth.feeds.js.html">api.auth.feeds.js</a>, <a href="api.auth.feeds.js.html#line195">line 195</a>
+    </li></ul></dd>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+
+
+<table class="params">
+    <thead>
+    <tr>
+
+        <th>Name</th>
+
+
+        <th>Type</th>
+
+
+
+
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+
+        <tr>
+
+                <td class="name"><code>lo</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
+
+
+
+
+            </td>
+
+
+
+
+
+            <td class="description last"><p>Valid and active LoginObject</p></td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+
+<span class="param-type">Promise.&lt;*></span>
+
+
+
+    </dd>
+</dl>
+
+
+
+
+
+
+
+
+
+
+    <h4 class="name" id=".getFeedTimeline"><span class="type-signature type-signature-static">(static) </span>getFeedTimeline<span class="signature">(lo, feedId, pageOrMaxId<span class="signature-attributes">opt</span>, sort<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+
+
+
+
+
+<dl class="details">
+
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Get feed timeline.</p></li></ul></dd>
+
+
+
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.feeds.js.html">api.auth.feeds.js</a>, <a href="api.auth.feeds.js.html#line209">line 209</a>
     </li></ul></dd>
 
 
@@ -1890,14 +1999,14 @@ public lists this function will fail.</p></li></ul></dd>
                 </td>
 
 
-            <td class="description last"><p>Valid and active LoginObject.</p></td>
+            <td class="description last"><p>Valid and active LoginObject</p></td>
         </tr>
 
 
 
         <tr>
 
-                <td class="name"><code>maxId</code></td>
+                <td class="name"><code>feedId</code></td>
 
 
             <td class="type">
@@ -1913,46 +2022,6 @@ public lists this function will fail.</p></li></ul></dd>
 
                 <td class="attributes">
 
-                    &lt;optional><br>
-
-
-
-
-
-                </td>
-
-
-
-                <td class="default">
-
-                </td>
-
-
-            <td class="description last"></td>
-        </tr>
-
-
-
-        <tr>
-
-                <td class="name"><code>sinceId</code></td>
-
-
-            <td class="type">
-
-
-<span class="param-type">string</span>
-
-
-
-
-            </td>
-
-
-                <td class="attributes">
-
-                    &lt;optional><br>
-
 
 
 
@@ -1966,23 +2035,23 @@ public lists this function will fail.</p></li></ul></dd>
                 </td>
 
 
-            <td class="description last"></td>
+            <td class="description last"><p>id of a feed</p></td>
         </tr>
 
 
 
         <tr>
 
-                <td class="name"><code>limit</code></td>
+                <td class="name"><code>pageOrMaxId</code></td>
 
 
             <td class="type">
 
-
-<span class="param-type">string</span>
-|
 
 <span class="param-type">number</span>
+|
+
+<span class="param-type">string</span>
 
 
 
@@ -2004,166 +2073,50 @@ public lists this function will fail.</p></li></ul></dd>
 
                 <td class="default">
 
-                    <code>40</code>
+                </td>
+
+
+            <td class="description last"><p>either page or max status ID for pagination</p></td>
+        </tr>
+
+
+
+        <tr>
+
+                <td class="name"><code>sort</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type">string</span>
+
+
+
+
+            </td>
+
+
+                <td class="attributes">
+
+                    &lt;optional><br>
+
+
+
+
 
                 </td>
 
 
-            <td class="description last"><p>max items, max can be 80</p></td>
-        </tr>
 
+                <td class="default">
 
-    </tbody>
-</table>
+                    <code>"no-reposts"</code>
 
+                </td>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-
-<span class="param-type">Promise.&lt;unknown></span>
-
-
-
-    </dd>
-</dl>
-
-
-
-
-
-
-
-
-
-
-    <h4 class="name" id=".getMyAccount"><span class="type-signature type-signature-static">(static) </span>getMyAccount<span class="signature">(lo)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
-
-
-
-
-
-
-<dl class="details">
-
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Get your own account details, including source (for updating.)</p></li></ul></dd>
-
-
-
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.accounts.js.html">api.auth.accounts.js</a>, <a href="api.auth.accounts.js.html#line22">line 22</a>
-    </li></ul></dd>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-
-
-<table class="params">
-    <thead>
-    <tr>
-
-        <th>Name</th>
-
-
-        <th>Type</th>
-
-
-
-
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-
-
-        <tr>
-
-                <td class="name"><code>lo</code></td>
-
-
-            <td class="type">
-
-
-<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
-
-
-
-
-            </td>
-
-
-
-
-
-            <td class="description last"><p>Valid and active LoginObject</p></td>
+            <td class="description last"><p>Sort method</p></td>
         </tr>
 
 
@@ -2212,7 +2165,7 @@ public lists this function will fail.</p></li></ul></dd>
 
 
 
-    <h4 class="name" id=".getRelatedAccounts"><span class="type-signature type-signature-static">(static) </span>getRelatedAccounts<span class="signature">(lo)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+    <h4 class="name" id=".listFeedSubscribers"><span class="type-signature type-signature-static">(static) </span>listFeedSubscribers<span class="signature">(lo, feedId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
 
 
 
@@ -2222,13 +2175,13 @@ public lists this function will fail.</p></li></ul></dd>
 <dl class="details">
 
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Get list of related accounts</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>List subscribers of a feed</p></li></ul></dd>
 
 
 
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.accounts.js.html">api.auth.accounts.js</a>, <a href="api.auth.accounts.js.html#line84">line 84</a>
+        <a href="api.auth.feeds.js.html">api.auth.feeds.js</a>, <a href="api.auth.feeds.js.html#line171">line 171</a>
     </li></ul></dd>
 
 
@@ -2321,6 +2274,30 @@ public lists this function will fail.</p></li></ul></dd>
         </tr>
 
 
+
+        <tr>
+
+                <td class="name"><code>feedId</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type">string</span>
+
+
+
+
+            </td>
+
+
+
+
+
+            <td class="description last"><p>id of a feed</p></td>
+        </tr>
+
+
     </tbody>
 </table>
 
@@ -2366,7 +2343,7 @@ public lists this function will fail.</p></li></ul></dd>
 
 
 
-    <h4 class="name" id=".getSuggestedAccounts"><span class="type-signature type-signature-static">(static) </span>getSuggestedAccounts<span class="signature">(lo)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+    <h4 class="name" id=".removeFeedMember"><span class="type-signature type-signature-static">(static) </span>removeFeedMember<span class="signature">(lo, feedId, accountId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
 
 
 
@@ -2376,13 +2353,13 @@ public lists this function will fail.</p></li></ul></dd>
 <dl class="details">
 
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Get list of suggested accounts</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Remove a member from your feed.</p></li></ul></dd>
 
 
 
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.accounts.js.html">api.auth.accounts.js</a>, <a href="api.auth.accounts.js.html#line73">line 73</a>
+        <a href="api.auth.feeds.js.html">api.auth.feeds.js</a>, <a href="api.auth.feeds.js.html#line137">line 137</a>
     </li></ul></dd>
 
 
@@ -2475,146 +2452,16 @@ public lists this function will fail.</p></li></ul></dd>
         </tr>
 
 
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-
-<span class="param-type">Promise.&lt;*></span>
-
-
-
-    </dd>
-</dl>
-
-
-
-
-
-
-
-
-
-
-    <h4 class="name" id=".handleAccountFollowRequests"><span class="type-signature type-signature-static">(static) </span>handleAccountFollowRequests<span class="signature">(lo, accountId, type)</span><span class="type-signature"> &rarr; {Promise.&lt;unknown>}</span></h4>
-
-
-
-
-
-
-<dl class="details">
-
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Accept or reject an account follow request.</p></li></ul></dd>
-
-
-
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.accounts.js.html">api.auth.accounts.js</a>, <a href="api.auth.accounts.js.html#line177">line 177</a>
-    </li></ul></dd>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-
-
-<table class="params">
-    <thead>
-    <tr>
-
-        <th>Name</th>
-
-
-        <th>Type</th>
-
-
-
-
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-
 
         <tr>
 
-                <td class="name"><code>lo</code></td>
+                <td class="name"><code>feedId</code></td>
 
 
             <td class="type">
 
 
-<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
+<span class="param-type">string</span>
 
 
 
@@ -2625,7 +2472,7 @@ public lists this function will fail.</p></li></ul></dd>
 
 
 
-            <td class="description last"><p>Valid and active LoginObject</p></td>
+            <td class="description last"><p>id of your feed</p></td>
         </tr>
 
 
@@ -2649,31 +2496,7 @@ public lists this function will fail.</p></li></ul></dd>
 
 
 
-            <td class="description last"><p>account to handle</p></td>
-        </tr>
-
-
-
-        <tr>
-
-                <td class="name"><code>type</code></td>
-
-
-            <td class="type">
-
-
-<span class="param-type">string</span>
-
-
-
-
-            </td>
-
-
-
-
-
-            <td class="description last"><p>authorize or reject request. See <a href="global.html#enumAccountFollowRequest">enumAccountFollowRequest</a></p></td>
+            <td class="description last"><p>id of the account you want to remove</p></td>
         </tr>
 
 
@@ -2706,7 +2529,7 @@ public lists this function will fail.</p></li></ul></dd>
     </dt>
     <dd>
 
-<span class="param-type">Promise.&lt;unknown></span>
+<span class="param-type">Promise.&lt;*></span>
 
 
 
@@ -2722,7 +2545,7 @@ public lists this function will fail.</p></li></ul></dd>
 
 
 
-    <h4 class="name" id=".searchAccounts"><span class="type-signature type-signature-static">(static) </span>searchAccounts<span class="signature">(lo, keyword, limit<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+    <h4 class="name" id=".subscribeFeed"><span class="type-signature type-signature-static">(static) </span>subscribeFeed<span class="signature">(lo, feedId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
 
 
 
@@ -2732,13 +2555,13 @@ public lists this function will fail.</p></li></ul></dd>
 <dl class="details">
 
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Search for an account name.</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Subscribe to a feed</p></li></ul></dd>
 
 
 
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.auth.accounts.js.html">api.auth.accounts.js</a>, <a href="api.auth.accounts.js.html#line204">line 204</a>
+        <a href="api.auth.feeds.js.html">api.auth.feeds.js</a>, <a href="api.auth.feeds.js.html#line149">line 149</a>
     </li></ul></dd>
 
 
@@ -2798,11 +2621,7 @@ public lists this function will fail.</p></li></ul></dd>
         <th>Type</th>
 
 
-        <th>Attributes</th>
 
-
-
-        <th>Default</th>
 
 
         <th class="last">Description</th>
@@ -2828,19 +2647,7 @@ public lists this function will fail.</p></li></ul></dd>
             </td>
 
 
-                <td class="attributes">
 
-
-
-
-
-                </td>
-
-
-
-                <td class="default">
-
-                </td>
 
 
             <td class="description last"><p>Valid and active LoginObject</p></td>
@@ -2850,7 +2657,7 @@ public lists this function will fail.</p></li></ul></dd>
 
         <tr>
 
-                <td class="name"><code>keyword</code></td>
+                <td class="name"><code>feedId</code></td>
 
 
             <td class="type">
@@ -2864,35 +2671,153 @@ public lists this function will fail.</p></li></ul></dd>
             </td>
 
 
-                <td class="attributes">
 
 
 
-
-
-                </td>
-
-
-
-                <td class="default">
-
-                </td>
-
-
-            <td class="description last"><p>starting part of an account or username</p></td>
+            <td class="description last"><p>id of a feed</p></td>
         </tr>
 
+
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+
+<span class="param-type">Promise.&lt;*></span>
+
+
+
+    </dd>
+</dl>
+
+
+
+
+
+
+
+
+
+
+    <h4 class="name" id=".unsubscribeFeed"><span class="type-signature type-signature-static">(static) </span>unsubscribeFeed<span class="signature">(lo, feedId)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+
+
+
+
+
+<dl class="details">
+
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Unsubscribe from a feed</p></li></ul></dd>
+
+
+
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.auth.feeds.js.html">api.auth.feeds.js</a>, <a href="api.auth.feeds.js.html#line160">line 160</a>
+    </li></ul></dd>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+
+
+<table class="params">
+    <thead>
+    <tr>
+
+        <th>Name</th>
+
+
+        <th>Type</th>
+
+
+
+
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
 
 
         <tr>
 
-                <td class="name"><code>limit</code></td>
+                <td class="name"><code>lo</code></td>
 
 
             <td class="type">
 
 
-<span class="param-type">number</span>
+<span class="param-type"><a href="LoginObject.html">LoginObject</a></span>
 
 
 
@@ -2900,26 +2825,34 @@ public lists this function will fail.</p></li></ul></dd>
             </td>
 
 
-                <td class="attributes">
-
-                    &lt;optional><br>
 
 
 
+            <td class="description last"><p>Valid and active LoginObject</p></td>
+        </tr>
 
 
-                </td>
+
+        <tr>
+
+                <td class="name"><code>feedId</code></td>
+
+
+            <td class="type">
+
+
+<span class="param-type">string</span>
 
 
 
-                <td class="default">
 
-                    <code>4</code>
-
-                </td>
+            </td>
 
 
-            <td class="description last"><p>max result in a single query (absolute mastodon max is 80, default 40, some uses 4.)</p></td>
+
+
+
+            <td class="description last"><p>id of a feed</p></td>
         </tr>
 
 
