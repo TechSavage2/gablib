@@ -133,9 +133,9 @@ export async function _fetch(
   }
 
   if ( DEBUG ) {
-    return { content, ok, headers, status, url: response.url };
+    return { content, ok, status, headers, url: response.url };
   }
   else {
-    return { content, ok };
+    return { content, ok, status };
   }
 }
