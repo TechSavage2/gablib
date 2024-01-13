@@ -16,6 +16,7 @@ import { extname } from 'node:path';
 import { findObjectId, mapObject, stripMD } from './utils.js';
 import { mapAccount, mapAttachmentMeta, mapAttachmentRoot, mapStatus } from './maps.js';
 import { Poll } from './obj/Poll.js';
+import { enumStatusSort } from './enums.js';
 
 let markdownStripper = stripMD;
 let markdownStripperIsAsync = false;
@@ -243,28 +244,35 @@ export async function getComments(lo, statusId, maxId, sort = 'oldest') {
  * list/id, pro, related/statusId, video, "clips"
  *
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} timeline - a valid timeline name (see {@link enumTimelines}.
+ * @param {string|enumTimelines} timeline - a valid timeline name (see {@link enumTimelines}.
  * @param {number|string} [pageOrMaxId] either page or max status ID for pagination
- * @param {string} [sort="no-reposts"] Sort method
- * @param {boolean} [pinned=false] if true, request pinned posts instead
+ * @param {string|enumStatusSort} [sort=enumStatusSort.newestNoReposts] Sort method
+ * @param {{}} [filters={}}]
+ * @param {boolean} [filters.pinned] Only show pinned statuses
+ * @param {boolean} [filters.onlyFollowing] Only show statuses by accounts you follow
  * @returns {Promise<*>}
  */
 export async function getTimelineStatuses(
   lo,
   timeline = 'home',
   pageOrMaxId,
-  sort = 'no-reposts',
-  pinned = false) {
+  sort = enumStatusSort.newestNoReposts,
+  filters = {}) {
 
-  //todo video timeline additions args: only_following=1, media_type=clips|<none> (sort clips: newest,top_today, video: top* all)
   const url = new URL(`/api/v2/timelines/${ timeline === 'clips' ? 'video' : timeline }`, lo.baseUrl);
 
   if ( timeline === 'clips' ) {
     url.searchParams.append('media_type', 'clips');
   }
 
-  if ( pinned ) {
-    url.searchParams.append('pinned', 'true');
+  if ( filters ) {
+    if ( typeof filters.pinned === 'boolean' ) {
+      url.searchParams.append('pinned', filters.pinned.toString());
+    }
+
+    if ( typeof filters.onlyFollowing === 'boolean' ) {
+      url.searchParams.append('only_following', filters.pinned.toString());
+    }
   }
 
   if ( pageOrMaxId ) {
@@ -281,7 +289,7 @@ export async function getTimelineStatuses(
  * @param {string} [maxId] last Status ID for pagination
  * @returns {Promise<*>}
  */
-export async function getStatusRepostedBy(lo, statusId, maxId ) {
+export async function getStatusRepostedBy(lo, statusId, maxId) {
   const url = new URL(`/api/v1/statuses/${ statusId }/reblogged_by`, lo.baseUrl);
   if ( maxId ) {
     url.searchParams.append('max_id', maxId);
