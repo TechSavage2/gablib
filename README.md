@@ -5,14 +5,26 @@ API package for scripting/programming Mastodon nodes where OAuth2 for custom app
 on the server.
 
 This package will allow you to build apps by logging in programmatically via the regular "human"
-auth/sign_in page and extract tokens for operations that requires authentication.
+_auth/sign_in_ page and extract tokens for API calls that requires authentication.
 
 This is not a standalone package/app but intended to be used as part of a custom client or for
-scripting.
+various scripting/automation tasks.
 
-**⚠️ NOTE: The API is currently _not stable_ and in ALPHA, a WIP. Breaking changes could happen.
-Use it as a tech preview. Avoid use for production as of now. This message will go away when the
-API is frozen.**
+Things you can build:
+
+- Custom GUI/TUI clients
+- Feed/RSS bots
+- General post automation and scheduling
+- Analytics, insight and statistics tools
+- Bridges between other social platform APIs, cross-posting
+- Integration with ML for classifying, summarizing, "AI" detection and so forth.
+- General integration with ERMs, CRMs, communications etc.
+
+and much more.
+
+**⚠️ NOTE: The API is currently _not stable_ and in ALPHA, a WIP. Breaking changes could happen. Use
+it as a tech preview. Avoid use for production as of now. This message will go away when the API is
+frozen.**
 
 Requirements
 ------------
@@ -45,38 +57,52 @@ $ pnpm install https://github.com/TechSavage2/gablib
 
 It's now ready for use. As of now there are no other dependencies to be installed.
 
-API Features
-------------
+Features
+--------
 
-NOTE: currently unstable/may change.
+- Easy to use
+- Asynchronous
+- ES modules (import/export)
+- Login using the _sign_in_ form instead of OAuth2
+- Can call APIs requiring authentications
+- Public API calls
+- Streaming API as events
+- Can use a custom Markdown stripper
+- Optional automatic (de)serializing of session/auth data for reuse between executions (
+  experimental)
+
+Supported APIs
+--------------
 
 - Full support for **Statuses and Comments**
-  - Create Edit, Delete, Attachments, Timelines, (Un)Favorite, (Un)Bookmark, (Un)Pin, Move (aux function), Comment, Comment trees, Context, Posting to groups, Statuses from Tags, Revisions, Cards, Quotes, Replies, Stats
-  - Custom (optional) plugin for handling Markdown stripping.
-  - Handles and remaps Gab's rearranged results as well as the shortened properties on status JSONs.
+    - Create Edit, Delete, Attachments, Timelines, (Un)Favorite, (Un)Bookmark, (Un)Pin, Move (aux
+      function), Comment, Comment trees, Context, Posting to groups, Statuses from Tags, Revisions,
+      Cards, Quotes, Replies, Stats
+    - Custom (optional) plugin for handling Markdown stripping.
+    - Handles and remaps Gab's rearranged results as well as the shortened properties on status
+      JSONs.
 - Full support for **Groups**
-  - Create, Edit, Categories, Moderation
+    - Create, Edit, Categories, Moderation
 - Full support for **Bookmark Collections**
     - List collections, Create, Edit, Delete
 - Full support for **Notifications**
-  - Get notifications, Mark read, Filters
+    - Get notifications, Mark read, Filters
 - Full support for **Shortcuts**
     - List, Add, Delete, Reorder
-- Support for **Accounts**
+- Full support for **Accounts**
     - Stats, Edit, Account Settings
-- Support for **Lists** (TODO)
 - Full support for **Feeds**
     - Create, Edit, Delete, Add/Remove members, (Un)Subscribe, Timelines, Feed lists, List members
       and Subscribers
-- Support for **Chats/DM** (TODO)
-- Supports the **Streaming API**
+- Full support for the **Streaming API**
     - Realtime events for new posts, reposts, likes, notifications etc.
+- Full support for site wide **search**
+    - All, filters
 - Support for **Public** APIs (no authentication required)
     - Account information, Trends feed, News feed, Popular statuses
-- Full support for site wide **search**
-  - All, filters
+- Support for **Chats/DM** (TODO)
 - Support for **Site Settings** (TODO)
-- Experimental support for (de)serialization of session/auth between executions.
+- Support for (de)serialization of session/auth between executions.
 
 Getting Started
 ---------------
@@ -110,13 +136,13 @@ To use ESM in your project, either update `package.json` with the following:
 
 or use the `.mjs` extension for your JavaScript files.
 
-To import a function you can then use:
+To import functions as needed, you can then use:
 
 ```JavaScript
 import { login } from 'gablib/gablib.js';
 ```
 
-or if you prefer the entire library on a single object:
+or if you prefer the entire library as a single object:
 
 ```JavaScript
 import * as gablib from 'gablib/gablib.js';
@@ -127,7 +153,7 @@ Now call the primary function to log in:
 ```JavaScript
 import { login } from 'gablib/gablib.js';
 
-const loginObject = await login();  // note that the call is asynchronous
+const loginObject = await login();  // ! most calls are asynchronous
 ```
 
 If successful login, the object is now initialized for use with API functions. If login failed it
@@ -141,21 +167,21 @@ Online documentation (JSDoc) can be found here
 
 https://techsavage2.github.io/gablib/
 
-Wiki page with examples and tips:
+Wiki with examples and tips:
 
 https://github.com/TechSavage2/gablib/wiki
 
 To see specifics for each API call, JSON structures and so on, the official Mastodon can be useful.
-Note that some Mastodon sites (such as Gab) have modified some of these responses, JSONs and API
-calls, but to get the broader gist this is still helpful:
+Note that some Mastodon sites have modified some of these responses, JSONs and API calls, but to get
+the broader gist this is still helpful:
 
 https://docs.joinmastodon.org/methods/
 
-Local Docs
-----------
+Generate Local Docs
+-------------------
 
-You can generate a local version of the documentation by installing the
-developer dependencies. While in the project root folder:
+You can generate a local version of the documentation by installing the developer dependencies.
+While in the project root folder:
 
 ```bash
 $ npm i -D
@@ -167,13 +193,13 @@ Then run:
 $ npm run docs
 ```
 
-If you don't like to use the dark theme simply edit the `jsdocs.json` and remove the custom
-CSS file referenced in the `scripts` property.
+If you don't like to use the dark theme simply edit the `jsdocs.json` and remove the custom CSS file
+referenced in the `scripts` property.
 
-The docs are now found in the `docs/` folder. You may want to fire up a local
-server for the folder for everything to work smoothly.
+The docs are now found in the `docs/` folder. You may want to fire up a local server for the folder
+for everything to work smoothly.
 
-For example if you have python installed:
+For example, if you have python installed:
 
 ```bash
 cd docs/
@@ -185,29 +211,19 @@ Go to the link to see the docs.
 TODOs
 -----
 
-- [x] Easy to use
-- [x] Asynchronous
-- [x] ES modules (import/export)
-- [x] Login using the _sign_in_ form instead of OAuth
-- [x] API calls requiring authentications (WIP)
-- [x] Public API calls (WIP)
-- [x] 'Normalizes' Gab's remapped status lists format to that of normal Mastodon
-- [x] Can use a custom Markdown stripper
-- [x] Streaming API as events
-- [x] Optional automatic (de)serializing of session/auth data for reuse between executions (
-  experimental)
+- [ ] Chat APIs (social and public)
 - [ ] Events (responses, errors, upload/download progress, etc.)
 
 Issues
 ------
 
-See [issues](https://github.com/TechSavage2/gablib/issues)
+See [issues](https://github.com/TechSavage2/gablib/issues) on GitHub.
 
 Notes
 -----
 
-The package has only been tested with Linux so far, but there shouldn't be anything preventing
-it from working with Windows, macOS and other platforms as well.
+The package has only been tested with Linux so far, but there shouldn't be anything preventing it
+from working with Windows, macOS and other platforms as well.
 
 License
 -------

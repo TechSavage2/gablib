@@ -13,6 +13,7 @@
 'use strict';
 
 import { _fetch } from './_fetch.js';
+import { refreshSession } from './login.js';
 
 /**
  * Get your own account details, including source (for updating.)
@@ -144,18 +145,21 @@ export async function getAccountMutes(lo) {
 
 /**
  * List accounts that have you blocked.
+ * NOTE: there is normally an API call, but some instances have this blocked/disabled.
+ * We instead refresh the authenticated home page and re-extract up-to-date from that.
  * @param {LoginObject} lo - Valid and active LoginObject.
- * @returns {Promise<unknown>}
+ * @returns {Promise<*>}
  */
 export async function getAccountBlockedBys(lo) {
-  return { content: { accounts: lo.initJSON.meta.blocked_by }, ok: true };
+  lo = await refreshSession(lo);  // todo can fail if session has become invalid
+  return { content: { accounts: lo.initJSON.meta.blocked_by }, ok: true, status: 200 };
 }
 
 /**
  *
  * @param {LoginObject} lo - Valid and active LoginObject.
- * @param {string} [maxId]
- * @param {string} [sinceId]
+ * @param {string} [maxId] - max id for pagination
+ * @param {string} [sinceId] - statuses posted since this status id
  * @param {string|number} [limit=40] max items, max can be 80
  * @returns {Promise<unknown>}
  */
