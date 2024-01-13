@@ -123,7 +123,7 @@ export async function getGroupsByTag(lo, tag, page = 1) {
  */
 export async function getGroupRelationships(lo, groupIds) {
   const url = new URL('/api/v1/group_relationships', lo.baseUrl);
-  return _fetch(lo, url, 'POST', 'json', {groupIds})
+  return _fetch(lo, url, 'POST', 'json', { groupIds });
 }
 
 /**
@@ -242,21 +242,84 @@ function _formatGroupConfig(config, newConfig) {
   const form = new FormData();
   Object.keys(config).forEach(key => {
     const value = config[ key ];
-    if ( null !== value && key === 'title' ) form.append('title', value);
-    else if ( null !== value && key === 'description' ) form.append('description', value);
-    else if ( null !== value && key === 'isPrivate' ) form.append('is_private', value);
-    else if ( null !== value && key === 'isVisible' ) form.append('is_visible', value);
-    else if ( null !== value && key === 'isAdminsVisible' ) form.append('is_admins_visible', value);
-    else if ( null !== value && key === 'isMembersVisible' ) form.append('is_members_visible', value);
-    else if ( null !== value && key === 'isMediaVisible' ) form.append('is_media_visible', value);
-    else if ( null !== value && key === 'isLinksVisible' ) form.append('is_links_visible', value);
-    else if ( null !== value && key === 'isModerated' ) form.append('is_moderated', value);
-    else if ( null !== value && key === 'password' ) form.append('password', value);
-    else if ( null !== value && key === 'allowQuotes' ) form.append('allow_quotes', value);
-    else if ( null !== value && key === 'groupCategoryId' ) form.append('group_category_id', value);
+    if ( null !== value && key === 'title' ) {
+      form.append('title', value);
+    }
+    else if ( null !== value && key === 'description' ) {
+      form.append('description', value);
+    }
+    else if ( null !== value && key === 'isPrivate' ) {
+      form.append('is_private', value);
+    }
+    else if ( null !== value && key === 'isVisible' ) {
+      form.append('is_visible', value);
+    }
+    else if ( null !== value && key === 'isAdminsVisible' ) {
+      form.append('is_admins_visible', value);
+    }
+    else if ( null !== value && key === 'isMembersVisible' ) {
+      form.append('is_members_visible', value);
+    }
+    else if ( null !== value && key === 'isMediaVisible' ) {
+      form.append('is_media_visible', value);
+    }
+    else if ( null !== value && key === 'isLinksVisible' ) {
+      form.append('is_links_visible', value);
+    }
+    else if ( null !== value && key === 'isModerated' ) {
+      form.append('is_moderated', value);
+    }
+    else if ( null !== value && key === 'password' ) {
+      form.append('password', value);
+    }
+    else if ( null !== value && key === 'allowQuotes' ) {
+      form.append('allow_quotes', value);
+    }
+    else if ( null !== value && key === 'groupCategoryId' ) {
+      form.append('group_category_id', value);
+    }
     else if ( null !== value && key === 'coverImage' ) {
-      const buffer = typeof value === 'string' ? readFileSync(value) : value;
-      form.append('cover_image', new Blob([ buffer ]), typeof value === 'string' ? `cover${ extname(value) }` : 'cover.jpg'); // todo get extension right
+      let buffer;
+      let filename;
+      let ext;
+
+      if ( typeof value === 'string' ) {
+        try {
+          filename = value;
+          buffer = readFileSync(filename);
+          ext = extname(filename);
+        }
+        catch(err) {
+          throw new Error('Could not read file.');
+        }
+      }
+      else {
+        buffer = value;
+
+        // simplified extension detection based on binary header (not 100% robust)
+        const type = buffer.readInt32BE();
+        if ( type === 0x89504e47 ) {
+          ext = '.png';
+        }
+        else if ( (type & 0xffff) === 0xffd8 ) {
+          ext = '.jpg';
+        }
+        else if ( type === 0x47494638 ) {
+          ext = '.gif';
+        }
+        else if ( type === 0x52494646 && buffer.readInt32BE(8) === 0x57454250 ) {
+          ext = '.webp';
+        }
+        else {
+          ext = '.ext'; // well well, need more checks
+          console.warn('Could not detect file type. Please report issue:');
+          console.warn('https://github.com/TechSavage2/gablib/issues');
+        }
+
+        filename = `cover${ ext }`;
+      }
+
+      form.append('cover_image', new Blob([ buffer ]), filename);
     }
   });
 
