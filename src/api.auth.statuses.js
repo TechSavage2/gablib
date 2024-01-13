@@ -571,10 +571,6 @@ function _formatStatus(result, statusId, doRecursive = true) {
     status.attachments = media;
   }
 
-  //    if ( status.groupId ) {
-  //      // todo remap Group object when Gab has finished it
-  //    }
-
   if ( status.poll_id ) {
     status.poll = findObjectId(status.poll_id, result.content.p);
   }

@@ -41,44 +41,41 @@ export const mapAccount = {
 export const mapStatus = {
   'ai'       : 'account_id',
   'analytics': 'analytics',
-  //  'bci'      : 'bookmark_collection_id',  // ?? latter is missing, but also seem to always be 'null'
-  'c'  : 'content',
-  'ca' : 'created_at',
-  'ci' : 'conversation_id',
-  'drc': 'direct_replies_count',
-  'e'  : 'emojis',
-  'fvd': 'favourited',
-  'g'  : 'group',
-  'gi' : 'group_id',  // ??
-  'hq' : 'has_quote',
-  'i'  : 'id',
-  'ir' : 'is_reply',
-  //  in_reply_to_account_id: null, // not in the gab remapped result, but are in the non-mapped results
-  //  in_reply_to_id: null,
-  'l'   : 'language',
-  'm'   : 'mentions',
-  'mai' : 'media_attachment_ids',
-  'md'  : 'markdown',
-  'p'   : 'pinnable',
-  'pbg' : 'pinnable_by_group',
-  'pci' : 'preview_card_id',
-  'pi'  : 'poll_id',
-  'qc'  : 'quotes_count',
-  'qoi' : 'quote_of_id',
-  'rbc' : 'reblogs_count',
-  'rbgd': 'reblogged',
-  'rc'  : 'replies_count',
-  'rcs' : 'reaction_counts',
-  'rid' : 'reaction_id',      // *your* reaction ID (1=liked, etc.)
-  'robi': 'reblog_of_id',     // ?? latter is missing in Gabs remapped results
-  's'   : 'sensitive',
-  'sci' : 'status_context_id',
-  'st'  : 'spoiler_text',
-  't'   : 'text',
-  'tg'  : 'tags',
-  'u'   : 'uri',
-  'ul'  : 'url',
-  'v'   : 'visibility'
+  'c'        : 'content',
+  'ca'       : 'created_at',
+  'ci'       : 'conversation_id',
+  'drc'      : 'direct_replies_count',
+  'e'        : 'emojis',
+  'fvd'      : 'favourited',
+  'g'        : 'group',
+  'gi'       : 'group_id',
+  'hq'       : 'has_quote',
+  'i'        : 'id',
+  'ir'       : 'is_reply',
+  'l'        : 'language',
+  'm'        : 'mentions',
+  'mai'      : 'media_attachment_ids',
+  'md'       : 'markdown',
+  'p'        : 'pinnable',
+  'pbg'      : 'pinnable_by_group',
+  'pci'      : 'preview_card_id',
+  'pi'       : 'poll_id',
+  'qc'       : 'quotes_count',
+  'qoi'      : 'quote_of_id',
+  'rbc'      : 'reblogs_count',
+  'rbgd'     : 'reblogged',
+  'rc'       : 'replies_count',
+  'rcs'      : 'reaction_counts',
+  'rid'      : 'reaction_id',
+  'robi'     : 'reblog_of_id',
+  's'        : 'sensitive',
+  'sci'      : 'status_context_id',
+  'st'       : 'spoiler_text',
+  't'        : 'text',
+  'tg'       : 'tags',
+  'u'        : 'uri',
+  'ul'       : 'url',
+  'v'        : 'visibility'
 };
 
 export const mapAttachmentRoot = {
@@ -120,73 +117,3 @@ export const mapAttachmentMeta = {
   'p' : 'playable',
   'lr': 'lowres'
 };
-
-// sci - context id
-//  "id": "123",
-//  "name": "👀 It's Happening",
-//  "index": 0,
-//  "is_global": true,
-//  "is_enabled": true
-
-// Card (link)
-//  "id": 123,
-//  "url": "https://www...sion/",
-//  "title": "Open sou...ore",
-//  "description": "FOS...way",
-//  "type": "link",
-//  "provider_name": "",
-//  "provider_url": "",
-//  "html": "",
-//  "width": 1200,
-//  "height": 600,
-//  "image": "https://media...20881.jpeg",
-//  "embed_url": "",
-//  "updated_at": "202...5.483Z",
-//  "gab_content_type": null
-
-// Card (video)
-//  "id": 44466209,
-//  "url": "https://www.youtube...d6Y",
-//  "title": "KD...EATURES",
-//  "description": "",
-//  "type": "video",
-//  "provider_name": "YouTube",
-//  "provider_url": "https://www.youtube.com/",
-//  "html": "<iframe width=\"200\" height=\"113\" src=\"https://www.youtube.com/embed/...6Y?feature=oembed\" frameborder=\"0\" allowfullscreen=\"\" title=\"KD...EATURES\"></iframe>",
-//  "width": 200,
-//  "height": 113,
-//  "image": "https://media.gab.com/system/preview_cards/images/044/466/209/original/e7....jpeg",
-//  "embed_url": "",
-//  "updated_at": "2024-01...10Z",
-//  "gab_content_type": null
-
-// todo Gab has not finished mapping this, so this is not complete either...
-//export const mapGroup = {
-//  'i'   : 'id',
-//  't'   : 'title',
-//  'd'   : 'description',
-//  'dh'  : 'description_html',
-//  'ciu' : 'cover_image_url',
-//  'cit' : 'cover_image_thumbnail_url',
-//  'cim' : 'cover_image_medium_url',
-//  'ia'  : 'is_archived',
-//  'mc'  : 'member_count',
-//  'iv'  : 'is_verified',
-//  'im'  : 'is_moderated',
-//  'ca'  : 'created_at',
-//  'ip'  : 'is_private',
-//  'ivs' : 'is_visible',
-//  'sl'  : 'slug',
-//  'u'   : 'url',
-//  'gc'  : 'group_category',      //??
-//  'ipd' : 'password',            //??
-//  'hp'  : 'has_password',        //??
-//  'ipa' : 'is_paused',           //??
-//  'tc'  : 'theme_color',         //??
-//  'r'   : 'rules',               //??
-//  'iav' : 'is_admins_visible',   //??
-//  'imv' : 'is_members_visible',  //??
-//  'imdv': 'is_media_visible',    //??
-//  'ilv' : 'is_links_visible',    //??
-//  'aq'  : 'allow_quotes'         //??
-//};
