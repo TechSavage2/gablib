@@ -296,7 +296,7 @@ export async function leaveGroup(lo, groupId) {
  * @returns {Promise<*>}
  * @throws If password is missing it will throw an error
  */
-export async function requestGroupJoin(lo, groupId, password = null) {
+export async function requestGroupJoin(lo, groupId, password) {
   const url = new URL(`/api/v1/groups/${ groupId }/password`, lo.baseUrl);
   if ( !password ) throw new Error('Group join requests require a password.');
   return _fetch(lo, url, 'POST', 'json', { password });
