@@ -75,7 +75,7 @@ export async function login(credentials, altPassword, altBaseUrl) {
   // Step 3: Handle redirect manually to transfer auth/cookies to final page request
   if ( !loginResult.ok ) {
     // fail if not logged in (user will anyway need to update env settings/credentials)
-    throw new Error('Expected a redirect. Check if login credentials are set/correct.');
+    throw new Error(`Expected a redirect. Check if login credentials are set/correct. (HTML Server Code: ${ loginResult.status })`);
   }
 
   // Step 4: Get final HTML page with initial JSON set incl. access_token

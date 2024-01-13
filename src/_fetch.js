@@ -113,7 +113,7 @@ export async function _fetch(
       content = await response.json();
     }
     else {
-      content = response.text();
+      content = await response.text();
     }
   }
 
