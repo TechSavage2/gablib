@@ -465,7 +465,6 @@ export async function getStatusesWithCard(lo, cardId) {
  * @returns {Promise<*>}
  */
 export async function moveStatus(lo, status, groupId) {
-  // todo more to move...
   const result = await createStatus(lo, status.markdown || status.text, {
     visibility   : status.visibility,
     sensitive    : status.sensitive,
