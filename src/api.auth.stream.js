@@ -50,14 +50,15 @@ import { gablibEvents } from './utils.js';
  * as the second argument.
  *
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {boolean} [autoReconnect=false] - if socket closed error, attempt to reconnect.
+ * @param {boolean} [autoReconnect=true] - if socket closed error, attempt to reconnect.
  * @returns {Promise<*>}
  * @fires stream-event
  * @fires stream-ended
+ * @fires stream-error
  * @example
  * gablibEvents.on('stream-message', json => {  });
  */
-export async function getStream(lo, autoReconnect = false) {
+export async function getStream(lo, autoReconnect = true) {
   const url = new URL('/api/v4/streaming', lo.baseUrl);
 
   const options = {
