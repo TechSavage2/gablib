@@ -17,8 +17,13 @@ const MAX_OPTIONS = 8;
  * The poll options will appear in the order they are given/added.
  * @param {[]} [options=[]] optional array with string entries representing the options.
  * @constructor
+ * @throws If provided options is not an Array.
  */
 export function Poll(options = []) {
+  if ( !Array.isArray(options) ) {
+    throw new TypeError('Options object must be a type of Array.');
+  }
+
   let expires = enumPollExpires.threeDays;
 
   /**
