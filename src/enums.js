@@ -49,7 +49,7 @@ export const enumPostExpires = {
  * Expire times for new polls. You can use other values than these,
  * but these are the defaults some sites are using.
  * @global
- * @enum {string}
+ * @enum {number}
  * @readonly
  */
 export const enumPollExpires = {
@@ -100,7 +100,7 @@ export const enumTimelines = {
   group          : 'group',
   explore        : 'explore',
   video          : 'video',
-  clips          : 'clips', // NOTE this will be converted to 'video' and have an additional argument added to the request url (Gab thing.)
+  clips          : 'clips',
   photos         : 'photos',
   polls          : 'polls',
   links          : 'links',
