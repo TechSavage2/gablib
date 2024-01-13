@@ -500,7 +500,8 @@ export async function _getStatuses(lo, url) {
     });
   }
   else {
-    // todo normal mastodon results
+    // normal mastodon results
+    statuses.push(...result.content);
   }
   return { content: statuses, ok: result.status === 200 };
 }
@@ -569,8 +570,6 @@ function _formatStatus(result, statusId, doRecursive = true) {
   if ( status.poll_id ) {
     status.poll = findObjectId(status.poll_id, result.content.p);
   }
-
-  // todo cards, reposts, quote posts
 
   return status;
 }
