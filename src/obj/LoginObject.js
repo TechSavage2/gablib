@@ -8,7 +8,7 @@
 
 'use strict';
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, unlinkSync } from 'node:fs';
 import { CookieJar } from './CookieJar.js';
 import { createHash } from 'crypto';
 
@@ -184,5 +184,21 @@ You can also provide alternative names for env values as login('myemailenv', 'my
       return this;
     }
     else return null;
+  };
+
+  /**
+   * Remove session cache.
+   * @param {string} [path] optional path to session file, or use already defined on this object.
+   * @returns {boolean}
+   */
+  this.invalidateCache = function(path) {
+    const filepath = path || this.serializePath;
+    try {
+      unlinkSync(filepath);
+      return true;
+    }
+    catch {
+      return false;
+    }
   };
 }
