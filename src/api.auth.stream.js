@@ -91,7 +91,7 @@ export async function getStream(lo, autoReconnect = true) {
 
     let chunk = '';
 
-    while( true ) {
+while( true ) {
       const { value, done } = await reader.read();
       if ( done ) break;
       chunk += value;
@@ -109,7 +109,7 @@ export async function getStream(lo, autoReconnect = true) {
   catch(err) {
     gablibEvents.emit('stream-error', err);
     if ( autoReconnect ) {
-      return await getStream(lo); //todo recursion check
+      await getStream(lo, true);
     }
   }
 
