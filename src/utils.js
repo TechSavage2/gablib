@@ -14,6 +14,8 @@
 
 import { EventEmitter } from 'node:events';
 
+let _zeroWidthIndex = 0;
+
 /**
  * Returns an event handler that can be used across a gablib application.
  * @type {module:events.EventEmitter}
@@ -179,4 +181,14 @@ export async function sleep(ms) {
   return new Promise(success => {
     setTimeout(success, ms);
   });
+}
+
+/**
+ * Return a zero width char that can be inserted in statuses that goes to
+ * multiple destinations at once to avoid being blocked as spamming.
+ * @returns {string} - a single zero width char
+ */
+export function getZeroWidthChar() {
+  const zeroWidthChars = '\x00AD\x034F\x061C\x17B4\x17B5\x180E\x200B\x200C\x200D\x200E\x200F\x2060\x2061\x2062\x2063\x2064\x206A\x206B\x206C\x206D\x206E\x206F';
+  return zeroWidthChars.charAt(_zeroWidthIndex++ % zeroWidthChars.length);
 }
