@@ -156,7 +156,7 @@ export async function getAccountBlockedBys(lo) {
 }
 
 /**
- *
+ * Get list of follow requests if you use a locked account.
  * @param {LoginObject} lo - Valid and active LoginObject.
  * @param {string} [maxId] - max id for pagination
  * @param {string} [sinceId] - statuses posted since this status id
