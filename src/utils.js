@@ -192,3 +192,46 @@ export function getZeroWidthChar() {
   const zeroWidthChars = '\x00AD\x034F\x061C\x17B4\x17B5\x180E\x200B\x200C\x200D\x200E\x200F\x2060\x2061\x2062\x2063\x2064\x206A\x206B\x206C\x206D\x206E\x206F';
   return zeroWidthChars.charAt(_zeroWidthIndex++ % zeroWidthChars.length);
 }
+
+/**
+ * Simplified file-type detection for attachments.
+ * @param {Buffer} buffer - buffer holding the file
+ * @returns {string} Detected extension, or '.ext' if unknown.
+ */
+export function getExtensionFromBuffer(buffer) {
+  let ext = '.ext';
+  const type = buffer.readInt32BE() >>> 0;
+  if ( type === 0x89504e47 ) {
+    ext = '.png';
+  }
+  else if ( (type & 0xffff0000) >>> 0 === 0xffd80000 ) {
+    ext = '.jpg';
+  }
+  else if ( type === 0x47494638 ) {
+    ext = '.gif';
+  }
+  else if ( type === 0x52494646 && buffer.readInt32BE(8) === 0x57454250 ) {
+    ext = '.webp';
+  }
+  else if ( type === 0x52494646 && buffer.readInt32BE(8) === 0x41564920 ) {
+    ext = '.avi';
+  }
+  else if ( buffer.readInt32BE(4) === 0x66747970 && [ 0x69736f6d, 0x6D6D7034, 0x6D703432, 0x69736F35 ].includes(buffer.readInt32BE(8)) ) {
+    ext = '.mp4';
+  }
+  else if ( buffer.subarray(0, 0x20).toString().includes('webm') ) { // todo mkv based, better check
+    ext = '.webm';
+  }
+  else if ( buffer.subarray(0, 0x20).toString().includes('matroska') ) {
+    ext = '.mkv';
+  }
+  else if ( type === 0xfff14c80 ) {
+    ext = '.mp3';
+  }
+  else {
+    console.warn(`Could not detect file type (0x${ (type >>> 0).toString(16) }). Please report issue:`);
+    console.warn('https://github.com/TechSavage2/gablib/issues');
+  }
+
+  return ext;
+}

@@ -15,6 +15,7 @@
 import { _fetch } from './_fetch.js';
 import { extname } from 'node:path';
 import { readFileSync } from 'node:fs';
+import { getExtensionFromBuffer } from './utils.js';
 
 /**
  * Get global group categories and their ids.
@@ -295,27 +296,7 @@ function _formatGroupConfig(config, newConfig) {
       }
       else {
         buffer = value;
-
-        // simplified extension detection based on binary header (not 100% robust)
-        const type = buffer.readInt32BE();
-        if ( type === 0x89504e47 ) {
-          ext = '.png';
-        }
-        else if ( (type & 0xffff) === 0xffd8 ) {
-          ext = '.jpg';
-        }
-        else if ( type === 0x47494638 ) {
-          ext = '.gif';
-        }
-        else if ( type === 0x52494646 && buffer.readInt32BE(8) === 0x57454250 ) {
-          ext = '.webp';
-        }
-        else {
-          ext = '.ext'; // well well, need more checks
-          console.warn('Could not detect file type. Please report issue:');
-          console.warn('https://github.com/TechSavage2/gablib/issues');
-        }
-
+        ext = getExtensionFromBuffer(buffer);
         filename = `cover${ ext }`;
       }
 
