@@ -15,7 +15,7 @@ const MAX_OPTIONS = 8;
 /**
  * Poll helper object to create polls for postMessage statuses.
  * The poll options will appear in the order they are given/added.
- * @param {[]} [options=[]] optional array with string entries representing the options.
+ * @param {Array} [options=[]] optional array with string entries representing the options.
  * @constructor
  * @throws If provided options is not an Array.
  */
