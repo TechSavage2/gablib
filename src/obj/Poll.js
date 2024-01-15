@@ -40,7 +40,7 @@ export function Poll(options = []) {
   /**
    * Set expire delta for the poll to expire. (See {@link enumPollExpires}).
    * @param {number|enumPollExpires} [seconds=enumPollExpires.threeDays] - delta in number of seconds.
-   * @returns {boolean}
+   * @returns {boolean} false if out of range
    */
   this.setExpire = function(seconds = enumPollExpires.threeDays) {
     if ( seconds < enumPollExpires.oneHour || seconds > enumPollExpires.oneWeek ) return false;
@@ -51,7 +51,7 @@ export function Poll(options = []) {
   /**
    * Produce the poll JSON object that is sent to server. This is handled
    * automatically internally by the `createStatus()` call.
-   * @returns {{options: *[], expires_in: (enumPollExpires|string)}}
+   * @returns {{}}
    */
   this.toJSON = function() {
     return { options, expires_in: expires };
