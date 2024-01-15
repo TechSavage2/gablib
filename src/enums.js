@@ -31,6 +31,18 @@ export const enumAccountMediaType = {
 };
 
 /**
+ * Valid media types when requesting media attachments from account timelines.
+ * @global
+ * @enum {string}
+ * @readonly
+ */
+export const enumConversationListType = {
+  all   : 'all',
+  muted : 'muted',
+  pinned: 'pinned'
+};
+
+/**
  * Valid feed types.
  * @global
  * @enum {string}
@@ -51,6 +63,17 @@ export const enumFeedType = {
 export const enumGroupModerationJoin = {
   approve: 'approve',
   reject : 'reject'
+};
+
+/**
+ * Enum for handling direct message requests.
+ * @global
+ * @enum {string}
+ * @readonly
+ */
+export const enumHandleDirectMessageRequest = {
+  approve: 'approved',
+  reject : 'hidden'
 };
 
 /**

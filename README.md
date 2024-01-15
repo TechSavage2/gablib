@@ -100,9 +100,11 @@ Supported APIs
     - All, filters
 - Support for **Public** APIs (no authentication required)
     - Account information, Trends feed, News feed, Popular statuses
-- Support for **Chats/DM** (TODO)
+- Full support for **Direct Messages**
+    - Request, approve, reject, posting, media attachments, administration.
+- Support for **Public Chat** (TODO)
 - Support for **Site Settings** (TODO)
-- Support for (de)serialization of session/auth between executions.
+- Support for (de)serialization of session/auth between executions (experimental.)
 
 Getting Started
 ---------------
