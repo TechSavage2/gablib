@@ -213,6 +213,7 @@ TODOs
 
 - [ ] Chat APIs (social and public)
 - [ ] Events (responses, errors, upload/download progress, etc.)
+- [ ] AI
 
 Issues
 ------
