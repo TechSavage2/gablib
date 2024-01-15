@@ -347,25 +347,15 @@ export async function pinStatusState(lo, statusId) {
 }
 
 /**
- * Pin this status.
+ * Pin or unpin this status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} statusId - Status ID
+ * @param {string} statusId - Status id
+ * @param {boolean} state - True to pin, false to unpin
  * @returns {Promise<*>}
  */
-export async function pinStatus(lo, statusId) {
-  const url = new URL(`/api/v1/statuses/${ statusId }/pin`, lo.baseUrl);
-  return await _fetch(lo, url, 'POST', 'json', {});
-}
-
-/**
- * Unpin this status.
- * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} statusId - Status ID
- * @returns {Promise<*>}
- */
-export async function unpinStatus(lo, statusId) {
-  const url = new URL(`/api/v1/statuses/${ statusId }/unpin`, lo.baseUrl);
-  return await _fetch(lo, url, 'POST', 'json', {});
+export async function pinStatus(lo, statusId, state) {
+  const url = new URL(`/api/v1/statuses/${ statusId }/${ state ? '' : 'un' }pin`, lo.baseUrl);
+  return await _fetch(lo, url, 'POST');
 }
 
 /**
