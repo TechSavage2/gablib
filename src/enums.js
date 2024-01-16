@@ -54,6 +54,15 @@ export const enumFeedType = {
   memberOf: 'member_of'
 };
 
+export const enumFilterExpire = {
+  'halfHour': 1800,
+  'oneHour' : 3600,
+  'sixHours': 21600,
+  'halfDay' : 43200,
+  'oneDay'  : 86400,
+  'oneWeek' : 604800
+};
+
 /**
  * Enum for handling group join requests.
  * @global
