@@ -151,8 +151,6 @@ export async function editStatus(lo, statusId, newMarkdown, options) {
 export async function uploadMedia(lo, pathOrBuffer, filename) {
   const form = new FormData();
 
-  // todo check if Base64 encoded Data-URL is still supported
-
   try {
     const buffer = typeof pathOrBuffer === 'string' ? readFileSync(pathOrBuffer) : pathOrBuffer;
 
