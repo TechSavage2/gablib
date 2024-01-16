@@ -52,7 +52,7 @@ $ yarn add https://github.com/TechSavage2/gablib
 or `pnpm`:
 
 ```bash
-$ pnpm install https://github.com/TechSavage2/gablib
+$ pnpm add https://github.com/TechSavage2/gablib
 ```
 
 It's now ready for use. As of now there are no other dependencies to be installed.
@@ -102,7 +102,6 @@ Supported APIs
     - Account information, Trends feed, News feed, Popular statuses
 - Full support for **Direct Messages**
     - Request, approve, reject, posting, media attachments, administration.
-- Support for **Public Chat** (TODO)
 - Support for **Site Settings** (TODO)
 - Support for (de)serialization of session/auth between executions (experimental.)
 
@@ -113,7 +112,7 @@ Make sure you have a registered and active account with the Mastodon site you wa
 
 Make sure to initialize environmental variables on your system.
 
-For Linux, you can use:
+**For Linux and macOS, you can use:**
 
 ```bash
 export MASTODON_USEREMAIL='your@mastodon.email'
@@ -121,7 +120,18 @@ export MASTODON_PASSWORD='yourSecretPassword'
 export MASTODON_BASEURL='https://somemastodon.site'
 ```
 
-Put this in for example your `~/.profile` file.
+Add this in for example your `~/.profile` file on Linux (or `~/.bashrc` if you're using Wayland,)
+and to the `~/.bash_profile` on macOS.
+
+**Windows (cmd)**
+
+```cmd
+setx MASTODON_USEREMAIL "your@mastodon.email"
+setx MASTODON_PASSWORD "yourSecretPassword"
+setx MASTODON_BASEURL "https://somemastodon.site"
+```
+
+Remember to restart the shell for the changes to take effect.
 
 You can also use different environment names and simply supply them instead (
 see [wiki](https://github.com/TechSavage2/gablib/wiki/Authenticating).)
@@ -165,13 +175,9 @@ properly escaped (if using env.)
 Documentation
 -------------
 
-Online documentation (JSDoc) can be found here
+**JSDoc** online developer documentation can be [found here](https://techsavage2.github.io/gablib/).
 
-https://techsavage2.github.io/gablib/
-
-Wiki with examples and tips:
-
-https://github.com/TechSavage2/gablib/wiki
+**Wiki** with examples and tips can be [found here](https://github.com/TechSavage2/gablib/wiki).
 
 To see specifics for each API call, JSON structures and so on, the official Mastodon can be useful.
 Note that some Mastodon sites have modified some of these responses, JSONs and API calls, but to get
@@ -213,8 +219,11 @@ Go to the link to see the docs.
 TODOs
 -----
 
-- [ ] Chat APIs (social and public)
-- [ ] Events (responses, errors, upload/download progress, etc.)
+- [x] Chat APIs (social)
+- [ ] True privacy/encryption for DMs (where you create and own the private key. H/D exchange
+  options.)
+- [ ] ~~Chat APIs (public)~~ Very low activity.
+- [ ] Events (WIP. Support for streaming api added.)
 - [ ] AI
 
 Issues
