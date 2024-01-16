@@ -237,3 +237,8 @@ export async function searchAccounts(lo, keyword, limit = 4) {
   url.searchParams.append('resolve', 'false');
   return _fetch(lo, url);
 }
+
+export async function resendEmailConfirmation(lo) {
+  const url = new URL('/api/v1/accounts/resend_email_confirmation', lo.baseUrl);
+  return await _fetch(lo, url, 'POST');
+}
