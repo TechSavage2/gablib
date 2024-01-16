@@ -213,7 +213,8 @@ Go to the link to see the docs.
 TODOs
 -----
 
-- [ ] Chat APIs (social and public)
+- [x] Chat APIs (social)
+- [ ] Chat APIs (public)
 - [ ] Events (responses, errors, upload/download progress, etc.)
 - [ ] AI
 
