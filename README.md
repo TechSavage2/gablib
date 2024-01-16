@@ -52,7 +52,7 @@ $ yarn add https://github.com/TechSavage2/gablib
 or `pnpm`:
 
 ```bash
-$ pnpm install https://github.com/TechSavage2/gablib
+$ pnpm add https://github.com/TechSavage2/gablib
 ```
 
 It's now ready for use. As of now there are no other dependencies to be installed.
