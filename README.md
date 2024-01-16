@@ -113,7 +113,7 @@ Make sure you have a registered and active account with the Mastodon site you wa
 
 Make sure to initialize environmental variables on your system.
 
-For Linux, you can use:
+**For Linux and macOS, you can use:**
 
 ```bash
 export MASTODON_USEREMAIL='your@mastodon.email'
@@ -121,7 +121,18 @@ export MASTODON_PASSWORD='yourSecretPassword'
 export MASTODON_BASEURL='https://somemastodon.site'
 ```
 
-Put this in for example your `~/.profile` file.
+Add this in for example your `~/.profile` file on Linux (or `~/.bashrc` if you're using Wayland,)
+and to the `~/.bash_profile` on macOS.
+
+**Windows (cmd)**
+
+```cmd
+setx MASTODON_USEREMAIL "your@mastodon.email"
+setx MASTODON_PASSWORD "yourSecretPassword"
+setx MASTODON_BASEURL "https://somemastodon.site"
+```
+
+Remember to restart the shell for the changes to take effect.
 
 You can also use different environment names and simply supply them instead (
 see [wiki](https://github.com/TechSavage2/gablib/wiki/Authenticating).)
