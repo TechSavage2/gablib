@@ -107,3 +107,8 @@ export async function refreshSession(lo) {
   lo.loginOk = true;
   return lo;
 }
+
+export async function refreshCookies(lo) {
+  const url = new URL('/', lo.baseUrl);
+  await _fetch(lo, url, 'HEAD');
+}

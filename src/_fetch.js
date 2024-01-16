@@ -108,12 +108,14 @@ export async function _fetch(
   const ok = expectedReturnCode.includes(status | 0);
 
   let content = null;
-  if ( ok && status !== 204 ) {
-    if ( resultType === 'json' || resultType === 'binary' ) {
-      content = await response.json();
-    }
-    else {
-      content = await response.text();
+  if ( method.toUpperCase() !== 'HEAD' ) {
+    if ( ok && status !== 204 ) {
+      if ( resultType === 'json' || resultType === 'binary' ) {
+        content = await response.json();
+      }
+      else {
+        content = await response.text();
+      }
     }
   }
 
