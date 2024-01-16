@@ -101,23 +101,41 @@ You can also provide alternative names for env values as login('myemailenv', 'my
     this.baseUrl = this.baseUrl.substring(0, this.baseUrl.length - 1);
   }
 
+  /** @type {string|null} */
   this.serializePath = null;
+  /** @type {string} */
   this.lastUrl = this.baseUrl;  // used for referer in header
+  /** @type {boolean} */
   this.loginOk = false;
+  /** @type {CookieJar} */
   this.cookies = new CookieJar();
 
+  /** @type {string|null} */
   this.authToken = null;        // for login
+  /** @type {string|null} */
   this.accessToken = null;      // for bearer authorization
+  /** @type {string|null} */
   this.csrfToken = null;        // improved xss protection (not too useful here, but we'll include it)
+  /** @type {{}} */
   this.initJSON = {};           // meta, settings, your userid, name etc.
 
+  /** @type {string} */
   this.userAgent = commonUserAgents[ (commonUserAgents.length * Math.random()) | 0 ];
 
+  /**
+   * Get my account info from the initial settings.
+   * To get a more up-to-date version, see `getMyAccount()` in the Accounts module.
+   * @returns {*}
+   */
   this.getMyAccountInfo = function() {
     const id = this.initJSON.meta.me;
     return this.initJSON.accounts[ id ];
   };
 
+  /**
+   * Site version
+   * @returns {string}
+   */
   this.getVersion = function() {
     return this.initJSON.meta.version;
   };
