@@ -47,6 +47,20 @@ export async function getTrendsFeed(baseUrl) {
 }
 
 /**
+ * RSS feeds
+ * @param {string} baseUrl - sites' base URL
+ * @param {number} [page] - for pagination
+ * @returns {Promise<*>}
+ */
+export async function getTrendsSearch(baseUrl, page) {
+  const url = new URL('/api/v3/trends_search', baseUrl);
+  if ( typeof page === 'number' ) {
+    url.searchParams.append('p', (page | 0).toString());
+  }
+  return await _fetch(null, url);
+}
+
+/**
  * Get the news feed.
  * @param {string} baseUrl - sites' base URL
  * @returns {Promise<*>}
