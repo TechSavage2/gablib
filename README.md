@@ -102,7 +102,6 @@ Supported APIs
     - Account information, Trends feed, News feed, Popular statuses
 - Full support for **Direct Messages**
     - Request, approve, reject, posting, media attachments, administration.
-- Support for **Public Chat** (TODO)
 - Support for **Site Settings** (TODO)
 - Support for (de)serialization of session/auth between executions (experimental.)
 
@@ -176,13 +175,9 @@ properly escaped (if using env.)
 Documentation
 -------------
 
-Online documentation (JSDoc) can be found here
+**JSDoc** online developer documentation can be [found here](https://techsavage2.github.io/gablib/).
 
-https://techsavage2.github.io/gablib/
-
-Wiki with examples and tips:
-
-https://github.com/TechSavage2/gablib/wiki
+**Wiki** with examples and tips can be [found here](https://github.com/TechSavage2/gablib/wiki).
 
 To see specifics for each API call, JSON structures and so on, the official Mastodon can be useful.
 Note that some Mastodon sites have modified some of these responses, JSONs and API calls, but to get
@@ -225,8 +220,10 @@ TODOs
 -----
 
 - [x] Chat APIs (social)
-- [ ] Chat APIs (public)
-- [ ] Events (responses, errors, upload/download progress, etc.)
+- [ ] True privacy/encryption for DMs (where you create and own the private key. H/D exchange
+  options.)
+- [ ] ~~Chat APIs (public)~~ Very low activity.
+- [ ] Events (WIP. Support for streaming api added.)
 - [ ] AI
 
 Issues
