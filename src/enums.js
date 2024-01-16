@@ -77,6 +77,72 @@ export const enumHandleDirectMessageRequest = {
 };
 
 /**
+ * Enum for languages supported by site.
+ * @global
+ * @enum {string}
+ * @readonly
+ */
+export const enumLanguages = {
+  'ar'     : 'العربية',
+  'ast'    : 'Asturianu',
+  'bg'     : 'Български',
+  'bn'     : 'বাংলা',
+  'ca'     : 'Català',
+  'co'     : 'Corsu',
+  'cs'     : 'Čeština',
+  'cy'     : 'Cymraeg',
+  'da'     : 'Dansk',
+  'de'     : 'Deutsch',
+  'el'     : 'Ελληνικά',
+  'en'     : 'English',
+  'eo'     : 'Esperanto',
+  'es'     : 'Español',
+  'eu'     : 'Euskara',
+  'fa'     : 'فارسی',
+  'fi'     : 'Suomi',
+  'fr'     : 'Français',
+  'ga'     : 'Gaeilge',
+  'gl'     : 'Galego',
+  'he'     : 'עברית',
+  'hi'     : 'हिन्दी',
+  'hr'     : 'Hrvatski',
+  'hu'     : 'Magyar',
+  'hy'     : 'Հայերեն',
+  'id'     : 'Bahasa Indonesia',
+  'io'     : 'Ido',
+  'it'     : 'Italiano',
+  'ja'     : '日本語',
+  'ka'     : 'ქართული',
+  'kk'     : 'Қазақша',
+  'ko'     : '한국어',
+  'lt'     : 'Lietuvių',
+  'lv'     : 'Latviešu',
+  'ms'     : 'Bahasa Melayu',
+  'nl'     : 'Nederlands',
+  'no'     : 'Norsk',
+  'oc'     : 'Occitan',
+  'pl'     : 'Polski',
+  'pt'     : 'Português',
+  'ro'     : 'Română',
+  'ru'     : 'Русский',
+  'sk'     : 'Slovenčina',
+  'sl'     : 'Slovenščina',
+  'sq'     : 'Shqip',
+  'sr'     : 'Српски',
+  'sv'     : 'Svenska',
+  'ta'     : 'தமிழ்',
+  'te'     : 'తెలుగు',
+  'th'     : 'ไทย',
+  'tr'     : 'Türkçe',
+  'pt-BR'  : 'Português do Brasil',
+  'sr-Latn': 'Srpski (latinica)',
+  'zh-CN'  : '简体中文',
+  'zh-HK'  : '繁體中文（香港）',
+  'zh-TW'  : '繁體中文（臺灣）',
+  'uk'     : 'Українська'
+};
+
+/**
  * Expire times for new polls. You can use other values than these,
  * but these are the defaults some sites are using.
  * @global
