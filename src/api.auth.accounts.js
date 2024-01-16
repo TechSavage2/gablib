@@ -184,6 +184,30 @@ export async function handleAccountFollowRequests(lo, accountId, type) {
 }
 
 /**
+ * Mute or unmute an account.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string} accountId - account to mute or unmute
+ * @param {boolean} state - true to mute, false to unmute
+ * @returns {Promise<*>}
+ */
+export async function muteAccount(lo, accountId, state) {
+  const url = new URL(`/api/v1/accounts/${ accountId }/${ state ? '' : 'un' }mute`, lo.baseUrl);
+  return await _fetch(lo, url, 'POST');
+}
+
+/**
+ * Block or unblock an account.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string} accountId - account to block or unblock
+ * @param {boolean} state - true to block, false to unblock
+ * @returns {Promise<*>}
+ */
+export async function blockAccount(lo, accountId, state) {
+  const url = new URL(`/api/v1/accounts/${ accountId }/${ state ? '' : 'un' }block`, lo.baseUrl);
+  return await _fetch(lo, url, 'POST');
+}
+
+/**
  * Get list of media attachments based on type (video, image)
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} accountId - account to list
