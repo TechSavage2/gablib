@@ -104,7 +104,7 @@ export async function getAccountRelationships(lo, accountIds) {
  * public lists this function will fail.
  * @param {LoginObject} lo - Valid and active LoginObject.
  * @param {string} accountId - followers to account id
- * @returns {Promise<unknown>}
+ * @returns {Promise<*>}
  */
 export async function getAccountFollowers(lo, accountId) {
   const url = new URL(`/api/v1/accounts/${ accountId }/followers`, lo.baseUrl);
@@ -116,7 +116,7 @@ export async function getAccountFollowers(lo, accountId) {
  * public lists this function will fail.
  * @param {LoginObject} lo - Valid and active LoginObject.
  * @param {string} accountId - followings to account id
- * @returns {Promise<unknown>}
+ * @returns {Promise<*>}
  */
 export async function getAccountFollowing(lo, accountId) {
   const url = new URL(`/api/v1/accounts/${ accountId }/following`, lo.baseUrl);
@@ -126,7 +126,7 @@ export async function getAccountFollowing(lo, accountId) {
 /**
  * List accounts you have blocked.
  * @param {LoginObject} lo - Valid and active LoginObject.
- * @returns {Promise<unknown>}
+ * @returns {Promise<*>}
  */
 export async function getAccountBlocks(lo) {
   const url = new URL(`/api/v1/blocks`, lo.baseUrl);
@@ -136,7 +136,7 @@ export async function getAccountBlocks(lo) {
 /**
  * List accounts you have muted.
  * @param {LoginObject} lo - Valid and active LoginObject.
- * @returns {Promise<unknown>}
+ * @returns {Promise<*>}
  */
 export async function getAccountMutes(lo) {
   const url = new URL(`/api/v1/mutes`, lo.baseUrl);
@@ -146,7 +146,7 @@ export async function getAccountMutes(lo) {
 /**
  * List accounts that have you blocked.
  * NOTE: there is normally an API call, but some instances have this blocked/disabled.
- * We instead refresh the authenticated home page and re-extract up-to-date from that.
+ * We instead refresh the authenticated home page and re-extract up-to-date list from that.
  * @param {LoginObject} lo - Valid and active LoginObject.
  * @returns {Promise<*>}
  */
@@ -160,14 +160,14 @@ export async function getAccountBlockedBys(lo) {
  * @param {LoginObject} lo - Valid and active LoginObject.
  * @param {string} [maxId] - max id for pagination
  * @param {string} [sinceId] - statuses posted since this status id
- * @param {string|number} [limit=40] max items, max can be 80
- * @returns {Promise<unknown>}
+ * @param {number} [limit=40] max items, max can be 80
+ * @returns {Promise<*>}
  */
 export async function getFollowRequests(lo, maxId, sinceId, limit = 40) {
   const url = new URL(`/api/v1/follow_requests`, lo.baseUrl);
   if ( maxId ) url.searchParams.append('max_id', maxId);
   if ( sinceId ) url.searchParams.append('since_id', sinceId);
-  if ( limit ) url.searchParams.append('limit', limit);
+  if ( limit ) url.searchParams.append('limit', limit.toString());
   return _fetch(lo, url);
 }
 
@@ -176,7 +176,7 @@ export async function getFollowRequests(lo, maxId, sinceId, limit = 40) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} accountId - account to handle
  * @param {string} type - authorize or reject request. See {@link enumAccountFollowRequest}
- * @returns {Promise<unknown>}
+ * @returns {Promise<*>}
  */
 export async function handleAccountFollowRequests(lo, accountId, type) {
   const url = new URL(`/api/v1/follow_requests/${ accountId }/${ type }`, lo.baseUrl);
@@ -213,8 +213,8 @@ export async function blockAccount(lo, accountId, state) {
  * @param {string} accountId - account to list
  * @param {string} type - media type to list. See {@link enumAccountMediaType}
  * 'image', 'video'
- * @param {string|number} [maxId]
- * @returns {Promise<unknown>}
+ * @param {string} [maxId] - for pagination
+ * @returns {Promise<*>}
  */
 export async function getAccountAttachments(lo, accountId, type, maxId) {
   const url = new URL(`/api/v1/accounts/${ accountId }/media_attachments`, lo.baseUrl);
