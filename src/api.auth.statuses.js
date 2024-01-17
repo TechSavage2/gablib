@@ -322,14 +322,14 @@ export async function getStatusRevisions(lo, statusId) {
  * Like or unlike this status as favorite (like, optional reaction.)
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} statusId - Status ID
- * @param {boolean} like - true if like, false to unlike. Optional reaction id for like.
+ * @param {boolean} state - true if like, false to unlike. Optional reaction id for like.
  * @param {string|enumReactions} [reactId="1"] React id (See {@link enumReactions}).
  * @returns {Promise<*>}
  */
-export async function favoritePost(lo, statusId, like, reactId = '1') {
-  const url = new URL(`/api/v1/statuses/${ statusId }/${ like ? '' : 'un' }favourite`, lo.baseUrl);
+export async function favoritePost(lo, statusId, state, reactId = '1') {
+  const url = new URL(`/api/v1/statuses/${ statusId }/${ state ? '' : 'un' }favourite`, lo.baseUrl);
   const body = {};
-  if ( like && reactId !== '1' ) {
+  if ( state && reactId !== '1' ) {
     body.reaction_id = reactId;
   }
   return await _fetch(lo, url, 'POST', 'json', body);
