@@ -353,19 +353,8 @@ export async function requestGroupJoin(lo, groupId, password) {
  * @param {boolean} state - true to mute, false to unmute
  * @returns {Promise<*>}
  */
-export async function muteGroup(lo, groupId) {
-  const url = new URL(`/api/v1/groups/${ groupId }/block`, lo.baseUrl);
-  return _fetch(lo, url, 'POST');
-}
-
-/**
- * Unmute a group you are member of.
- * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
- * @returns {Promise<*>}
- */
-export async function unmuteGroup(lo, groupId) {
-  const url = new URL(`/api/v1/groups/${ groupId }/unblock`, lo.baseUrl);
+export async function muteGroup(lo, groupId, state) {
+  const url = new URL(`/api/v1/groups/${ groupId }/${ state ? '' : 'un' }block`, lo.baseUrl);
   return _fetch(lo, url, 'POST');
 }
 
