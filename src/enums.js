@@ -75,6 +75,17 @@ export const enumGroupModerationJoin = {
 };
 
 /**
+ * Enum for group roles.
+ * @global
+ * @enum {string}
+ * @readonly
+ */
+export const enumGroupRole = {
+  moderator: 'moderator',
+  admin    : 'admin'
+};
+
+/**
  * Enum for handling direct message requests.
  * @global
  * @enum {string}
