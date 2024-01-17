@@ -69,7 +69,7 @@ Features
 - Streaming API as events
 - Can use a custom Markdown stripper
 - Optional automatic (de)serializing of session/auth data for reuse between executions (
-  experimental)
+  experimental.)
 
 Supported APIs
 --------------
@@ -79,8 +79,6 @@ Supported APIs
       function), Comment, Comment trees, Context, Posting to groups, Statuses from Tags, Revisions,
       Cards, Quotes, Replies, Stats
     - Custom (optional) plugin for handling Markdown stripping.
-    - Handles and remaps Gab's rearranged results as well as the shortened properties on status
-      JSONs.
 - Full support for **Groups**
     - Create, Edit, Categories, Moderation
 - Full support for **Bookmark Collections**
@@ -96,13 +94,12 @@ Supported APIs
       and Subscribers
 - Full support for the **Streaming API**
     - Realtime events for new posts, reposts, likes, notifications etc.
-- Full support for site wide **search**
+- Full support for site wide **Search**
     - All, filters
 - Support for **Public** APIs (no authentication required)
     - Account information, Trends feed, News feed, Popular statuses
 - Full support for **Direct Messages**
     - Request, approve, reject, posting, media attachments, administration.
-- Support for **Site Settings** (TODO)
 - Support for (de)serialization of session/auth between executions (experimental.)
 
 Getting Started
@@ -120,7 +117,7 @@ export MASTODON_PASSWORD='yourSecretPassword'
 export MASTODON_BASEURL='https://somemastodon.site'
 ```
 
-Add this in for example your `~/.profile` file on Linux (or `~/.bashrc` if you're using Wayland,)
+Add this in, for example, your `~/.profile` file on Linux (or `~/.bashrc` if you're using Wayland,)
 and to the `~/.bash_profile` on macOS.
 
 **Windows (cmd)**
@@ -222,7 +219,6 @@ TODOs
 - [x] Chat APIs (social)
 - [ ] True privacy/encryption for DMs (where you create and own the private key. H/D exchange
   options.)
-- [ ] ~~Chat APIs (public)~~ Very low activity.
 - [ ] Events (WIP. Support for streaming api added.)
 - [ ] AI
 
