@@ -71,10 +71,9 @@ async function _getGroupTypes(lo, type, minimalList) {
 
   const result = await _fetch(lo, url);
   if ( minimalList ) {
-    return {
-      ok     : result.ok,
+    return Object.assign({}, result, {
       content: result.content.map(e => {return { id: e.id, title: e.title };})
-    };
+    });
   }
   else return result;
 }
@@ -135,7 +134,7 @@ export async function getGroupRelationships(lo, groupIds) {
  */
 export async function getGroup(lo, groupId) {
   const url = `${ lo.baseUrl }/api/v1/groups/${ groupId }`;
-  return await _fetch(lo, url, 'GET', 'json');
+  return await _fetch(lo, url, 'GET');
 }
 
 /**
