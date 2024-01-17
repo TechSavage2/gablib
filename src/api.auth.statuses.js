@@ -307,30 +307,20 @@ export async function getStatusRevisions(lo, statusId) {
 }
 
 /**
- * Mark this status as favorite (like, reaction.)
+ * Like or unlike this status as favorite (like, optional reaction.)
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} statusId - Status ID
- * @param {string} [reactId="1"] React Id. See {@link enumReactions}.
+ * @param {boolean} like - true if like, false to unlike. Optional reaction id for like.
+ * @param {string|enumReactions} [reactId="1"] React id (See {@link enumReactions}).
  * @returns {Promise<*>}
  */
-export async function favoritePost(lo, statusId, reactId = '1') {
-  const url = new URL(`/api/v1/statuses/${ statusId }/favourite`, lo.baseUrl);
+export async function favoritePost(lo, statusId, like, reactId = '1') {
+  const url = new URL(`/api/v1/statuses/${ statusId }/${ like ? '' : 'un' }favourite`, lo.baseUrl);
   const body = {};
-  if ( reactId !== '1' ) {
+  if ( like && reactId !== '1' ) {
     body.reaction_id = reactId;
   }
   return await _fetch(lo, url, 'POST', 'json', body);
-}
-
-/**
- * Unmark this status as favorite (unlike.)
- * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} statusId - Status ID
- * @returns {Promise<*>}
- */
-export async function unfavoritePost(lo, statusId) {
-  const url = new URL(`/api/v1/statuses/${ statusId }/unfavourite`, lo.baseUrl);
-  return await _fetch(lo, url, 'POST', 'json', {});
 }
 
 /**
