@@ -21,7 +21,7 @@ import { _fetch } from './_fetch.js';
  * @param {number} [page=1] page number for results
  * @param {Object} [filters={}] filters for query
  * @param {boolean} [filters.onlyVerified] only show results from verified accounts
- * @param {string} [filters.type='status'] filter results on type: See {@link enumSearchFilterTypes}.
+ * @param {string|enumSearchFilterTypes} [filters.type='status'] filter results on type: See {@link enumSearchFilterTypes}.
  * 'status', 'group', 'top', 'account', 'link', 'feed', 'hashtag'
  * @returns {Promise<*>}
  * @throws If query is empty
@@ -44,7 +44,7 @@ export async function search(lo, query, page = 1, filters = {}) {
 
   page |= 0;
   if ( page > 0 ) {
-    url.searchParams.append('page', page);
+    url.searchParams.append('page', page.toString());
   }
 
   if ( typeof filters.type === 'string' ) {

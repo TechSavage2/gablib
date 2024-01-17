@@ -28,7 +28,7 @@ export async function getShortcuts(lo) {
  * Add a new shortcut providing type of shortcut and the id for that object.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} id - id of the object you want to create a shortcut for
- * @param {string} type type of shortcut, for example 'group', 'account', 'list'
+ * @param {string|enumShortType} type type of shortcut, for example 'group', 'account', 'list'
  * (See {@link enumShortType}).
  * @returns {Promise<*>}
  */
@@ -50,7 +50,7 @@ export async function deleteShortcut(lo, shortcutId) {
 
 /**
  * Clear unread count for shortcut
- * @param {LoginObject} lo - Valid and active LoginObject@param {string} shortcutId - id of shortcut to delete
+ * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} shortcutId - shortcut id to clear unread count for
  * @returns {Promise<*>}
  */
@@ -62,7 +62,7 @@ export async function clearShortcutCount(lo, shortcutId) {
 /**
  * Reorder your shortcuts.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {Array} idArray - array of shortcut ids in the order you want them to appear
+ * @param {string[]} idArray - array of shortcut ids in the order you want them to appear
  * (for example: `['3', '1', '2', ...]`).
  * @returns {Promise<*>}
  */
