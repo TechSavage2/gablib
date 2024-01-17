@@ -10,8 +10,6 @@
 
 import { login } from './login.js';
 
-const DEBUG = false;
-
 /**
  * Private function that handles all our scenarios. This function is not intended
  *  to be called directly, but through wrappers that will provide the correct
@@ -134,10 +132,5 @@ export async function _fetch(
     loginObject.lastUrl = response.url;
   }
 
-  if ( DEBUG ) {
-    return { content, ok, status, headers, url: response.url };
-  }
-  else {
-    return { content, ok, status };
-  }
+  return { content, ok, status, headers, url: response.url };
 }
