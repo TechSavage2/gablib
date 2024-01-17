@@ -22,10 +22,6 @@ Things you can build:
 
 and much more.
 
-**⚠️ NOTE: The API is currently _not stable_ and in ALPHA, a WIP. Breaking changes could happen. Use
-it as a tech preview. Avoid use for production as of now. This message will go away when the API is
-frozen.**
-
 Requirements
 ------------
 
@@ -105,7 +101,8 @@ Supported APIs
 Getting Started
 ---------------
 
-Make sure you have a registered and active account with the Mastodon site you want to log on to.
+Make sure you have a registered and active account with the Mastodon site you want to log on to (
+unless you only want to use the public APIs.)
 
 Make sure to initialize environmental variables on your system.
 
@@ -216,7 +213,7 @@ Go to the link to see the docs.
 TODOs
 -----
 
-- [x] Chat APIs (social)
+- [x] Chat API (social/direct messaging)
 - [ ] True privacy/encryption for DMs (where you create and own the private key. H/D exchange
   options.)
 - [ ] Events (WIP. Support for streaming api added.)
@@ -236,6 +233,21 @@ from working with Windows, macOS and other platforms as well.
 License
 -------
 
-AGPL
+MIT
 
-Copyright (c) 2024 TechSavage
+Copyright 2024 TechSavage
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+associated documentation files (the “Software”), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge, publish, distribute,
+sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial
+portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES
+OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
