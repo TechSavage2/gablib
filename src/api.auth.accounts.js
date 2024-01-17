@@ -238,6 +238,11 @@ export async function searchAccounts(lo, keyword, limit = 4) {
   return _fetch(lo, url);
 }
 
+/**
+ * Request site to resend email confirmation (for new accounts.)
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @returns {Promise<*>}
+ */
 export async function resendEmailConfirmation(lo) {
   const url = new URL('/api/v1/accounts/resend_email_confirmation', lo.baseUrl);
   return await _fetch(lo, url, 'POST');
