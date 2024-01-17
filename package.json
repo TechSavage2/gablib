@@ -1,6 +1,6 @@
 {
   "name": "gablib",
-  "version": "0.13.0-alpha",
+  "version": "1.0.0-beta",
   "description": "API package for scripting/programming Mastodon nodes where OAuth2 for custom apps has been disabled on the server.",
   "type": "module",
   "main": "gablib.js",
@@ -13,7 +13,7 @@
     "scripting"
   ],
   "author": "TechSavage",
-  "license": "AGPL",
+  "license": "MIT",
   "devDependencies": {
     "docdash": "^2.0.2",
     "jsdoc": "^4.0.2"
