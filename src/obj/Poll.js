@@ -15,7 +15,7 @@ const MAX_OPTIONS = 8;
 /**
  * Poll helper object to create polls for postMessage statuses.
  * The poll options will appear in the order they are given/added.
- * @param {Array} [options=[]] optional array with string entries representing the options.
+ * @param {string[]} [options=[]] optional array with string entries representing the options.
  * @constructor
  * @throws If provided options is not an Array.
  */
@@ -58,5 +58,5 @@ export function Poll(options = []) {
   };
 
   // make sure we're not exceeding max options and that each entry is a string
-  options = options.slice(0, MAX_OPTIONS).filter(e => typeof e === 'string');
+  options = options.slice(0, MAX_OPTIONS).map(e => e.toString());
 }
