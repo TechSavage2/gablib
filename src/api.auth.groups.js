@@ -388,9 +388,9 @@ export async function getGroupJoinRequests(lo, groupId) {
 /**
  * Handle a join request. You can either 'accept' or 'reject' a request.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
- * @param {string} accountId - ID of account that requested to join.
- * @param {string} type - need to be either 'accept' or 'reject' (see {@link enumGroupModerationJoin}).
+ * @param {string} groupId - Group id
+ * @param {string} accountId - id of account that requested to join.
+ * @param {string|enumGroupModerationJoin} type - need to be either 'accept' or 'reject' (see {@link enumGroupModerationJoin}).
  * @returns {Promise<*>}
  */
 export async function handleGroupJoinRequest(lo, groupId, accountId, type) {
@@ -401,7 +401,7 @@ export async function handleGroupJoinRequest(lo, groupId, accountId, type) {
 /**
  * List group members
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
+ * @param {string} groupId - Group id
  * @returns {Promise<*>} List of accounts
  */
 export async function getGroupAccounts(lo, groupId) {
@@ -412,7 +412,7 @@ export async function getGroupAccounts(lo, groupId) {
 /**
  * List administrators and moderators of this group.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
+ * @param {string} groupId - Group id
  * @returns {Promise<*>}  lists for accounts and roles
  */
 export async function getGroupAdminsAndMods(lo, groupId) {
@@ -423,7 +423,7 @@ export async function getGroupAdminsAndMods(lo, groupId) {
 /**
  * List media attachments in this group (videos and images.)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
+ * @param {string} groupId - Group id
  * @returns {Promise<*>}
  */
 export async function getGroupAttachments(lo, groupId) {
@@ -434,7 +434,7 @@ export async function getGroupAttachments(lo, groupId) {
 /**
  * List links (cards) in this group (links, embeddings.)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
+ * @param {string} groupId - Group id
  * @returns {Promise<*>}
  */
 export async function getGroupCards(lo, groupId) {
@@ -445,7 +445,7 @@ export async function getGroupCards(lo, groupId) {
 /**
  * Search for a group member using a keyword query.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
+ * @param {string} groupId - Group id
  * @param {string} query - keyword to search for in the member list
  * @returns {Promise<*>}
  */
@@ -461,7 +461,7 @@ export async function searchGroupMembers(lo, groupId, query) {
 /**
  * Get list of statuses that need review.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
+ * @param {string} groupId - Group id
  * @returns {Promise<*>}
  */
 export async function groupModeration(lo, groupId) {
@@ -470,9 +470,9 @@ export async function groupModeration(lo, groupId) {
 }
 
 /**
- *
+ * List removed accounts from this group.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
+ * @param {string} groupId - Group id
  * @returns {Promise<*>}
  */
 export async function getGroupRemovedAccounts(lo, groupId) {
@@ -481,9 +481,9 @@ export async function getGroupRemovedAccounts(lo, groupId) {
 }
 
 /**
- *
+ * Approve a status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
+ * @param {string} groupId - Group id
  * @param {string} statusId - status id to approve
  * @returns {Promise<*>}
  */
@@ -493,9 +493,9 @@ export async function groupApproveStatus(lo, groupId, statusId) {
 }
 
 /**
- *
+ * Reject a status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
+ * @param {string} groupId - Group id
  * @param {string} statusId - status id to reject
  * @returns {Promise<*>}
  */
@@ -505,9 +505,9 @@ export async function groupRejectStatus(lo, groupId, statusId) {
 }
 
 /**
- *
+ * Whitelist this account, so it can post to this group without being moderated.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
+ * @param {string} groupId - Group id
  * @param {string} statusId - status id to use for whitelisting account
  * @returns {Promise<*>}
  */
@@ -517,9 +517,9 @@ export async function groupWhitelistFromStatus(lo, groupId, statusId) {
 }
 
 /**
- *
+ * Remove given account from group (ban/kick).
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
+ * @param {string} groupId - Group id
  * @param {string} accountId - account id to remove from group (permanently, i.e banned)
  * @returns {Promise<*>}
  */
@@ -530,9 +530,9 @@ export async function groupRemoveAccount(lo, groupId, accountId) {
 }
 
 /**
- *
+ * "Undo" removal of an account allowing it to join the group.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
+ * @param {string} groupId - Group id
  * @param {string} accountId - account id to make non-permanently removed (i.e. unbanned)
  * @returns {Promise<*>}
  */
@@ -543,9 +543,9 @@ export async function groupRemoveRemovedAccount(lo, groupId, accountId) {
 }
 
 /**
- *
+ * Remove a status from the group.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
+ * @param {string} groupId - Group id
  * @param {string} statusId - status id to remove from group
  * @returns {Promise<*>}
  */
@@ -555,11 +555,12 @@ export async function groupRemoveStatus(lo, groupId, statusId) {
 }
 
 /**
- *
+ * Update role of an account (moderator, admin)
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
+ * @param {string} groupId - Group id
  * @param {string} accountId - account id update role for
- * @param role
+ * @param {string|enumGroupRole} role - new role of account (See {@link enumGroupRole}.)
+ * `admin`, `moderator`
  * @returns {Promise<*>}
  */
 export async function groupUpdateRole(lo, groupId, accountId, role) {
