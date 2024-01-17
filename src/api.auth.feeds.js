@@ -18,7 +18,7 @@ import { getTimelineStatuses } from './api.auth.statuses.js';
 /**
  * Get status list of feed based on type
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} type - type of feed (see {@link enumFeedType}).
+ * @param {string|enumFeedType} type - type of feed (see {@link enumFeedType}).
  * Valid types: 'own', 'featured', 'member_of'
  * @returns {Promise<*>}
  */
@@ -53,7 +53,6 @@ export async function getFeedMembers(lo, feedId) {
 export async function createFeed(lo, options) {
   const url = new URL('/api/v1/lists', lo.baseUrl);
   const body = _myFeedOptions(options);
-  console.log('BODY', body);
   return await _fetch(lo, url, 'POST', 'json', body);
 }
 

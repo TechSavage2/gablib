@@ -50,7 +50,7 @@ export async function uploadDirectMessageMedia(lo, pathOrBuffer, filename) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} convId - conversation id
  * @param {string} text - text to post
- * @param {Array} [mediaIds=[]] optional array with media ids (as strings) from `uploadDirectMessageMedia()`.
+ * @param {Array} [mediaIds=string[]] optional array with media ids (as strings) from `uploadDirectMessageMedia()`.
  * Note: you cannot use ids from the `uploadMedia()` for statuses.
  * @returns {Promise<*>}
  */
@@ -108,6 +108,11 @@ export async function getDirectMessageConversations(lo, type = 'all') {
   return await _fetch(lo, url);
 }
 
+/**
+ * Get count for unread direct message conversations.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @returns {Promise<*>}
+ */
 export async function getDirectMessageConversationUnreadCount(lo) {
   const url = new URL('/api/v1/chat_conversations/approved_conversations/unread_count', lo.baseUrl);
   return await _fetch(lo, url);
@@ -228,7 +233,8 @@ export async function addDirectMessageAccount(lo, accountId) {
  * Approve or reject a direct message conversation request.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} convId - conversation id
- * @param {string} type - either 'approve' or 'reject'
+ * @param {string} type - either 'approve' or 'reject'. Reject in this API means
+ * hidden and is not actually rejecting the conversation.
  * (See {@link enumHandleDirectMessageRequest}).
  * @returns {Promise<*>}
  */

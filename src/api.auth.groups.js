@@ -119,7 +119,7 @@ export async function getGroupsByTag(lo, tag, page = 1) {
 /**
  * List relationship (member or not etc.) for array with group Ids.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {Array} groupIds - list of group Ids to check
+ * @param {string[]} groupIds - list of group ids to check
  * @returns {Promise<*>}
  */
 export async function getGroupRelationships(lo, groupIds) {
@@ -130,7 +130,7 @@ export async function getGroupRelationships(lo, groupIds) {
 /**
  * Get information about a specific group.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param groupId
+ * @param {string} groupId - group id to get information about
  * @returns {Promise<*>}
  */
 export async function getGroup(lo, groupId) {
@@ -347,9 +347,10 @@ export async function requestGroupJoin(lo, groupId, password) {
 }
 
 /**
- * Mute a group you are member of.
+ * Mute or unmute a group you are member of.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} groupId - Group ID to join
+ * @param {string} groupId - group id to mute or unmute
+ * @param {boolean} state - true to mute, false to unmute
  * @returns {Promise<*>}
  */
 export async function muteGroup(lo, groupId) {
