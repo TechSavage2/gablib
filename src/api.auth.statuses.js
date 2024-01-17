@@ -39,20 +39,20 @@ export function setMarkdownFunction(fn, isAsync = false) {
  * @param {string|null} markdown Text to post. Can be formatted as Markdown. May be omitted if there are attachments,
  * otherwise it is required.
  * @param {Object} [options]
- * @param {string|number} [options.groupId] GroupID to post to. You must be a member of the group.
- * @param {Array} [options.attachmentIds] Array of attachment IDs from previous [`uploadMedia()`]{@link Statuses:uploadMedia}.
+ * @param {string} [options.groupId] GroupID to post to. You must be a member of the group.
+ * @param {string[]} [options.attachmentIds] Array of attachment IDs from previous [`uploadMedia()`]{@link uploadMedia}.
  * @param {Object|Poll} [options.poll] Poll object, JSON or a stringified JSON string representing the poll options and expiration.
  * See {@link enumPollExpires} for options.
- * @param {string} [options.visibility] Visibility of post see {@link enumVisibility}.
+ * @param {string|enumVisibility} [options.visibility] Visibility of post see {@link enumVisibility}.
  * @param {Boolean} [options.sensitive] if the content should be hidden by default
- * @param {string} [options.expires] when the post should expire, see {@link enumPostExpires} for options.
- * @param {} [options.privateGroup]
- * @param {string|number} [options.replyId] Status or comment ID this is a reply to.
- * @param {string|number} [options.quoteId] Status ID this is a quote for.
+ * @param {string|enumPostExpires} [options.expires] when the post should expire, see {@link enumPostExpires} for options.
+ * @param {boolean} [options.privateGroup] if private to the group
+ * @param {string} [options.replyId] Status or comment ID this is a reply to.
+ * @param {string} [options.quoteId] Status ID this is a quote for.
  * @param {string} [options.spoiler] Spoiler text for sensitive statuses
- * @param {string} [options.language='en] ISO 639 language code for the status
+ * @param {string} [options.language='en'] ISO 639 language code for the status
  * @param {string} [options.scheduledAt] ISO 8601 formatted date when this status should become posted.
- * @param {string|number} [options.editId] Can be set to edit a status, but you can instead use [`editStatus()`]{@link Statuses:editStatus}
+ * @param {string} [options.editId] Can be set to edit a status, but you can instead use [`editStatus()`]{@link editStatus}
  * @returns {Promise<*>}
  */
 export async function createStatus(lo, markdown, options = {}) {
@@ -118,21 +118,22 @@ export async function createStatus(lo, markdown, options = {}) {
 /**
  * Edit an existing status. You need to be the owner of the status.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} statusId - Status ID of the status you want to edit.
- * @param {string} newMarkdown - New text for the status
+ * @param {string} statusId - Status ID of the status you want to edit.
+ * @param {string|null} newMarkdown - New text for the status. May be omitted if there are attachments,
+ * otherwise it is required.
  * @param {Object} [options]
- * @param {string|number} [options.groupId] GroupID to post to. You must be a member of the group.
- * @param {Array} [options.attachmentIds] Array of attachment IDs from previous [`uploadMedia()`]{@link Statuses:uploadMedia}.
+ * @param {string} [options.groupId] GroupID to post to. You must be a member of the group.
+ * @param {string[]} [options.attachmentIds] Array of attachment IDs from previous [`uploadMedia()`]{@link uploadMedia}.
  * @param {Object|Poll} [options.poll] Poll object, JSON or a stringified JSON string representing the poll options and expiration.
  * See {@link enumPollExpires} for options.
- * @param {string} [options.visibility] Visibility of post see {@link enumVisibility}.
+ * @param {string|enumVisibility} [options.visibility] Visibility of post see {@link enumVisibility}.
  * @param {Boolean} [options.sensitive] if the content should be hidden by default
- * @param {string} [options.expires] when the post should expire, see {@link enumPostExpires} for options.
- * @param {} [options.privateGroup]
- * @param {string|number} [options.replyId] Status or comment ID this is a reply to.
- * @param {string|number} [options.quoteId] Status ID this is a quote for.
+ * @param {string|enumPostExpires} [options.expires] when the post should expire, see {@link enumPostExpires} for options.
+ * @param {boolean} [options.privateGroup] if private to the group
+ * @param {string} [options.replyId] Status or comment ID this is a reply to.
+ * @param {string} [options.quoteId] Status ID this is a quote for.
  * @param {string} [options.spoiler] Spoiler text for sensitive statuses
- * @param {string} [options.language='en] ISO 639 language code for the status
+ * @param {string} [options.language='en'] ISO 639 language code for the status
  * @param {string} [options.scheduledAt] ISO 8601 formatted date when this status should become posted.
  */
 export async function editStatus(lo, statusId, newMarkdown, options) {
@@ -145,7 +146,8 @@ export async function editStatus(lo, statusId, newMarkdown, options) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string|Buffer|ArrayBuffer|TypedArray|Uint8Array|Blob|File} pathOrBuffer - path to a media file to upload or
  * a pre-initialized Buffer object.
- * @param {string} [filename] - filename is required if pathOrBuffer is buffer
+ * @param {string} [filename] - filename is required if pathOrBuffer is buffer. If none is given, the function will
+ * try to guess the extension based on binary content and use a generic name.
  * @returns {Promise<*>}
  */
 export async function uploadMedia(lo, pathOrBuffer, filename) {
@@ -213,8 +215,12 @@ export async function getStatusesFromTag(lo, tagName) {
  */
 export async function getAccountStatuses(lo, account, page = 0, sort = 'newest') {
   const url = new URL(`/api/v2/accounts/${ account }/statuses`, lo.baseUrl);
-  if ( page ) url.searchParams.append('page', page.toString());
-  if ( sort ) url.searchParams.append('sort_by', sort);
+  if ( (page | 0) > 0 ) {
+    url.searchParams.append('page', page.toString());
+  }
+  if ( typeof sort === 'string' ) {
+    url.searchParams.append('sort_by', sort);
+  }
   return await _getStatuses(lo, url);
 }
 
@@ -230,12 +236,18 @@ export async function getAccountStatuses(lo, account, page = 0, sort = 'newest')
  */
 export async function getComments(lo, statusId, maxId, sort = 'oldest') {
   const url = new URL(`/api/v1/status_comments/${ statusId }`, lo.baseUrl);
-  if ( maxId ) url.searchParams.append('max_id', maxId);
-  if ( sort ) url.searchParams.append('sort_by', sort);
+  if ( typeof maxId === 'string' ) {
+    url.searchParams.append('max_id', maxId);
+  }
+  if ( typeof sort === 'string' ) {
+    url.searchParams.append('sort_by', sort);
+  }
   return await _fetch(lo, url);
 }
 
 /**
+ * Get statuses from a timeline given a timeline type.
+ *
  * Valid timeline names:
  *
  * home, explore, group_collection, group_pins, group/id (see groups), links,
@@ -245,7 +257,7 @@ export async function getComments(lo, statusId, maxId, sort = 'oldest') {
  * @param {string|enumTimelines} timeline - a valid timeline name (see {@link enumTimelines}.
  * @param {number|string} [pageOrMaxId] either page or max status ID for pagination
  * @param {string|enumStatusSort} [sort=enumStatusSort.newestNoReposts] Sort method
- * @param {{}} [filters={}}]
+ * @param {{}} [filters={}]
  * @param {boolean} [filters.pinned] Only show pinned statuses
  * @param {boolean} [filters.onlyFollowing] Only show statuses by accounts you follow
  * @returns {Promise<*>}
@@ -289,7 +301,7 @@ export async function getTimelineStatuses(
  */
 export async function getStatusRepostedBy(lo, statusId, maxId) {
   const url = new URL(`/api/v1/statuses/${ statusId }/reblogged_by`, lo.baseUrl);
-  if ( maxId ) {
+  if ( typeof maxId === 'string' ) {
     url.searchParams.append('max_id', maxId);
   }
   return await _fetch(lo, url);
