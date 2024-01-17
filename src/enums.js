@@ -169,6 +169,22 @@ export const enumLanguages = {
  * @enum {number}
  * @readonly
  */
+export const enumNotificationFilterType = {
+  follow              : 'follow',
+  reblog              : 'reblog',
+  favourite           : 'favourite',
+  poll                : 'poll',
+  mention             : 'mention',
+  groupModerationEvent: 'group_moderation_event'
+};
+
+/**
+ * Expire times for new polls. You can use other values than these,
+ * but these are the defaults some sites are using.
+ * @global
+ * @enum {number}
+ * @readonly
+ */
 export const enumPollExpires = {
   oneHour  : 3600,
   sixHours : 21600,
