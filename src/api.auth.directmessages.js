@@ -7,7 +7,7 @@
  *******************************************************************************/
 
 /**
- * @module DirectMessages
+ * @module Dms
  */
 
 'use strict';
@@ -17,14 +17,14 @@ import { _fetch } from './_fetch.js';
 import { extname } from 'node:path';
 
 /**
- * Upload media intended for direct messages. The id is passed to `postDirectMessage()`
+ * Upload media intended for direct messages. The id is passed to `postDm()`
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|Buffer} pathOrBuffer - path to a media file, or a Buffer object with
- * a preloaded media file.
+ * @param {string|Buffer|ArrayBuffer|TypedArray|Uint8Array|Blob|File} pathOrBuffer - path to a media file,
+ * or a Buffer object with a preloaded media file.
  * @param {string} [filename] - filename if fileOrBuffer is a Buffer
  * @returns {Promise<*>}
  */
-export async function uploadDirectMessageMedia(lo, pathOrBuffer, filename) {
+export async function uploadDmMedia(lo, pathOrBuffer, filename) {
   let buffer;
   if ( typeof pathOrBuffer === 'string' ) {
     try {
@@ -50,11 +50,11 @@ export async function uploadDirectMessageMedia(lo, pathOrBuffer, filename) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} convId - conversation id
  * @param {string} text - text to post
- * @param {Array} [mediaIds=string[]] optional array with media ids (as strings) from `uploadDirectMessageMedia()`.
+ * @param {Array} [mediaIds=string[]] optional array with media ids (as strings) from `uploadDmMedia()`.
  * Note: you cannot use ids from the `uploadMedia()` for statuses.
  * @returns {Promise<*>}
  */
-export async function postDirectMessage(lo, convId, text, mediaIds = []) {
+export async function postDm(lo, convId, text, mediaIds = []) {
   const url = new URL('/api/v1/chat_messages', lo.baseUrl);
   const body = {
     text,
@@ -70,30 +70,30 @@ export async function postDirectMessage(lo, convId, text, mediaIds = []) {
  * @param {string} msgId - id of message to delete
  * @returns {Promise<*>}
  */
-export async function deleteDirectMessage(lo, msgId) {
+export async function deleteDm(lo, msgId) {
   const url = new URL(`/api/v1/chat_messages/${ msgId }`, lo.baseUrl);
   return await _fetch(lo, url, 'DELETE');
 }
 
 /**
- * Delete entire conversation.
+ * Delete entire conversation/thread.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} convId - conversation id
  * @returns {Promise<*>}
  */
-export async function deleteDirectMessageConversation(lo, convId) {
+export async function deleteDmConversation(lo, convId) {
   const url = new URL(`/api/v1/chat_conversations/messages/${ convId }/destroy_all`, lo.baseUrl);
   return await _fetch(lo, url, 'DELETE');
 }
 
 /**
- * Get list of direct message conversations
+ * Get list of direct message conversations/threads.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string|enumConversationListType} [type='all'] type of conversations, 'all', 'pinned', 'muted'.
  * (See {@link enumConversationListType}).
  * @returns {Promise<*>}
  */
-export async function getDirectMessageConversations(lo, type = 'all') {
+export async function getDmConversations(lo, type = 'all') {
   let url;
   if ( type === 'all' || type === 'pinned' ) {
     url = new URL('/api/v1/chat_conversations/approved_conversations', lo.baseUrl);
@@ -113,7 +113,7 @@ export async function getDirectMessageConversations(lo, type = 'all') {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @returns {Promise<*>}
  */
-export async function getDirectMessageConversationUnreadCount(lo) {
+export async function getDmConversationUnreadCount(lo) {
   const url = new URL('/api/v1/chat_conversations/approved_conversations/unread_count', lo.baseUrl);
   return await _fetch(lo, url);
 }
@@ -123,7 +123,7 @@ export async function getDirectMessageConversationUnreadCount(lo) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @returns {Promise<*>}
  */
-export async function getBlockedDirectMessageAccounts(lo) {
+export async function getBlockedDmAccounts(lo) {
   const url = new URL('/api/v1/chat_conversations/blocked_chat_accounts', lo.baseUrl);
   return await _fetch(lo, url);
 }
@@ -133,7 +133,7 @@ export async function getBlockedDirectMessageAccounts(lo) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @returns {Promise<*>}
  */
-export async function getDirectMessageUnreadCount(lo) {
+export async function getDmUnreadCount(lo) {
   const url = new URL('/api/v1/chat_conversations/approved_conversations/unread_count', lo.baseUrl);
   return await _fetch(lo, url);
 }
@@ -143,7 +143,7 @@ export async function getDirectMessageUnreadCount(lo) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @returns {Promise<*>}
  */
-export async function getRequestedDirectMessageConversations(lo) {
+export async function getRequestedDmConversations(lo) {
   const url = new URL('/api/v1/chat_conversations/requested_conversations', lo.baseUrl);
   return await _fetch(lo, url);
 }
@@ -153,7 +153,7 @@ export async function getRequestedDirectMessageConversations(lo) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @returns {Promise<*>}
  */
-export async function getRequestedDirectMessageConversationsCount(lo) {
+export async function getRequestedDmConversationsCount(lo) {
   const url = new URL('/api/v1/chat_conversations/requested_conversations/count', lo.baseUrl);
   return await _fetch(lo, url);
 }
@@ -163,7 +163,7 @@ export async function getRequestedDirectMessageConversationsCount(lo) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @returns {Promise<*>}
  */
-export async function resetDirectMessageUnreadCount(lo) {
+export async function resetDmUnreadCount(lo) {
   const url = new URL('/api/v1/chat_conversations/approved_conversations/reset_all_unread_count', lo.baseUrl);
   return await _fetch(lo, url, 'POST', 'json', null, [ 204 ]);
 }
@@ -175,7 +175,7 @@ export async function resetDirectMessageUnreadCount(lo) {
  * @param {string} [maxId] - for pagination
  * @returns {Promise<*>}
  */
-export async function getDirectMessageMessages(lo, convId, maxId) {
+export async function getDmMessages(lo, convId, maxId) {
   const url = new URL(`/api/v1/chat_conversations/messages/${ convId }`, lo.baseUrl);
   if ( typeof maxId === 'string' ) {
     url.searchParams.append('max_id', maxId);
@@ -189,7 +189,7 @@ export async function getDirectMessageMessages(lo, convId, maxId) {
  * @param {string} convId - conversation id
  * @returns {Promise<*>}
  */
-export async function getDirectMessageConversationHeader(lo, convId) {
+export async function getDmConversationHeader(lo, convId) {
   const url = new URL(`/api/v1/chat_conversation/${ convId }`, lo.baseUrl);
   return await _fetch(lo, url);
 }
@@ -200,7 +200,7 @@ export async function getDirectMessageConversationHeader(lo, convId) {
  * @param {string} convId - conversation id
  * @returns {Promise<*>}
  */
-export async function getDirectMessageConversationMedia(lo, convId) {
+export async function getDmConversationMedia(lo, convId) {
   const url = new URL(`/api/v1/chat_conversation/${ convId }/media_attachments`, lo.baseUrl);
   return await _fetch(lo, url);
 }
@@ -211,7 +211,7 @@ export async function getDirectMessageConversationMedia(lo, convId) {
  * @param {string} convId - conversation id
  * @returns {Promise<*>}
  */
-export async function getDirectMessageConversationCards(lo, convId) {
+export async function getDmConversationCards(lo, convId) {
   const url = new URL(`/api/v1/chat_conversation/${ convId }/preview_cards`, lo.baseUrl);
   return await _fetch(lo, url);
 }
@@ -224,7 +224,7 @@ export async function getDirectMessageConversationCards(lo, convId) {
  * conversation id.
  * @returns {Promise<*>}
  */
-export async function addDirectMessageAccount(lo, accountId) {
+export async function addDmAccount(lo, accountId) {
   const url = new URL('/api/v1/chat_conversation/', lo.baseUrl);
   return await _fetch(lo, url, 'POST', 'json', { account_id: accountId });
 }
@@ -233,12 +233,12 @@ export async function addDirectMessageAccount(lo, accountId) {
  * Approve or reject a direct message conversation request.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} convId - conversation id
- * @param {string} type - either 'approve' or 'reject'. Reject in this API means
+ * @param {string|enumHandleDirectMessageRequest} type - either 'approve' or 'reject'. Reject in this API means
  * hidden and is not actually rejecting the conversation.
  * (See {@link enumHandleDirectMessageRequest}).
  * @returns {Promise<*>}
  */
-export async function handleDirectMessageConversation(lo, convId, type) {
+export async function handleDmConversation(lo, convId, type) {
   if ( type === 'approve' ) {
     type = 'approved';
   }
@@ -260,7 +260,7 @@ export async function handleDirectMessageConversation(lo, convId, type) {
  * @param {boolean} state - true to pin, false to unpin
  * @returns {Promise<*>}
  */
-export async function pinDirectMessageConversation(lo, convId, state) {
+export async function pinDmConversation(lo, convId, state) {
   const url = new URL(`/api/v1/chat_conversation_accounts/${ convId }/${ state ? '' : 'un' }pin_chat_conversation`, lo.baseUrl);
   return await _fetch(lo, url, 'POST');
 }
@@ -272,7 +272,7 @@ export async function pinDirectMessageConversation(lo, convId, state) {
  * @param {boolean} state - true to mute, false to unmute
  * @returns {Promise<*>}
  */
-export async function muteDirectMessageConversation(lo, convId, state) {
+export async function muteDmConversation(lo, convId, state) {
   const url = new URL(`/api/v1/chat_conversation_accounts/${ convId }/${ state ? '' : 'un' }mute_chat_conversation`, lo.baseUrl);
   return await _fetch(lo, url, 'POST');
 }
@@ -283,7 +283,7 @@ export async function muteDirectMessageConversation(lo, convId, state) {
  * @param {string} convId - conversation id to mark as read
  * @returns {Promise<*>}
  */
-export async function markDirectMessageConversationRead(lo, convId) {
+export async function markDmConversationRead(lo, convId) {
   const url = new URL(`/api/v1/chat_conversation/${ convId }/mark_chat_conversation_read`, lo.baseUrl);
   return await _fetch(lo, url, 'POST');
 }
@@ -294,7 +294,7 @@ export async function markDirectMessageConversationRead(lo, convId) {
  * @param {string} accountId - account id to get information about
  * @returns {Promise<*>}
  */
-export async function directMessageAccountBlockRelationship(lo, accountId) {
+export async function dmAccountBlockRelationship(lo, accountId) {
   const url = new URL(`/api/v1/chat_conversation_accounts/${ accountId }/messenger_block_relationships`, lo.baseUrl);
   return await _fetch(lo, url, 'POST');
 }
@@ -306,7 +306,7 @@ export async function directMessageAccountBlockRelationship(lo, accountId) {
  * @param {boolean} state - true to block, false to unblock
  * @returns {Promise<*>}
  */
-export async function blockDirectMessageAccount(lo, accountId, state) {
+export async function blockDmAccount(lo, accountId, state) {
   const url = new URL(`/api/v1/chat_conversation_accounts/${ accountId }/${ state ? '' : 'un' }block_messenger`, lo.baseUrl);
   return await _fetch(lo, url, 'POST');
 }
