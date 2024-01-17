@@ -358,27 +358,17 @@ export async function bookmarkStatusState(lo, statusId) {
 }
 
 /**
- * Bookmark this status.
+ * Bookmark or unbookmark this status.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} statusId - Status ID
- * @param collectionId
+ * @param {string} collectionId - id of collection to store or remove bookmark in/from.
+ * @param {boolean} state - true to bookmark, false to unbookmark
  * @returns {Promise<*>}
  */
-export async function bookmarkStatus(lo, statusId, collectionId) {
-  const url = new URL(`/api/v1/statuses/${ statusId }/bookmark`, lo.baseUrl);
-  const body = { bookmarkCollectionId: collectionId };
+export async function bookmarkStatus(lo, statusId, collectionId, state) {
+  const url = new URL(`/api/v1/statuses/${ statusId }/${ state ? '' : 'un' }bookmark`, lo.baseUrl);
+  const body = state ? { bookmarkCollectionId: collectionId } : {};
   return await _fetch(lo, url, 'POST', 'json', body);
-}
-
-/**
- * Un-bookmark this status.
- * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} statusId - Status ID
- * @returns {Promise<*>}
- */
-export async function unbookmarkStatus(lo, statusId) {
-  const url = new URL(`/api/v1/statuses/${ statusId }/unbookmark`, lo.baseUrl);
-  return await _fetch(lo, url, 'POST', 'json', {});
 }
 
 /**
