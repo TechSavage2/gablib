@@ -146,18 +146,32 @@ export async function editStatus(lo, statusId, newMarkdown, options) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string|Buffer|ArrayBuffer|TypedArray|Uint8Array|Blob|File} pathOrBuffer - path to a media file to upload or
  * a pre-initialized Buffer object.
- * @param {string} [filename] - filename is required if pathOrBuffer is buffer. If none is given, the function will
- * try to guess the extension based on binary content and use a generic name.
+ * @param {string} [filename] - filename is recommended if pathOrBuffer is binary data. If none is given, the
+ * function will try to guess the extension based on binary content and use a generic name.
  * @returns {Promise<*>}
  */
 export async function uploadMedia(lo, pathOrBuffer, filename) {
   const form = new FormData();
 
   try {
-    const buffer = typeof pathOrBuffer === 'string' ? readFileSync(pathOrBuffer) : pathOrBuffer;
+    let file = undefined;
+    let buffer;
 
-    // todo this does not stream the file/buffer... large files should be buffered (loaded into memory for now)
-    form.append('file', new Blob([ buffer ]), filename || `file${ extname(pathOrBuffer) }`);
+    if ( typeof pathOrBuffer === 'string' ) {
+      buffer = readFileSync(pathOrBuffer);
+    }
+    else {
+      buffer = pathOrBuffer;
+    }
+
+    if ( typeof filename === 'string' ) {
+      file = filename;
+    }
+    else {
+      file = `file${ extname(pathOrBuffer) }`;
+    }
+
+    form.append('file', new Blob([ buffer ]), file);
   }
   catch(err) {
     throw new Error(`Could not use buffer or load file: ${ err.message }`);
