@@ -145,19 +145,19 @@ or use the `.mjs` extension for your JavaScript files.
 To import functions as needed, you can then use:
 
 ```JavaScript
-import { login } from 'gablib/gablib.js';
+import { login } from 'gablib';
 ```
 
 or if you prefer the entire library as a single object:
 
 ```JavaScript
-import * as gablib from 'gablib/gablib.js';
+import * as gablib from 'gablib';
 ```
 
 Now call the primary function to log in:
 
 ```JavaScript
-import { login } from 'gablib/gablib.js';
+import { login } from 'gablib';
 
 const loginObject = await login();  // ! most calls are asynchronous
 ```
