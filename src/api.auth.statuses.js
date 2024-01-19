@@ -269,7 +269,8 @@ export async function getComments(lo, statusId, maxId, sort = 'oldest') {
  *
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string|enumTimelines} timeline - a valid timeline name (see {@link enumTimelines}.
- * @param {number|string} [pageOrMaxId] either page or max status ID for pagination
+ * @param {number|string|{}} [pageOrMaxId] either page (number), or max status ID (string),
+ * or a previous result from this call, for pagination
  * @param {string|enumStatusSort} [sort=enumStatusSort.newestNoReposts] Sort method
  * @param {{}} [filters={}]
  * @param {boolean} [filters.pinned] Only show pinned statuses
@@ -300,7 +301,25 @@ export async function getTimelineStatuses(
   }
 
   if ( pageOrMaxId ) {
-    url.searchParams.append((pageOrMaxId | 0) > 5000000 ? 'max_id' : 'page', pageOrMaxId.toString());
+    if ( typeof pageOrMaxId === 'string' ) {
+      url.searchParams.append('max_id', pageOrMaxId);
+    }
+    else if ( typeof pageOrMaxId === 'number' ) {
+      url.searchParams.append('page', pageOrMaxId.toString());
+    }
+    else {
+      let list;
+      if ( Array.isArray(pageOrMaxId) ) {
+        list = pageOrMaxId;
+      }
+      else if ( Array.isArray(pageOrMaxId.content) ) {
+        list = pageOrMaxId.content;
+      }
+      if ( list.length ) {
+        const entry = list[ list.length - 1 ];
+        url.searchParams.append('max_id', entry.id.toString());
+      }
+    }
   }
 
   return await _getStatuses(lo, url);
