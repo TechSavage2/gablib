@@ -399,7 +399,7 @@ export async function handleGroupJoinRequest(lo, groupId, accountId, type) {
 }
 
 /**
- * List group members
+ * List group members. Note that this will only work if the member list is public.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} groupId - Group id
  * @returns {Promise<*>} List of accounts
@@ -411,6 +411,7 @@ export async function getGroupAccounts(lo, groupId) {
 
 /**
  * List administrators and moderators of this group.
+ * Note that this will only work if the member list is public.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} groupId - Group id
  * @returns {Promise<*>}  lists for accounts and roles
