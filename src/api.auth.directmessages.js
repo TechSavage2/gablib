@@ -163,9 +163,15 @@ export async function getRequestedDmConversationsCount(lo) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @returns {Promise<*>}
  */
-export async function resetDmUnreadCount(lo) {
+export async function clearDmUnreadCount(lo) {
   const url = new URL('/api/v1/chat_conversations/approved_conversations/reset_all_unread_count', lo.baseUrl);
   return await _fetch(lo, url, 'POST', 'json', null, [ 204 ]);
+}
+
+// WARN deprecated. Kept for backward compatibility for now.
+export async function resetDmUnreadCount(lo) {
+  console.warn('resetDmUnreadCount() has been deprecated. Please use clearDmUnreadCount() instead.');
+  return await clearDmUnreadCount(lo);
 }
 
 /**
