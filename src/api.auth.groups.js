@@ -142,7 +142,7 @@ export async function getGroup(lo, groupId) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {Object} config - group configuration
  * @param {string} config.title - Name of group
- * @param {string} config.groupCategoryId - Group category (see `getGroupCategories()`).
+ * @param {string} config.groupCategoryId - Group category ({@link module:Groups#getGroupCategories see `getGroupCategories()`}).
  * @param {string} [config.description] - Group description
  * @param {string} [config.slug] - Group slug (short name)
  * @param {boolean} [config.isPrivate=true] - If group is private
