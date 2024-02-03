@@ -10,17 +10,48 @@ _auth/sign_in_ page and extract tokens for API calls that requires authenticatio
 This is not a standalone package/app but intended to be used as part of a custom client or for
 various scripting/automation tasks.
 
-Things you can build:
+Version 1.0.0 of gablib is out of beta. gablib makes it possible to create independent clients for
+Gab. #gablib is open source (MIT license.) https://github.com/TechSavage2/gablib
+
+Things you can build, but not limited to:
 
 - Custom GUI/TUI clients
 - Feed/RSS bots
 - General post automation and scheduling
+- Bridges/federation between other social platform APIs, cross-posting
 - Analytics, insight and statistics tools
-- Bridges between other social platform APIs, cross-posting
-- Integration with ML for classifying, summarizing, "AI" detection and so forth.
-- General integration with ERMs, CRMs, communications etc.
+- Integration with ML for classifying, summarizing, "AI" use detection, and so forth.
+- General integration with ERMs, CRMs, communications etc. for businesses
 
-and much more.
+Features
+--------
+
+- Easy to use
+- Asynchronous
+- ES modules (import/export)
+- Login using the _sign_in_ form instead of OAuth2
+- Can call APIs requiring authentications
+- Public API calls
+- Streaming API as events
+- Can use a custom Markdown stripper
+- Optional automatic (de)serializing of session/auth data for reuse between executions (
+  experimental.)
+
+API support
+-----------
+
+- Full support for Statuses and Comments
+- Full support for Groups
+- Full support for Shortcuts
+- Full support for Bookmark Collections
+- Full support for Feeds
+- Full support for Notifications
+- Full support for Direct Messages/Chats
+- Full support for site wide search
+- Full support for Streaming API (live updates)
+- Full support for Public APIs
+- Support for Accounts (except for 'deep' settings)
+- Support for (de)serialization of session/auth between executions.
 
 Requirements
 ------------
@@ -52,51 +83,6 @@ $ pnpm add https://github.com/TechSavage2/gablib
 ```
 
 It's now ready for use. As of now there are no other dependencies to be installed.
-
-Features
---------
-
-- Easy to use
-- Asynchronous
-- ES modules (import/export)
-- Login using the _sign_in_ form instead of OAuth2
-- Can call APIs requiring authentications
-- Public API calls
-- Streaming API as events
-- Can use a custom Markdown stripper
-- Optional automatic (de)serializing of session/auth data for reuse between executions (
-  experimental.)
-
-Supported APIs
---------------
-
-- Full support for **Statuses and Comments**
-    - Create Edit, Delete, Attachments, Timelines, (Un)Favorite, (Un)Bookmark, (Un)Pin, Move (aux
-      function), Comment, Comment trees, Context, Posting to groups, Statuses from Tags, Revisions,
-      Cards, Quotes, Replies, Stats
-    - Custom (optional) plugin for handling Markdown stripping.
-- Full support for **Groups**
-    - Create, Edit, Categories, Moderation
-- Full support for **Bookmark Collections**
-    - List collections, Create, Edit, Delete
-- Full support for **Notifications**
-    - Get notifications, Mark read, Filters
-- Full support for **Shortcuts**
-    - List, Add, Delete, Reorder
-- Full support for **Accounts**
-    - Stats, Edit, Account Settings
-- Full support for **Feeds**
-    - Create, Edit, Delete, Add/Remove members, (Un)Subscribe, Timelines, Feed lists, List members
-      and Subscribers
-- Full support for the **Streaming API**
-    - Realtime events for new posts, reposts, likes, notifications etc.
-- Full support for site wide **Search**
-    - All, filters
-- Support for **Public** APIs (no authentication required)
-    - Account information, Trends feed, News feed, Popular statuses
-- Full support for **Direct Messages**
-    - Request, approve, reject, posting, media attachments, administration.
-- Support for (de)serialization of session/auth between executions (experimental.)
 
 Getting Started
 ---------------
@@ -213,7 +199,6 @@ Go to the link to see the docs.
 TODOs
 -----
 
-- [x] Chat API (social/direct messaging)
 - [ ] True privacy/encryption for DMs (where you create and own the private key. H/D exchange
   options.)
 - [ ] Events (WIP. Support for streaming api added.)

@@ -72,17 +72,46 @@ on the server.</p>
 <em>auth/sign_in</em> page and extract tokens for API calls that requires authentication.</p>
 <p>This is not a standalone package/app but intended to be used as part of a custom client or for
 various scripting/automation tasks.</p>
-<p>Things you can build:</p>
+<p>Version 1.0.0 of gablib is out of beta. gablib makes it possible to create independent clients for
+Gab. #gablib is open source (MIT license.) https://github.com/TechSavage2/gablib</p>
+<p>Things you can build, but not limited to:</p>
 <ul>
 <li>Custom GUI/TUI clients</li>
 <li>Feed/RSS bots</li>
 <li>General post automation and scheduling</li>
+<li>Bridges/federation between other social platform APIs, cross-posting</li>
 <li>Analytics, insight and statistics tools</li>
-<li>Bridges between other social platform APIs, cross-posting</li>
-<li>Integration with ML for classifying, summarizing, &quot;AI&quot; detection and so forth.</li>
-<li>General integration with ERMs, CRMs, communications etc.</li>
+<li>Integration with ML for classifying, summarizing, &quot;AI&quot; use detection, and so forth.</li>
+<li>General integration with ERMs, CRMs, communications etc. for businesses</li>
 </ul>
-<p>and much more.</p>
+<h2>Features</h2>
+<ul>
+<li>Easy to use</li>
+<li>Asynchronous</li>
+<li>ES modules (import/export)</li>
+<li>Login using the <em>sign_in</em> form instead of OAuth2</li>
+<li>Can call APIs requiring authentications</li>
+<li>Public API calls</li>
+<li>Streaming API as events</li>
+<li>Can use a custom Markdown stripper</li>
+<li>Optional automatic (de)serializing of session/auth data for reuse between executions (
+experimental.)</li>
+</ul>
+<h2>API support</h2>
+<ul>
+<li>Full support for Statuses and Comments</li>
+<li>Full support for Groups</li>
+<li>Full support for Shortcuts</li>
+<li>Full support for Bookmark Collections</li>
+<li>Full support for Feeds</li>
+<li>Full support for Notifications</li>
+<li>Full support for Direct Messages/Chats</li>
+<li>Full support for site wide search</li>
+<li>Full support for Streaming API (live updates)</li>
+<li>Full support for Public APIs</li>
+<li>Support for Accounts (except for 'deep' settings)</li>
+<li>Support for (de)serialization of session/auth between executions.</li>
+</ul>
 <h2>Requirements</h2>
 <p>One of:</p>
 <ul>
@@ -100,82 +129,6 @@ various scripting/automation tasks.</p>
 <pre class="prettyprint source lang-bash"><code>$ pnpm add https://github.com/TechSavage2/gablib
 </code></pre>
 <p>It's now ready for use. As of now there are no other dependencies to be installed.</p>
-<h2>Features</h2>
-<ul>
-<li>Easy to use</li>
-<li>Asynchronous</li>
-<li>ES modules (import/export)</li>
-<li>Login using the <em>sign_in</em> form instead of OAuth2</li>
-<li>Can call APIs requiring authentications</li>
-<li>Public API calls</li>
-<li>Streaming API as events</li>
-<li>Can use a custom Markdown stripper</li>
-<li>Optional automatic (de)serializing of session/auth data for reuse between executions (
-experimental.)</li>
-</ul>
-<h2>Supported APIs</h2>
-<ul>
-<li>Full support for <strong>Statuses and Comments</strong>
-<ul>
-<li>Create Edit, Delete, Attachments, Timelines, (Un)Favorite, (Un)Bookmark, (Un)Pin, Move (aux
-function), Comment, Comment trees, Context, Posting to groups, Statuses from Tags, Revisions,
-Cards, Quotes, Replies, Stats</li>
-<li>Custom (optional) plugin for handling Markdown stripping.</li>
-</ul>
-</li>
-<li>Full support for <strong>Groups</strong>
-<ul>
-<li>Create, Edit, Categories, Moderation</li>
-</ul>
-</li>
-<li>Full support for <strong>Bookmark Collections</strong>
-<ul>
-<li>List collections, Create, Edit, Delete</li>
-</ul>
-</li>
-<li>Full support for <strong>Notifications</strong>
-<ul>
-<li>Get notifications, Mark read, Filters</li>
-</ul>
-</li>
-<li>Full support for <strong>Shortcuts</strong>
-<ul>
-<li>List, Add, Delete, Reorder</li>
-</ul>
-</li>
-<li>Full support for <strong>Accounts</strong>
-<ul>
-<li>Stats, Edit, Account Settings</li>
-</ul>
-</li>
-<li>Full support for <strong>Feeds</strong>
-<ul>
-<li>Create, Edit, Delete, Add/Remove members, (Un)Subscribe, Timelines, Feed lists, List members
-and Subscribers</li>
-</ul>
-</li>
-<li>Full support for the <strong>Streaming API</strong>
-<ul>
-<li>Realtime events for new posts, reposts, likes, notifications etc.</li>
-</ul>
-</li>
-<li>Full support for site wide <strong>Search</strong>
-<ul>
-<li>All, filters</li>
-</ul>
-</li>
-<li>Support for <strong>Public</strong> APIs (no authentication required)
-<ul>
-<li>Account information, Trends feed, News feed, Popular statuses</li>
-</ul>
-</li>
-<li>Full support for <strong>Direct Messages</strong>
-<ul>
-<li>Request, approve, reject, posting, media attachments, administration.</li>
-</ul>
-</li>
-<li>Support for (de)serialization of session/auth between executions (experimental.)</li>
-</ul>
 <h2>Getting Started</h2>
 <p>Make sure you have a registered and active account with the Mastodon site you want to log on to (
 unless you only want to use the public APIs.)</p>
@@ -242,7 +195,6 @@ python -m http.server
 <p>Go to the link to see the docs.</p>
 <h2>TODOs</h2>
 <ul>
-<li>[x] Chat API (social/direct messaging)</li>
 <li>[ ] True privacy/encryption for DMs (where you create and own the private key. H/D exchange
 options.)</li>
 <li>[ ] Events (WIP. Support for streaming api added.)</li>
@@ -282,7 +234,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p></
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Feb 03 2024 05:58:27 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Feb 03 2024 07:05:10 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
