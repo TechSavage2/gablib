@@ -172,7 +172,7 @@ export async function createGroup(lo, config) {
  * Edit an existing group you are owner/admin of.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {Object} group - a group object
- * @param {Object} [newConfig={}] new configuration for group
+ * @param {Object} newConfig new configuration for group
  * @param {string} [newConfig.title] - Name of group
  * @param {string} [newConfig.groupCategoryId] - Group category (see `getGroupCategories()`).
  * @param {string} [newConfig.description] - Group description
