@@ -201,7 +201,7 @@ export async function getFeedSuggestions(lo) {
  * Get feed timeline.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} feedId - id of a feed
- * @param {number|string} [pageOrMaxId] either page or max status ID for pagination
+ * @param {number|string} [pageOrMaxId] either page (number) or max status ID (string) for pagination
  * @param {string} [sort="no-reposts"] Sort method
  * @returns {Promise<*>}
  */
