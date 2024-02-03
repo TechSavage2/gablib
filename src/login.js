@@ -20,8 +20,9 @@ import { _fetch } from './_fetch.js';
  * Primary function to log onto into the mastodon site. The function can be
  * provided credentials in three ways:
  *
- * - export env variables using the default MASTODON_USEREMAIL, MASTODON_PASSWORD and MASTODON_BASEURL
- * - export custom env variables and provide the env names as `login('myemailenv', 'mypwdenv', 'myurlenv')`
+ * - export env variables using the default MASTODON_USEREMAIL, MASTODON_PASSWORD and MASTODON_BASEURL. Then
+ * call `login()` with no arguments.
+ * - export custom env variables and provide the env names as `login('myemailenv', 'myPwdEnv', 'myUrlEnv')`
  * - provide a JSON object as first argument manually setting credentials in code (**not recommended!**):
  *   login({userEmail: 'my@email', password: 'secret', baseUrl: 'https://base.url'})
  *
