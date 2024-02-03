@@ -45,9 +45,9 @@ export async function getFeedMembers(lo, feedId) {
  * @param {{}} options Options for the new feed
  * @param {string} options.title - title of the new feed
  * @param {boolean} [options.visibility='private'] - visibility of feed.
+ * Valid values: 'private', 'public'.
  * @param {string} [options.slug=null] - slug for the feed. Note that creating a
  * slug requires permission to do so.
- * Valid values: 'private', 'public'
  * @returns {Promise<*>}
  */
 export async function createFeed(lo, options) {
@@ -63,9 +63,9 @@ export async function createFeed(lo, options) {
  * @param {{}} options Options for the new feed
  * @param {string} options.title - title of the new feed
  * @param {boolean} [options.visibility='private'] - visibility of feed.
+ * Valid values: 'private', 'public'
  * @param {string} [options.slug=null] - slug for the feed. Note that creating a
  * slug requires permission to do so.
- * Valid values: 'private', 'public'
  * @returns {Promise<*>}
  */
 export async function editFeed(lo, feedId, options) {
