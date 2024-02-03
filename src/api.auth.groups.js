@@ -90,7 +90,7 @@ export async function getSuggestedGroups(lo) {
 }
 
 /**
- * List groups by category name (see `getGroupCategories()`).
+ * List groups by category name ({@link module:Groups#getGroupCategories see `getGroupCategories()`}).
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} categoryName - name of a valid category
  * @param {number} [page=1] - page, for pagination
