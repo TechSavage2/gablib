@@ -53,7 +53,7 @@ export function inverseMap(map) {
 }
 
 /**
- * Find object with id in an array of objects.
+ * Find object with `id` as property in an array of objects.
  * @param {*} id
  * @param {Array} array
  * @param {string} [key='id'] key for 'id' in array objects.
