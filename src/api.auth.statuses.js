@@ -211,7 +211,7 @@ export async function deleteStatus(lo, statusId) {
 /**
  * Get a list of statuses based on a tag.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} tagName - tag name
+ * @param {string} tagName - tag name without the hash symbol
  * @returns {Promise<*>}
  */
 export async function getStatusesFromTag(lo, tagName) {
