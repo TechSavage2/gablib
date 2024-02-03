@@ -91,7 +91,7 @@ export async function getRelatedAccounts(lo) {
 /**
  * List relationship (member or not etc.) for array with account Ids.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {Array} accountIds - list of account (ids as strings) to check
+ * @param {String[]} accountIds - list of account to check
  * @returns {Promise<*>}
  */
 export async function getAccountRelationships(lo, accountIds) {
