@@ -175,7 +175,7 @@ export async function getFeedSubscribers(lo, feedId) {
 /**
  * Get relationship between you and the feeds (membership, subscriber, admin status).
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {Array} feedIds - array with list of feed ids
+ * @param {string[]} feedIds - array with list of feed ids
  * @returns {Promise<*>}
  */
 export async function getFeedRelationships(lo, feedIds) {
