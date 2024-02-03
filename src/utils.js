@@ -74,6 +74,7 @@ export function findObjectId(id, array, key = 'id') {
  * @license MIT
  * @author remove-markdown by stiang. Modified by TechSavage.
  * @see https://github.com/stiang/remove-markdown
+ * @private
  */
 export function stripMD(md, options) {
   options = Object.assign({}, {
@@ -143,7 +144,6 @@ export function stripMD(md, options) {
       .replace(/\[([^\]]*?)][\[(].*?[\])]/g, options.replaceLinksWithURL ? '$2' : '$1')
       // Remove blockquotes
       .replace(/^(\n)?\s{0,3}>\s?/gm, '$1')
-      // .replace(/(^|\n)\s{0,3}>\s?/g, '\n\n')
       // Remove reference-style links?
       .replace(/^\s{1,2}\[(.*?)]: (\S+)( ".*?")?\s*$/g, '')
       // Remove atx-style headers
@@ -158,10 +158,6 @@ export function stripMD(md, options) {
       .replace(/(`{3,})(.*?)\1/gm, '$2')
       // Remove inline code
       .replace(/`(.+?)`/g, '$1')
-      // // Replace two or more newlines with exactly two? Not entirely sure if this belongs here...
-      // .replace(/\n{2,}/g, '\n\n')
-      // // Remove newlines in a paragraph
-      // .replace(/(\S+)\n\s*(\S+)/g, '$1 $2')
       // Replace strike through
       .replace(/~(.*?)~/g, '$1');
   }
