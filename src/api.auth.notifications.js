@@ -67,7 +67,13 @@ export async function getNotifications(lo, maxId = null, sinceId = null, filters
  * @param {LoginObject} lo - Valid and active LoginObject
  * @returns {Promise<*>}
  */
-export async function markNotificationsRead(lo) {
+export async function clearUnreadNotifications(lo) {
   const url = new URL('/api/v1/notifications/mark_read', lo.baseUrl);
   return _fetch(lo, url, 'POST', 'json', '{}');
+}
+
+// WARN deprecated.
+export async function markNotificationsRead(lo) {
+  console.warn('markNotificationsRead() has been deprecated. Please use clearUnreadNotifications() instead.');
+  return await clearUnreadNotifications(lo);
 }
