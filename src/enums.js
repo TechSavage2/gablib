@@ -81,6 +81,7 @@ export const enumGroupModerationJoin = {
  * @readonly
  */
 export const enumGroupRole = {
+  user     : 'user',
   moderator: 'moderator',
   admin    : 'admin'
 };

@@ -561,11 +561,12 @@ export async function groupRemoveStatus(lo, groupId, statusId) {
  * @param {string} groupId - Group id
  * @param {string} accountId - account id update role for
  * @param {string|enumGroupRole} role - new role of account (See {@link enumGroupRole}.)
- * `admin`, `moderator`
+ * `admin`, `moderator`, 'user'
  * @returns {Promise<*>}
  */
 export async function groupUpdateRole(lo, groupId, accountId, role) {
   const url = new URL(`/api/v1/groups/${ groupId }/accounts`, lo.baseUrl);
   url.searchParams.append('account_id', accountId);
+  if ( role === 'user' ) role = null;
   return _fetch(lo, url, 'PATCH', 'json', { role });
 }
