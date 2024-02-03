@@ -152,6 +152,15 @@ If successful login, the object is now initialized for use with API functions. I
 will _throw an error_. Check that your credentials are correct and if a complex password that it's
 properly escaped (if using env.)
 
+Limitations
+-----------
+
+- This package is addressing specifically the site Gab as they have deviated from the standard
+  Mastodon APIs and mechanisms. This will probably not work well with standard Mastodon sites as of
+  now, as it has not been tested with those (although possible, and maybe in a future version).
+- Due to Cross-Origin Resource Sharing (CORS) restrictions you won't be able to create an _
+  in-browser_ client unless you make it as a _browser extension_.
+
 Documentation
 -------------
 
