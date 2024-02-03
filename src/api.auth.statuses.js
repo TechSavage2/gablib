@@ -268,7 +268,7 @@ export async function getComments(lo, statusId, maxId, sort = 'oldest') {
  * list/id, pro, related/statusId, video, "clips"
  *
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|enumTimelines} timeline - a valid timeline name (see {@link enumTimelines}.
+ * @param {string|enumTimelines} timeline - a valid timeline name (see {@link enumTimelines}).
  * @param {number|string|{}} [pageOrMaxId] either page (number), or max status ID (string),
  * or a previous result from this call, for pagination
  * @param {string|enumStatusSort} [sort=enumStatusSort.newestNoReposts] Sort method
