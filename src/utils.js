@@ -40,7 +40,7 @@ export function mapObject(json, map) {
 }
 
 /**
- * Map JSON so that properties becomes values, and vice verse.
+ * Map JSON so that keys becomes values, and vice verse.
  * @param {{}} map - map for properties vs. values
  * @returns {{}}
  */
