@@ -69,7 +69,7 @@ export async function getNotifications(lo, maxId = null, sinceId = null, filters
  */
 export async function clearUnreadNotifications(lo) {
   const url = new URL('/api/v1/notifications/mark_read', lo.baseUrl);
-  return _fetch(lo, url, 'POST', 'json', '{}');
+  return await _fetch(lo, url, 'POST', 'json', '{}');
 }
 
 // WARN deprecated.
