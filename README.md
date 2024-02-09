@@ -10,9 +10,6 @@ _auth/sign_in_ page and extract tokens for API calls that requires authenticatio
 This is not a standalone package/app but intended to be used as part of a custom client or for
 various scripting/automation tasks.
 
-Version 1.0.0 of gablib is out of beta. gablib makes it possible to create independent clients for
-Gab. #gablib is open source (MIT license.) https://github.com/TechSavage2/gablib
-
 Things you can build, but not limited to:
 
 - Custom GUI/TUI clients
@@ -216,7 +213,7 @@ TODOs
 Issues
 ------
 
-See [issues](https://codeberg.org/TechSavage/gablib/issues) on GitHub.
+See [issues](https://codeberg.org/TechSavage/gablib/issues) on Codeberg.
 
 Notes
 -----
