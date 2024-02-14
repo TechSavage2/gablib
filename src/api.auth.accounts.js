@@ -152,7 +152,7 @@ export async function getAccountMutes(lo) {
  */
 export async function getAccountBlockedBys(lo) {
   lo = await refreshSession(lo);  // todo can fail if session has become invalid
-  return { content: { accounts: lo.initJSON.meta.blocked_by }, ok: true, status: 200 };
+  return { content: { accounts: lo.initJSON.meta.blocked_by.map(t => t.toString()) }, ok: true, status: 200 };
 }
 
 /**
