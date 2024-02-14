@@ -7,8 +7,7 @@
 
 'use strict';
 
-import { login } from '../src/login.js';
-import { search } from '../src/api.auth.search.js';
+import { login, search } from '../gablib.js';
 
 const query = process.argv[ 2 ];
 
@@ -17,9 +16,10 @@ if ( !query || !query.trim().length ) {
   process.exit(1);
 }
 
-console.log(`Searching for: ${ query }. Hold on...`);
-
+console.log('Logging in...');
 const lo = await login();
+
+console.log(`Searching for: "${ query }". Hold on...`);
 const result = await search(lo, query);
 
 if ( !result.ok ) {
@@ -39,10 +39,10 @@ else {
 
     // header line
     console.log('---------------------------------------------------------------');
-    console.log(`\x1b[34;1mURL: ${ url }\x1b[m`);
-    console.log(`\x1b[33;1mPosted by ${ account } at ${ date }\x1b[m\n`);
-    console.log(`\x1b[32;1m${ content }\x1b[m\n`);
-    console.log(`\x1b[35m${ likes } 👍     ${ reposts } ♻      ${ quotes } \x1b[37;1m"\x1b[0;35m     ${ comments } 💬\x1b[m\n`);
+    console.log(`\x1b[34;1mURL: ${ url }`);
+    console.log(`\x1b[33mPosted by ${ account } at ${ date }\n`);
+    console.log(`\x1b[32m${ content }\n`);
+    console.log(`\x1b[37m${ likes } \x1b[35m👍\x1b[37m     ${ reposts } \x1b[35m♻\x1b[37m      ${ quotes } \x1b[35m"\x1b[37m     ${ comments } \x1b[35m🗨️\x1b[m\n`);
   });
 
   function filterContent(html) {

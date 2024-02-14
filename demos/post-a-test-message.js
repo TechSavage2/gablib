@@ -8,9 +8,7 @@
 
 'use strict';
 
-import { login } from '../src/login.js';
-import { enumVisibility } from '../src/enums.js';
-import { createStatus } from '../src/api.auth.statuses.js';
+import { login, createStatus, enumVisibility } from '../gablib.js';
 
 // login to your account
 const lo = await login();
