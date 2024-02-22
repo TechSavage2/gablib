@@ -8,8 +8,6 @@
 
 'use strict';
 
-import { login } from './login.js';
-
 /**
  * Private function that handles all our scenarios. This function is not intended
  *  to be called directly, but through wrappers that will provide the correct
@@ -117,7 +115,7 @@ export async function _fetch(
     }
   }
 
-  if ( loginObject.loginOk && typeof loginObject.serializePath === 'string' ) {
+  if ( loginObject && loginObject.loginOk && typeof loginObject.serializePath === 'string' ) {
     if ( ok ) {
       loginObject.serialize();
     }
