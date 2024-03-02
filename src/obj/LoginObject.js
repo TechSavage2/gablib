@@ -82,7 +82,9 @@ export function LoginObject(credentials, altPassword, altBaseUrl) {
     userEmail = credentials;
     password = altPassword;
     baseUrl = altBaseUrl;
-    credentials = null;
+    credentials = {
+      userEmail, password, baseUrl
+    };
   }
 
   // return actual credentials - we use functions for email/pwd to protect outputting them in debug
