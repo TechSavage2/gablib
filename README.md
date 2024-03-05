@@ -10,9 +10,6 @@ _auth/sign_in_ page and extract tokens for API calls that requires authenticatio
 This is not a standalone package/app but intended to be used as part of a custom client or for
 various scripting/automation tasks.
 
-Version 1.0.0 of gablib is out of beta. gablib makes it possible to create independent clients for
-Gab. #gablib is open source (MIT license.) https://github.com/TechSavage2/gablib
-
 Things you can build, but not limited to:
 
 - Custom GUI/TUI clients
@@ -67,19 +64,19 @@ Installation
 Using `npm` to install the package into your nodejs project:
 
 ```bash
-$ npm install https://github.com/TechSavage2/gablib
+$ npm install https://codeberg.org/TechSavage/gablib
 ```
 
 Alternatively, you can use `yarn` to install the package into your nodejs project:
 
 ```bash
-$ yarn add https://github.com/TechSavage2/gablib
+$ yarn add https://codeberg.org/TechSavage/gablib
 ```
 
 or `pnpm`:
 
 ```bash
-$ pnpm add https://github.com/TechSavage2/gablib
+$ pnpm add https://codeberg.org/TechSavage/gablib
 ```
 
 It's now ready for use. As of now there are no other dependencies to be installed.
@@ -114,7 +111,7 @@ setx MASTODON_BASEURL "https://somemastodon.site"
 Remember to restart the shell for the changes to take effect.
 
 You can also use different environment names and simply supply them instead (
-see [wiki](https://github.com/TechSavage2/gablib/wiki/Authenticating).)
+see [wiki](https://codeberg.org/TechSavage/gablib/wiki/Authenticating).)
 
 This package uses the ES module format (i.e. use `import` statements.)
 
@@ -152,12 +149,21 @@ If successful login, the object is now initialized for use with API functions. I
 will _throw an error_. Check that your credentials are correct and if a complex password that it's
 properly escaped (if using env.)
 
+Limitations
+-----------
+
+- This package is addressing specifically the site Gab as they have deviated from the standard
+  Mastodon APIs and mechanisms. This will probably not work well with standard Mastodon sites as of
+  now, as it has not been tested with those (although possible, and maybe in a future version).
+- Due to Cross-Origin Resource Sharing (CORS) restrictions you won't be able to create an _
+  in-browser_ client unless you make it as a _browser extension_.
+
 Documentation
 -------------
 
 **JSDoc** online developer documentation can be [found here](https://techsavage2.github.io/gablib/).
 
-**Wiki** with examples and tips can be [found here](https://github.com/TechSavage2/gablib/wiki).
+**Wiki** with examples and tips can be [found here](https://codeberg.org/TechSavage/gablib/wiki).
 
 To see specifics for each API call, JSON structures and so on, the official Mastodon can be useful.
 Note that some Mastodon sites have modified some of these responses, JSONs and API calls, but to get
@@ -207,7 +213,7 @@ TODOs
 Issues
 ------
 
-See [issues](https://github.com/TechSavage2/gablib/issues) on GitHub.
+See [issues](https://codeberg.org/TechSavage/gablib/issues) on Codeberg.
 
 Notes
 -----
