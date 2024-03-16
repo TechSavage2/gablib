@@ -295,7 +295,8 @@ export const enumTimelines = {
   links          : 'links',
   list           : 'list',
   groupCollection: 'group_collection',
-  groupPins      : 'group_pins'
+  groupPins      : 'group_pins',
+  pro            : 'pro'
 };
 
 /**
