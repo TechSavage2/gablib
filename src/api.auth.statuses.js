@@ -275,6 +275,7 @@ export async function getComments(lo, statusId, maxId, sort = 'oldest') {
  * @param {{}} [filters={}]
  * @param {boolean} [filters.pinned] Only show pinned statuses
  * @param {boolean} [filters.onlyFollowing] Only show statuses by accounts you follow
+ * @param {boolean} [filters.groupId] If timeline type = group, set group id here as string
  * @returns {Promise<*>}
  */
 export async function getTimelineStatuses(
@@ -284,7 +285,7 @@ export async function getTimelineStatuses(
   sort = enumStatusSort.newestNoReposts,
   filters = {}) {
 
-  const url = new URL(`/api/v2/timelines/${ timeline === 'clips' ? 'video' : timeline }`, lo.baseUrl);
+  const url = new URL(`/api/v2/timelines/${ timeline === 'clips' ? 'video' : timeline }${ timeline === 'group' ? '/' + filters.groupId : '' }`, lo.baseUrl);
 
   if ( timeline === 'clips' ) {
     url.searchParams.append('media_type', 'clips');
