@@ -223,15 +223,20 @@ export async function getStatusesFromTag(lo, tagName) {
  * Get a list of statuses based on an account.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} account - ID of account
- * @param {number} [page] - page number
+ * @param {number|string} [pageOrMaxId] - page number, page as number, or maxId as string
  * @param {string} [sort] - sort method. Valid options: see {@link enumStatusSort}.
  * @returns {Promise<*>}
  */
-export async function getAccountStatuses(lo, account, page = 0, sort = 'newest') {
+export async function getAccountStatuses(lo, account, pageOrMaxId = 0, sort = 'newest') {
   const url = new URL(`/api/v2/accounts/${ account }/statuses`, lo.baseUrl);
-  if ( (page | 0) > 0 ) {
-    url.searchParams.append('page', page.toString());
+
+  if ( typeof pageOrMaxId === 'number' ) {
+    url.searchParams.append('page', pageOrMaxId.toString());
   }
+  else if ( typeof pageOrMaxId === 'string' ) {
+    url.searchParams.append('max_id', pageOrMaxId.toString());
+  }
+
   if ( typeof sort === 'string' ) {
     url.searchParams.append('sort_by', sort);
   }
