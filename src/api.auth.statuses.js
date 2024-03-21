@@ -520,14 +520,16 @@ export async function _getStatuses(lo, url) {
   const result = await _fetch(lo, url, 'GET', 'json');
   const statuses = [];
 
-  if ( result.content.t ) { // results from some sites need property remapping
-    result.content.t.forEach(statusId => {
-      statuses.push(_formatStatus(result, statusId, true));
-    });
-  }
-  else {
-    // normal mastodon results
-    statuses.push(...result.content);
+  if ( result.content ) {
+    if ( result.content.t ) { // results from some sites need property remapping
+      result.content.t.forEach(statusId => {
+        statuses.push(_formatStatus(result, statusId, true));
+      });
+    }
+    else {
+      // normal mastodon results
+      statuses.push(...result.content);
+    }
   }
   return { content: statuses, ok: result.status === 200 };
 }
