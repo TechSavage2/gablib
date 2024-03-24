@@ -224,10 +224,11 @@ export async function getStatusesFromTag(lo, tagName) {
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} account - ID of account
  * @param {number|string} [pageOrMaxId] - page number, page as number, or maxId as string
- * @param {string} [sort] - sort method. Valid options: see {@link enumStatusSort}.
+ * @param {string} [sort] - sort method. Valid options: see {@param onlyComments @link enumStatusSort}.
+ * @param {boolean} [onlyComments=false] only get comments from this account. Note: only works with max id.
  * @returns {Promise<*>}
  */
-export async function getAccountStatuses(lo, account, pageOrMaxId = 0, sort = 'newest') {
+export async function getAccountStatuses(lo, account, pageOrMaxId = 0, sort = 'newest', onlyComments = false) {
   const url = new URL(`/api/v2/accounts/${ account }/statuses`, lo.baseUrl);
 
   if ( typeof pageOrMaxId === 'number' ) {
@@ -240,6 +241,11 @@ export async function getAccountStatuses(lo, account, pageOrMaxId = 0, sort = 'n
   if ( typeof sort === 'string' ) {
     url.searchParams.append('sort_by', sort);
   }
+
+  if ( onlyComments ) {
+    url.searchParams.append('only_comments', 'true');
+  }
+
   return await _getStatuses(lo, url);
 }
 
