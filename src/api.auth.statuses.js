@@ -271,6 +271,20 @@ export async function getComments(lo, statusId, maxId, sort = 'oldest') {
 }
 
 /**
+ * Get your own favorited statuses.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number} [maxId] status ID for paging
+ * @returns {Promise<*>}
+ */
+export async function getFavorites(lo, maxId) {
+  const url = new URL('/api/v1/favourites', lo.baseUrl);
+  if ( maxId ) {
+    url.searchParams.append('max_id', maxId);
+  }
+  return await _fetch(lo, url);
+}
+
+/**
  * Get statuses from a timeline given a timeline type.
  *
  * Valid timeline names:
