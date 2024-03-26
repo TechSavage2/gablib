@@ -139,7 +139,7 @@ export async function saveBusinessItem(lo, itemId, state) {
 }
 
 /**
- * Search marketplace listings for given account.
+ * Search marketplace listings for given account and optional query.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} accountId - id of account to search items on
  * @param {string} [query=""] query string. May be empty.

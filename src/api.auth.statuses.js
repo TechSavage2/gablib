@@ -285,22 +285,6 @@ export async function getFavorites(lo, maxId) {
 }
 
 /**
- * Get marketplace listings for an account.
- * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string} accountId - account id to list
- * @param {string|number} [maxId] status ID for paging
- * @returns {Promise<*>}
- */
-export async function getMarketplaceListing(lo, accountId, maxId) {
-  const url = new URL('/api/v1/marketplace_listing_search', lo.baseUrl);
-  url.searchParams.append('account_id', accountId);
-  if ( maxId ) {
-    url.searchParams.append('max_id', maxId);
-  }
-  return await _fetch(lo, url);
-}
-
-/**
  * Get statuses from a timeline given a timeline type.
  *
  * Valid timeline names:
