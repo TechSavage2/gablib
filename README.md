@@ -201,20 +201,27 @@ cd docs/
 python -m http.server
 ```
 
-Go to the link to see the docs.
+Then go to the printed link to see the docs.
 
 TODOs
 -----
 
-- [ ] True privacy/encryption for DMs (where you create and own the private key. H/D exchange
+Due to recent events on this particular site these features are getting a lower priority as there is
+an exodus of users from the site.
+
+- [x] Events for the streaming api added.
+- [ ] AI API
+- [ ] True privacy/encryption for DMs (where you create and own the private key. D/H exchange
   options.)
-- [ ] Events (WIP. Support for streaming api added.)
-- [ ] AI
 
 Issues
 ------
 
-See [issues](https://github.com/TechSavage2/gablib/issues) on Codeberg.
+See [issues](https://github.com/TechSavage2/gablib/issues) on Github.
+
+- Login needs a rewrite, it works but is not robust enough for invalidated sessions (this site is
+  not handling server sessions correctly,) rate limits. It needs automatic and manual reconnect
+  functionality, and better argument parsing.
 
 Notes
 -----
