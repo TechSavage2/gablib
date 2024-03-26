@@ -47,6 +47,7 @@ API support
 - Full support for site wide search
 - Full support for Streaming API (live updates)
 - Full support for Public APIs
+- Support for business and listings API (read only)
 - Support for Accounts (except for 'deep' settings)
 - Support for (de)serialization of session/auth between executions.
 
