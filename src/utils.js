@@ -61,7 +61,7 @@ export function inverseMap(map) {
  */
 export function findObjectId(id, array, key = 'id') {
   for(const o of array) {
-    if ( o[ key ] === id ) return o;
+    if ( o[ key ]?.toString() === id?.toString() ) return o;
   }
   return null;
 }

@@ -221,10 +221,11 @@ export const enumReactions = {
   thumbsDown: '2',
   laughedAt : '3',
   angry     : '4',
-  honked    : '5',
+  honked    : '5',  // note: censored by gab
   heart     : '6',
   salute    : '11',
-  xmasTree  : '15'
+  xmasTree  : '15',
+  prayers   : '19'
 };
 
 /**
@@ -294,7 +295,8 @@ export const enumTimelines = {
   links          : 'links',
   list           : 'list',
   groupCollection: 'group_collection',
-  groupPins      : 'group_pins'
+  groupPins      : 'group_pins',
+  pro            : 'pro'
 };
 
 /**

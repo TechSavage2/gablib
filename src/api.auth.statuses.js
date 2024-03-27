@@ -21,6 +21,10 @@ import { enumStatusSort } from './enums.js';
 let markdownStripper = stripMD;
 let markdownStripperIsAsync = false;
 
+// to extract min/max ids from favorites
+const rxMin = /min_id=\d+/i;
+const rxMax = /max_id=\d+/i;
+
 /**
  * Set a custom Markdown function to strip markdown from Status texts.
  * @param {Function} fn - function that takes Markdown as input and returns cleaned text.
@@ -223,18 +227,29 @@ export async function getStatusesFromTag(lo, tagName) {
  * Get a list of statuses based on an account.
  * @param {LoginObject} lo - Valid and active LoginObject
  * @param {string} account - ID of account
- * @param {number} [page] - page number
- * @param {string} [sort] - sort method. Valid options: see {@link enumStatusSort}.
+ * @param {number|string} [pageOrMaxId] - page number, page as number, or maxId as string
+ * @param {string} [sort] - sort method. Valid options: see {@param onlyComments @link enumStatusSort}.
+ * @param {boolean} [onlyComments=false] only get comments from this account. Note: only works with max id.
  * @returns {Promise<*>}
  */
-export async function getAccountStatuses(lo, account, page = 0, sort = 'newest') {
+export async function getAccountStatuses(lo, account, pageOrMaxId = 0, sort = 'newest', onlyComments = false) {
   const url = new URL(`/api/v2/accounts/${ account }/statuses`, lo.baseUrl);
-  if ( (page | 0) > 0 ) {
-    url.searchParams.append('page', page.toString());
+
+  if ( typeof pageOrMaxId === 'number' ) {
+    url.searchParams.append('page', pageOrMaxId.toString());
   }
+  else if ( typeof pageOrMaxId === 'string' ) {
+    url.searchParams.append('max_id', pageOrMaxId.toString());
+  }
+
   if ( typeof sort === 'string' ) {
     url.searchParams.append('sort_by', sort);
   }
+
+  if ( onlyComments ) {
+    url.searchParams.append('only_comments', 'true');
+  }
+
   return await _getStatuses(lo, url);
 }
 
@@ -260,6 +275,44 @@ export async function getComments(lo, statusId, maxId, sort = 'oldest') {
 }
 
 /**
+ * Get your own favorited statuses.
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string|number|*} [maxId] next ID for paging. This id is retrieved from
+ * the response header "link". This function extracts these for you and attaches them
+ * onto the result object as `minId` and `maxId`. However, you can simply pass in the
+ * current object instead to get the next page.
+ * @returns {Promise<*>}
+ */
+export async function getFavorites(lo, maxId) {
+  const url = new URL('/api/v1/favourites', lo.baseUrl);
+  if ( maxId ) {
+    if ( typeof maxId === 'object' && maxId.maxId ) {
+      const nextId = maxId.maxId;
+      url.searchParams.append('max_id', nextId);
+    }
+    else {
+      url.searchParams.append('max_id', maxId);
+    }
+  }
+  const result = await _fetch(lo, url);
+
+  // extract prev/next (min/max) ids and add as meta
+  if ( result.ok ) {
+    const link = result.headers.get('link');
+    const mMin = link?.match(rxMin);
+    const mMax = link?.match(rxMax);
+
+    const min = mMin ? mMin[ 0 ]?.split('=')[ 1 ] : null;
+    const max = mMax ? mMax[ 0 ]?.split('=')[ 1 ] : null;
+
+    result.minId = min;
+    result.maxId = max;
+  }
+
+  return result;
+}
+
+/**
  * Get statuses from a timeline given a timeline type.
  *
  * Valid timeline names:
@@ -275,6 +328,7 @@ export async function getComments(lo, statusId, maxId, sort = 'oldest') {
  * @param {{}} [filters={}]
  * @param {boolean} [filters.pinned] Only show pinned statuses
  * @param {boolean} [filters.onlyFollowing] Only show statuses by accounts you follow
+ * @param {boolean} [filters.groupId] If timeline type = group, set group id here as string
  * @returns {Promise<*>}
  */
 export async function getTimelineStatuses(
@@ -284,7 +338,7 @@ export async function getTimelineStatuses(
   sort = enumStatusSort.newestNoReposts,
   filters = {}) {
 
-  const url = new URL(`/api/v2/timelines/${ timeline === 'clips' ? 'video' : timeline }`, lo.baseUrl);
+  const url = new URL(`/api/v2/timelines/${ timeline === 'clips' ? 'video' : timeline }${ timeline === 'group' ? '/' + filters.groupId : '' }`, lo.baseUrl);
 
   if ( timeline === 'clips' ) {
     url.searchParams.append('media_type', 'clips');
@@ -514,14 +568,16 @@ export async function _getStatuses(lo, url) {
   const result = await _fetch(lo, url, 'GET', 'json');
   const statuses = [];
 
-  if ( result.content.t ) { // results from some sites need property remapping
-    result.content.t.forEach(statusId => {
-      statuses.push(_formatStatus(result, statusId, true));
-    });
-  }
-  else {
-    // normal mastodon results
-    statuses.push(...result.content);
+  if ( result.content ) {
+    if ( result.content.t ) { // results from some sites need property remapping
+      result.content.t.forEach(statusId => {
+        statuses.push(_formatStatus(result, statusId, true));
+      });
+    }
+    else {
+      // normal mastodon results
+      statuses.push(...result.content);
+    }
   }
   return { content: statuses, ok: result.status === 200 };
 }

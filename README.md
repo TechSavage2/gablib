@@ -16,8 +16,8 @@ Things you can build, but not limited to:
 - Feed/RSS bots
 - General post automation and scheduling
 - Bridges/federation between other social platform APIs, cross-posting
-- Analytics, insight and statistics tools
-- Integration with ML for classifying, summarizing, "AI" use detection, and so forth.
+- Analytics, insight, statistics and scraping tools
+- Integration with your own AI/ML for classifying, summarizing, "AI" use detection, and so forth.
 - General integration with ERMs, CRMs, communications etc. for businesses
 
 Features
@@ -47,6 +47,7 @@ API support
 - Full support for site wide search
 - Full support for Streaming API (live updates)
 - Full support for Public APIs
+- Support for business and listings API (read only)
 - Support for Accounts (except for 'deep' settings)
 - Support for (de)serialization of session/auth between executions.
 
@@ -64,19 +65,19 @@ Installation
 Using `npm` to install the package into your nodejs project:
 
 ```bash
-$ npm install https://codeberg.org/TechSavage/gablib
+$ npm install https://github.com/TechSavage2/gablib
 ```
 
 Alternatively, you can use `yarn` to install the package into your nodejs project:
 
 ```bash
-$ yarn add https://codeberg.org/TechSavage/gablib
+$ yarn add https://github.com/TechSavage2/gablib
 ```
 
 or `pnpm`:
 
 ```bash
-$ pnpm add https://codeberg.org/TechSavage/gablib
+$ pnpm add https://github.com/TechSavage2/gablib
 ```
 
 It's now ready for use. As of now there are no other dependencies to be installed.
@@ -111,7 +112,7 @@ setx MASTODON_BASEURL "https://somemastodon.site"
 Remember to restart the shell for the changes to take effect.
 
 You can also use different environment names and simply supply them instead (
-see [wiki](https://codeberg.org/TechSavage/gablib/wiki/Authenticating).)
+see [wiki](https://github.com/TechSavage2/gablib/wiki/Authenticating).)
 
 This package uses the ES module format (i.e. use `import` statements.)
 
@@ -163,7 +164,7 @@ Documentation
 
 **JSDoc** online developer documentation can be [found here](https://techsavage2.github.io/gablib/).
 
-**Wiki** with examples and tips can be [found here](https://codeberg.org/TechSavage/gablib/wiki).
+**Wiki** with examples and tips can be [found here](https://github.com/TechSavage2/gablib/wiki).
 
 To see specifics for each API call, JSON structures and so on, the official Mastodon can be useful.
 Note that some Mastodon sites have modified some of these responses, JSONs and API calls, but to get
@@ -200,20 +201,27 @@ cd docs/
 python -m http.server
 ```
 
-Go to the link to see the docs.
+Then go to the printed link to see the docs.
 
 TODOs
 -----
 
-- [ ] True privacy/encryption for DMs (where you create and own the private key. H/D exchange
+Due to recent events on this particular site these features are getting a lower priority as there is
+an exodus of users from the site.
+
+- [x] Events for the streaming api added.
+- [ ] AI API
+- [ ] True privacy/encryption for DMs (where you create and own the private key. D/H exchange
   options.)
-- [ ] Events (WIP. Support for streaming api added.)
-- [ ] AI
 
 Issues
 ------
 
-See [issues](https://codeberg.org/TechSavage/gablib/issues) on Codeberg.
+See [issues](https://github.com/TechSavage2/gablib/issues) on Github.
+
+- Login needs a rewrite, it works but is not robust enough for invalidated sessions (this site is
+  not handling server sessions correctly,) rate limits. It needs automatic and manual reconnect
+  functionality, and better argument parsing.
 
 Notes
 -----

@@ -21,6 +21,7 @@ export * from './src/api.auth.shortcuts.js';
 export * from './src/api.auth.statuses.js';
 export * from './src/api.auth.stream.js';
 export * from './src/api.public.js';
+export * from './src/api.auth.businesses.js';
 
 export * from './src/enums.js';
 export * from './src/obj/Poll.js';
