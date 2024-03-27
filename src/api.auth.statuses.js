@@ -21,6 +21,10 @@ import { enumStatusSort } from './enums.js';
 let markdownStripper = stripMD;
 let markdownStripperIsAsync = false;
 
+// to extract min/max ids from favorites
+const rxMin = /min_id=\d+/i;
+const rxMax = /max_id=\d+/i;
+
 /**
  * Set a custom Markdown function to strip markdown from Status texts.
  * @param {Function} fn - function that takes Markdown as input and returns cleaned text.
@@ -273,15 +277,39 @@ export async function getComments(lo, statusId, maxId, sort = 'oldest') {
 /**
  * Get your own favorited statuses.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {string|number} [maxId] status ID for paging
+ * @param {string|number|*} [maxId] next ID for paging. This id is retrieved from
+ * the response header "link". This function extracts these for you and attaches them
+ * onto the result object as `minId` and `maxId`. However, you can simply pass in the
+ * current object instead to get the next page.
  * @returns {Promise<*>}
  */
 export async function getFavorites(lo, maxId) {
   const url = new URL('/api/v1/favourites', lo.baseUrl);
   if ( maxId ) {
-    url.searchParams.append('max_id', maxId);
+    if ( typeof maxId === 'object' && maxId.maxId ) {
+      const nextId = maxId.maxId;
+      url.searchParams.append('max_id', nextId);
+    }
+    else {
+      url.searchParams.append('max_id', maxId);
+    }
   }
-  return await _fetch(lo, url);
+  const result = await _fetch(lo, url);
+
+  // extract prev/next (min/max) ids and add as meta
+  if ( result.ok ) {
+    const link = result.headers.get('link');
+    const mMin = link?.match(rxMin);
+    const mMax = link?.match(rxMax);
+
+    const min = mMin ? mMin[ 0 ]?.split('=')[ 1 ] : null;
+    const max = mMax ? mMax[ 0 ]?.split('=')[ 1 ] : null;
+
+    result.minId = min;
+    result.maxId = max;
+  }
+
+  return result;
 }
 
 /**
