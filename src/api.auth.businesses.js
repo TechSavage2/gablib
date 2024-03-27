@@ -85,7 +85,7 @@ export async function getBusinessListings(lo, businessId, sinceId) {
 /**
  * Browse businesses by array of categories.
  * @param {LoginObject} lo - Valid and active LoginObject
- * @param {[number]} ecs - list of business categories
+ * @param {number[]} ecs - array of business categories
  * @returns {Promise<*>}
  */
 export async function browseBusinesses(lo, ecs) {
