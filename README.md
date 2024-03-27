@@ -16,8 +16,8 @@ Things you can build, but not limited to:
 - Feed/RSS bots
 - General post automation and scheduling
 - Bridges/federation between other social platform APIs, cross-posting
-- Analytics, insight and statistics tools
-- Integration with ML for classifying, summarizing, "AI" use detection, and so forth.
+- Analytics, insight, statistics and scraping tools
+- Integration with your own AI/ML for classifying, summarizing, "AI" use detection, and so forth.
 - General integration with ERMs, CRMs, communications etc. for businesses
 
 Features
