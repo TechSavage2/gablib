@@ -515,6 +515,19 @@ export async function getStatusesWithCard(lo, cardId) {
 }
 
 /**
+ *
+ * @param {LoginObject} lo - Valid and active LoginObject
+ * @param {string} statusId - id of status to remove (you need the right to do
+ * so, i.e. comments on your own posts etc.)
+ * @param {boolean} [block=false] block user at the same time or not.
+ * @returns {Promise<*>}
+ */
+export async function removeAndBlockStatus(lo, statusId, block = false) {
+  const url = new URL(`/api/v1/statuses/${ statusId }/remove`, lo.baseUrl);
+  return _fetch(lo, url, 'POST', 'json', { block });
+}
+
+/**
  * Convenience function to emulate status moving between home timeline and a
  * group and vice verse, or from one group to another.
  *
