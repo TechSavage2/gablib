@@ -30,19 +30,19 @@ export async function _fetch(
   body = null,
   expectedReturnCode = [ 200 ]) {
 
-  const ua = loginObject ? loginObject.userAgent : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/120.0';
+  const ua = loginObject ? loginObject.userAgent : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/124.0';
 
   const options = {
     headers    : {
-      'Accept'                   : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+      'Accept'                   : '*/*',
       'Accept-Language'          : 'en-US,en;q=0.5',
       'Accept-Encoding'          : 'gzip,deflate',
       'Cache-Control'            : 'no-cache',
       'Connection'               : 'keep-alive',
       'Pragma'                   : 'no-cache',
-      'Sec-Fetch-Dest'           : 'document', /** empty,document */
-      'Sec-Fetch-Mode'           : 'navigate', /** cors,navigate */
-      'Sec-Fetch-Site'           : 'same-origin', /** none,same-origin */
+      'Sec-Fetch-Dest'           : 'empty',
+      'Sec-Fetch-Mode'           : 'cors',
+      'Sec-Fetch-Site'           : 'same-origin',
       'Sec-Gpc'                  : '1',
       'Sec-Fetch-User'           : '?1',
       'Upgrade-Insecure-Requests': '1',
